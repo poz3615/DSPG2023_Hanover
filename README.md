@@ -1,2 +1,2 @@
-# DSPG2023_Hanover
-Repo for DSPG 2023 Hanover Project
+# Materials
+This repository stores materials for VT DSPG.
