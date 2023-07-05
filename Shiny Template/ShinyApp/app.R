@@ -1371,7 +1371,7 @@ ui <- navbarPage(title = "DSPG 2022",
                                           p("", style = "padding-top:10px;"),
                                           
                                           h4(strong("DSPG Graduate Student Fellows and Research Assistants")),
-                                          img(src = "Nazmul Huda.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "150px"),
+                                          img(src = "Piper_Zimmerman.JPG", style = "display: inline; border: 1px solid #C0C0C0;", width = "150px"),
                                           img(src = "Samantha Rippley.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "150px"),
                                           br(), 
                                           img(src = "yuanyuanWen.jpg", style = "display: inline; border: 1px solid #C0C0C0;", width = "150px",height="100px"),

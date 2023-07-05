@@ -1,0 +1,13 @@
+name: ShinyApp
+title: ShinyApp
+username:
+account: poz3615
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9411401
+bundleId: 7422522
+url: https://poz3615.shinyapps.io/ShinyApp/
+when: 1688564659.96656
+lastSyncTime: 1688564659.96657
+asMultiple: FALSE
+asStatic: FALSE
