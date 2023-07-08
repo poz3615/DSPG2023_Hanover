@@ -892,9 +892,9 @@ ui <- navbarPage(title = "DSPG 2022",
                  
                  ## Tab Parcellation --------------------------------------------
                  
-                 navbarMenu("Parcellation" , 
+                 #navbarMenu("Parcellation" , 
                             
-                            tabPanel("Powhatan", 
+                            tabPanel("Parcellation", 
                                      fluidRow(style = "margin: 6px;",
                                               h1(strong("Land Parcellation"), align = "center"),
                                               p("", style = "padding-top:10px;"),
@@ -956,11 +956,11 @@ ui <- navbarPage(title = "DSPG 2022",
                                                 )
                                               ) 
                                      ), 
-                            ) 
+                            ) ,
                             
                             
                             
-                 ),
+                 #),
                  
                  ## Tab Findings --------------------------------------------
                  tabPanel("Findings & Predictions", value = "conclusion", 
