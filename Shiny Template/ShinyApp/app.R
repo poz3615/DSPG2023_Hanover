@@ -471,9 +471,9 @@ ui <- navbarPage(title = "DSPG 2022",
                  ),
                  
                  ## Tab sociodemographics --------------------------------------------
-                 navbarMenu("Sociodemographics" , 
+                 #navbarMenu("Sociodemographics" , 
 
-                            tabPanel("Powhatan", 
+                            tabPanel("Sociodemographics", 
                                      fluidRow(style = "margin: 6px;",
                                               h1(strong("Powhatan"), align = "center"),
                                               p("", style = "padding-top:10px;")),
@@ -538,11 +538,11 @@ ui <- navbarPage(title = "DSPG 2022",
                                                          "[11] U.S. Census Bureau (2022). Geographic mobility by selected characteristics in the United States, 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Residential%20Mobility&g=0500000US51145&y=2020&tid=ACSST5Y2020.S0701")),
                                             p("", style = "padding-top:10px;")) 
                                      , 
-                            ) 
+                            ) ,
                             
                             
                             
-                 ),
+                 #),
                  
                  ## Tab Policy --------------------------------------------
                  tabPanel("Policy", value = "conclusion", 
