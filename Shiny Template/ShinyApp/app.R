@@ -206,27 +206,27 @@ thm.p <- hc_theme(colors = c("#fde725", "#fde725", "#1fa187", "#addc30", "#3b528
                 legend = list(itemStyle = list(fontFamily ='Lumen',color ='#000000')
                               ,y=50,align='right',itemHoverStyle = list(color ="#FFFf43")))
 
-thm.g <- hc_theme(colors = c("#fde725", "#fde725", "#1fa187", "#90d743", "#35b779", "#440154", "#31688e", "#443983", "#1fa187"),
-                  chart = list(backgroundColor = "#ffffff"),
-                  title = list(style = list(color ='#000000',
-                                            fontFamily = "Lumen")),
-                  subtitle = list(style = list(color ='#000000',
-                                               fontFamily = "Lumen")),
-                  labels=list(color="#333333", position="absolute"),
-                  legend = list(itemStyle = list(fontFamily ='Lumen',color ='#000000')
-                                ,y=50,align='right',itemHoverStyle = list(color ="#FFFf43")))
+# thm.g <- hc_theme(colors = c("#fde725", "#fde725", "#1fa187", "#90d743", "#35b779", "#440154", "#31688e", "#443983", "#1fa187"),
+#                   chart = list(backgroundColor = "#ffffff"),
+#                   title = list(style = list(color ='#000000',
+#                                             fontFamily = "Lumen")),
+#                   subtitle = list(style = list(color ='#000000',
+#                                                fontFamily = "Lumen")),
+#                   labels=list(color="#333333", position="absolute"),
+#                   legend = list(itemStyle = list(fontFamily ='Lumen',color ='#000000')
+#                                 ,y=50,align='right',itemHoverStyle = list(color ="#FFFf43")))
 
 ### CROP LAYER =================================================
 
   # setting up labels depending on whether it has little to no acreage
-gcrop_values <- c("Developed", 
-                  "Double cropped", 
-                  "Forages", 
-                  "Forested", 
-                  "Horticulture crops*", 
-                  "Other", 
-                  "Row crops", 
-                  "Small grains", "Tree crops*", "Water", "Wetlands")
+# gcrop_values <- c("Developed", 
+#                   "Double cropped", 
+#                   "Forages", 
+#                   "Forested", 
+#                   "Horticulture crops*", 
+#                   "Other", 
+#                   "Row crops", 
+#                   "Small grains", "Tree crops*", "Water", "Wetlands")
 pcrop_values <- c("Developed", 
                   "Double cropped", 
                   "Forages", 
@@ -235,25 +235,25 @@ pcrop_values <- c("Developed",
                   "Other", 
                   "Row crops", 
                   "Small grains", "Tree crops", "Water", "Wetlands")
-gcrop_values21 <- c("Developed", 
-                    "Double cropped", 
-                    "Forages", 
-                    "Forested", 
-                    "Horticulture crops*", 
-                    "Other", 
-                    "Row crops", 
-                    "Small grains", "Water", "Wetlands")
-gcrop_values <- factor(gcrop_values, levels = gcrop_values)
-gcrop_values21 <- factor(gcrop_values21, levels = gcrop_values21)
-
-  # setting up palettes for crop layer map
-gcrop_palette <- colorBin(palette = "viridis", as.numeric(gcrop_values), bins = 11)
-gcrop_colors <- gcrop_palette(unclass(gcrop_values))
-gcrop_colors[11] <- "#4D4D4D" # the color is similar to 
-gcrop_legendpalette <- colorFactor(palette = gcrop_colors,levels=gcrop_values)
-pcrop_legendpalette <- colorFactor(palette = gcrop_colors,levels=pcrop_values)
-
-gcrop_legendpalette21 <- colorFactor(palette = gcrop_colors[-9],levels=gcrop_values21)
+# gcrop_values21 <- c("Developed", 
+#                     "Double cropped", 
+#                     "Forages", 
+#                     "Forested", 
+#                     "Horticulture crops*", 
+#                     "Other", 
+#                     "Row crops", 
+#                     "Small grains", "Water", "Wetlands")
+# gcrop_values <- factor(gcrop_values, levels = gcrop_values)
+# gcrop_values21 <- factor(gcrop_values21, levels = gcrop_values21)
+# 
+#   # setting up palettes for crop layer map
+# gcrop_palette <- colorBin(palette = "viridis", as.numeric(gcrop_values), bins = 11)
+# gcrop_colors <- gcrop_palette(unclass(gcrop_values))
+# gcrop_colors[11] <- "#4D4D4D" # the color is similar to 
+# gcrop_legendpalette <- colorFactor(palette = gcrop_colors,levels=gcrop_values)
+# pcrop_legendpalette <- colorFactor(palette = gcrop_colors,levels=pcrop_values)
+# 
+# gcrop_legendpalette21 <- colorFactor(palette = gcrop_colors[-9],levels=gcrop_values21)
 
 
 
@@ -286,21 +286,21 @@ soilColors <- soilPalette(unclass(soilClass))
 soilColors[9] <- "#4D4D4D" # undefined gets a gray color
 soilLegend <- colorFactor(palette = soilColors,levels=soilClass)
 
-g.soilColors <- soilColors[-c(1,8)] #gooch doesnt have category I and VIII
-g.soilLegend <- colorFactor(palette = g.soilColors,levels=soilClass[-c(1,8)])
+# g.soilColors <- soilColors[-c(1,8)] #gooch doesnt have category I and VIII
+# g.soilLegend <- colorFactor(palette = g.soilColors,levels=soilClass[-c(1,8)])
 
 
 soil_quality <- read.csv("data/Soil_Quality_Analysis.csv")
 
-gsoil <- ggplot(soil_quality, aes(x = `G_Value`, y = `G_Area_acre`, fill = `G_Value`, 
-                                  text = paste0(`G_Value`, "\n", "Total Acres: ", round(`G_Area_acre`, 0)))) +
-  geom_bar(stat = "identity")+
-  coord_flip() +
-  theme(legend.position = "none") +
-  scale_x_discrete(limits = rev) +
-  labs( title = "Total Acreage by Soil Quality Classification", y = "Acreage", x = "Soil Quality Classification")+
-  scale_fill_manual(values=soilColors)
-gsoil <-ggplotly(gsoil, tooltip = "text")
+# gsoil <- ggplot(soil_quality, aes(x = `G_Value`, y = `G_Area_acre`, fill = `G_Value`, 
+#                                   text = paste0(`G_Value`, "\n", "Total Acres: ", round(`G_Area_acre`, 0)))) +
+#   geom_bar(stat = "identity")+
+#   coord_flip() +
+#   theme(legend.position = "none") +
+#   scale_x_discrete(limits = rev) +
+#   labs( title = "Total Acreage by Soil Quality Classification", y = "Acreage", x = "Soil Quality Classification")+
+#   scale_fill_manual(values=soilColors)
+# gsoil <-ggplotly(gsoil, tooltip = "text")
 
 psoil <- ggplot(soil_quality, aes(x = `P_Value`, y = `P_Area_acre`, fill = `P_Value`,
                                   text = paste0(`P_Value`, "\n", "Total Acres: ", round(`P_Area_acre`, 0)))) +
@@ -318,9 +318,9 @@ psoil <-ggplotly(psoil, tooltip = "text")
 
 ## PARCELLATION ============================================
 
-gooch_parcellation <- st_read("data/parcellationData/Gooch_Parcellation_LT.shp") %>%
-  st_transform(crs = st_crs("EPSG:4326"))
-gooch_parcellation$year <- substr(gooch_parcellation$UNIQID_1, 1, 4)
+# gooch_parcellation <- st_read("data/parcellationData/Gooch_Parcellation_LT.shp") %>%
+#   st_transform(crs = st_crs("EPSG:4326"))
+# gooch_parcellation$year <- substr(gooch_parcellation$UNIQID_1, 1, 4)
 
 pow_parcellation <- read_sf("data/parcellationData/Powhatan_Parcellation_LT.shp") %>%
   st_transform(crs = st_crs("EPSG:4326"))
@@ -1159,15 +1159,15 @@ server <- function(input, output){
   
   ### CROP LAYERS ================================================
   
-  output$gooch_crop_img <- renderImage(deleteFile = FALSE,{
-    if(input$gooch_crop == "2012"){
-      return(list(src = "www/CroplandPngs/goochCrop12.png", width = "270%", height = "100%"))    
-    }
-    else{
-      return(list(src = "www/CroplandPngs/goochCrop21.png", width = "270%", height = "100%"))    
-    }
-  })  
-  
+  # output$gooch_crop_img <- renderImage(deleteFile = FALSE,{
+  #   if(input$gooch_crop == "2012"){
+  #     return(list(src = "www/CroplandPngs/goochCrop12.png", width = "270%", height = "100%"))    
+  #   }
+  #   else{
+  #     return(list(src = "www/CroplandPngs/goochCrop21.png", width = "270%", height = "100%"))    
+  #   }
+  # })  
+  # 
   
   output$pow_crop_img <- renderImage(deleteFile = FALSE,{
     if(input$pow_crop == "2012"){
@@ -1179,9 +1179,9 @@ server <- function(input, output){
   })
   
   
-  gcrop <- reactive({
-    input$gcrop
-  })
+  # gcrop <- reactive({
+  #   input$gcrop
+  # })
   
   # output$gcrop_graph <- renderPlotly({
   #   if(gcrop() == "gcrop12"){
@@ -1217,23 +1217,23 @@ server <- function(input, output){
   
   
   
-  output$gsoil <- renderPlotly({
-    gsoil
-  })
-  
+  # output$gsoil <- renderPlotly({
+  #   gsoil
+  # })
+  # 
   output$psoil <- renderPlotly({
     psoil
   })
   
-  output$gooch_trafficPNG <- renderImage(deleteFile = FALSE,{
-    if(input$gooch_traffic == "gvol"){
-      return(list(src = "www/trafficPNGs/goochVol.png", width = "100%", height = "100%"))
-    }
-    else if(input$gooch_traffic == "grich"){
-      return(list(src = "www/trafficPNGs/goochProx.png", width = "100%", height = "100%"))
-    }
-  })
-  
+  # output$gooch_trafficPNG <- renderImage(deleteFile = FALSE,{
+  #   if(input$gooch_traffic == "gvol"){
+  #     return(list(src = "www/trafficPNGs/goochVol.png", width = "100%", height = "100%"))
+  #   }
+  #   else if(input$gooch_traffic == "grich"){
+  #     return(list(src = "www/trafficPNGs/goochProx.png", width = "100%", height = "100%"))
+  #   }
+  # })
+  # 
   output$pow_trafficPNG <- renderImage(deleteFile = FALSE,{
     if(input$pow_traffic == "pvol"){
       return(list(src = "www/trafficPNGs/powVol.png", width = "100%", height = "100%"))
@@ -1244,21 +1244,21 @@ server <- function(input, output){
   })
   
   ### LAND USE ======================================
-  
-  output$gooch_lu_map <- renderImage({
-    if(input$gooch_lu_year == "2018"){
-    return(list(src = "www/luPNGs/Gooch_LU18.png", width = "270%", height = "100%"))    
-      }
-    else if(input$gooch_lu_year == "2019"){
-      return(list(src = "www/luPNGs/Gooch_LU19.png", width = "270%", height = "100%"))    
-      }
-    else if(input$gooch_lu_year == "2020"){
-      return(list(src = "www/luPNGs/Gooch_LU20.png", width = "270%", height = "100%"))    
-      }
-    else{
-      return(list(src = "www/luPNGs/Gooch_LU21.png", width = "270%", height = "100%"))    
-      }
-  },deleteFile = FALSE)
+  # 
+  # output$gooch_lu_map <- renderImage({
+  #   if(input$gooch_lu_year == "2018"){
+  #   return(list(src = "www/luPNGs/Gooch_LU18.png", width = "270%", height = "100%"))    
+  #     }
+  #   else if(input$gooch_lu_year == "2019"){
+  #     return(list(src = "www/luPNGs/Gooch_LU19.png", width = "270%", height = "100%"))    
+  #     }
+  #   else if(input$gooch_lu_year == "2020"){
+  #     return(list(src = "www/luPNGs/Gooch_LU20.png", width = "270%", height = "100%"))    
+  #     }
+  #   else{
+  #     return(list(src = "www/luPNGs/Gooch_LU21.png", width = "270%", height = "100%"))    
+  #     }
+  # },deleteFile = FALSE)
   
   
   output$pow_lu_map <- renderImage({
@@ -1285,11 +1285,11 @@ server <- function(input, output){
     }
   },deleteFile = FALSE)
   
-  output$gooch_sankey <- renderHighchart({ 
-    hchart(data_to_sankey(g.sankey), "sankey", ) %>%
-      hc_add_theme(thm.g) %>%
-      hc_plotOptions(series = list(dataLabels = list(style = list(fontSize = "10px",color="black", textOutline = "none"))))
-  })
+  # output$gooch_sankey <- renderHighchart({ 
+  #   hchart(data_to_sankey(g.sankey), "sankey", ) %>%
+  #     hc_add_theme(thm.g) %>%
+  #     hc_plotOptions(series = list(dataLabels = list(style = list(fontSize = "10px",color="black", textOutline = "none"))))
+  # })
   
   output$pow_sankey <- renderHighchart({ 
     hchart(data_to_sankey(p.sankey), "sankey") %>%
@@ -1299,13 +1299,13 @@ server <- function(input, output){
   
   
   ### HOT SPOTS ======================================
-  output$g.hotspotMap <- renderLeaflet({
-    begin_year <- input$g.hotspotInput[1]-2000
-    end_year <- input$g.hotspotInput[2]-2000
-    yrRange <- c(begin_year:end_year)
-    
-    hotspot.func("Goochland", yrRange)
-  })
+  # output$g.hotspotMap <- renderLeaflet({
+  #   begin_year <- input$g.hotspotInput[1]-2000
+  #   end_year <- input$g.hotspotInput[2]-2000
+  #   yrRange <- c(begin_year:end_year)
+  #   
+  #   hotspot.func("Goochland", yrRange)
+  # })
   
   output$p.hotspotMap <- renderLeaflet({
     begin_year <- input$p.hotspotInput[1]-2000
@@ -1320,10 +1320,10 @@ server <- function(input, output){
   ### PARCELLATION ======================================
   
   
-  output$g.parcellationPlot <- renderLeaflet({
-    yearRange <- abs(input$g.parcellationRange[1]:input$g.parcellationRange[2])
-    parc.func(gooch_parcellation, yearRange, "Goochland", gl_cnty)
-  })
+  # output$g.parcellationPlot <- renderLeaflet({
+  #   yearRange <- abs(input$g.parcellationRange[1]:input$g.parcellationRange[2])
+  #   parc.func(gooch_parcellation, yearRange, "Goochland", gl_cnty)
+  # })
   
   output$p.parcellationPlot <- renderLeaflet({
     yearRange <- abs(input$p.parcellationRange[1]:input$p.parcellationRange[2])
