@@ -164,12 +164,12 @@ edu.func <- function(inputYear, inputCounty) {
 gcon <- st_read("data/Conservation/Gooch_Preservation.shp") %>% st_transform("+proj=longlat +datum=WGS84")
 pcon <- st_read("data/Conservation/Powhatan_Natural_Conservation.shp") %>% st_transform("+proj=longlat +datum=WGS84")
 
-goochland_con <- leaflet()%>%
-  addTiles() %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  setView(lng=-77.9, lat=37.73, zoom=10.48) %>% 
-  addPolygons(data=gcon, weight=0, fillOpacity=0.5, fillColor="purple")%>%
-  addPolygons(data=gl_cnty, weight=2, color="black", fillOpacity=0, opacity = 1)
+# goochland_con <- leaflet()%>%
+#   addTiles() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   setView(lng=-77.9, lat=37.73, zoom=10.48) %>% 
+#   addPolygons(data=gcon, weight=0, fillOpacity=0.5, fillColor="purple")%>%
+#   addPolygons(data=gl_cnty, weight=2, color="black", fillOpacity=0, opacity = 1)
 
 powhatan_con <- leaflet()%>%
   addTiles() %>%
@@ -472,72 +472,72 @@ ui <- navbarPage(title = "DSPG 2022",
                  
                  ## Tab sociodemographics --------------------------------------------
                  navbarMenu("Sociodemographics" , 
-                            tabPanel("Goochland", 
-                                     fluidRow(style = "margin: 6px;",
-                                              h1(strong("Goochland"), align = "center"),
-                                              p("", style = "padding-top:10px;")), 
-                                     fluidRow(style = "margin: 6px;",
-                                              align = "justify",
-                                              column(4, 
-                                                     h4(strong("County Background")),
-                                                     p("Goochland County is located in the Piedmont of the Commonwealth of Virginia. It covers 281.42 square miles and is 71st in the state in size. The county is known for its fertile land and mineral deposits. 
-                                                       The James River flows along the county's southern border, supplying water to farmlands and mills. Coal was mined in the east and gold in the west. Today, agriculture is still important to the county's economy. 
-                                                       Goochland has updated its voting districts in 2022 to better represent the population of all 5 districts [1]. Goochland County also has a vast summer program with plenty of activities. The activities are located 
-                                                       across the county at different facilities, including the skate park, gymnasium, baseball fields, weight room, trails, and many more [2]."),
-                                                     h4(strong("Summary Statistics")),
-                                                     p("Goochland County’s population is 23,472, which is split between 49.8% male (11,698), and 50.2% female (11,774) [3]. 23,524 identify as one race, where 19,302 are white, 3,267 are African American, 
-                                                       75 are American Indian and Alaska Native, 494 are Asian, 3 are Native Hawaiian and Other Pacific Islander, and 383 are some other race [4]." ),
-                                                     p("57.9% of the population within Goochland County is employed. The unemployment rate is 3.7% [5]."),
-                                                     p("There are 11,001 civilian citizens, with 418 employed in agriculture, forestry, fishing and hunting, and mining [6]."),
-                                                     p("There are a total of 8,711 households in Goochland County. The median income is $97,146, with a margin of error of around 8,582. Approximately 24.1% of the 6,600 households have one earner, while 46.1% have two earners [7]. 
-                                                       The largest proportion (20.5%) of earners in Goochland make between $100,000 to $149,999. 18.4% of earners in Goochland earn over $200,000 [8]."),
-                                                     p("Nearly 93.1% of the population 25 and over have graduated high school and pursued further training. The highest level of education is a graduate or professional degree attained by around 3,531 people, or 20.1% of the population 
-                                                       over 25 years old [9]."),
-                                                     p("According to the 2017 Agricultural Census, there were approximately 355 farms with an average farm size of 160 acres. This makes the total land coverage of farms to be 56,739 acres. $11,740,000 was generated from agricultural products sold. 
-                                                       46% of farms sold less than $2,500, and 3% of farms sold over $100,000. Grains, oilseeds, dry beans, and dry peas were the main crops produced for sale ($2,846,000). 
-                                                       Milk (dairy) and poultry products sold were also significant ($4,936,000) [1]."),
-                                                     p("1.0% of Goochland's population moved within the county, 8.4% moved into the county from a different county in VA, 0.7% moved from a completely different state, and 0.3% moved from abroad [10]."),
-                                              ) ,
-                                              column(8, 
-                                                     h4(strong("Sociodemographics")),
-                                                     selectInput("goochland_soc", "Select Variable:", width = "100%", choices = c(
-                                                       "Age Distribution of Population" = "gage",
-                                                       "Employment by Industry" = "gind",
-                                                       "Income Distribution" = "ginc",
-                                                       "Median Earnings By Educational Attainment (Age > 25 years)" = "gedu")
-                                                     ),
-                                                     radioButtons(inputId = "yearSelect_gsoc", label = "Select Year: ", 
-                                                                  choices = c("2017", "2018", "2019", "2020"), 
-                                                                  selected = "2020", inline = TRUE),
-                                                     plotOutput("gsoc", height = "500px"),
-                                                     fluidRow(style = "margin: 6px;",
-                                                              align = "justify",
-                                                              h4(strong("Visualization Summaries")),
-                                                              p("The", strong("age distribution"), "graphs show that the categories consisting of age groups 45 and above have consistently been the largest in the county, making up more than 30% of the population."),
-                                                              p("The", strong("employment"), "graphs indicates that the education, health, and social services industry group has been the largest by a wide margin, and specifically saw a large 
-                                                       increase between 2017 and 2018. The agricultural, forestal, fishing, hunting, and mining industry group has consistently been the smallest, employing less than 5% of 
-                                                       the population every year."),
-                                                              p("The" ,strong("income distribution"), "graphs illustrate the consistent growth in individuals and households earning at least $100,000 each year. This growth has been accompanied 
-                                                       by a general decrease in earnings below $75,000. It is also notable that earnings above $100,000 and below $35,000 are the largest categories throughout all years."),
-                                                              p("The" ,strong("median earnings"), "graphs highlight the fact that those who have gone through some college or attained an associates degree earn the most. The median earnings for this 
-                                                       group were significantly higher than others in 2017 and 2018, but saw a significant decrease to $65,890 in 2019. This number goes back up to $75,313 in 2020; still much lower than the first two years.")),
-                                                     
-                                              ),
-                                     ),
-                                     column(12, 
-                                            h4("References: "), 
-                                            p(tags$small("[1] United States Department of Agriculture. Goochland County Virginia - county profile. National Agricultural Statistics Survey. Retrieved July 6, 2022, from https://www.nass.usda.gov/Publications/AgCensus/2017/Online_Resources/County_Profiles/Virginia/cp51075.pdf", tags$br(),
-                                                         "[2] Goochland County. (n.d.). Parks &amp;&nbsp;recreation. Goochland County, VA - Official Website. Retrieved July 25, 2022, from https://www.goochlandva.us/236/Parks-Recreation", tags$br(), 
-                                                         "[3] U.S. Census Bureau (2022). Age and sex, 2020: ACS 5-Year estimates subject tables. Retrieved July 18, 2022, from https://data.census.gov/cedsci/table?t=Populations%20and%20People&g=0500000US51075&tid=ACSST5Y2020.S0101.", tags$br(), 
-                                                         "[4] U.S. Census Bureau (2022). Race, 2020: DEC redistricting data (PL 94-171). Retrieved July 18, 2022, from https://data.census.gov/cedsci/table?t=Populations%20and%20People&g=0500000US51075." , tags$br(),
-                                                         "[5] U.S. Census Bureau (2022). Employment status, 2020: ACS 5-Year estimates subject tables. Retrieved July 18, 2022, from https://data.census.gov/cedsci/table?t=Employment%3AEmployment%20and%20Labor%20Force%20Status&g=0500000US51075&y=2020&tid=ACSST5Y2020.S2301&moe=false." , tags$br(),
-                                                         "[6] U.S. Census Bureau (2022). Industry by occupation for the civilian employed population 16 years and over, 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Occupation&g=0500000US51075&y=2020&tid=ACSST5Y2020.S2405", tags$br(),
-                                                         "[7] U.S. Census Bureau (2022). Median income in the past 12 months (in 2020 inflation-adjusted dollars), 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Income%20%28Households,%20Families,%20Individuals%29&g=0500000US51075&y=2020&tid=ACSST5Y2020.S1903", tags$br(),
-                                                         "[8] U.S. Census Bureau (2022). Income in the past 12 months (in 2020 inflation-adjusted dollars), 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Income%20%28Households,%20Families,%20Individuals%29&g=0500000US51075&y=2020", tags$br(),
-                                                         "[9] U.S. Census Bureau (2022). Educational attainment, 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Education&g=0500000US51075&y=2020", tags$br(),
-                                                         "[10] U.S. Census Bureau (2022). Geographic mobility by selected characteristics in the United States, 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Residential%20Mobility&g=0500000US51075&y=2020")),
-                                            p("", style = "padding-top:10px;")) 
-                            ), 
+                            # tabPanel("Goochland", 
+                            #          fluidRow(style = "margin: 6px;",
+                            #                   h1(strong("Goochland"), align = "center"),
+                            #                   p("", style = "padding-top:10px;")), 
+                            #          fluidRow(style = "margin: 6px;",
+                            #                   align = "justify",
+                            #                   column(4, 
+                            #                          h4(strong("County Background")),
+                            #                          p("Goochland County is located in the Piedmont of the Commonwealth of Virginia. It covers 281.42 square miles and is 71st in the state in size. The county is known for its fertile land and mineral deposits. 
+                            #                            The James River flows along the county's southern border, supplying water to farmlands and mills. Coal was mined in the east and gold in the west. Today, agriculture is still important to the county's economy. 
+                            #                            Goochland has updated its voting districts in 2022 to better represent the population of all 5 districts [1]. Goochland County also has a vast summer program with plenty of activities. The activities are located 
+                            #                            across the county at different facilities, including the skate park, gymnasium, baseball fields, weight room, trails, and many more [2]."),
+                            #                          h4(strong("Summary Statistics")),
+                            #                          p("Goochland County’s population is 23,472, which is split between 49.8% male (11,698), and 50.2% female (11,774) [3]. 23,524 identify as one race, where 19,302 are white, 3,267 are African American, 
+                            #                            75 are American Indian and Alaska Native, 494 are Asian, 3 are Native Hawaiian and Other Pacific Islander, and 383 are some other race [4]." ),
+                            #                          p("57.9% of the population within Goochland County is employed. The unemployment rate is 3.7% [5]."),
+                            #                          p("There are 11,001 civilian citizens, with 418 employed in agriculture, forestry, fishing and hunting, and mining [6]."),
+                            #                          p("There are a total of 8,711 households in Goochland County. The median income is $97,146, with a margin of error of around 8,582. Approximately 24.1% of the 6,600 households have one earner, while 46.1% have two earners [7]. 
+                            #                            The largest proportion (20.5%) of earners in Goochland make between $100,000 to $149,999. 18.4% of earners in Goochland earn over $200,000 [8]."),
+                            #                          p("Nearly 93.1% of the population 25 and over have graduated high school and pursued further training. The highest level of education is a graduate or professional degree attained by around 3,531 people, or 20.1% of the population 
+                            #                            over 25 years old [9]."),
+                            #                          p("According to the 2017 Agricultural Census, there were approximately 355 farms with an average farm size of 160 acres. This makes the total land coverage of farms to be 56,739 acres. $11,740,000 was generated from agricultural products sold. 
+                            #                            46% of farms sold less than $2,500, and 3% of farms sold over $100,000. Grains, oilseeds, dry beans, and dry peas were the main crops produced for sale ($2,846,000). 
+                            #                            Milk (dairy) and poultry products sold were also significant ($4,936,000) [1]."),
+                            #                          p("1.0% of Goochland's population moved within the county, 8.4% moved into the county from a different county in VA, 0.7% moved from a completely different state, and 0.3% moved from abroad [10]."),
+                            #                   ) ,
+                            #                   column(8, 
+                            #                          h4(strong("Sociodemographics")),
+                            #                          selectInput("goochland_soc", "Select Variable:", width = "100%", choices = c(
+                            #                            "Age Distribution of Population" = "gage",
+                            #                            "Employment by Industry" = "gind",
+                            #                            "Income Distribution" = "ginc",
+                            #                            "Median Earnings By Educational Attainment (Age > 25 years)" = "gedu")
+                            #                          ),
+                            #                          radioButtons(inputId = "yearSelect_gsoc", label = "Select Year: ", 
+                            #                                       choices = c("2017", "2018", "2019", "2020"), 
+                            #                                       selected = "2020", inline = TRUE),
+                            #                          plotOutput("gsoc", height = "500px"),
+                            #                          fluidRow(style = "margin: 6px;",
+                            #                                   align = "justify",
+                            #                                   h4(strong("Visualization Summaries")),
+                            #                                   p("The", strong("age distribution"), "graphs show that the categories consisting of age groups 45 and above have consistently been the largest in the county, making up more than 30% of the population."),
+                            #                                   p("The", strong("employment"), "graphs indicates that the education, health, and social services industry group has been the largest by a wide margin, and specifically saw a large 
+                            #                            increase between 2017 and 2018. The agricultural, forestal, fishing, hunting, and mining industry group has consistently been the smallest, employing less than 5% of 
+                            #                            the population every year."),
+                            #                                   p("The" ,strong("income distribution"), "graphs illustrate the consistent growth in individuals and households earning at least $100,000 each year. This growth has been accompanied 
+                            #                            by a general decrease in earnings below $75,000. It is also notable that earnings above $100,000 and below $35,000 are the largest categories throughout all years."),
+                            #                                   p("The" ,strong("median earnings"), "graphs highlight the fact that those who have gone through some college or attained an associates degree earn the most. The median earnings for this 
+                            #                            group were significantly higher than others in 2017 and 2018, but saw a significant decrease to $65,890 in 2019. This number goes back up to $75,313 in 2020; still much lower than the first two years.")),
+                            #                          
+                            #                   ),
+                            #          ),
+                            #          column(12, 
+                            #                 h4("References: "), 
+                            #                 p(tags$small("[1] United States Department of Agriculture. Goochland County Virginia - county profile. National Agricultural Statistics Survey. Retrieved July 6, 2022, from https://www.nass.usda.gov/Publications/AgCensus/2017/Online_Resources/County_Profiles/Virginia/cp51075.pdf", tags$br(),
+                            #                              "[2] Goochland County. (n.d.). Parks &amp;&nbsp;recreation. Goochland County, VA - Official Website. Retrieved July 25, 2022, from https://www.goochlandva.us/236/Parks-Recreation", tags$br(), 
+                            #                              "[3] U.S. Census Bureau (2022). Age and sex, 2020: ACS 5-Year estimates subject tables. Retrieved July 18, 2022, from https://data.census.gov/cedsci/table?t=Populations%20and%20People&g=0500000US51075&tid=ACSST5Y2020.S0101.", tags$br(), 
+                            #                              "[4] U.S. Census Bureau (2022). Race, 2020: DEC redistricting data (PL 94-171). Retrieved July 18, 2022, from https://data.census.gov/cedsci/table?t=Populations%20and%20People&g=0500000US51075." , tags$br(),
+                            #                              "[5] U.S. Census Bureau (2022). Employment status, 2020: ACS 5-Year estimates subject tables. Retrieved July 18, 2022, from https://data.census.gov/cedsci/table?t=Employment%3AEmployment%20and%20Labor%20Force%20Status&g=0500000US51075&y=2020&tid=ACSST5Y2020.S2301&moe=false." , tags$br(),
+                            #                              "[6] U.S. Census Bureau (2022). Industry by occupation for the civilian employed population 16 years and over, 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Occupation&g=0500000US51075&y=2020&tid=ACSST5Y2020.S2405", tags$br(),
+                            #                              "[7] U.S. Census Bureau (2022). Median income in the past 12 months (in 2020 inflation-adjusted dollars), 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Income%20%28Households,%20Families,%20Individuals%29&g=0500000US51075&y=2020&tid=ACSST5Y2020.S1903", tags$br(),
+                            #                              "[8] U.S. Census Bureau (2022). Income in the past 12 months (in 2020 inflation-adjusted dollars), 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Income%20%28Households,%20Families,%20Individuals%29&g=0500000US51075&y=2020", tags$br(),
+                            #                              "[9] U.S. Census Bureau (2022). Educational attainment, 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Education&g=0500000US51075&y=2020", tags$br(),
+                            #                              "[10] U.S. Census Bureau (2022). Geographic mobility by selected characteristics in the United States, 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Residential%20Mobility&g=0500000US51075&y=2020")),
+                            #                 p("", style = "padding-top:10px;")) 
+                            # ), 
                             tabPanel("Powhatan", 
                                      fluidRow(style = "margin: 6px;",
                                               h1(strong("Powhatan"), align = "center"),
@@ -744,30 +744,30 @@ ui <- navbarPage(title = "DSPG 2022",
                                                 development, and local officials. In Fairfax, Loudoun, and Prince William counties over the last 30 years, the Board of County Supervisor 
                                                 election campaigns have been based on growth management issues. Local officials have reacted to citizen complaints, and incumbents have 
                                                 been voted out of office because they were either too supportive of growth or too restrictive” [1].'),
-                                              column(6,
-                                                     h1(strong("Goochland"), align = "center"),
-                                                     p("", style = "padding-top:10px;"),
-                                                     fluidRow(style = "margin: 6px;", align = "justify",
-                                                              leafletOutput("goochland_con") %>% withSpinner(type = 4, color = "#861F41", size = 1.25),
-                                                              p("The areas highlighted in purple represent", strong("Rural Preservation Districts"), " that allow residential development while continuing to allow agricultural uses in the preservation area, equestrian activities, and forest management plans [2]."),
-                                                              p("Goochland County runs a land use program which assesses land based on use value as opposed to market value. The program was adopted by the county in 1978. There are multiple requirements for land to be eligible for the program as established by the State Land Evaluation Advisory Council:"),
-                                                              tags$ul(
-                                                                
-                                                                tags$li("Land must be in production for sale 5 years prior to entering the program as agriculture or horticulture"),
-                                                                
-                                                                tags$li("Land must be zoned as agricultural"),
-                                                                
-                                                                tags$li("Land must meet minimum acreages for each land use category "),
-                                                                
-                                                                tags$li("All real estate taxes have been paid on parcel "),
-                                                                
-                                                              ),
-                                                              p("There are also multiple land use categories including agriculture, horticulture, and forest use [3]."),
-                                                              p("The main agricultural districts in the county include A1 (General), A2 (Limited), and A3 (Intensive) [4]. These districts promote the protection
-                                                     of agricultural land and encourage agribusiness. The Goochland County 2035 Comprehensive Plan includes an agricultural commitment to maintaining approximately
-                                                     85% of the county in the Rural Enhancement Land Use Designation through 2035 [5]. The county also supports economic development and tourism through the
-                                                     ACRES initiative which “[Supports] Goochland’s Agricultural Community through Accessibility, Connectivity, Readiness, Education, and Sustainability” [6].
-                                                     The initiative encourages the recognition of Goochland County’s agricultural history and identity and promotes rural economic development/tourism."))),
+                                              # column(6,
+                                              #        h1(strong("Goochland"), align = "center"),
+                                              #        p("", style = "padding-top:10px;"),
+                                              #        fluidRow(style = "margin: 6px;", align = "justify",
+                                              #                 leafletOutput("goochland_con") %>% withSpinner(type = 4, color = "#861F41", size = 1.25),
+                                              #                 p("The areas highlighted in purple represent", strong("Rural Preservation Districts"), " that allow residential development while continuing to allow agricultural uses in the preservation area, equestrian activities, and forest management plans [2]."),
+                                              #                 p("Goochland County runs a land use program which assesses land based on use value as opposed to market value. The program was adopted by the county in 1978. There are multiple requirements for land to be eligible for the program as established by the State Land Evaluation Advisory Council:"),
+                                              #                 tags$ul(
+                                              #                   
+                                              #                   tags$li("Land must be in production for sale 5 years prior to entering the program as agriculture or horticulture"),
+                                              #                   
+                                              #                   tags$li("Land must be zoned as agricultural"),
+                                              #                   
+                                              #                   tags$li("Land must meet minimum acreages for each land use category "),
+                                              #                   
+                                              #                   tags$li("All real estate taxes have been paid on parcel "),
+                                              #                   
+                                              #                 ),
+                                              #                 p("There are also multiple land use categories including agriculture, horticulture, and forest use [3]."),
+                                              #                 p("The main agricultural districts in the county include A1 (General), A2 (Limited), and A3 (Intensive) [4]. These districts promote the protection
+                                              #        of agricultural land and encourage agribusiness. The Goochland County 2035 Comprehensive Plan includes an agricultural commitment to maintaining approximately
+                                              #        85% of the county in the Rural Enhancement Land Use Designation through 2035 [5]. The county also supports economic development and tourism through the
+                                              #        ACRES initiative which “[Supports] Goochland’s Agricultural Community through Accessibility, Connectivity, Readiness, Education, and Sustainability” [6].
+                                              #        The initiative encourages the recognition of Goochland County’s agricultural history and identity and promotes rural economic development/tourism."))),
                                               column(6,
                                                      h1(strong("Powhatan"), align = "center"),
                                                      p("", style = "padding-top:10px;"),
@@ -1469,7 +1469,7 @@ server <- function(input, output){
     else{
       return(list(src = "www/CroplandPngs/goochCrop21.png", width = "270%", height = "100%"))    
     }
-  })
+  })  
   
   
   output$pow_crop_img <- renderImage(deleteFile = FALSE,{
@@ -1486,14 +1486,14 @@ server <- function(input, output){
     input$gcrop
   })
   
-  output$gcrop_graph <- renderPlotly({
-    if(gcrop() == "gcrop12"){
-      cropPlot.func("Goochland", 2012)
-    }
-    else if(gcrop() == "gcrop21"){
-      cropPlot.func("Goochland", 2021)
-    }
-  })
+  # output$gcrop_graph <- renderPlotly({
+  #   if(gcrop() == "gcrop12"){
+  #     cropPlot.func("Goochland", 2012)
+  #   }
+  #   else if(gcrop() == "gcrop21"){
+  #     cropPlot.func("Goochland", 2021)
+  #   }
+  # })
   
   pcrop <- reactive({
     input$pcrop
@@ -1508,10 +1508,10 @@ server <- function(input, output){
     }
   })
   
-  output$g.soilPNG <- renderSlickR({
-    img <- "data/Soil_Quality/Goochland.png"
-    slickR.func(img)
-  })
+  # output$g.soilPNG <- renderSlickR({
+  #   img <- "data/Soil_Quality/Goochland.png"
+  #   slickR.func(img)
+  # })
   
   output$p.soilPNG <- renderSlickR({
     img <- "data/Soil_Quality/Powhatan.png"
