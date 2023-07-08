@@ -753,155 +753,155 @@ ui <- navbarPage(title = "DSPG 2022",
                  ## Tab Land Use --------------------------------------------
                  
                  navbarMenu("Land Use" , 
-                            tabPanel("Goochland", 
-                                     fluidRow(style = "margin: 6px;",
-                                              h1(strong("Variables to Consider"), align = "center"),
-                                              p("", style = "padding-top:10px;"),
-                                              tabsetPanel(
-                                                tabPanel("Land Use",
-                                                         p("", style = "padding-top:10px;"),
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                         column(4,
-                                                                         h4(strong("Land Use in Goochland County")),
-                                                                         p("To classify land use we used the state of Virginia’s land use codes for our maps. This involved condensing some administrative categories from Goochland’s system into Virginia’s land use codes. 
-                                                                           The map shows all the parcels in Goochland County classified by their land use type. In the administrative data, some parcels were unclassified. These parcels make up the undefined category that you see in our analyses. 
-                                                                           Our types are Single Family Urban, Single Family Suburban, Multi-Family Residential, Commercial & Industrial, Agriculture / Undeveloped (20-99 Acres), Agriculture / Undeveloped (100+ Acres), Other, and Undefined"),
-                                                                         p("The map shows that Agriculture / Undeveloped (20-99 Acres) and Agriculture / Undeveloped (100+ Acres) have the largest number of parcels for all years. Single Family Suburban is the third largest number of parcels.") 
-                                                                        
-                                                                ), 
-                                                         column(8, 
-                                                                h4(strong("Land Use Distribution and Change by Year")),
-                                                                radioButtons(inputId = "gooch_lu_year", label = "Select year: ",
-                                                                             choices = c("2018", "2019", "2020", "2021"),
-
-                                                                             selected = "2021", inline = TRUE),
-                                                                imageOutput("gooch_lu_map", width = "300px", height = "600px"),
-
-                                                                ))  ,
-                                                              fluidRow(style = "margin: 6px;", align = "justify",
-                                                                       column(4,
-                                                                              br(),
-                                                                              h4(strong("Land Use Transition Matrix")),
-                                                                              p("We constructed a transition matrix with our data to understand how land converts. The matrix shows the total number of parcels of agricultural land converted from 2018-2022 to other uses. 
-                                                                                Note in this analysis a parcel can convert multiple times across the period under study. If we ignore the undefined category, most of the land in agriculture is being converted into Residential Parcels. 
-                                                                                The residential category that had the most parcels added was Single Family Urban. This category gained 220 parcels of land."),
-                                                                       ),
-                                                                       column(8,
-                                                                              br(),
-                                                                              h4(strong("Land Use Conversion in Goochland (Counts): 2018-2022")),
-                                                                              
-                                                                              highchartOutput("gooch_sankey",height = 600) %>% withSpinner(type = 4, color = "#861F41", size = 1.25),
-                                                                              p(tags$small("Data Source: Goochland County Administrative Data")))
-                                                                       )
-                                                ), 
-                                                tabPanel("Crop Layer",
-                                                         p("", style = "padding-top:10px;"),
-                                                         column(4,
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                         h4(strong("Crops Grown in Goochland County")),
-                                                                         p("The map and bar chart on the right show the crop layer data for Goochland County. Goochland County is heavily forested, 
-                                                                with forested lands accounting for 63.94% of all land. This number is a decrease from the 69.63% in 2012. 
-                                                                  Developed land in Goochland increased from 7.28% to 9.29% in 10 years. Most of the developed land is in the east side of 
-                                                                  the county closer to Richmond, VA. Forages is the second biggest crop layer category with 14.99%. Forage is bulky food 
-                                                                  such as grass or hay for horses and cattle. Croplands are spread out throughout the county and only make up 4.1% of 
-                                                                  the land. From an agricultural perspective, the land is more often used for raising livestock instead of 
-                                                                  growing crops. There is a heavy concentration of row crops on the south boundary of county. The James River also acts as a 
-                                                                   boundary between Powhatan County and Goochland County.")
-                                                                )), 
-                                                         column(8, 
-                                                                h4(strong("Crop Layer Map")),
-                                                                
-                                                                radioButtons(inputId = "gooch_crop", label = "Select year: ",
-                                                                             choices = c("2012", "2021"),
-                                                                             selected = "2021", inline = TRUE),
-                                                                imageOutput("gooch_crop_img", width = "300px", height = "600px"),
-                                                                
-                                                                #slickROutput("g.CropPNG", width = "100%", height = "50%"),
-                                                                
-                                                                br(),
-                                                                h4(strong("Crop Layer Graphs")),
-                                                                selectInput("gcrop", "Select Variable:", width = "100%", choices = c(
-                                                                  "Total Acreage by Land Type 2021" = "gcrop21",
-                                                                  "Total Acreage by Land Type 2012" = "gcrop12")
-                                                                ),
-                                                                
-                                                                plotlyOutput("gcrop_graph", height = "500px"),
-                                                                p(tags$small("Data Source: United States Department of Agriculture"))
-                                                         ),
-                                                ) ,
-                                                tabPanel("Soil Quality",
-                                                         p("", style = "padding-top:10px;"),
-                                                         column(4,
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                         h4(strong("Soil Quality in Goochland County")),
-                                                                         p("Good quality soil is essential for crops to produce. Which makes soil quality a factor that could result in land conversion. 
-                                                                  The National Cooperative Soil Survey is a survey done to classify soil into classes based on its usefulness. Those classes are: "),
-                                                                         p(strong("Good Agricultural Soil:")),
-                                                                         tags$ul(
-                                                                           
-                                                                           tags$li(strong("Class 1"), "soils have few limitations that restrict their use."),
-                                                                           
-                                                                           tags$li(strong("Class 2"), "soils have moderate limitations that reduce the choice of plants or that require moderate conservation practices.")),
-                                                                           
-                                                                           p(strong("Restricted Agricultural Soil:")),
-                                                                         tags$ul(
-                                                                           
-                                                                           tags$li(strong("Class 3"), "soils have severe limitations that reduce the choice of plants, require special conservation practices, or both."),
-                                                                           
-                                                                           tags$li(strong("Class 4"), "soils have very severe limitations that reduce the choice of plants, require very careful management, or both.")),
-                                                                           
-                                                                           p(strong("Pasture, Rangeland & Wildlife:"),
-                                                                         tags$ul(
-                                                                           
-                                                                           tags$li(strong("Class 5"), "soils are subject to little or no erosion but have other limitations, impractical to remove, that restrict their use mainly to pasture, rangeland, forestland, or wildlife habitat."),
-                                                                           
-                                                                           tags$li(strong("Class 6"), "soils have severe limitations that make them generally suitable for cultivation and that restrict their use mainly to pasture, rangeland, forestland, or wildlife habitat."),
-                                                                           
-                                                                           tags$li(strong("Class 7"), "soils have very severe limitations that make them unsuitable for cultivation and that restrict their use mainly to grazing, forestland, or wildlife habitat."),
-                                                                           
-                                                                           tags$li(strong("Class 8"), "soils and miscellaneous areas have limitations that preclude commercial plant production and that restrict their use to recreational purposes, wildlife habitat, watershed, or esthetic purposes."),
-                                                                           
-                                                                         ),
-                                                                         p("The soil quality classes have been aggregated into 3 categories for easier comprehension. Most of Goochland County’s soil is in Class 2 or 3. This means that most of the land in Goochland is farmable, but it has limitations that reduce the choice of plants or that require very careful 
-                                                                         management, or both.  On the other end of the spectrum, Goochland has zero acres of land in Class 8. Goochland also has a low number of acres with no data with 5,237 acres. Despite the limitations, it is still possible to farm and for Goochland to be mostly agricultural."),
-                                                                ))), 
-                                                         column(8, 
-                                                                h4(strong("Soil Quality Map")),
-                                                                img(src = "Goochland.png", style = "display: inline; float: left;", width = "100%", height = "50%"),
-                                                                h4(strong("Soil Quality Graph")),
-                                                                plotlyOutput("gsoil", height = "500px") %>% withSpinner(type = 4, color = "#CF4420", size = 1.25),
-                                                                p(tags$small("Data Source: National Cooperative Soil Survey"))),
-                                                         column(12, 
-                                                                
-                                                                h4("References") , 
-                                                                p(tags$small("[1] USDA. U.S. Land Use and Soil Classification. (n.d.). Retrieved July 26, 2022, from https://www.ars.usda.gov/ARSUserFiles/np215/Food%20security%20talk%20inputs%20Lunch%203-15-11.pdf")), 
-                                                         )) ,
-                                                tabPanel("Traffic Data",
-                                                         p("", style = "padding-top:10px;"),
-                                                         column(4,
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                h4(strong("Traffic in Goochland County")),
-                                                                p("Traffic information provides a metric to understand the congestion of roadways in the county and to examine whethere there were correlations with residential housing location. 
-                                                                  Here we present maps of traffic volume and maps of proximity to the city of Richmond. A land parcels proximity to major urban centers and its traffic volume may affect it likelihood of conversion out of agriculture."),
-                                                                p("Goochland has one interstate, and two state highway routes, that we can see affect travel times and volume throughout the county. Interstate 64 leads to an increase in traffic volume on the 
-                                                                  north end of the county and also influences how far someone can drive from the city of Richmond outward through Goochland. We can also see that both of the state routes, 288 and 525, 
-                                                                  see a good majority of the traffic going veritcally through the county.")
-                                                         )), 
-                                                         column(8, 
-                                                                h4(strong("Traffic Visualizations")),
-                                                                selectInput("gooch_traffic", "Select Variable:", width = "100%", choices = c(
-                                                                  "Traffic Volume" = "gvol",
-                                                                  "Proximity to Richmond" = "grich")
-                                                                ),
-                                                                imageOutput("gooch_trafficPNG", height = "110%"),
-                                                                
-                                                                br(),
-                                                                p(tags$small("Data Source: Virginia Department of Traffic")),
-                                                                
-                                                         ),
-                                                )
-                                              ) 
-                                     )), 
+                            # tabPanel("Goochland", 
+                            #          fluidRow(style = "margin: 6px;",
+                            #                   h1(strong("Variables to Consider"), align = "center"),
+                            #                   p("", style = "padding-top:10px;"),
+                            #                   tabsetPanel(
+                            #                     tabPanel("Land Use",
+                            #                              p("", style = "padding-top:10px;"),
+                            #                                     fluidRow(style = "margin: 6px;", align = "justify",
+                            #                                              column(4,
+                            #                                              h4(strong("Land Use in Goochland County")),
+                            #                                              p("To classify land use we used the state of Virginia’s land use codes for our maps. This involved condensing some administrative categories from Goochland’s system into Virginia’s land use codes. 
+                            #                                                The map shows all the parcels in Goochland County classified by their land use type. In the administrative data, some parcels were unclassified. These parcels make up the undefined category that you see in our analyses. 
+                            #                                                Our types are Single Family Urban, Single Family Suburban, Multi-Family Residential, Commercial & Industrial, Agriculture / Undeveloped (20-99 Acres), Agriculture / Undeveloped (100+ Acres), Other, and Undefined"),
+                            #                                              p("The map shows that Agriculture / Undeveloped (20-99 Acres) and Agriculture / Undeveloped (100+ Acres) have the largest number of parcels for all years. Single Family Suburban is the third largest number of parcels.") 
+                            #                                             
+                            #                                     ), 
+                            #                              column(8, 
+                            #                                     h4(strong("Land Use Distribution and Change by Year")),
+                            #                                     radioButtons(inputId = "gooch_lu_year", label = "Select year: ",
+                            #                                                  choices = c("2018", "2019", "2020", "2021"),
+                            # 
+                            #                                                  selected = "2021", inline = TRUE),
+                            #                                     imageOutput("gooch_lu_map", width = "300px", height = "600px"),
+                            # 
+                            #                                     ))  ,
+                            #                                   fluidRow(style = "margin: 6px;", align = "justify",
+                            #                                            column(4,
+                            #                                                   br(),
+                            #                                                   h4(strong("Land Use Transition Matrix")),
+                            #                                                   p("We constructed a transition matrix with our data to understand how land converts. The matrix shows the total number of parcels of agricultural land converted from 2018-2022 to other uses. 
+                            #                                                     Note in this analysis a parcel can convert multiple times across the period under study. If we ignore the undefined category, most of the land in agriculture is being converted into Residential Parcels. 
+                            #                                                     The residential category that had the most parcels added was Single Family Urban. This category gained 220 parcels of land."),
+                            #                                            ),
+                            #                                            column(8,
+                            #                                                   br(),
+                            #                                                   h4(strong("Land Use Conversion in Goochland (Counts): 2018-2022")),
+                            #                                                   
+                            #                                                   highchartOutput("gooch_sankey",height = 600) %>% withSpinner(type = 4, color = "#861F41", size = 1.25),
+                            #                                                   p(tags$small("Data Source: Goochland County Administrative Data")))
+                            #                                            )
+                            #                     ), 
+                            #                     tabPanel("Crop Layer",
+                            #                              p("", style = "padding-top:10px;"),
+                            #                              column(4,
+                            #                                     fluidRow(style = "margin: 6px;", align = "justify",
+                            #                                              h4(strong("Crops Grown in Goochland County")),
+                            #                                              p("The map and bar chart on the right show the crop layer data for Goochland County. Goochland County is heavily forested, 
+                            #                                     with forested lands accounting for 63.94% of all land. This number is a decrease from the 69.63% in 2012. 
+                            #                                       Developed land in Goochland increased from 7.28% to 9.29% in 10 years. Most of the developed land is in the east side of 
+                            #                                       the county closer to Richmond, VA. Forages is the second biggest crop layer category with 14.99%. Forage is bulky food 
+                            #                                       such as grass or hay for horses and cattle. Croplands are spread out throughout the county and only make up 4.1% of 
+                            #                                       the land. From an agricultural perspective, the land is more often used for raising livestock instead of 
+                            #                                       growing crops. There is a heavy concentration of row crops on the south boundary of county. The James River also acts as a 
+                            #                                        boundary between Powhatan County and Goochland County.")
+                            #                                     )), 
+                            #                              column(8, 
+                            #                                     h4(strong("Crop Layer Map")),
+                            #                                     
+                            #                                     radioButtons(inputId = "gooch_crop", label = "Select year: ",
+                            #                                                  choices = c("2012", "2021"),
+                            #                                                  selected = "2021", inline = TRUE),
+                            #                                     imageOutput("gooch_crop_img", width = "300px", height = "600px"),
+                            #                                     
+                            #                                     #slickROutput("g.CropPNG", width = "100%", height = "50%"),
+                            #                                     
+                            #                                     br(),
+                            #                                     h4(strong("Crop Layer Graphs")),
+                            #                                     selectInput("gcrop", "Select Variable:", width = "100%", choices = c(
+                            #                                       "Total Acreage by Land Type 2021" = "gcrop21",
+                            #                                       "Total Acreage by Land Type 2012" = "gcrop12")
+                            #                                     ),
+                            #                                     
+                            #                                     plotlyOutput("gcrop_graph", height = "500px"),
+                            #                                     p(tags$small("Data Source: United States Department of Agriculture"))
+                            #                              ),
+                            #                     ) ,
+                            #                     tabPanel("Soil Quality",
+                            #                              p("", style = "padding-top:10px;"),
+                            #                              column(4,
+                            #                                     fluidRow(style = "margin: 6px;", align = "justify",
+                            #                                              h4(strong("Soil Quality in Goochland County")),
+                            #                                              p("Good quality soil is essential for crops to produce. Which makes soil quality a factor that could result in land conversion. 
+                            #                                       The National Cooperative Soil Survey is a survey done to classify soil into classes based on its usefulness. Those classes are: "),
+                            #                                              p(strong("Good Agricultural Soil:")),
+                            #                                              tags$ul(
+                            #                                                
+                            #                                                tags$li(strong("Class 1"), "soils have few limitations that restrict their use."),
+                            #                                                
+                            #                                                tags$li(strong("Class 2"), "soils have moderate limitations that reduce the choice of plants or that require moderate conservation practices.")),
+                            #                                                
+                            #                                                p(strong("Restricted Agricultural Soil:")),
+                            #                                              tags$ul(
+                            #                                                
+                            #                                                tags$li(strong("Class 3"), "soils have severe limitations that reduce the choice of plants, require special conservation practices, or both."),
+                            #                                                
+                            #                                                tags$li(strong("Class 4"), "soils have very severe limitations that reduce the choice of plants, require very careful management, or both.")),
+                            #                                                
+                            #                                                p(strong("Pasture, Rangeland & Wildlife:"),
+                            #                                              tags$ul(
+                            #                                                
+                            #                                                tags$li(strong("Class 5"), "soils are subject to little or no erosion but have other limitations, impractical to remove, that restrict their use mainly to pasture, rangeland, forestland, or wildlife habitat."),
+                            #                                                
+                            #                                                tags$li(strong("Class 6"), "soils have severe limitations that make them generally suitable for cultivation and that restrict their use mainly to pasture, rangeland, forestland, or wildlife habitat."),
+                            #                                                
+                            #                                                tags$li(strong("Class 7"), "soils have very severe limitations that make them unsuitable for cultivation and that restrict their use mainly to grazing, forestland, or wildlife habitat."),
+                            #                                                
+                            #                                                tags$li(strong("Class 8"), "soils and miscellaneous areas have limitations that preclude commercial plant production and that restrict their use to recreational purposes, wildlife habitat, watershed, or esthetic purposes."),
+                            #                                                
+                            #                                              ),
+                            #                                              p("The soil quality classes have been aggregated into 3 categories for easier comprehension. Most of Goochland County’s soil is in Class 2 or 3. This means that most of the land in Goochland is farmable, but it has limitations that reduce the choice of plants or that require very careful 
+                            #                                              management, or both.  On the other end of the spectrum, Goochland has zero acres of land in Class 8. Goochland also has a low number of acres with no data with 5,237 acres. Despite the limitations, it is still possible to farm and for Goochland to be mostly agricultural."),
+                            #                                     ))), 
+                            #                              column(8, 
+                            #                                     h4(strong("Soil Quality Map")),
+                            #                                     img(src = "Goochland.png", style = "display: inline; float: left;", width = "100%", height = "50%"),
+                            #                                     h4(strong("Soil Quality Graph")),
+                            #                                     plotlyOutput("gsoil", height = "500px") %>% withSpinner(type = 4, color = "#CF4420", size = 1.25),
+                            #                                     p(tags$small("Data Source: National Cooperative Soil Survey"))),
+                            #                              column(12, 
+                            #                                     
+                            #                                     h4("References") , 
+                            #                                     p(tags$small("[1] USDA. U.S. Land Use and Soil Classification. (n.d.). Retrieved July 26, 2022, from https://www.ars.usda.gov/ARSUserFiles/np215/Food%20security%20talk%20inputs%20Lunch%203-15-11.pdf")), 
+                            #                              )) ,
+                            #                     tabPanel("Traffic Data",
+                            #                              p("", style = "padding-top:10px;"),
+                            #                              column(4,
+                            #                                     fluidRow(style = "margin: 6px;", align = "justify",
+                            #                                     h4(strong("Traffic in Goochland County")),
+                            #                                     p("Traffic information provides a metric to understand the congestion of roadways in the county and to examine whethere there were correlations with residential housing location. 
+                            #                                       Here we present maps of traffic volume and maps of proximity to the city of Richmond. A land parcels proximity to major urban centers and its traffic volume may affect it likelihood of conversion out of agriculture."),
+                            #                                     p("Goochland has one interstate, and two state highway routes, that we can see affect travel times and volume throughout the county. Interstate 64 leads to an increase in traffic volume on the 
+                            #                                       north end of the county and also influences how far someone can drive from the city of Richmond outward through Goochland. We can also see that both of the state routes, 288 and 525, 
+                            #                                       see a good majority of the traffic going veritcally through the county.")
+                            #                              )), 
+                            #                              column(8, 
+                            #                                     h4(strong("Traffic Visualizations")),
+                            #                                     selectInput("gooch_traffic", "Select Variable:", width = "100%", choices = c(
+                            #                                       "Traffic Volume" = "gvol",
+                            #                                       "Proximity to Richmond" = "grich")
+                            #                                     ),
+                            #                                     imageOutput("gooch_trafficPNG", height = "110%"),
+                            #                                     
+                            #                                     br(),
+                            #                                     p(tags$small("Data Source: Virginia Department of Traffic")),
+                            #                                     
+                            #                              ),
+                            #                     )
+                            #                   ) 
+                            #          )), 
                             tabPanel("Powhatan", 
                                      fluidRow(style = "margin: 6px;",
                                               h1(strong("Variables to Consider"), align = "center"),
@@ -1345,26 +1345,26 @@ server <- function(input, output){
   
   ### SOCIODEMOGRAPHICS  =================================================
   
-  goochland_soc <- reactive({
-    input$goochland_soc
-  })
+  # goochland_soc <- reactive({
+  #   input$goochland_soc
+  # })
   
-  output$gsoc <- renderPlot({
-    
-    if(goochland_soc() == "gage"){
-      age.func(input$yearSelect_gsoc, "Goochland")
-    }
-    else if(goochland_soc() == "gind"){
-      ind.func(input$yearSelect_gsoc, "Goochland")
-    }
-    else if(goochland_soc() == "ginc"){
-      inc.func(input$yearSelect_gsoc, "Goochland")
-    }
-    else if(goochland_soc() == "gedu"){
-      edu.func(input$yearSelect_gsoc, "Goochland")
-    }
-    
-  })
+  # output$gsoc <- renderPlot({
+  #   
+  #   if(goochland_soc() == "gage"){
+  #     age.func(input$yearSelect_gsoc, "Goochland")
+  #   }
+  #   else if(goochland_soc() == "gind"){
+  #     ind.func(input$yearSelect_gsoc, "Goochland")
+  #   }
+  #   else if(goochland_soc() == "ginc"){
+  #     inc.func(input$yearSelect_gsoc, "Goochland")
+  #   }
+  #   else if(goochland_soc() == "gedu"){
+  #     edu.func(input$yearSelect_gsoc, "Goochland")
+  #   }
+  #   
+  # })
   
   powhatan_soc <- reactive({
     input$powhatan_soc
@@ -1387,9 +1387,9 @@ server <- function(input, output){
     
   })
   
-  output$goochland_con<- renderLeaflet({
-    goochland_con
-  })
+  # output$goochland_con<- renderLeaflet({
+  #   goochland_con
+  # })
   
   output$powhatan_con<- renderLeaflet({
     powhatan_con
