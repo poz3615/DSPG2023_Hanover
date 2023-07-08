@@ -81,7 +81,6 @@ jscode <- "function getUrlVars() {
 ## NECESSITIES =================================================
 
 # necessary imports for many of our plots (county boundary shape files)
-gl_cnty<- st_read("data/cnty_bndry/Goochland_Boundary.shp") %>% st_transform("+proj=longlat +datum=WGS84")
 po_cnty<- st_read("data/cnty_bndry/Powhatan_Boundary.shp") %>% st_transform("+proj=longlat +datum=WGS84")
 
 
@@ -161,7 +160,6 @@ edu.func <- function(inputYear, inputCounty) {
 
 ## POLICY =================================================
 
-gcon <- st_read("data/Conservation/Gooch_Preservation.shp") %>% st_transform("+proj=longlat +datum=WGS84")
 pcon <- st_read("data/Conservation/Powhatan_Natural_Conservation.shp") %>% st_transform("+proj=longlat +datum=WGS84")
 
 powhatan_con <- leaflet()%>%
@@ -186,7 +184,6 @@ powhatan_con <- leaflet()%>%
 
 #transition matrix
 agLabels <- c("Agricultural / Undeveloped (20-99 Acres) (before)", "Agricultural / Undeveloped (100+ Acres) (before)")
-g.sankey <- read.csv("data/luParcelData/g_sankey.csv") %>% select(LUC_old,LUC_new) %>% filter(LUC_old %in% agLabels, LUC_old != LUC_new)
 p.sankey <- read.csv("data/luParcelData/p_sankey.csv") %>% select(MLUSE_old,MLUSE_new)  %>% filter(MLUSE_old %in% agLabels, MLUSE_old != MLUSE_new)
 
 thm.p <- hc_theme(colors = c("#fde725", "#fde725", "#1fa187", "#addc30", "#3b528b",  "#5ec962", "#1fa187"),
@@ -318,11 +315,6 @@ hotspot.func <- function(county, range){
     hotspot.plt <- hotspot.plt %>% setView(lng=-77.9188, lat=37.5415 , zoom=10)
     file_list <- paste("data/Parcel_Hotspot/powhatan/pow_hotspot_",range,".shp",sep = "")
     hotspot.plt <- hotspot.plt %>% addPolygons(data = po_cnty, fillOpacity = 0)
-  }
-  else{
-    hotspot.plt <- hotspot.plt %>% setView(lng=-77.885376, lat=37.73143, zoom = 10)
-    file_list <- paste("data/Parcel_Hotspot/goochland/gooch_hotspot_",range,".shp",sep = "")
-    hotspot.plt <- hotspot.plt %>% addPolygons(data = gl_cnty, fillOpacity = 0)
   }
   
   
