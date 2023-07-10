@@ -741,12 +741,38 @@ ui <- navbarPage(title = "DSPG 2022",
                  
                  #navbarMenu("Parcellation" , 
                             
-                            tabPanel("Solar Farming Analysis", 
+                            tabPanel("Solar Farming Assessment", 
                                      fluidRow(style = "margin: 6px;",
                                               h1(strong("Land Parcellation"), align = "center"),
                                               p("", style = "padding-top:10px;"),
                                               tabsetPanel(
-                                                tabPanel("Parcels",
+                                                tabPanel("Land Suitability",
+                                                         p("", style = "padding-top:10px;"),
+                                                         column(4, 
+                                                                fluidRow(style = "margin: 6px;", align = "justify",
+                                                                         h4(strong("Land Parcels in Powhatan County")),
+                                                                         p("The dark red layer represents land that was parcellated during the most recent year selected. The lighter pink layer represent land that 
+                                                                           parcellated during all previous years selected. If the years 2012 and 2020 are selected, the dark layer would show 2020 parcellations and 
+                                                                           the light pink layer would show parcellation between 2012 and 2019. "), 
+                                                                         p("There are large parcels being broken down along the northern border of the county. There is also significant parcellation in the center of 
+                                                                           the county along Route 60 where most development has occurred in the last several years.")
+                                                                )), 
+                                                         column(8, 
+                                                                h4(strong("Land Parcellation Map")),
+                                                                sliderInput(inputId = "p.parcellationRange",
+                                                                            label = "Years of Parcellation:",
+                                                                            min = 2012,
+                                                                            max = 2020,
+                                                                            value = c(2012, 2020),
+                                                                            sep = "", 
+                                                                            width = "150%"),
+                                                                leafletOutput("p.parcellationPlot") %>% withSpinner(type = 4, color = "#861F41", size = 1.5),
+                                                                p(tags$small("Data Source: Powhatan County Administrative Data")),
+                                                                p(),
+                                                         ),
+                                                         
+                                                ), 
+                                                tabPanel("Infastructure Proximity",
                                                          p("", style = "padding-top:10px;"),
                                                          column(4, 
                                                                 fluidRow(style = "margin: 6px;", align = "justify",
@@ -773,7 +799,7 @@ ui <- navbarPage(title = "DSPG 2022",
                                                          
                                                 ), 
                                                 
-                                                tabPanel("Hot Spots",
+                                                tabPanel("Index",
                                                          p("", style = "padding-top:10px;"),
                                                          column(4, 
                                                                 fluidRow(style = "margin: 6px;", align = "justify",
