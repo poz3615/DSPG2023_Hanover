@@ -606,7 +606,7 @@ ui <- navbarPage(title = "DSPG 2022",
                                               h1(strong("Variables to Consider"), align = "center"),
                                               p("", style = "padding-top:10px;"),
                                               tabsetPanel(
-                                                tabPanel("Land Use",
+                                                tabPanel("Land Use and Zoning",
                                                          p("", style = "padding-top:10px;"),
                                                                 fluidRow(style = "margin: 6px;", align = "justify",
                                                                          column(4,
@@ -646,7 +646,7 @@ ui <- navbarPage(title = "DSPG 2022",
                                                                                 
                                                                                 p(tags$small("Data Source: Powhatan County Administrative Data"))
                                                                 ))),
-                                                tabPanel("Crop Layer",
+                                                tabPanel("Crop Cover",
                                                          p("", style = "padding-top:10px;"),
                                                          column(4,
                                                                 fluidRow(style = "margin: 6px;", align = "justify",
@@ -681,7 +681,7 @@ ui <- navbarPage(title = "DSPG 2022",
                                                                 p(tags$small("Data Source: United States Department of Agriculture")),
                                                          ),
                                                 ) ,
-                                                tabPanel("Soil Quality",
+                                                tabPanel("Soil Type",
                                                          p("", style = "padding-top:10px;"),
                                                          column(4,
                                                                 fluidRow(style = "margin: 6px;", align = "justify",
@@ -729,30 +729,7 @@ ui <- navbarPage(title = "DSPG 2022",
                                                                 h4("References") , 
                                                                 p(tags$small("[1] USDA. U.S. Land Use and Soil Classification. (n.d.). Retrieved July 26, 2022, from https://www.ars.usda.gov/ARSUserFiles/np215/Food%20security%20talk%20inputs%20Lunch%203-15-11.pdf")), 
                                                          )) ,
-                                                tabPanel("Traffic Data",
-                                                         p("", style = "padding-top:10px;"),
-                                                         column(4, 
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                         h4(strong("Traffic in Powhatan County")),
-                                                                         p("Traffic information provides a metric to understand the congestion of roadways in the county and to examine whethere there were correlations with residential housing location. 
-                                                                  Here we present maps of traffic volume and maps of proximity to the city of Richmond. A land parcels proximity to major urban centers and its traffic volume may affect it likelihood of conversion out of agriculture."),
-                                                                         p("Although Powhatan has no interstates running through it, the two state routes that it does have are able to provide fast travel throughout the county. State Route 60, which runs horizontally through the county holds a lot of annual traffic, while Route 525 provides travel through the county vertically. Although Powhatan is on the edge of the City of Richmond, travel times are pretty high while driving from Richmond through Powhatan."),
-                                                                )), 
-                                                         
-                                                         column(8, 
-                                                                h4(strong("Traffic Visualizations")),
-                                                                selectInput(inputId = "pow_traffic", label = "Select Variable:", width = "100%", choices = c(
-                                                                  "Traffic Volume" = "pvol",
-                                                                  "Proximity to Richmond" = "prich"), 
-                                                                ),
-                                                                imageOutput("pow_trafficPNG", height = "110%"),
-                                                                
-                                                                br(),
-                                                                p(tags$small("Data Source: Virginia Department of Transportation")),
-                                                                
-                                                         ),
-                                                         
-                                                )
+                                           
                                               ) 
                                      )), 
                             
@@ -764,7 +741,7 @@ ui <- navbarPage(title = "DSPG 2022",
                  
                  #navbarMenu("Parcellation" , 
                             
-                            tabPanel("Parcellation", 
+                            tabPanel("Solar Farming Analysis", 
                                      fluidRow(style = "margin: 6px;",
                                               h1(strong("Land Parcellation"), align = "center"),
                                               p("", style = "padding-top:10px;"),
