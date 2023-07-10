@@ -486,70 +486,7 @@ ui <- navbarPage(title = "DSPG 2022",
                                      variety of different objectives and long-term visions. These plans drive changes in land use, and it is important to investigate 
                                      policies at every level to get a full picture of land-use conversion."),
                                    tabsetPanel(
-                                     tabPanel("Federal",
-                                              column(6, 
-                                                     fluidRow(style = "margin: 6px;", align = "justify",
-                                                     p("", style = "padding-top:10px;"),
-                                                     p(strong("The Conservation Reserve Program (CRP):")), 
-                                                     p("The CRP is a federal land conversion program administered by the Farm Service Agency (FSA). 
-                                                       The goal of this program is to reduce cropland acreage - a land retirement program that pays farmers to retire some of their crop land. 
-                                                       This program has been a major driver of land retirement since it was implemented in 1985. The program is motivated by environmental 
-                                                       protection goals. To get approved for the land retirement program, your land must hit specific criteria based on targeted environmental 
-                                                       factors. There is then a bidding process. To farmers, this is an incentive to retire land. Studies show that this policy has led to farmers 
-                                                       retiring their less productive land. In 2005, “CRP paid $1.7 billion to keep a land area almost the size of Iowa out of production” [1]. 
-                                                       This federal land conversion program incentivizes farmers to retire their land and lower production. The goal is to protect the environment."),
-                                                     br(),
-                                                     p(strong("Federal Crop Insurance Program:")),
-                                                     p("This program is a partnership between the federal government and insurers - connecting the public and private sectors. 
-                                                       This program does the opposite of the CRP and raises incentives to grow crops. The goal of the Federal Crop Insurance Program is not directly to affect 
-                                                       land use, but it does influence conversion rates. In 1993, after some catastrophic flooding, congress passed the Federal Crop Insurance Reform Act. This 
-                                                       act increased the premium subsidies for all crop insurance products- now the program includes a revenue insurance option and catastrophic coverage. About 
-                                                       60% of cultivated cropland in the Unites States is covered by the Federal Crop Insurance Program. This program raises incentives to grow crops and could 
-                                                       influence farmers to cultivate riskier, less productive land [1]."),
-                                                     br(),
-                                                     p(strong("Emergency Relief Program (ERP):")), 
-                                                     p("The purpose of this program is to help agriculture producers offset the damage caused by natural disasters such as drought or 
-                                                     flooding [2]. Funds are distributed in two phases, to aid livestock producers impacted by natural disasters. The USDA announced in May of 2022 that 
-                                                       “commodity and specialty crop producers impacted by natural disaster events in 2020 and 2021 will soon begin receiving emergency relief payments totaling 
-                                                       approximately $6 billion through the Farm Service Agency’s (FSA) new Emergency Relief Program (ERP) to offset crop yield and value losses” [3]."),
-                                                     p(),
-                                                     p(),
-                                                     
-                                              )) , 
-                                              column(6, 
-                                                     fluidRow(style = "margin: 6px;", align = "justify",
-                                                     p("", style = "padding-top:10px;"),
-                                                     p(strong("Emergency Conservation Program (ECP):")), 
-                                                     p('This program “provides funding and technical assistance for farmers and ranchers to restore farmland damaged by natural disasters and for emergency water 
-                                                       conservation measures in severe droughts" [4]. This program does so by giving landowners funding to install water conservation systems or to repair 
-                                                       damaged farmland. This is another example of a conservation program that gives farmers insurance, which could incentive farmers to continue to cultivate their 
-                                                       land - regardless of the potential risks associated with damage from storms and droughts. Farms are eligible for this assistance if the damage is affecting 
-                                                       productivity, there is evidence that conditions will worsen without intervention, and the repairs will be too costly without federal assistance [4]. 
-                                                       Up to 75% of the costs can be provided. The FSA County Committee can “approve applications up to $125,000 while $125,001 to $250,000 requires state committee 
-                                                       approval" [4].'),
-                                                     br(), 
-                                                     p(strong("Source Water Protection Program (SWPP):")),
-                                                     p("This program is a joint project with the U.S. Department of Agriculture (USDA) Farm Service Agency (FSA) and the National Rural Water Association (NRWA), 
-                                                       a non-profit water and wastewater utility membership organization [5]. It was designed with the goal of protecting surface and ground water that is 
-                                                       used as drinking water by rural residents. The NRWA employs full-time rural source water technicians that work with state and county FSA staff to make decisions 
-                                                       on where pollution prevention is needed. The SWPP works at the local level, to educate and encourage farmers to prevent source water prevention. With this program, 
-                                                       it is the local community to create and invest in a water protection plan."),
-                                                     br(),
-                                                     p(strong("Agriculture Risk Coverage (ARC) and Price Loss Coverage (PLC):")),
-                                                     p('The ARC program is an “income support program that provides payments when actual crop revenue declines below a specified guaranteed level" [6]. PLC program “provides 
-                                                     income support payments when the effective price for a covered commodity falls below its effective reference price" [6]. Both programs provide financial protection 
-                                                     to farmers. They serve as a safety net from drops in crop revenues and prices.'))),
-                                              column(12,
-                                                     h4("References:"),
-                                                     p(tags$small("[1] Lubowski, R. N., Bucholtz, S., Claassen, R., Roberts, M. J., Cooper, J. C., Gueorguieva, A., & Johansson, R. (n.d.). Environmental Effects of Agricultural Land-Use Change United States Department of Agriculture The Role of Economics and Policy. Retrieved July 25, 2022, from www.ers.usda.gov", tags$br(), 
-                                                                  "[2] USDA. (n.d.). Emergency relief. USDA Farm Service Agency. Retrieved July 25, 2022, from https://www.fsa.usda.gov/programs-and-services/emergency-relief/index ", tags$br(),
-                                                                  "[3] USDA. (n.d.). USDA to provide approximately $6 billion to commodity and specialty crop producers impacted by 2020 and 2021 natural disasters. USDA Farm Service Agency. Retrieved July 25, 2022, from https://www.fsa.usda.gov/state-offices/Virginia/news-releases/usda-to-provide-approximately-6-billion-to-commodity-and-specialty-crop-producers-impacted-by-2020-and-2021-natural-disasters- ", tags$br(),
-                                                                  "[4] USDA. (n.d.). Emergency conservation program. USDA Farm Service Agency. Retrieved July 25, 2022, from https://www.fsa.usda.gov/programs-and-services/conservation-programs/emergency-conservation/index", tags$br(),
-                                                                  '[5] "Grassroots" source water protection program. USDA Farm Service Agency. (n.d.). Retrieved July 25, 2022, from https://www.fsa.usda.gov/programs-and-services/conservation-programs/source-water-protection/index', tags$br(),
-                                                                  "[6] USDA. (n.d.). Agriculture risk coverage (ARC) &amp; Price Loss Coverage (PLC). USDA Farm Service Agency. Retrieved July 25, 2022, from https://www.fsa.usda.gov/Assets/USDA-FSA-Public/usdafiles/FactSheets/2019/arc-plc_overview_fact_sheet-aug_2019.pdf")),
-                                                     p("", style = "padding-top:10px;"),
-                                              )), 
-                                     tabPanel("State",
+                                     tabPanel("Conservation",
                                               p(),
                                               p('State-level officials work within the confines of both federal and local policy. They aim to simultaneously enhance federal policy while enabling local officials to make comprehensive 
                                               land-use plans. The state of Virginia is under the Dillon Rule which states that local ordinances must be consistent with state law [1]. Local officials are the ones approving parcel-specific 
@@ -605,7 +542,7 @@ ui <- navbarPage(title = "DSPG 2022",
                                                                   "[7] Virginia Department of Environmental Quality. (n.d.). Chesapeake Bay TMDLs. Virginia Department of Environmental Quality. Retrieved July 25, 2022, from https://www.deq.virginia.gov/water/chesapeake-bay/chesapeake-bay-tmdls ")),
                                                      p("", style = "padding-top:10px;")),
                                      ),
-                                     tabPanel("County",
+                                     tabPanel("Solar",
                                               p(),
                                               p('"In urbanizing areas such as the suburbs near Richmond, Hampton Roads, and Northern Virginia, control over how private property 
                                                 is developed may be a contentious process involving landowners and their lawyers, neighbors, or local residents upset over additional 
