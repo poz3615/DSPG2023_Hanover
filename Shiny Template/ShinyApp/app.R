@@ -962,12 +962,11 @@ ui <- navbarPage(title = "DSPG 2023",
                                                 ), 
                                                 tabPanel("Infastructure Proximity",
                                                          p("", style = "padding-top:10px;"),
-                                                         column(4, 
-                                                                fluidRow(style = "margin: 8px;",
-                                                                         align = "center",
-                                                                         column(6,
-                                                                                h2(strong("Infrastructure Proximity Write Up Goes Here")),
-                                                                                p("This map was created using transmission line location data 
+                                                         fluidRow(style = "margin: 8px;",
+                                                                  align = "center",
+                                                                  column(6,
+                                                                         h2(strong("Infrastructure Proximity Write Up Goes Here")),
+                                                                         p("This map was created using transmission line location data 
                                                        from the Homeland Infrastructure Foundation Level Database 
                                                        (HIFLD) and a separate dataset distributed by The Office for
                                                        Coastal Management which used HIFLD metadata to map all substations
@@ -977,8 +976,8 @@ ui <- navbarPage(title = "DSPG 2023",
                                                        of all substations within Hanover County. To map all of the substations
                                                        within the county we used Open Street Map and Google Earth to locate
                                                        the other substation locations and add them to our dataset."),
-                                                                                p(),
-                                                                                p("Solar farms need to be within close proximity of infrastructure 
+                                                                         p(),
+                                                                         p("Solar farms need to be within close proximity of infrastructure 
                                                        that can distribute the power generated from a farm throughout the
                                                        grid. Connecting a farm directly to a substation is ideal as
                                                        substations already have the majority of necessary technology
@@ -990,13 +989,13 @@ ui <- navbarPage(title = "DSPG 2023",
                                                        feasible. A distance rule of thumb is that solar farms should be 
                                                        developed within 2 miles of a substation or 1000 feet of a transmission
                                                        line in order to keep development costs low."),
-                                                                                p(),
-                                                                                p("The map displayed shows parcels that have land within either 2 
+                                                                         p(),
+                                                                         p("The map displayed shows parcels that have land within either 2 
                                                        miles of a substation or 1000 feet of a transmission line. The 
                                                        highlighted parcels are also subsetted to show only lots that are
                                                        zoned for agriculture and are at least 10 acres in size."),
-                                                                                p(),
-                                                                                p("The second layer displays a map that shows parcels which are
+                                                                         p(),
+                                                                         p("The second layer displays a map that shows parcels which are
                                                        centered within the most suitable land for solar farm development.
                                                        Using NRCS Web Soil Survey data we were able to map the soil types
                                                        across the county based on the level of limitation that they pose 
@@ -1005,42 +1004,61 @@ ui <- navbarPage(title = "DSPG 2023",
                                                        The parcels displayed are also subsetted to only show lots that are a minimum of 10 acres. The most 
                                                        suitable land for solar farm development within Hanover County is concentrated on the eastern end of 
                                                        the county where the majority of prime farmland is located."),
-                                                                                p()
-                                                                         ),
-                                                                         column(6,
-                                                                                h2(strong("Visualizations")),
-                                                                                p("Visualizations go here")
-                                                                                
-                                                                         )
-                                                                )),
+                                                                         p()
+                                                                  ),
+                                                                  column(6,
+                                                                         h2(strong("Visualizations")),
+                                                                         p("Visualizations go here")
+                                                                         
+                                                                  )
+                                                         ),
                                                          
                                                 ), 
                                                 
                                                 tabPanel("Index",
                                                          p("", style = "padding-top:10px;"),
-                                                         column(4, 
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                         h4(strong("Parcellation Hot Spots in Powhatan County")),
-                                                                         p("There are new parcels split from their mother parcels every year in Goochland. The hot spot map shows the area where parcellation happens 
-                                                                  the most frequently with red polygons. After selecting the year range via the slider, the map will show the parcellation frequency during the period. 
-                                                                  The more solid the circle is, the more frequently parcellation has happened in this area during the selected period."),
-                                                                         p("From the hot spot map of parcellation in Powhatan over years, a pattern can be observed. Parcellation happened more frequently in 
-                                                                  the center part, east and west edges of Powhatan. The high frequency of parcellation in the center part persisted in 2015-2021. 
-                                                                  In the middle area, it became more often in 2021 and 2022. Parcellation in the east area might be driven by the proximity to the metropolis.")
-                                                                )), 
-                                                         column(8, 
-                                                                h4(strong("Parcellation Hot Spot Map")),
-                                                                sliderInput(inputId = "p.hotspotInput", 
-                                                                            label = "Choose the starting and ending years",
-                                                                            min = 2015,
-                                                                            max = 2021,
-                                                                            step = 1,
-                                                                            value = c(2015,2021),
-                                                                            width = "150%",
-                                                                            sep = ""),
-                                                                leafletOutput("p.hotspotMap") %>% withSpinner(type = 4, color = "#861F41", size = 1.5),
-                                                                p(tags$small("Data Source: Powhatan County Administrative Data")),
-                                                                p(),
+                                                         fluidRow(style = "margin: 8px;",
+                                                                  align = "center",
+                                                                  column(6,
+                                                                         h2(strong("Hanover Solar Assessment")),
+                                                                         p("Hanover County is currently home to Mechanicsville Solar PV Park. 
+                                                       This 28-megawatt solar farm has been in operation since 2018. 
+                                                       Developed by SunEnergy1, the park spans 222 acres and consists of 93,000 modules. 
+                                                       The electricity generated by the solar farm is being sold to Dominion Energy 
+                                                       and has the capacity to power approximately 5,000 households."),
+                                                                         p(),
+                                                                         p("In addition to the Mechanicsville Solar PV Park, Hanover County has
+                                                       approved a new solar farm. Developed by Ameriesco Solar, this 22-acre 
+                                                       facility is capable of generating 5 megawatts of power, which is estimated
+                                                       to meet the energy needs of 1,500 homes. The farm is located on Peppertown
+                                                       road and is expected to have a lifespan of 40 years. As part of their environmental 
+                                                       commitment, the developer plans to plant pollinator-friendly vegetation between 
+                                                       the solar panels."),
+                                                                         p(),
+                                                                         h2(strong("Optimal Solar Farm Locations")),
+                                                                         p("Solar farms require large areas of space, clear from any obstructions,
+                                                       such as trees or buildings that could potentially cast shadows onto the panels.
+                                                       This helps to ensure that they have maximum exposure to sunlight
+                                                       throughout the day. Having flat land is also preferred for solar farms
+                                                       as it simplifies installation, and allows for better panel
+                                                       positioning and alignment. The energy produced from the solar 
+                                                       farm has to be sent to a substation where it is stored before being
+                                                       released onto the grid. Therefore, a solar farm in close proximity to a
+                                                       substation is beneficial as it reduces the need to run lines long distances.
+                                                       Solar farms will also need to be inspected and maintained throughout their 
+                                                       operation, so service road access is very important when determining suitable properties."),
+                                                                         p()
+                                                                         
+                                                                  ),
+                                                                  column(6,
+                                                                         h2(strong("Visualizations")),
+                                                                         p("Visualizations go here"),
+                                                                         radioButtons(inputId = "bufferType", label = "Select buffer size: ",
+                                                                                      choices = c("Buffer One", "Buffer Two", "Buffer Three"),
+                                                                                      
+                                                                         )
+                                                                  )
+                                                                  
                                                          ),
                                                          
                                                 )
