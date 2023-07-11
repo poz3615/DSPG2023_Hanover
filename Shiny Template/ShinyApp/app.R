@@ -715,7 +715,7 @@ ui <- navbarPage(title = "DSPG 2023",
                                               )
                                            
                                      ),
-                                     tabPanel("Solar",
+                                     tabPanel("Solar Policy",
                                               p(),
                                               p('"In urbanizing areas such as the suburbs near Richmond, Hampton Roads, and Northern Virginia, control over how private property 
                                                 is developed may be a contentious process involving landowners and their lawyers, neighbors, or local residents upset over additional 
@@ -755,30 +755,33 @@ ui <- navbarPage(title = "DSPG 2023",
                                               tabsetPanel(
                                                 tabPanel("Land Use and Zoning",
                                                          p("", style = "padding-top:10px;"),
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                         column(4,
-                                                                         h4(strong("Land Use in Powhatan County")),
-                                                                         p("To classify land, we used the state of Virginia’s land use codes for our analyses. This involved condensing some administrative categories from Powhatan’s system into Virginia’s land use codes. 
-                                                                           The map shows all the parcels in Powhatan County classified by their land use type. In the administrative data, some parcels were unclassified. These parcels make up the undefined category that 
-                                                                           you see in our analyses. Our types are Single Family Urban, Single Family Suburban, Multi-Family Residential, Commercial & Industrial, Agriculture / Undeveloped (20-99 Acres), Agriculture / Undeveloped (100+ Acres), 
-                                                                           Other, and Undefined."),
-                                                                         p("The map shows that Agriculture / Undeveloped (20-99 Acres) and Agriculture / Undeveloped (100+ Acres) have the largest number of parcels for all years. Single Family Suburban is the third largest number of parcels.")
-                                                                         
-                                                                ), 
-                                                         column(8, 
-                                                                h4(strong("Land Use Distribution and Change by Year")),
-                                                                
-                                                                radioButtons(inputId = "pow_lu_year", label = "Select year: ",
-                                                                             choices = c("2015", "2016", "2017", "2018", "2019", "2020", "2021"),
-
-                                                                             selected = "2021", inline = TRUE),
-
-                                                                imageOutput("pow_lu_map", width = "100%", height = "50%"),
-                                                                
-
-
-                                                         
-                                                )), 
+                                                         fluidRow(style = "margin: 8px;",
+                                                                  align = "center",
+                                                                  column(6,
+                                                                         h2(strong("Land Use by Parcel")),
+                                                                         p("This map shows the parcel-level zoning 
+                                                       classification for Hanover County. 
+                                                       We used Virginia's land use codes, along 
+                                                       with assessor data from Hanover County to display 
+                                                       areas in the county according to their zoning ordinances.  
+                                                       Here we see that the majority of the county is zoned for 
+                                                       agricultural and residential use."),
+                                                                         p(),
+                                                                         p("In the map above we saw that the majority of 
+                                                       area in Hanover county is zoned for agriculture. 
+                                                       However, from using the same data we derived this bar
+                                                       graph that shows the number of residential parcels is more 
+                                                       than the number of agriculture parcels.")
+                                                                  ),
+                                                                  column(6,
+                                                                         h2(strong("Visualizations")),
+                                                                         p("Visualizations go here"),
+                                                                         plotlyOutput("interactive_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                                         #leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25),
+                                                                         leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25),
+                                                                         #mapview:::plainViewOutput("zoneHan")
+                                                                  )
+                                                         ), 
                                                                 fluidRow(style = "margin: 6px;", align = "justify",
                                                                          column(4,
                                                                                 br(),
