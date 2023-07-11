@@ -310,24 +310,6 @@ rateacre <- ggplotly(rateacre, tooltip = "text")
 po_cnty<- st_read("data/cnty_bndry/Powhatan_Boundary.shp") %>% st_transform("+proj=longlat +datum=WGS84")
 
 
-## POLICY =================================================
-
-pcon <- st_read("data/Conservation/Powhatan_Natural_Conservation.shp") %>% st_transform("+proj=longlat +datum=WGS84")
-
-powhatan_con <- leaflet()%>%
-  addTiles() %>%
-  addProviderTiles(providers$CartoDB.Positron)%>%
-  setView(lng=-77.9188, lat=37.5415, zoom=10.48) %>% 
-  addPolygons(data=pcon[1,], weight=0, fillOpacity = 0.5, fillColor = "#f89540", group = "Priority Conservation Areas")%>%
-  addPolygons(data=pcon[2,], weight=0, fillOpacity = 0.5, fillColor = "#b73779", group = "Protected Lands")%>%
-  addPolygons(data=pcon[3,], weight=0, fillOpacity = 0.5, fillColor = "#21918c", group = "AFD")%>%
-  addPolygons(data=po_cnty, weight=2, color="black", fillOpacity=0, opacity = 1)%>%
-  addLayersControl(
-    overlayGroups = c("Priority Conservation Areas", "Protected Lands", "AFD"),
-    position = "bottomleft",
-    options = layersControlOptions(collapsed = FALSE))
-
-
 ## LAND USE =================================================
 
 
