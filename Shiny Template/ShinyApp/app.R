@@ -35,6 +35,14 @@ library(htmlwidgets) #for transition matrix
 library(png)
 library(slickR)
 
+library(shinydashboard)
+library("writexl")
+library(colorspace) 
+library(leaflet.extras)
+library(webshot)
+library(purrr)
+library(mapview)
+
 options(scipen=999)
 #options(shiny.maxRequestSize = 80*1024^2)
 
@@ -78,6 +86,223 @@ jscode <- "function getUrlVars() {
 
 # DATA --------------------------------------------------------------------------------------------------------------------
 
+# DATA --------------------------------------------------------------------------------------------------------------------------
+
+
+
+## SOCIODEMOGRAPHICS ===========================================================================================================
+
+
+# Employment Graph
+employ <- read.csv("data/Employment.csv")
+employ <- head(employ, -1)
+employ <- na.omit(employ)
+employ_plot <- ggplot(employ, aes(x = reorder(EmploymentTypes, Percent), y = Percent, fill = EmploymentTypes,
+                                  text = paste0("Employment Type:", `EmploymentTypes`, "\n","Percent: ", round(`Percent`, 1)))) +
+  geom_col() +
+  scale_fill_viridis(discrete = TRUE) +
+  theme(legend.position = "none") +
+  labs(title = "Total Employment For Each Industry", 
+       x = "Industry",
+       y = "Percent",
+       caption = "Data Source: US Census ACS 5-Year 2019 Data") +
+  coord_flip() 
+
+employ_plot <- ggplotly(employ_plot, tooltip = "text")
+
+
+## POLICY =========================================================================================================
+
+### CONSERVATION ===============================================================================================================
+
+### SOLAR ===========================================================================================================
+
+## LAND USE ANALYSIS =================================================================================================
+
+### ZONING ==============================================================================================================================
+
+
+merged_copy <- readRDS(file = "data/mergedNew.Rds")
+
+colored_land <- merged_copy %>%
+  dplyr::select(geometry, land_use)
+
+color_map <- colorFactor(palette = turbo(length(unique(merged_copy$land_use))), 
+                         domain = merged_copy$land_use)
+
+mapviewOptions(legend.pos = "bottomleft")
+
+zoneHan <- mapview(colored_land, zcol = "land_use", lwd = .25, legend.opacity = .2, layer.name = "Zone Categories", alpha.regions = 1, stroke = TRUE)#+
+#addLegends()
+
+
+
+acres_landuse <- merged_copy %>%
+  dplyr::select(LOT_ACRES, land_use)
+
+acre <- as.data.frame(acres_landuse) %>%
+  na.omit()%>%
+  group_by(land_use)%>%
+  summarize(mean_acres = mean(LOT_ACRES),
+            median_acres = median(LOT_ACRES),
+            min_acres = min(LOT_ACRES),
+            max_acres = max(LOT_ACRES),
+            sd_acres = sd(LOT_ACRES))
+
+
+mean_a <-ggplot(acre, aes(reorder(land_use, mean_acres), mean_acres, fill = land_use))+
+  geom_col()+
+  aes(text= paste0("Land Use:", `land_use`, "<br>",
+                   "Mean Lot Acres:", round(`mean_acres`, 2)))+
+  scale_fill_viridis_d()+
+  theme(legend.position = "none", axis.text.x = element_text(size = 7))+
+  labs(x = "Land Use Type", y="Lot Acres", caption = "Data Source: Hanover County Assessor Data")+
+  ggtitle("Mean Lot Acres By Land Use Type")
+
+interactive_plot <- ggplotly(mean_a, tooltip = "text") 
+
+
+### CROP COVER ==========================================================================================================================
+
+#setting a variable for the crop excel file
+crop_excel <- paste0(getwd(), "/data/croplabelswithcategory.xlsx")
+
+#reading in the crop excel file and assigning it to crop data
+crop_data <- read_excel(crop_excel)
+
+#selecting just Count and Category columns from the data and assigning it to category data
+category_data <- crop_data[, c("Count", "Category")]
+
+combcrop <- aggregate(Count ~ Category, data = category_data, FUN = paste, collapse = ",")
+
+combcrop$Category <- factor(combcrop$Category)
+
+# Sum up the integers by category
+summed_cat <- category_data %>%
+  group_by(Category) %>%
+  summarise(SumCount = sum(Count)) %>%
+  ungroup()
+
+#creating bar graph of count by category
+landAll <- ggplot(summed_cat, aes(x = reorder(Category, SumCount),
+                                  y = SumCount, 
+                                  fill = Category,
+                                  text = paste0("Crop Cover Type: ", `Category`, "\n","Acres: ", round(`SumCount`, 2)))) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  scale_fill_viridis_d(option = "viridis") +
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold")) +
+  labs(x = "Use Category", 
+       y = "Acres", 
+       title = "Land Use in Hanover County by Category", 
+       caption = "Data Source: USDA Cropland-CROS, 2022") 
+
+landAll <- ggplotly(landAll, tooltip = "text")
+
+#subsetting the crop data to only contain categories that are crops and assigning it to just crop
+justcrop <- subset(crop_data, 
+                   !(Category == "forested" | 
+                       Category == "developed" | 
+                       Category == "wetlands" | 
+                       Category == "other" |
+                       Category == "water"))
+
+#setting Category to a factor so we can run viridis
+justcrop$Category <- factor(justcrop$Category) 
+
+# Sum up the integers by category
+summed_catSub <- justcrop %>%
+  group_by(Category) %>%
+  summarise(SumCount = sum(Count)) %>%
+  ungroup()
+
+
+#plotting count by category with just crop data in a sideways bar graph
+landCropONLY <- ggplot(summed_catSub, aes(x = reorder(Category, SumCount), y = SumCount, fill = Category,
+                                          text = paste0("Crop Cover Type: ", `Category`, "\n","Acres: ", round(`SumCount`)))) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  scale_fill_viridis_d(option = "viridis") +
+  theme(legend.position = "none",
+        plot.title = element_text(face = "bold")) +
+  labs(x = "Crop Type", 
+       y = "Acres", 
+       title = " Land Crops in Hanover County by Category", 
+       caption = "Data Source: USDA Cropland-CROS, 2022") 
+
+
+landCropONLY <- ggplotly(landCropONLY, tooltip = "text")
+
+
+### SOIL QUALITY AND SOIL SUSTAINABILITY ================================================================================================
+
+
+soillabels <- read_excel("data/soillabelsranking.xlsx")
+
+#assigning the data file path to soil excel
+soil_excel <- "data/soillabelsranking.xlsx"
+
+#reading in soil excel and assigning it to soil data
+soil_data <- read_excel(soil_excel)
+
+#pulling just Rating, and Acres in AOI columns from soil data and assigning it to rateacre data
+rateacre_data <- soil_data[, c("Rating", "Acres in AOI")]
+
+#re-naming Rating and Acres in Aoi columns to soil rating and acres
+colnames(rateacre_data) <- c("soil_rating", "acres")
+rateacre_data_clean <- rateacre_data[-c(120), ]
+
+#turning soil rating column to a factor to use viridis 
+rateacre_data_clean$soil_rating <- factor(rateacre_data_clean$soil_rating) 
+
+total_acres <- aggregate(acres ~ soil_rating, data = rateacre_data_clean, FUN = sum)
+
+#creating a sideways bar plot showing the acres of each rating in the county with viridis
+sR <- ggplot(total_acres, aes(x = reorder(soil_rating, acres), y = acres, fill = soil_rating,
+                              text = paste0("Soil Rating: ", `soil_rating`, "\n","Acres: ", round(`acres`)))) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  scale_fill_viridis_d(option = "viridis") +
+  theme(legend.position = "none") +
+  labs(x = "Soil Rating", y = "Acreage", title = "USDA Soil Rating by Acerage in Hanover County", caption = "Data Source: USDA, NRCC Web Soil Survey, 2019") 
+
+sR <- ggplotly(sR, tooltip = "text") 
+
+
+
+#assigning the data file path to soil excel
+solarsoil_excel <- "data/solarsoils.xlsx"
+
+#reading in soil excel and assigning it to soil data
+solarsoil_data <- read_excel(solarsoil_excel)
+
+#pulling just Rating, and Acres in AOI columns from soil data and assigning it to rateacre data
+rateacre_solar <- solarsoil_data[, c("Rating", "Acres_in_AOI")]
+
+#re-naming Rating and Acres in Aoi columns to soil rating and acres
+colnames(rateacre_solar) <- c("soil_rating", "acres")
+
+#turning soil rating column to a factor to use viridis 
+rateacre_solar$soil_rating <- factor(rateacre_solar$soil_rating) 
+
+# Sum all values to create a single value for each bar
+total_acres <- aggregate(acres ~ soil_rating, data = rateacre_solar, FUN = sum)
+
+#creating a sideways bar plot showing the acres of each rating in the county with viridis
+rateacre <- ggplot(total_acres, aes(x = reorder(soil_rating, acres), y = acres, fill = soil_rating,
+                                    text = paste0("Soil Rating: ", `soil_rating`, "\n","Acres: ", round(`acres`)))) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  scale_fill_viridis_d(option = "viridis") +
+  theme(legend.position = "none") +
+  labs(x = "Soil Rating", 
+       y = "Acreage", 
+       title = "Suitability for Soil-Anchored Solar Array by Acerage in Hanover County", 
+       caption = "Data Source: USDA, NRCC Web Soil Survey, 2019") 
+
+rateacre <- ggplotly(rateacre, tooltip = "text") 
+
 ## NECESSITIES =================================================
 
 # necessary imports for many of our plots (county boundary shape files)
@@ -89,7 +314,23 @@ po_cnty<- st_read("data/cnty_bndry/Powhatan_Boundary.shp") %>% st_transform("+pr
 popdist<-read.csv("data/popdist.csv", header = TRUE) #for Shiny ap
 industry <- read.csv("data/industry.csv", header=TRUE) #for Shiny app
 inc <- read.csv("data/inc.csv", header=TRUE) 
+
 educ_earn <- read.csv("data/educ_earn.csv", header=TRUE) 
+employ <- read.csv("data/Employment.csv")
+employ <- head(employ, -1)
+employ <- na.omit(employ)
+employ_plot <- ggplot(employ, aes(x = reorder(EmploymentTypes, Percent), y = Percent, fill = EmploymentTypes,
+                                  text = paste0("Employment Type:", `EmploymentTypes`, "\n","Percent: ", round(`Percent`, 1)))) +
+  geom_col() +
+  scale_fill_viridis(discrete = TRUE) +
+  theme(legend.position = "none") +
+  labs(title = "Total Employment For Each Industry", 
+       x = "Industry",
+       y = "Percent",
+       caption = "Data Source: US Census ACS 5-Year 2019 Data") +
+  coord_flip() 
+
+employ_plot <- ggplotly(employ_plot, tooltip = "text")
 
 age.func <- function(inputYear, inputCounty) {
   
@@ -437,6 +678,7 @@ ui <- navbarPage(title = "DSPG 2023",
                                               ) ,
                                               column(8, 
                                                      h4(strong("Sociodemographics")),
+                                                     
                                                      selectInput("powhatan_soc", "Select Variable:", width = "100%", choices = c(
                                                        "Age Distribution of Population" = "page",
                                                        "Employment by Industry" = "pind",
@@ -446,7 +688,8 @@ ui <- navbarPage(title = "DSPG 2023",
                                                      radioButtons(inputId = "yearSelect_psoc", label = "Select Year: ", 
                                                                   choices = c("2017", "2018", "2019", "2020"), 
                                                                   selected = "2020", inline = TRUE),
-                                                     plotOutput("psoc", height = "500px"),
+                                                     plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                     #plotOutput("psoc", height = "500px"),
                                                      h4(strong("Visualization Summaries")),
                                                      p("The", strong("age distribution"), "graphs shows that the 45-64 age group has consistently been the largest in the county, making up more than 30% of the population since 2017. The 25-44 age group has been 
                                                        the second largest, but has faced more inconsistency and has seen a decrease since 2018."),
@@ -978,7 +1221,113 @@ server <- function(input, output){
   
   runjs(jscode)
   
+  output$interactive_plot <- renderPlotly({
+    interactive_plot
+  })
+  
+  output$crop_typePNG <- renderImage(deleteFile = FALSE,{
+    if (input$crop_type == "RC") {
+      return(list(src = "www/RowCrops.png", width = "100%", height = "100%"))
+    }
+    else if (input$crop_type == "HC") {
+      return(list(src = "www/HorCrops.png", width = "100%", height = "100%"))
+    }
+    else if (input$crop_type == "SG") {
+      return(list(src = "www/SmallGR.png", width = "100%", height = "100%"))
+    }
+    else if (input$crop_type == "DC") {
+      return(list(src = "www/DobCrop.png", width = "100%", height = "100%"))
+    }
+    else if (input$crop_type == "F") {
+      return(list(src = "www/Forages.png", width = "100%", height = "100%"))
+    }
+    else if (input$crop_type == "TC") {
+      return(list(src = "www/TreeCrops.png", width = "100%", height = "100%"))
+    }
+    else if (input$crop_type == "O") {
+      return(list(src = "www/Other.png", width = "100%", height = "100%"))
+    }
+    else if (input$crop_type == "FR") {
+      return(list(src = "www/Forests.png", width = "100%", height = "100%"))
+    }
+    else if (input$crop_type == "WL") { 
+      return(list(src = "www/Wetlands.png", width = "100%", height = "100%"))
+    }
+    else if (input$crop_type == "W") {
+      return(list(src = "www/Water.png", width = "100%", height = "100%"))
+    }
+    else if (input$crop_type == "DEV") {
+      return(list(src = "www/Developed.png", width = "100%", height = "100%"))
+    }
+  })
+  
+  
+  output$soilRate <- renderImage(deleteFile = FALSE,{
+    
+    return(list(src = "www/soilRate.png", width = "100%", height = "100%"))
+    
+  })
+  
+  output$SoilLimit <- renderImage(deleteFile = FALSE,{
+    
+    return(list(src = "www/SoilLimit.png", width = "100%", height = "100%"))
+    
+  })
+  
+  # For buffer images later will be leaflets
+  
+  # output$bufferType <- renderLeaflet(deleteFile = FALSE, {
+  #   
+  #   
+  # })
+  
+  output$employ_plot <- renderPlotly({
+    employ_plot
+  })
+  
+  output$landAll <- renderPlotly({
+    
+    landAll
+    
+  })
+  
+  output$landCropONLY <- renderPlotly({
+    
+    landCropONLY
+    
+  })
+  
+  output$sR <- renderPlotly({
+    
+    sR
+    
+  })
+  
+  output$rateacre <- renderPlotly({
+    
+    rateacre
+    
+  })
+  
+  # LEAFLET GRAPHS 
+  
+  # output$hansoil<- renderLeaflet({
+  #   hansoil
+  # })
+  
+  output$baseHan<- renderLeaflet({
+    limitS
+  })
+  
+  output$zoneHan<- renderLeaflet({
+    
+    zoneHan@map
+    
+  })
   ### SOCIODEMOGRAPHICS  =================================================
+  output$employ_plot <- renderPlotly({
+    employ_plot
+  })
   
   
   powhatan_soc <- reactive({
