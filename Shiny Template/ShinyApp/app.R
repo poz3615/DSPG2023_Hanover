@@ -658,39 +658,42 @@ ui <- navbarPage(title = "DSPG 2023",
                           fluidRow(style = "margin: 6px;",
                                    h1(strong("Land Use & Environmental Policies"), align = "center"),
                                    p("", style = "padding-top:10px;"),
-                                   p("Policy plays a key role in land use. At every level - federal, state, and local - officials develop land-use plans, with a wide 
-                                     variety of different objectives and long-term visions. These plans drive changes in land use, and it is important to investigate 
-                                     policies at every level to get a full picture of land-use conversion."),
+      
                                    tabsetPanel(
                                      tabPanel("Background",
                                               p(),
-                                              p('State-level officials work within the confines of both federal and local policy. They aim to simultaneously enhance federal policy while enabling local officials to make comprehensive 
-                                              land-use plans. The state of Virginia is under the Dillon Rule which states that local ordinances must be consistent with state law [1]. Local officials are the ones approving parcel-specific 
-                                              land use plans, but state and federal officials play a key role [1]. The state courts are the "referees" to determine if land use decisions violated some aspect of various state laws, or if 
-                                                the land use rules violated the state constitution in some way [1].'),
+                                              
                                               column(6,
-                                                     fluidRow(style = "margin: 6px;", align = "justify",
-                                                     p("", style = "padding-top:10px;"),
-                                                     p(strong("Conservation Reserve Enhancement Program (CREP):")), 
-                                                     p("This is a state-sponsored enhancement to the federal CRP. It is a cost-share program where federal reimbursement is made through the FSA for up to 
-                                                       “50% of a participant's eligible expenses for implementing best management practices (BMP)”. BMP examples include adding fencing, alternative watering 
-                                                       systems, and restoring wetlands. Participation in this program is voluntary, and the contract period is around 10-15 years [2]."),
-                                                     br(),
-                                                     p(strong("Agriculture and Forestal Districts (AFD):")),
-                                                     p("The AFD program in Virginia was designed to “preserve and protect open spaces, forested areas, and agricultural lands” [3]. This program makes 
-                                                       it so land taxes are based on use rather than taxing solely on the market value. Land used for growing crops, for example, is taxed differently than 
-                                                       developed property. This state-level policy encourages localities to be purposeful with their property taxes. The hope is that this policy will be used 
-                                                       to conserve and protect agricultural and forest land. These lands can be valued as “natural and ecological resources which provide essential open spaces 
-                                                       for clean air sheds, watershed protection, wildlife habitat, aesthetic quality and other environmental purposes” [3]. This program was formed in 1977 
-                                                       [4]. The potential benefits are to lower property taxes, safeguard the rural character of the community, and offer protection from the eminent domain [4]."),
-                                                     br(),
-                                                     p(strong("Nonpoint Source (NPS) Pollution Management Program:")), 
-                                                     p('This is a diverse network of state and local government programs that “help to prevent water quality degradation and to restore 
-                                                       the health of lakes, rivers, streams, and estuaries by promoting and funding state and local watershed planning efforts, stream and wetland restoration and protection, 
-                                                       education and outreach, and other measures to reduce and prevent NPS pollution from affecting the Commonwealth’s waters" [5].'),
+                                                     h2(strong("Hanover County Overview")),
+                                                     p("Hanover is known to have a rich history and background.
+                                            Formed by the Virginia General Assembly on November 26th,
+                                            1720 named in honor of King George the First of England, it is
+                                            iconic for the historic landmarks in the county and other historical places.
+                                            Hanover currently has 39 sites registered in the National Register of 
+                                            Historical Places/ Virginia Landmarks Register and 56 sites in Virginia Historical Markers.
+                                            In general, it has over 1700 historical sites within the locality! The National
+                                            Historic Landmarks (NHL) are historic properties that illustrate the heritage of
+                                            the United States and are officially recognized by the US government. The historic
+                                            properties found in Hanover County include Hanover Courthouse, Scotchtown, and
+                                            Malbourne/Edmund Ruffin Plantation. In particular, Hanover Courthouse is the symbol
+                                            and pride of Hanover County which is dated back to around 1740 where it is one of
+                                            the oldest courthouses in Virginia. Some exceptional historic resources found here
+                                            include Hanover Tavern, Hanover Meeting House, Garthwright-Kelley House, Gaines Mill
+                                            Battlefield, Cold Harbor Battlefield, Rural Plains and so much more. For more points
+                                            of interest, there is a whole slew of Century Farms recognized by the Virginia 
+                                            Department of Agriculture and Consumer Affairs where these farms, as the name
+                                            suggests to some extent, have each been owned by farmer families for 100 years or more. 
+                                            When visiting you can’t forget the fascinating battlefield sites that revolved around the 
+                                            Civil War and the Revolutionary War. During the Civil War, in particular, Hanover County 
+                                            was a frequented battlefield by Union and Confederate troops where Union troops, commanded
+                                            by generals, fought their way through to Richmond against the Confederate Army led by Robert
+                                            E. Lee. Hanover County has a vast array of historical and cultural land sites, markers, and resources
+                                            that provide it the opportunity for benefits on all accounts from economic to cultural for the owners
+                                            of the county as a whole."),
                                                      p(),
-                                                     p(),
-                                              )) , 
+                                                     h2(strong("Statistics Summary")),
+                                                     p("Will be done once graphs are set and ready to be analyzed")
+                                              ) , 
                                               column(6, 
                                                      fluidRow(style = "margin: 6px;", align = "justify",
                                                      p("", style = "padding-top:10px;"),
