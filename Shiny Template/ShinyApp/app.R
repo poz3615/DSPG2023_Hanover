@@ -158,7 +158,7 @@ mean_a <-ggplot(acre, aes(reorder(land_use, mean_acres), mean_acres, fill = land
   labs(x = "Land Use Type", y="Lot Acres", caption = "Data Source: Hanover County Assessor Data")+
   ggtitle("Mean Lot Acres By Land Use Type")
 
-interactive_plot <- ggplotly(mean_a, tooltip = "text") 
+interactive_plot <- ggplotly(mean_a, tooltip = "text")
 
 
 ### CROP COVER ==========================================================================================================================
@@ -237,10 +237,10 @@ landCropONLY <- ggplotly(landCropONLY, tooltip = "text")
 ### SOIL QUALITY AND SOIL SUSTAINABILITY ================================================================================================
 
 
-soillabels <- read_excel("data/soillabelsranking.xlsx")
+soillabels <- read_excel("data/soil/soillabelsranking.xlsx")
 
 #assigning the data file path to soil excel
-soil_excel <- "data/soillabelsranking.xlsx"
+soil_excel <- "data/soil/soillabelsranking.xlsx"
 
 #reading in soil excel and assigning it to soil data
 soil_data <- read_excel(soil_excel)
@@ -271,7 +271,7 @@ sR <- ggplotly(sR, tooltip = "text")
 
 
 #assigning the data file path to soil excel
-solarsoil_excel <- "data/solarsoils.xlsx"
+solarsoil_excel <- "data/soil/solarsoils.xlsx"
 
 #reading in soil excel and assigning it to soil data
 solarsoil_data <- read_excel(solarsoil_excel)
@@ -571,7 +571,7 @@ ui <- navbarPage(title = "DSPG 2023",
                  tabPanel("Overview", value = "overview",
                           fluidRow(style = "margin: 2px;",
                                    align = "center",
-                                   h1(strong("Land Use in Rural Counties on the Urban Fringe: the case of Goochland and Powhatan Counties​"),
+                                   h1(strong("Land Use and Solar Farming Assessment in Hanover County"),
                                       br(""),
                                       h4("Data Science for the Public Good Program"),
                                       h4("Virginia Tech"),
@@ -710,55 +710,104 @@ ui <- navbarPage(title = "DSPG 2023",
                                               land-use plans. The state of Virginia is under the Dillon Rule which states that local ordinances must be consistent with state law [1]. Local officials are the ones approving parcel-specific 
                                               land use plans, but state and federal officials play a key role [1]. The state courts are the "referees" to determine if land use decisions violated some aspect of various state laws, or if 
                                                 the land use rules violated the state constitution in some way [1].'),
-                                              column(6,
-                                                     fluidRow(style = "margin: 6px;", align = "justify",
-                                                              p("", style = "padding-top:10px;"),
-                                                              p(strong("Conservation Reserve Enhancement Program (CREP):")), 
-                                                              p("This is a state-sponsored enhancement to the federal CRP. It is a cost-share program where federal reimbursement is made through the FSA for up to 
-                                                       “50% of a participant's eligible expenses for implementing best management practices (BMP)”. BMP examples include adding fencing, alternative watering 
-                                                       systems, and restoring wetlands. Participation in this program is voluntary, and the contract period is around 10-15 years [2]."),
-                                                              br(),
-                                                              p(strong("Agriculture and Forestal Districts (AFD):")),
-                                                              p("The AFD program in Virginia was designed to “preserve and protect open spaces, forested areas, and agricultural lands” [3]. This program makes 
-                                                       it so land taxes are based on use rather than taxing solely on the market value. Land used for growing crops, for example, is taxed differently than 
-                                                       developed property. This state-level policy encourages localities to be purposeful with their property taxes. The hope is that this policy will be used 
-                                                       to conserve and protect agricultural and forest land. These lands can be valued as “natural and ecological resources which provide essential open spaces 
-                                                       for clean air sheds, watershed protection, wildlife habitat, aesthetic quality and other environmental purposes” [3]. This program was formed in 1977 
-                                                       [4]. The potential benefits are to lower property taxes, safeguard the rural character of the community, and offer protection from the eminent domain [4]."),
-                                                              br(),
-                                                              p(strong("Nonpoint Source (NPS) Pollution Management Program:")), 
-                                                              p('This is a diverse network of state and local government programs that “help to prevent water quality degradation and to restore 
-                                                       the health of lakes, rivers, streams, and estuaries by promoting and funding state and local watershed planning efforts, stream and wetland restoration and protection, 
-                                                       education and outreach, and other measures to reduce and prevent NPS pollution from affecting the Commonwealth’s waters" [5].'),
-                                                              p(),
-                                                              p(),
-                                                     )) , 
-                                              column(6, 
-                                                     fluidRow(style = "margin: 6px;", align = "justify",
-                                                              p("", style = "padding-top:10px;"),
-                                                              p(strong("Chesapeake Bay Preservation Act:")),
-                                                              p("This program was developed in 1988 as an element of Virginia's NPS management program. The goal is to protect and improve water quality in the Chesapeake 
-                                                     Bay by requiring effective land use management practices [6]."), 
-                                                              p('"The Bay Act program is the only program administered by the Commonwealth of Virginia that comprehensively addresses the effects of land use planning and 
-                                                     development on water quality. The Bay Act recognizes that local governments have the primary responsibility for land use decisions and expands their authority 
-                                                     to manage water quality, and establish a direct relationship between water quality protection and local land use decision-making" [6].'),
-                                                              br(),
-                                                              p(strong("Total Maximum Daily Load (TMDL):")),
-                                                              p("Significant portions of the Chesapeake Bay have been identified as not meeting water quality standards. Despite the Chesapeake Bay program, water quality goals 
-                                                     have not been met. In December of 2010, the EPA issued a TMDL, a “pollution diet” to protect the Bay [7]. This TMDL is divided among all the Bay states. However,
-                                                       “regional or statewide consistency is rare in Virginia's land use planning process - even statewide requirements such as the Chesapeake Bay Regulations are interpreted 
-                                                       differently by different jurisdictions” [1]."),
-                                                     )),
+                                              column(4,
+                                                     h2(strong("Federal")),
+                                                     h4(strong("Forest Legacy Program (FLP)")),
+                                                     p("The FLP is a federal conservation program orchestrated
+                                                    by the U.S Forest Service collaborating with State agencies
+                                                    to preserve and protect private forests through land
+                                                    purchases or conservation easements. This program promotes
+                                                    feasible forest management by granting economic benefits
+                                                    to landowners persuading them to sustain their forest land.
+                                                    The FLP has been successful in conserving more than 2.8
+                                                    million acres of forest land spanning across the United States.
+                                                    To qualify for this program, the land must be located within an 
+                                                    identified Forest Legacy Area and a non-federal match of 25% to obtain the grant."),
+                                                     p(),
+                                                     h4(strong("Conservation Reserve Program (CRP)")),
+                                                     p("The CRP is a land conservation program managed by the Farm
+                                                    Service Agency aimed to trade yearly rental payments to farmers
+                                                    enrolled for the agreement of removing land sensitive to agriculture 
+                                                    production and plant species to implement conservation practices.
+                                                    This is meant to ensure the enhancement of the environmental health 
+                                                    and quality of land. The land registered in this program is contracted
+                                                    for 10 to 15 years. Land desired to participate in this program
+                                                    is agricultural land easily susceptible to erosion, located near
+                                                    bodies of water or providing habitats to wildlife. Hence, the
+                                                    motivating factor behind this program is to reduce soil erosion,
+                                                    enhance wildlife habitats, improve water quality, and stimulate
+                                                    conservation and restoration of land.  Conservation Reserve
+                                                    Enhancement Program (CREP) is a sub-program that troubleshoots
+                                                    priority conservation issues identified by localities."),
+                                                     p(),
+                                                     h4(strong("Emergency Conservation Program (ECP)")),
+                                                     p("The ECP aims to support agricultural producers in repairing
+                                                    and restoring any damaged farmland and agricultural infrastructure
+                                                    due to natural disasters. Assistance from this program includes
+                                                    financial support in order to remove debris, restore fencing,
+                                                    repair water sources, and seed damaged areas. Funding is granted 
+                                                    based on the severity of the damage to handle a portion of the expenses.")
+                                              ),
+                                              column(4,
+                                                     h2(strong("State")),
+                                                     h4(strong("The Code of Virginia")),
+                                                     p("The code of Virginia enacts various policies that allow localities
+                                                    to enter into voluntary agreements with landowners across the state within
+                                                    districts designated to protect farm lands and forest lands. 
+                                                    There are several land conservation policies outlined in the Code of Virginia:"),
+                                                     tags$li("Virginia Conservation Easement Act (Title 10.1, Chapter 10) – 
+                                                          This act develops a voluntary legal agreement to permanently 
+                                                          limit the uses of the landowner’s land in order to protect its 
+                                                          natural values. The act ensures that landowners maintain their 
+                                                          rights to own and use their land or sell or pass it onto heirs."),
+                                                     tags$li("Virginia Open-Space Land Act (Title 15.2, Chapter 18): 
+                                                          The Commonwealth of Virginia is authorized to form partnerships
+                                                          with landowners to decrease urban sprawl and protect open space
+                                                          through this act. It influences the localities to designate parcels
+                                                          of land in Hanover County for use as open-space land. Open-space 
+                                                          land is defined as any “any land which is provided or preserved for
+                                                          (i) park or recreational purposes, (ii) conservation of land or other 
+                                                          natural resources, (iii) historic or scenic purposes, (iv) assisting
+                                                          in the shaping of the character, direction, and timing of community development,
+                                                          (v) wetlands as defined in § 28.2-1300, or (vi) agricultural and forestal production.” 
+                                                          (Code of Virginia Code - Chapter 17. Open-Space Land Act)"),
+                                                     tags$li("Agricultural and Forest Districts Act (Title 15.2, Chapter 43): 
+                                                          This act develops legal agreements aimed to stimulate the preservation 
+                                                          of land occupied by forest and land used for agriculture. For a duration 
+                                                          of 4-10 years, the land is sustained with its pre-existing use once landowners 
+                                                          agree to partake in this act."),
+                                                     tags$li(" Land Preservation Tax Credit (Title 58.1, Chapter 32): Through this policy,
+                                                          landowners who register property under the conservation land easements 
+                                                          are granted income tax credit for 40% of the value of the land donated."),
+                                                     p(),
+                                                     h4(strong("Purchase of Development Rights Program (PDR)")),
+                                                     p("The PDR program is conducted by the Virginia Department of 
+                                                    Agriculture and Customer Services in order to assist in funding 
+                                                    PDR programs with local agencies to compensate landowners who 
+                                                    voluntarily partake in agricultural conservation easements.")
+                                                     
+                                              ),
+                                              column(4,
+                                                     h2(strong("County")),
+                                                     h4(strong("Zoning Regulations")),
+                                                     p("Zoning districts promote the preservation of open space, 
+                                                    particularly in areas containing environmentally sensitive land.
+                                                    This strategy encourages rural conservation districts to protect 
+                                                    open spaces while providing the flexibility to develop residential areas."),
+                                                     p(),
+                                                     h4(strong("Rural Conservation Subdivisions")),
+                                                     p("Since January 2013, Hanover county has established
+                                                    34 Rural Conservation subdivisions. Rural Conservation zoning 
+                                                    districts require a minimum of 70% of the acreage of a district 
+                                                    to be placed in a conservation area. Thus, this zoning tool has ensured 
+                                                    that a total of 5466 acres are included in conservation areas.")
+                                              ),
                                               column(12,
-                                                     h4("References:"),
-                                                     p(tags$small("[1] Land use planning in Virginia. Virginia Places. (n.d.). Retrieved July 25, 2022, from http://www.virginiaplaces.org/landuseplan/", tags$br(), 
-                                                                  "[2] USDA. (n.d.). Conservation reserve enhancement program. USDA Farm Service Agency. Retrieved July 25, 2022, from https://www.fsa.usda.gov/programs-and-services/conservation-programs/conservation-reserve-enhancement/index" , tags$br(),
-                                                                  "[3] Virginia General Assembly. (n.d.). Code of Virginia. Virginia's Legislative Information System. Retrieved July 25, 2022, from https://law.lis.virginia.gov/vacodepopularnames/agricultural-and-forestal-districts-act/ ",tags$br(),
-                                                                  "[4] Virginia Department of Forestry. (n.d.). Agricultural &amp; forestal district program- Louisa County. Virginia Department of Forestry. Retrieved July 25, 2022, from https://dof.virginia.gov/wp-content/uploads/afd-program-brochure_11212019-stone-version.pdf", tags$br(),
-                                                                  "[5] Virginia Nonpoint Source Management Program Plan (2019 Update). (2019).", tags$br(),
-                                                                  "[6] Virginia Department of Environmental Quality. (n.d.). Chesapeake Bay preservation act. Virginia Department of Environmental Quality. Retrieved July 25, 2022, from https://www.deq.virginia.gov/water/chesapeake-bay/chesapeake-bay-preservation-act#:~:text=Under%20the%20Bay%20Act%20framework%2C%20the%20Chesapeake%20Bay,and%20implement%20in%20administering%20their%20Bay%20Act%20programs.", tags$br(),
-                                                                  "[7] Virginia Department of Environmental Quality. (n.d.). Chesapeake Bay TMDLs. Virginia Department of Environmental Quality. Retrieved July 25, 2022, from https://www.deq.virginia.gov/water/chesapeake-bay/chesapeake-bay-tmdls ")),
-                                                     p("", style = "padding-top:10px;")),
+                                                     align = "center",
+                                                     h4(strong("References")),
+                                                     p("References go here")
+                                              )
+                                           
                                      ),
                                      tabPanel("Solar",
                                               p(),
