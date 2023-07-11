@@ -333,7 +333,7 @@ hotspot.func <- function(county, range){
 
 # ui --------------------------------------------------------------------------------------------------------------------
 
-ui <- navbarPage(title = "DSPG 2022",
+ui <- navbarPage(title = "DSPG 2023",
                  selected = "overview",
                  theme = shinytheme("lumen"),
                  tags$head(tags$style('.selectize-dropdown {z-index: 10000}')), 
@@ -399,7 +399,7 @@ ui <- navbarPage(title = "DSPG 2022",
                                    )
                           ),
                           fluidRow(align = "center",
-                                   p(tags$small(em('Last updated: August 2022')))
+                                   p(tags$small(em('Last updated: July 2023')))
                           ) 
                  ),
                  
