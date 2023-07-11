@@ -694,32 +694,15 @@ ui <- navbarPage(title = "DSPG 2023",
                                                      h2(strong("Statistics Summary")),
                                                      p("Will be done once graphs are set and ready to be analyzed")
                                               ) , 
-                                              column(6, 
-                                                     fluidRow(style = "margin: 6px;", align = "justify",
-                                                     p("", style = "padding-top:10px;"),
-                                                     p(strong("Chesapeake Bay Preservation Act:")),
-                                                     p("This program was developed in 1988 as an element of Virginia's NPS management program. The goal is to protect and improve water quality in the Chesapeake 
-                                                     Bay by requiring effective land use management practices [6]."), 
-                                                     p('"The Bay Act program is the only program administered by the Commonwealth of Virginia that comprehensively addresses the effects of land use planning and 
-                                                     development on water quality. The Bay Act recognizes that local governments have the primary responsibility for land use decisions and expands their authority 
-                                                     to manage water quality, and establish a direct relationship between water quality protection and local land use decision-making" [6].'),
-                                                     br(),
-                                                     p(strong("Total Maximum Daily Load (TMDL):")),
-                                                     p("Significant portions of the Chesapeake Bay have been identified as not meeting water quality standards. Despite the Chesapeake Bay program, water quality goals 
-                                                     have not been met. In December of 2010, the EPA issued a TMDL, a “pollution diet” to protect the Bay [7]. This TMDL is divided among all the Bay states. However,
-                                                       “regional or statewide consistency is rare in Virginia's land use planning process - even statewide requirements such as the Chesapeake Bay Regulations are interpreted 
-                                                       differently by different jurisdictions” [1]."),
-                                              )),
+                                              column(6,
+                                                     h2(strong("Visualizations")),
+                                                     p("Visualizations go here"),
+                                                     plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                              ),
                                               column(12,
-                                                     h4("References:"),
-                                                     p(tags$small("[1] Land use planning in Virginia. Virginia Places. (n.d.). Retrieved July 25, 2022, from http://www.virginiaplaces.org/landuseplan/", tags$br(), 
-                                                                  "[2] USDA. (n.d.). Conservation reserve enhancement program. USDA Farm Service Agency. Retrieved July 25, 2022, from https://www.fsa.usda.gov/programs-and-services/conservation-programs/conservation-reserve-enhancement/index" , tags$br(),
-                                                                  "[3] Virginia General Assembly. (n.d.). Code of Virginia. Virginia's Legislative Information System. Retrieved July 25, 2022, from https://law.lis.virginia.gov/vacodepopularnames/agricultural-and-forestal-districts-act/ ",tags$br(),
-                                                                  "[4] Virginia Department of Forestry. (n.d.). Agricultural &amp; forestal district program- Louisa County. Virginia Department of Forestry. Retrieved July 25, 2022, from https://dof.virginia.gov/wp-content/uploads/afd-program-brochure_11212019-stone-version.pdf", tags$br(),
-                                                                  "[5] Virginia Nonpoint Source Management Program Plan (2019 Update). (2019).", tags$br(),
-                                                                  "[6] Virginia Department of Environmental Quality. (n.d.). Chesapeake Bay preservation act. Virginia Department of Environmental Quality. Retrieved July 25, 2022, from https://www.deq.virginia.gov/water/chesapeake-bay/chesapeake-bay-preservation-act#:~:text=Under%20the%20Bay%20Act%20framework%2C%20the%20Chesapeake%20Bay,and%20implement%20in%20administering%20their%20Bay%20Act%20programs.", tags$br(),
-                                                                  "[7] Virginia Department of Environmental Quality. (n.d.). Chesapeake Bay TMDLs. Virginia Department of Environmental Quality. Retrieved July 25, 2022, from https://www.deq.virginia.gov/water/chesapeake-bay/chesapeake-bay-tmdls ")),
-                                                     p("", style = "padding-top:10px;")),
+                                                     h4(strong("References")),
+                                                     p("References go here")
+                                              )
                                      ),
                                      tabPanel("Conservation Policy",
                                               p(),
