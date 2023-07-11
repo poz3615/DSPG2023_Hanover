@@ -304,21 +304,6 @@ rateacre <- ggplotly(rateacre, tooltip = "text")
 
 
 
-## NECESSITIES =================================================
-
-# necessary imports for many of our plots (county boundary shape files)
-po_cnty<- st_read("data/cnty_bndry/Powhatan_Boundary.shp") %>% st_transform("+proj=longlat +datum=WGS84")
-
-
-## LAND USE =================================================
-
-
-### LAND USE =================================================
-
-### CROP LAYER =================================================
-
-  # setting up labels depending on whether it has little to no acreage
-
 # ui --------------------------------------------------------------------------------------------------------------------
 
 ui <- navbarPage(title = "DSPG 2023",
