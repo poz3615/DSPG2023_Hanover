@@ -818,46 +818,20 @@ ui <- navbarPage(title = "DSPG 2023",
                                                 been voted out of office because they were either too supportive of growth or too restrictive” [1].'),
                                               
                                               column(6,
-                                                     h1(strong("Powhatan"), align = "center"),
-                                                     p("", style = "padding-top:10px;"),
-                                                     fluidRow(style = "margin: 6px;", align = "justify",
-                                                              leafletOutput("powhatan_con") %>% withSpinner(type = 4, color = "#861F41", size = 1.25),
-                                                              p("The map above highlights the types of conservation districts in Powhatan County."), 
-                                                              tags$ul(
-                                                                
-                                                                tags$li("The green layer represents", strong("Agricultural Forestal Districts (AFD)"),"which are areas of land that are recognized by the county as being economically and environmentally valuable resources for all [7]."),
-                                                                
-                                                                tags$li("The orange layer represents", strong("Priority Conservation Areas"), "which are protected for long term conservation."),
-                                                                
-                                                                tags$li("The red layer represents", strong("Protected Lands"), "which are protected due to their natural, cultural, or ecological value."),
-                                                                
-                                                                
-                                                              ),
-                                                              p('Powhatan County land use policy includes a land use deferral program, Powhatan County code Section 70-76, which states that the purpose of land use is
-                                                     to “preserve real estate devoted to agricultural, horticultural, forest and open space uses within its boundaries in the public interest..." 
-                                                     The land use deferral program “offers a deferral of a portion of the real estate taxes for qualifying properties”. This ordinance was adopted by the
-                                                     county in 1976 and approximately 40% of the county is in land use today [8]. Powhatan County also has an Agricultural and Forestal District (AFD)
-                                                     Program which allows the county, with the landowner’s consent, to take land out of development in exchange for a land use tax rate as opposed to market
-                                                     value tax rate. As of September/October 2020, there are approximately 5,640 acres of AFD land. This program serves to protect natural lands as well as prevent
-                                                     landowners from having to sell their land as market values and tax rates continue to increase. One benefit that the AFD program has over the land use deferral
-                                                     program is that it is officially included in the County’s Comprehensive Plan [9]. '),
-                                                              p('The county’s zoning ordinance categorizes rural districts into 6 groups. The main agricultural districts are A-20 (min 20 ac), A-10 (min 10 ac), and A-C.
-                                                     The 3 other rural districts are largely dedicated to residential zoning. The 2010 long range comprehensive plan also includes sections on natural conservation
-                                                     and rural preservation which outline land use policies to be “used when addressing development and land use issues” [10]. These policies promote the
-                                                     conservation of open land and farmland and recognize agriculture as an economic driver of the community.'))),
-                                              column(12, 
-                                                     h4("References:"),
-                                                     p(tags$small("[1] Land use planning in Virginia. Virginia Places. (n.d.). Retrieved July 25, 2022, from http://www.virginiaplaces.org/landuseplan/", tags$br(),
-                                                                  "[2] Planning and Zoning Initiatives. Planning and Zoning Initiatives | Goochland County, VA - Official Website. (n.d.). Retrieved July 18, 2022, from https://www.goochlandva.us/1058/Planning-and-Zoning-Initiatives ", tags$br(), 
-                                                                  "[3] Goochland County. (n.d.). Land use program information. Goochland County, VA - Official Website. Retrieved July 25, 2022, from https://www.goochlandva.us/339/Land-Use" , tags$br(),
-                                                                  "[4] Goochland County, Virginia - Code of Ordinances. Municode Library. (n.d.). Retrieved July 25, 2022, from https://library.municode.com/va/goochland_county/codes/code_of_ordinances?nodeId=COOR_CH15ZO", tags$br(),
-                                                                  "[5] Goochland County. (n.d.). Goochland County 2035 Comprehensive Plan. Retrieved July 25, 2022, from https://capitalregionland.org/wp-content/uploads/2021/11/Goochland-County-Comprehensive-Plan-Land-Use-chapter.pdf", tags$br(),
-                                                                  "[6] Goochland County Agricultural Center. (n.d.). A.C.R.E.S. Initiative. Retrieved July 25, 2022, from https://www.goochlandva.us/DocumentCenter/View/6731/ACRES-2019?bidId=", tags$br(),
-                                                                  "[7] Powhatan County. (n.d.). Agricultural &amp; forestal district program. Powhatan County, VA - Official Website. Retrieved July 25, 2022, from http://www.powhatanva.gov/1784/Agricultural-Forestal-District-Program", tags$br(),
-                                                                  "[8] Powhatan County. (n.d.). Land use deferral. Powhatan County, VA - Official Website. Retrieved July 25, 2022, from http://www.powhatanva.gov/216/Land-Use-Deferral#:~:text=Per%20Powhatan%20County%20code%20Section,adopted%20this%20ordinance%20in%201976.", tags$br(),
-                                                                  "[9] Powhatan County Agricultural and Forestal District Advisory Committee. (2020). Powhatan county agricultural and forestal district (AFD) Review. Retrieved July 25, 2022, from http://www.powhatanva.gov/DocumentCenter/View/5923/AFDAC-Review-of-Agricultural-and-Forestal-Districts-AFDs-October-2020", tags$br(),
-                                                                  "[10] Powhatan County. (2019). 2010 Long-Range Comprehensive Plan. Retrieved July 25, 2022, from http://www.powhatanva.gov/DocumentCenter/View/85/2010-Powhatan-County-Long-Range-Comprehensive-Plan-")),
-                                                     p("", style = "padding-top:10px;")) 
+                                                     h2(strong("Solar Policy Background")),
+                                                     p("Virginia's renewable energy goals have made the construction of
+                                                     solar farms more common. The state has implemented a policy that requires
+                                                     Dominion Energy to achieve 100% renewable energy by 2045, and Virginia Power,
+                                                     a subsidiary of Dominion, to do the same by 2050. This policy encourages energy
+                                                     companies to develop more sources of renewable energy. With the development of more
+                                                     energy sources, a degree of environmental impact is inevitable. Certain developments,
+                                                     like the new solar farm in Hanover County, off of Peppertown Road, have plans to
+                                                     retire the solar field at the end of their useful lives. The developers plan to
+                                                     return the area to its natural state as best as they can. However, it is important
+                                                     to note that Hanover County currently does not have specific requirements for native or
+                                                     pollinator-friendly vegetation at solar facilities, as outlined in their zoning ordinance."),
+                                                     p()
+                                              )
                                      )
                                    ) 
                           ) 
