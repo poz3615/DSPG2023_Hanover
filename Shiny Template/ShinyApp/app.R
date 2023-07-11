@@ -302,6 +302,8 @@ rateacre <- ggplot(total_acres, aes(x = reorder(soil_rating, acres), y = acres, 
 
 rateacre <- ggplotly(rateacre, tooltip = "text") 
 
+
+
 ## NECESSITIES =================================================
 
 # necessary imports for many of our plots (county boundary shape files)
@@ -315,21 +317,7 @@ industry <- read.csv("data/industry.csv", header=TRUE) #for Shiny app
 inc <- read.csv("data/inc.csv", header=TRUE) 
 
 educ_earn <- read.csv("data/educ_earn.csv", header=TRUE) 
-employ <- read.csv("data/Employment.csv")
-employ <- head(employ, -1)
-employ <- na.omit(employ)
-employ_plot <- ggplot(employ, aes(x = reorder(EmploymentTypes, Percent), y = Percent, fill = EmploymentTypes,
-                                  text = paste0("Employment Type:", `EmploymentTypes`, "\n","Percent: ", round(`Percent`, 1)))) +
-  geom_col() +
-  scale_fill_viridis(discrete = TRUE) +
-  theme(legend.position = "none") +
-  labs(title = "Total Employment For Each Industry", 
-       x = "Industry",
-       y = "Percent",
-       caption = "Data Source: US Census ACS 5-Year 2019 Data") +
-  coord_flip() 
 
-employ_plot <- ggplotly(employ_plot, tooltip = "text")
 
 age.func <- function(inputYear, inputCounty) {
   
@@ -590,53 +578,73 @@ ui <- navbarPage(title = "DSPG 2023",
                                       br()
                                    )
                           ),
-                          fluidRow(style = "margin: 6px;",
-                                   align = "justify",
+                          fluidRow(style = "margin: 8px;",
+                                   align = "center",
                                    column(4,
                                           h2(strong("Project Background")),
-                                          p(strong("The setting:"), "Goochland and Powhatan Counties are on the urban fringe outside Richmond, Virginia. Communities on the urban fringe are located between both rural and urban areas. Both counties are known for
-                                            their rich agricultural histories and proximity to the state capital. Although Powhatan County has been growing and evolving faster than the average rate, they, like Goochland County, would like to keep their agricultural roots."),
+                                          h4(strong("Setting")),
+                                          p("Hanover county, Virginia is a predominantly rural area 
+                                            located twelve miles north of the state capital, Richmond. 
+                                            The county ranges over 474 square miles and is known for 
+                                            its farmlands, rolling hills and forests bordered by the 
+                                            Chickahominy and Pamunkey Rivers. Hanover’s rich agricultural 
+                                            history has thrived from 1720 to present day through its
+                                            tobacco cultivation, crop diversification, dairy farming
+                                            and small family farms. Hence, the agricultural heritage has
+                                            majorly influenced the landscape, community and rural charm of 
+                                            the county."),
                                           p(),
-                                          p(strong("The problem:"), "Both Goochland and Powhatan County are approximately 40 minutes away from Richmond. Being this close to a large metropolitan area has its advantages and disadvantages. One of the most significant challenges 
-                                            with this location is land conversion. Land conversion is when land shifts its use from one to another. In the case of the two counties, the land is changing from agricultural land primarily to residential housing development. 
-                                            This can challenge communities that now have to support a new economic growth model. Both counties have enacted policies to help manage land conversion: Powhatan implemented a land tax deferral program, and Goochland, 
-                                            with their 85-15 rural land commitment, maintains 85% of land as rural. Both counties would like to use their administrative data to help inform and analyze land conversion in their counties. This is a critical step in understanding the 
-                                            factors that cause land conversation and the probability that a parcel of land will parcelize further."),
+                                          h4(strong("Problem")),
+                                          p("Hanover county takes pride in their rural lifestyle and heritage 
+                                            therefore, as they look to attain economic growth challenges arise. 
+                                            The main problems facing this county as it looks to achieve
+                                            economic growth are urban sprawl, land conversion and solar
+                                            farm land usage. Urban sprawl is the extension of urban areas
+                                            which in turn cuts into the rural land that makes up Hanover County.
+                                            Furthermore, land conversion shifts land use from one purpose to another.
+                                            For instance, agricultural land to commercial, residential and industrial
+                                            land. Solar farm land development also cuts into the land that
+                                            can be used for agricultural purposes."),
                                           p(),
-                                          p(strong("The project:"), "This Virginia Tech", a(href = "https://aaec.vt.edu/index.html", "Department of Argicultural and Applied Economics", target = "_blank"),
-                                            "Data Science for Public Good (DSPG) project uses data analytics, agricultural economics, and geospatial tools to analyze land conversion in Goochland and Powhatan. This project provides stakeholders with information 
-                                            they can use to more fully understand how land is being redistributed, specifically from agriculture.")
+                                          h4(strong("Project")),
+                                          p(" Virginia Tech Department of Agricultural and Applied Economics
+                                            Data Science for the Public Good (DSPG) program assesses land 
+                                            conversion and solar farm land usage in Hanover County through 
+                                            the use of data analytics, agricultural economics and geospatial tools.")
                                    ),
                                    column(4,
-                                          h2(strong("Our Work")),
-                                          p('Our team worked with Goochland County and Powhatan County to help analyze land conversion and agriculture loss using existing administrative data. Both counties want to retain their rural/agricultural character and have 
-                                            introduced policies to encourage land conservation and manage development that may require further land conversion. Our team researched background information on both counties and compiled data from public sources, 
-                                            including the counties, the US Census, and the Virginia Department of Transportation. All the data sources referenced in our analysis can be found under the Data Sources tab. Throughout the 10-week summer program, 
-                                            the team met with the stakeholders to receive feedback, data, and suggestions on their work.'),
-                                          p(),
-                                          p("We collected data from several sources to create graphs, maps, and tables. These visualizations allowed us to analyze and present our findings in a more digestible manner. More specifically, we:"),
-                                          tags$li("Provided county-level graphs of Goochland and Powhatan County residents'", strong("sociodemographic and socioeconomic"), "characteristics."),
-                                          tags$li("Used USDA data to map ", strong("crop and land types"), "in the counties. "),
-                                          tags$li("Used USDA data to map ", strong("soil quality"), "throughout the counties."),
-                                          tags$li("Mapped traffic data to show ", strong("traffic volume and commute times"), "to Richmond, Virginia."),
-                                          tags$li("Mapped the locations of", strong("land parcels"), "to provide insight on the frequency of parcellation and identify any patterns."),
-                                          tags$li("Estimated a", strong("statistical model"), "to understand some of the factors associated with conversion of land out of agriculture. "), 
-                                          p(),
-                                          p("This dashboard compiles our findings and allows stakeholders and other users to explore the information interactively."),
+                                          h2(strong("Aims")),
+                                          tags$li("Use GIS analysis to asses current land use patterns"),
+                                          tags$li("Evaluate protected land and prime farmland"),
+                                          tags$li("Analyze competing demands for prime farmland from solar energy"),
+                                          tags$li("Identify parcels with the highest likelihood of transitioning to solar farms"),
+                                          p()
+                                          #leafletOutput("baseHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                    ),
                                    column(4,
-                                          h2(strong("Dashboard Aims")),
-                                          p("Our dashboard is aimed at:"),
-                                          p(strong("Goochland and Powhatan County governments."), "Our analyses provide further insights and allow more understanding of land conversion within each county. Our statistical analysis examines and explains the association 
-                                            between land conversion and several factors, including soil quality and traffic volume. More information on our statistical analysis can be found under our Findings and Predictions tab. We hope that our results will be helpful 
-                                            in decision-making regarding land conversion and conservation within the counties."),
-                                          p(strong("Researchers working on land use conversion."), "Land conversion is a global problem, not just in Goochland and Powhatan counties. We hope our dashboard can act as a starting point for those researching this topic in 
-                                            Goochland, Powhatan, or further afield."),
-                                          br(),
-                                          img(src = "powhatan_crops.JPG", style = "display: inline; float: center;", width = "400px"),
-                                          br(),
-                                          p(tags$small("Photo courtesy of Rachel Henley, VCE"))
+                                          h2(strong("County Overview")),
+                                          p("The county consists of towns and cities including Ashland, Beaverdam,
+                                            Doswell, Hanover, Mechanicsville, Montpellier, and Rockville.
+                                            According to the US Census as of July 2022, the population
+                                            of the county is estimated to be above 110,000 people with
+                                            around 50% of the population being female and slightly lower
+                                            for males with around 18% under 18, about 5% under 5, and 
+                                            about 18% over 65 years and over where it is white predominant
+                                            at 85.6%. Regarding the population, it is said by the US Census
+                                            that the population per square mile in 2020 is 235.2. With the 
+                                            rich history that the county has, Hanover boasts many historical
+                                            sites and landmarks. Adding to the fact it has a strong agricultural
+                                            heritage, with fertile farmlands that add to its long history of farming.
+                                            Hanover hosts a mix of suburban and rural environments with residential
+                                            areas, agricultural farmland, commercial districts, industrial zones,
+                                            and natural landscapes. With the county promoting outdoor recreation 
+                                            activities, maintaining parks, trails, and recreational facilities 
+                                            and even the amusement park Kings Dominion, there is much to do and see in 
+                                            Hanover County to keep you occupied."),
+                                          p()
                                    )
+                                   
+                                   
                           ),
                           fluidRow(align = "center",
                                    p(tags$small(em('Last updated: July 2023')))
