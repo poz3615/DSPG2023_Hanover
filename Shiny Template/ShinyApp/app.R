@@ -798,16 +798,7 @@ ui <- navbarPage(title = "DSPG 2023",
                                                                 ))),
                                                 tabPanel("Crop Cover",
                                                          p("", style = "padding-top:10px;"),
-                                                         column(4,
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                         h4(strong("Crops Grown in Powhatan County")),
-                                                                         p("The map and bar chart on the right show the crop layer data for Powhatan County. Powhatan County is heavily forested with forested lands account for 67.84% of all 
-                                                                  land. This number is a decrease from the 75.82% in 2012. A big reason why that number is reduced is that Powhatan is rapidly developing. 
-                                                                  Developed land in Powhatan increased from 3.46% to 6.88% in 10 years. Most of this developed land is in the east side of the county closer to Richmond, VA. Forages 
-                                                                  is the second biggest crop layer category with 15.42%. Forage is bulky food such as grass or hay for horses and cattle. Croplands are spread out throughout the 
-                                                                  county and make up only use 4.1% of the land in the county. From an agricultural perspective, the land is most often used for raising livestock instead of growing crops. 
-                                                                  There is a heavy concentration of row crops on the north boundary of Powhatan. The James River also acts as a boundary between Powhatan County and Goochland County.")
-                                                                )), 
+                                                          
                                                          column(6,
                                                                 h2(strong("What we have so far")),
                                                                 p("Used Arc GIS Pro with USDA Cropland-CROS data 
@@ -850,85 +841,87 @@ ui <- navbarPage(title = "DSPG 2023",
                                                        support for initiatives to promote sustainable agriculture and to
                                                        preserve farmland. Currently today, Hanover County’s agricultural
                                                        presence plays a vital role in its economy, heritage, and local culture.  "),
-                                                                p()
-                                                         )
-                                                ),
-                                                
-                                                fluidRow(style = "margin: 8px;",
-                                                         column(6, 
-                                                                h4(strong("Crop Covers")),
-                                                                selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
-                                                                  "Row crops" = "RC",
-                                                                  "Horticulture crops" = "HC",
-                                                                  "Small grains" = "SG",
-                                                                  "Double cropped" = "DC",
-                                                                  "Forages" = "F",
-                                                                  "Tree crops" = "TC",
-                                                                  "Other" = "O",
-                                                                  "Forested" = "FR",
-                                                                  "Wetlands" = "WL",
-                                                                  "Water" = "W",
-                                                                  "Developed" = "DEV")
-                                                                ),
-                                                                imageOutput("crop_typePNG", width = "400px", height = "400px"),
                                                                 p(),
-                                                                plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                                p(),
-                                                                plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
                                                                 
-                                                                
+                                                                fluidRow(style = "margin: 8px;",
+                                                                         column(6, 
+                                                                                h4(strong("Crop Covers")),
+                                                                                selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
+                                                                                  "Row crops" = "RC",
+                                                                                  "Horticulture crops" = "HC",
+                                                                                  "Small grains" = "SG",
+                                                                                  "Double cropped" = "DC",
+                                                                                  "Forages" = "F",
+                                                                                  "Tree crops" = "TC",
+                                                                                  "Other" = "O",
+                                                                                  "Forested" = "FR",
+                                                                                  "Wetlands" = "WL",
+                                                                                  "Water" = "W",
+                                                                                  "Developed" = "DEV")
+                                                                                ),
+                                                                                imageOutput("crop_typePNG", width = "400px", height = "400px"),
+                                                                                p(),
+                                                                                plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                                                p(),
+                                                                                plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                                
+                                                                                
+                                                                         )
+                                                                         
+                                                                )
                                                          )
-                                                         
-                                                         
                                                 ) ,
                                                 tabPanel("Soil Type",
                                                          p("", style = "padding-top:10px;"),
-                                                         column(4,
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                         h4(strong("Soil Quality in Powhatan County")),
-                                                                         p("Good quality soil is essential for crops to produce. Which makes soil quality a factor that could result in land conversion. 
-                                                                  The National Cooperative Soil Survey is a survey done to classify soil into classes based on its usefulness. Those classes are: "),
-                                                                         p(strong("Good Agricultural Soil:")),
-                                                                         tags$ul(
-                                                                           
-                                                                           tags$li(strong("Class 1"), "soils have few limitations that restrict their use."),
-                                                                           
-                                                                           tags$li(strong("Class 2"), "soils have moderate limitations that reduce the choice of plants or that require moderate conservation practices.")),
-                                                                         
-                                                                         p(strong("Restricted Agricultural Soil:")),
-                                                                         tags$ul(
-                                                                           
-                                                                           tags$li(strong("Class 3"), "soils have severe limitations that reduce the choice of plants, require special conservation practices, or both."),
-                                                                           
-                                                                           tags$li(strong("Class 4"), "soils have very severe limitations that reduce the choice of plants, require very careful management, or both.")),
-                                                                         
-                                                                         p(strong("Pasture, Rangeland & Wildlife:")),
-                                                                           tags$ul(
-                                                                             
-                                                                             tags$li(strong("Class 5"), "soils are subject to little or no erosion but have other limitations, impractical to remove, that restrict their use mainly to pasture, rangeland, forestland, or wildlife habitat."),
-                                                                             
-                                                                             tags$li(strong("Class 6"), "soils have severe limitations that make them generally suitable for cultivation and that restrict their use mainly to pasture, rangeland, forestland, or wildlife habitat."),
-                                                                             
-                                                                             tags$li(strong("Class 7"), "soils have very severe limitations that make them unsuitable for cultivation and that restrict their use mainly to grazing, forestland, or wildlife habitat."),
-                                                                             
-                                                                             tags$li(strong("Class 8"), "soils and miscellaneous areas have limitations that preclude commercial plant production and that restrict their use to recreational purposes, wildlife habitat, watershed, or esthetic purposes."),
-                                                                             
-                                                                           ),
-                                                                         p("Powhatan County soil is mostly in Class 2. As mentioned above, Class 2 is considered good qualy soil so crops can be grown here. Powhatan also has land that is in Class 1. This is the best land
-                                                                  in the county, but it only makes up 1,686 acres. Class 4 soil is also prevalent in Powhatan. However, this soil class is unfavorable for farming as it has very severe limitations. The graph 
-                                                                  on the right can be zoomed in on Class 8. This class is the least suitable soil class for any activity. Powhatan has only 29 acres in the class. Overall, Powhatan has good farmland and can remain agricultural. "),
-                                                                )), 
-                                                         column(8, 
-                                                                h4(strong("Soil Quality Map")),
-                                                                img(src = "Powhatan.png", style = "display: inline; float: left;", width = "100%", height = "50%"),
-                                                                h4(strong("Soil Quality Graph")),
-                                                                plotlyOutput("psoil", height = "500px") %>% withSpinner(type = 4, color = "#CF4420", size = 1.25),
-                                                                p(tags$small("Data Source: National Cooperative Soil Survey"))),
-                                                         column(12, 
-                                                                
-                                                                h4("References") , 
-                                                                p(tags$small("[1] USDA. U.S. Land Use and Soil Classification. (n.d.). Retrieved July 26, 2022, from https://www.ars.usda.gov/ARSUserFiles/np215/Food%20security%20talk%20inputs%20Lunch%203-15-11.pdf")), 
-                                                         )) ,
+                                                         fluidRow(style = "margin: 8px;",
+                                              align = "center",
+                                              column(6,
+                                                     h2(strong("Soil Quality Analysis")),
+                                                     p("We plan to use data from the National 
+                                                       Cooperative Survey to show soil types of Hanover County. 
+                                                       Soil type and quality is an influential factor in the resulting 
+                                                       agricultural productivity of land. Understanding where the quality 
+                                                       soil is will help us to identify the best farmland within the county."),
+                                                     p(),
+                                                     p("Using a graph that shows the acreage of different soil 
+                                                       classes within the county will help to give insight to which
+                                                       types of soil are more common than others."),
+                                                     p(),
+                                                     p("We can use this space to analyze the results of our
+                                                       graph and give background information on what the different
+                                                       soil classes mean."),
+                                                     p(),
+                                                     h4(strong("What We Have So Far")),
+                                                     p(),
+                                                     p("Used USDA-NRCS Soil Survey Geographic database to map
+                                                       soil types over Hanover County in Arc GIS Pro."),
+                                                     p(),
+                                                     p("Joined the data from soil survey and parcel data in State
+                                                       to create a clean data file we will use for maps and graphs in R.")
+                                              )
+                                              
+                                     ),
+                                     fluidRow(style = "margin: 8px;",
+                                              align = "center",
+                                              column(6,
+                                                     h2(strong("Soil Types")),
+                                                     p(),
+                                                     plotlyOutput("sR", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                     p(),
+                                                     imageOutput("SoilLimit", width = "400px", height = "400px"),
+                                                     
+                                                     
+                                                    
+                                              
+                                     ),
+                                     column(6,
+                                            h2(strong("Soil Quality Leaflet Placeholder Title")),
+                                            p(),
+                                            #leafletOutput("hansoil") %>% withSpinner(type = 6, color = "#861F41", size = 1.5),
+                                            imageOutput("soilRate", width = "400px", height = "400px")
+                                           
+                                     )
+                            )) ,
                                            
                                               ) 
                                      )), 
