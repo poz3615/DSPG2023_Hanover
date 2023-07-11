@@ -651,84 +651,10 @@ ui <- navbarPage(title = "DSPG 2023",
                           ) 
                  ),
                  
-                 ## Tab sociodemographics --------------------------------------------
-                 #navbarMenu("Sociodemographics" , 
-
-                            tabPanel("Sociodemographics", 
-                                     fluidRow(style = "margin: 6px;",
-                                              h1(strong("Powhatan"), align = "center"),
-                                              p("", style = "padding-top:10px;")),
-                                     fluidRow(style = "margin: 6px;",
-                                              align = "justify",
-                                              column(4, 
-                                                     h4(strong("County Background")),
-                                                     p("Powhatan County is located in Virginia's Central Piedmont. It is 272 square miles and is home to a population of 29,253. The county is approximately 20 miles from Richmond and 2 hours from Washington, D.C. 
-                                                       The James River borders the county's north end, contributing to the formation of many creeks stretching southward. There are five districts within the county and 12 polling places interspersed through them. 
-                                                       Powhatan is rich in history and offers abundant tourist attractions contributing to its thriving economy [1]. The county has three parks/wildlife management areas: Powhatan Wildlife Management Area, Fighting Creek Park, 
-                                                       and Powhatan State Park. Where once were several farms, the Powhatan Wildlife Management Area is 4,462 acres that provide many experiences such as hunting, fishing, and other forested activities that aim to maintain the 
-                                                       diversity of its natural wildlife species [2]."),
-                                                     
-                                                     h4(strong("Summary Statistics")),
-                                                     p("The total population of Powhatan County is 29,253, split between 51% male (15,188), and 49% female (14,065) [3]. 28,762 identify as one race, where 25,732 are white, 2,505 are African American, 64 are American Indian and Alaska Native, 
-                                                     169 are Asian, 24 are Native Hawaiian and Other Pacific Islander, and 268 are some other race [4]."),
-                                                     p("24,715 or 57.3% of the population within Powhatan County is employed. The unemployment rate is 1.4% [5]"),
-                                                     p("Of the 13,938 civilian employed population, very few are employed in agriculture, forestry, fishing, hunting, and mining. Around 0.94% of the civilian-employed population falls under that category. Of that 0.94% of the workers, approximately half serve roles in management, 
-                                                       business, science, and art, while 14.5% of that population work in natural resources, construction, and maintenance occupations [6]."),
-                                                     p("Of the 10,392 households, the median income is $93,833, with a margin of error of around 5,342. Approximately 30.2% of the 8,220 families have one earner, while 44.8% have two earners [7]. 
-                                                       The greatest proportion (23.4%) of earners in Powhatan make between $100,000 to $149,999 [8]."),
-                                                     p("Nearly 89.6% of the population 25 and over have graduated high school. Approximately 2,032 people, or 9.3% of the population over 25, have attained a graduate or professional degree [9]."),
-                                                     p("According to the 2017 agricultural census, there were approximately 263 farms with an average farm size of 132 acres in 2017. This makes the total land coverage of farms to be 34,585 acres. 
-                                                       $11,249,000 was generated from agricultural products sold to the market. 54% of farms sold less than $2,500, and 13% of farms sold between $25,000 and $24,999. 
-                                                       Grains, oilseeds, dry beans, and dry peas were the main crops that were sold ($2,542,000), and poultry and eggs were the main livestock and poultry products sold ($6,056,000) [10]."),
-                                                     p("1.9% of Powhatan's population moved within the county, 7.4% moved into the county from a different county in VA, 0.8% moved from a completely different state, and 0.1% moved from abroad [11]."),
-                                                     
-                                              ) ,
-                                              column(8, 
-                                                     h4(strong("Sociodemographics")),
-                                                     
-                                                     selectInput("powhatan_soc", "Select Variable:", width = "100%", choices = c(
-                                                       "Age Distribution of Population" = "page",
-                                                       "Employment by Industry" = "pind",
-                                                       "Income Distribution" = "pinc",
-                                                       "Median Earnings By Educational Attainment (Age > 25 years)" = "pedu")
-                                                     ),
-                                                     radioButtons(inputId = "yearSelect_psoc", label = "Select Year: ", 
-                                                                  choices = c("2017", "2018", "2019", "2020"), 
-                                                                  selected = "2020", inline = TRUE),
-                                                     plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                     #plotOutput("psoc", height = "500px"),
-                                                     h4(strong("Visualization Summaries")),
-                                                     p("The", strong("age distribution"), "graphs shows that the 45-64 age group has consistently been the largest in the county, making up more than 30% of the population since 2017. The 25-44 age group has been 
-                                                       the second largest, but has faced more inconsistency and has seen a decrease since 2018."),
-                                                     p("The", strong("employment"), "graphs indicates that the education, health, and social services industry group has been the largest by a wide margin, and specifically saw a large increase in 2019. The agricultural, forestal,
-                                                       fishing, hunting, and mining industry group has consistently been one of the smallest."),
-                                                     p("The", strong("income distribution"), "graphs illustrate the consistent growth in individuals and households earning at least $100,000 each year. This growth has been accompanied by a consistent decrease in earnings below $75,000."),
-                                                     p("The", strong("median earnings"), "graphs highlight the fact that those with a highest educational attainment of Some college/Associates earn the most. The median earnings for this group were significantly higher than others up until 2019, but saw 
-                                                       a significant decrease to $66,915 in 2020. This number is nearly identical to the median earnings for those with less than a high school education at $66,716."),
-                                              )),
-                                     column(12, 
-                                            h4("References: "), 
-                                            p(tags$small("[1] About Powhatan. About Powhatan | Powhatan County, VA - Official Website. (n.d.). Retrieved July 15, 2022, from http://www.powhatanva.gov/317/About-Powhatan", tags$br(),
-                                                         "[2] Powhatan WMA. Virginia Department of Wildlife Resources. (n.d.). Retrieved July 15, 2022, from https://dwr.virginia.gov/wma/powhatan/", tags$br(),
-                                                         "[3] U.S. Census Bureau (2022). Age and sex, 2020: ACS 5-Year estimates subject tables. Retrieved July 18, 2022, from https://data.census.gov/cedsci/table?t=Populations%20and%20People&g=0500000US51145&y=2020&tid=ACSST5Y2020.S0101", tags$br(), 
-                                                         "[4] U.S. Census Bureau (2022). Race, 2020: DEC redistricting data (PL 94-171). Retrieved July 18, 2022, from https://data.census.gov/cedsci/table?g=0500000US51145&y=2020&tid=DECENNIALPL2020.P1", tags$br(),
-                                                         "[5] U.S. Census Bureau (2022). Employment status, 2020: ACS 5-Year estimates subject tables. Retrieved July 18, 2022, from https://data.census.gov/cedsci/table?t=Employment%3AEmployment%20and%20Labor%20Force%20Status&g=0500000US51145&y=2020&tid=ACSST5Y2020.S2301" , tags$br(),
-                                                         "[6] U.S. Census Bureau (2022). Industry by occupation for the civilian employed population 16 years and over, 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Occupation&g=0500000US51145&y=2020&tid=ACSST5Y2020.S2405", tags$br(),
-                                                         "[7] U.S. Census Bureau (2022). Median income in the past 12 months (in 2020 inflation-adjusted dollars), 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Income%20%28Households,%20Families,%20Individuals%29&g=0500000US51145&y=2020&tid=ACSST5Y2020.S1903", tags$br(),
-                                                         "[8] U.S. Census Bureau (2022). Income in the past 12 months (in 2020 inflation-adjusted dollars), 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Income%20%28Households,%20Families,%20Individuals%29&g=0500000US51145&y=2020&tid=ACSST5Y2020.S1901", tags$br(),
-                                                         "[9] U.S. Census Bureau (2022). Educational attainment, 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Education&g=0500000US51145&y=2020&tid=ACSST5Y2020.S1501", tags$br(),
-                                                         "[10] United States Department of Agriculture. Powhatan County Virginia - county profile. National Agricultural Statistics Survey. Retrieved July 25, 2022, from https://www.nass.usda.gov/Publications/AgCensus/2017/Online_Resources/County_Profiles/Virginia/cp51145.pdf", tags$br(), 
-                                                         "[11] U.S. Census Bureau (2022). Geographic mobility by selected characteristics in the United States, 2020: ACS 5-Year estimates subject tables. Retrieved July 25, 2022, from https://data.census.gov/cedsci/table?t=Residential%20Mobility&g=0500000US51145&y=2020&tid=ACSST5Y2020.S0701")),
-                                            p("", style = "padding-top:10px;")) 
-                                     , 
-                            ) ,
-                            
-                            
-                            
-                 #),
+            
                  
                  ## Tab Policy --------------------------------------------
-                 tabPanel("Policy", value = "conclusion", 
+                 tabPanel("Background and Policy", value = "conclusion", 
                           fluidRow(style = "margin: 6px;",
                                    h1(strong("Land Use & Environmental Policies"), align = "center"),
                                    p("", style = "padding-top:10px;"),
@@ -736,7 +662,7 @@ ui <- navbarPage(title = "DSPG 2023",
                                      variety of different objectives and long-term visions. These plans drive changes in land use, and it is important to investigate 
                                      policies at every level to get a full picture of land-use conversion."),
                                    tabsetPanel(
-                                     tabPanel("Conservation",
+                                     tabPanel("Background",
                                               p(),
                                               p('State-level officials work within the confines of both federal and local policy. They aim to simultaneously enhance federal policy while enabling local officials to make comprehensive 
                                               land-use plans. The state of Virginia is under the Dillon Rule which states that local ordinances must be consistent with state law [1]. Local officials are the ones approving parcel-specific 
@@ -781,6 +707,62 @@ ui <- navbarPage(title = "DSPG 2023",
                                                        “regional or statewide consistency is rare in Virginia's land use planning process - even statewide requirements such as the Chesapeake Bay Regulations are interpreted 
                                                        differently by different jurisdictions” [1]."),
                                               )),
+                                              column(12,
+                                                     h4("References:"),
+                                                     p(tags$small("[1] Land use planning in Virginia. Virginia Places. (n.d.). Retrieved July 25, 2022, from http://www.virginiaplaces.org/landuseplan/", tags$br(), 
+                                                                  "[2] USDA. (n.d.). Conservation reserve enhancement program. USDA Farm Service Agency. Retrieved July 25, 2022, from https://www.fsa.usda.gov/programs-and-services/conservation-programs/conservation-reserve-enhancement/index" , tags$br(),
+                                                                  "[3] Virginia General Assembly. (n.d.). Code of Virginia. Virginia's Legislative Information System. Retrieved July 25, 2022, from https://law.lis.virginia.gov/vacodepopularnames/agricultural-and-forestal-districts-act/ ",tags$br(),
+                                                                  "[4] Virginia Department of Forestry. (n.d.). Agricultural &amp; forestal district program- Louisa County. Virginia Department of Forestry. Retrieved July 25, 2022, from https://dof.virginia.gov/wp-content/uploads/afd-program-brochure_11212019-stone-version.pdf", tags$br(),
+                                                                  "[5] Virginia Nonpoint Source Management Program Plan (2019 Update). (2019).", tags$br(),
+                                                                  "[6] Virginia Department of Environmental Quality. (n.d.). Chesapeake Bay preservation act. Virginia Department of Environmental Quality. Retrieved July 25, 2022, from https://www.deq.virginia.gov/water/chesapeake-bay/chesapeake-bay-preservation-act#:~:text=Under%20the%20Bay%20Act%20framework%2C%20the%20Chesapeake%20Bay,and%20implement%20in%20administering%20their%20Bay%20Act%20programs.", tags$br(),
+                                                                  "[7] Virginia Department of Environmental Quality. (n.d.). Chesapeake Bay TMDLs. Virginia Department of Environmental Quality. Retrieved July 25, 2022, from https://www.deq.virginia.gov/water/chesapeake-bay/chesapeake-bay-tmdls ")),
+                                                     p("", style = "padding-top:10px;")),
+                                     ),
+                                     tabPanel("Conservation Policy",
+                                              p(),
+                                              p('State-level officials work within the confines of both federal and local policy. They aim to simultaneously enhance federal policy while enabling local officials to make comprehensive 
+                                              land-use plans. The state of Virginia is under the Dillon Rule which states that local ordinances must be consistent with state law [1]. Local officials are the ones approving parcel-specific 
+                                              land use plans, but state and federal officials play a key role [1]. The state courts are the "referees" to determine if land use decisions violated some aspect of various state laws, or if 
+                                                the land use rules violated the state constitution in some way [1].'),
+                                              column(6,
+                                                     fluidRow(style = "margin: 6px;", align = "justify",
+                                                              p("", style = "padding-top:10px;"),
+                                                              p(strong("Conservation Reserve Enhancement Program (CREP):")), 
+                                                              p("This is a state-sponsored enhancement to the federal CRP. It is a cost-share program where federal reimbursement is made through the FSA for up to 
+                                                       “50% of a participant's eligible expenses for implementing best management practices (BMP)”. BMP examples include adding fencing, alternative watering 
+                                                       systems, and restoring wetlands. Participation in this program is voluntary, and the contract period is around 10-15 years [2]."),
+                                                              br(),
+                                                              p(strong("Agriculture and Forestal Districts (AFD):")),
+                                                              p("The AFD program in Virginia was designed to “preserve and protect open spaces, forested areas, and agricultural lands” [3]. This program makes 
+                                                       it so land taxes are based on use rather than taxing solely on the market value. Land used for growing crops, for example, is taxed differently than 
+                                                       developed property. This state-level policy encourages localities to be purposeful with their property taxes. The hope is that this policy will be used 
+                                                       to conserve and protect agricultural and forest land. These lands can be valued as “natural and ecological resources which provide essential open spaces 
+                                                       for clean air sheds, watershed protection, wildlife habitat, aesthetic quality and other environmental purposes” [3]. This program was formed in 1977 
+                                                       [4]. The potential benefits are to lower property taxes, safeguard the rural character of the community, and offer protection from the eminent domain [4]."),
+                                                              br(),
+                                                              p(strong("Nonpoint Source (NPS) Pollution Management Program:")), 
+                                                              p('This is a diverse network of state and local government programs that “help to prevent water quality degradation and to restore 
+                                                       the health of lakes, rivers, streams, and estuaries by promoting and funding state and local watershed planning efforts, stream and wetland restoration and protection, 
+                                                       education and outreach, and other measures to reduce and prevent NPS pollution from affecting the Commonwealth’s waters" [5].'),
+                                                              p(),
+                                                              p(),
+                                                     )) , 
+                                              column(6, 
+                                                     fluidRow(style = "margin: 6px;", align = "justify",
+                                                              p("", style = "padding-top:10px;"),
+                                                              p(strong("Chesapeake Bay Preservation Act:")),
+                                                              p("This program was developed in 1988 as an element of Virginia's NPS management program. The goal is to protect and improve water quality in the Chesapeake 
+                                                     Bay by requiring effective land use management practices [6]."), 
+                                                              p('"The Bay Act program is the only program administered by the Commonwealth of Virginia that comprehensively addresses the effects of land use planning and 
+                                                     development on water quality. The Bay Act recognizes that local governments have the primary responsibility for land use decisions and expands their authority 
+                                                     to manage water quality, and establish a direct relationship between water quality protection and local land use decision-making" [6].'),
+                                                              br(),
+                                                              p(strong("Total Maximum Daily Load (TMDL):")),
+                                                              p("Significant portions of the Chesapeake Bay have been identified as not meeting water quality standards. Despite the Chesapeake Bay program, water quality goals 
+                                                     have not been met. In December of 2010, the EPA issued a TMDL, a “pollution diet” to protect the Bay [7]. This TMDL is divided among all the Bay states. However,
+                                                       “regional or statewide consistency is rare in Virginia's land use planning process - even statewide requirements such as the Chesapeake Bay Regulations are interpreted 
+                                                       differently by different jurisdictions” [1]."),
+                                                     )),
                                               column(12,
                                                      h4("References:"),
                                                      p(tags$small("[1] Land use planning in Virginia. Virginia Places. (n.d.). Retrieved July 25, 2022, from http://www.virginiaplaces.org/landuseplan/", tags$br(), 
