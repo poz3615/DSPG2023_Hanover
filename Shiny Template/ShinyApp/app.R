@@ -942,53 +942,77 @@ ui <- navbarPage(title = "DSPG 2023",
                                                 tabPanel("Land Suitability",
                                                          p("", style = "padding-top:10px;"),
                                                          column(4, 
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                         h4(strong("Land Parcels in Powhatan County")),
-                                                                         p("The dark red layer represents land that was parcellated during the most recent year selected. The lighter pink layer represent land that 
-                                                                           parcellated during all previous years selected. If the years 2012 and 2020 are selected, the dark layer would show 2020 parcellations and 
-                                                                           the light pink layer would show parcellation between 2012 and 2019. "), 
-                                                                         p("There are large parcels being broken down along the northern border of the county. There is also significant parcellation in the center of 
-                                                                           the county along Route 60 where most development has occurred in the last several years.")
-                                                                )), 
-                                                         column(8, 
-                                                                h4(strong("Land Parcellation Map")),
-                                                                sliderInput(inputId = "p.parcellationRange",
-                                                                            label = "Years of Parcellation:",
-                                                                            min = 2012,
-                                                                            max = 2020,
-                                                                            value = c(2012, 2020),
-                                                                            sep = "", 
-                                                                            width = "150%"),
-                                                                leafletOutput("p.parcellationPlot") %>% withSpinner(type = 4, color = "#861F41", size = 1.5),
-                                                                p(tags$small("Data Source: Powhatan County Administrative Data")),
-                                                                p(),
-                                                         ),
+                                                                fluidRow(style = "margin: 8px;",
+                                                                         align = "center",
+                                                                         column(6,
+                                                                                h2(strong("Land Suitability Write Up Goes Here")),
+                                                                                p("stuff"),
+                                                                                p()
+                                                                                
+                                                                         ),
+                                                                         column(6,
+                                                                                h2(strong("Visualizations")),
+                                                                                p("Visualizations go here"),
+                                                                                plotlyOutput("rateacre", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                                                leafletOutput("limitS") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+                                                                                
+                                                                         )
+                                                                ))
                                                          
                                                 ), 
                                                 tabPanel("Infastructure Proximity",
                                                          p("", style = "padding-top:10px;"),
                                                          column(4, 
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                         h4(strong("Land Parcels in Powhatan County")),
-                                                                         p("The dark red layer represents land that was parcellated during the most recent year selected. The lighter pink layer represent land that 
-                                                                           parcellated during all previous years selected. If the years 2012 and 2020 are selected, the dark layer would show 2020 parcellations and 
-                                                                           the light pink layer would show parcellation between 2012 and 2019. "), 
-                                                                         p("There are large parcels being broken down along the northern border of the county. There is also significant parcellation in the center of 
-                                                                           the county along Route 60 where most development has occurred in the last several years.")
-                                                                )), 
-                                                         column(8, 
-                                                                h4(strong("Land Parcellation Map")),
-                                                                sliderInput(inputId = "p.parcellationRange",
-                                                                            label = "Years of Parcellation:",
-                                                                            min = 2012,
-                                                                            max = 2020,
-                                                                            value = c(2012, 2020),
-                                                                            sep = "", 
-                                                                            width = "150%"),
-                                                                leafletOutput("p.parcellationPlot") %>% withSpinner(type = 4, color = "#861F41", size = 1.5),
-                                                                p(tags$small("Data Source: Powhatan County Administrative Data")),
-                                                                p(),
-                                                         ),
+                                                                fluidRow(style = "margin: 8px;",
+                                                                         align = "center",
+                                                                         column(6,
+                                                                                h2(strong("Infrastructure Proximity Write Up Goes Here")),
+                                                                                p("This map was created using transmission line location data 
+                                                       from the Homeland Infrastructure Foundation Level Database 
+                                                       (HIFLD) and a separate dataset distributed by The Office for
+                                                       Coastal Management which used HIFLD metadata to map all substations
+                                                       within 20 miles of the ocean. The substation metadata set from
+                                                       HIFLD is only accessible for federal employees, and the substation
+                                                       data we used from The Office for Coastal Management only had half
+                                                       of all substations within Hanover County. To map all of the substations
+                                                       within the county we used Open Street Map and Google Earth to locate
+                                                       the other substation locations and add them to our dataset."),
+                                                                                p(),
+                                                                                p("Solar farms need to be within close proximity of infrastructure 
+                                                       that can distribute the power generated from a farm throughout the
+                                                       grid. Connecting a farm directly to a substation is ideal as
+                                                       substations already have the majority of necessary technology
+                                                       that can increase or decrease the voltage coming from a farm.
+                                                       Connecting to transmission lines is also a possibility, but 
+                                                       requires the implementation of new voltage regulating machines.
+                                                       As the development location moves further away from energy infrastructure, 
+                                                       the project becomes more expensive and eventually is not financially
+                                                       feasible. A distance rule of thumb is that solar farms should be 
+                                                       developed within 2 miles of a substation or 1000 feet of a transmission
+                                                       line in order to keep development costs low."),
+                                                                                p(),
+                                                                                p("The map displayed shows parcels that have land within either 2 
+                                                       miles of a substation or 1000 feet of a transmission line. The 
+                                                       highlighted parcels are also subsetted to show only lots that are
+                                                       zoned for agriculture and are at least 10 acres in size."),
+                                                                                p(),
+                                                                                p("The second layer displays a map that shows parcels which are
+                                                       centered within the most suitable land for solar farm development.
+                                                       Using NRCS Web Soil Survey data we were able to map the soil types
+                                                       across the county based on the level of limitation that they pose 
+                                                       for solar farm development. The index takes into account slope,
+                                                       slope aspect, rock fragment content, corrosivity, saturation and shrink-swell properties of the soil.
+                                                       The parcels displayed are also subsetted to only show lots that are a minimum of 10 acres. The most 
+                                                       suitable land for solar farm development within Hanover County is concentrated on the eastern end of 
+                                                       the county where the majority of prime farmland is located."),
+                                                                                p()
+                                                                         ),
+                                                                         column(6,
+                                                                                h2(strong("Visualizations")),
+                                                                                p("Visualizations go here")
+                                                                                
+                                                                         )
+                                                                )),
                                                          
                                                 ), 
                                                 
