@@ -936,28 +936,27 @@ ui <- navbarPage(title = "DSPG 2023",
                             
                             tabPanel("Solar Farming Assessment", 
                                      fluidRow(style = "margin: 6px;",
-                                              h1(strong("Land Parcellation"), align = "center"),
+                                              h1(strong("Solar Farming Assessment"), align = "center"),
                                               p("", style = "padding-top:10px;"),
                                               tabsetPanel(
                                                 tabPanel("Land Suitability",
                                                          p("", style = "padding-top:10px;"),
-                                                         column(4, 
-                                                                fluidRow(style = "margin: 8px;",
-                                                                         align = "center",
-                                                                         column(6,
-                                                                                h2(strong("Land Suitability Write Up Goes Here")),
-                                                                                p("stuff"),
-                                                                                p()
-                                                                                
-                                                                         ),
-                                                                         column(6,
-                                                                                h2(strong("Visualizations")),
-                                                                                p("Visualizations go here"),
-                                                                                plotlyOutput("rateacre", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                                                leafletOutput("limitS") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
-                                                                                
-                                                                         )
-                                                                ))
+                                                         fluidRow(style = "margin: 8px;",
+                                                                  align = "center",
+                                                                  column(6,
+                                                                         h2(strong("Land Suitability Write Up Goes Here")),
+                                                                         p("stuff"),
+                                                                         p()
+                                                                         
+                                                                  ),
+                                                                  column(6,
+                                                                         h2(strong("Visualizations")),
+                                                                         p("Visualizations go here"),
+                                                                         plotlyOutput("rateacre", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                                         leafletOutput("limitS") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+                                                                         
+                                                                  )
+                                                         )
                                                          
                                                 ), 
                                                 tabPanel("Infastructure Proximity",
