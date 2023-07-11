@@ -315,22 +315,6 @@ po_cnty<- st_read("data/cnty_bndry/Powhatan_Boundary.shp") %>% st_transform("+pr
 
 ### LAND USE =================================================
 
-
-#transition matrix
-agLabels <- c("Agricultural / Undeveloped (20-99 Acres) (before)", "Agricultural / Undeveloped (100+ Acres) (before)")
-p.sankey <- read.csv("data/luParcelData/p_sankey.csv") %>% select(MLUSE_old,MLUSE_new)  %>% filter(MLUSE_old %in% agLabels, MLUSE_old != MLUSE_new)
-
-thm.p <- hc_theme(colors = c("#fde725", "#fde725", "#1fa187", "#addc30", "#3b528b",  "#5ec962", "#1fa187"),
-                chart = list(backgroundColor = "#ffffff"),
-                title = list(style = list(color ='#000000',
-                                          fontFamily = "Lumen")),
-                subtitle = list(style = list(color ='#000000',
-                                             fontFamily = "Lumen")),
-                labels=list(color="#333333", position="absolute"),
-                legend = list(itemStyle = list(fontFamily ='Lumen',color ='#000000')
-                              ,y=50,align='right',itemHoverStyle = list(color ="#FFFf43")))
-
-
 ### CROP LAYER =================================================
 
   # setting up labels depending on whether it has little to no acreage
@@ -1303,113 +1287,6 @@ server <- function(input, output){
     
   })
 
-
-  ### CROP LAYERS ================================================
-  
-  
-  output$pow_crop_img <- renderImage(deleteFile = FALSE,{
-    if(input$pow_crop == "2012"){
-      return(list(src = "www/CroplandPngs/powCrop12.png", width = "270%", height = "100%"))    
-    }
-    else{
-      return(list(src = "www/CroplandPngs/powCrop21.png", width = "270%", height = "100%"))    
-    }
-  })
-  
-  
-  pcrop <- reactive({
-    input$pcrop
-  })
-  
-  output$pcrop_graph <- renderPlotly({
-    if(pcrop() == "pcrop12"){
-      cropPlot.func("Powhatan", 2012)
-    }
-    else if(pcrop() == "pcrop21"){
-      cropPlot.func("Powhatan", 2021)
-    }
-  })
-  
-
-  
-  output$p.soilPNG <- renderSlickR({
-    img <- "data/Soil_Quality/Powhatan.png"
-    slickR.func(img)
-  })
-  
-  
-  
-  output$psoil <- renderPlotly({
-    psoil
-  })
-  
-
-  output$pow_trafficPNG <- renderImage(deleteFile = FALSE,{
-    if(input$pow_traffic == "pvol"){
-      return(list(src = "www/trafficPNGs/powVol.png", width = "100%", height = "100%"))
-    }
-    else if(input$pow_traffic == "prich"){
-      return(list(src = "www/trafficPNGs/powProx.png", width = "100%", height = "100%"))
-    }
-  })
-  
-  ### LAND USE ======================================
-
-  
-  
-  output$pow_lu_map <- renderImage({
-    if(input$pow_lu_year == "2015"){
-      return(list(src = "www/luPNGs/Pow_LU15.png", width = "100%", height = "75%"))    
-    }
-    else if(input$pow_lu_year == "2016"){
-      return(list(src = "www/luPNGs/Pow_LU16.png", width = "100%", height = "75%"))    
-    }
-    else if(input$pow_lu_year == "2017"){
-      return(list(src = "www/luPNGs/Pow_LU17.png", width = "100%", height = "75%"))    
-    }
-    else if(input$pow_lu_year == "2018"){
-      return(list(src = "www/luPNGs/Pow_LU18.png", width = "100%", height = "75%"))    
-    }
-    else if(input$pow_lu_year == "2019"){
-      return(list(src = "www/luPNGs/Pow_LU19.png", width = "100%", height = "75%"))    
-    }
-    else if(input$pow_lu_year == "2020"){
-      return(list(src = "www/luPNGs/Pow_LU20.png", width = "100%", height = "75%"))    
-    }
-    else if(input$pow_lu_year == "2021"){
-      return(list(src = "www/luPNGs/Pow_LU21.png", width = "100%", height = "75%"))    
-    }
-  },deleteFile = FALSE)
-  
-  
-  output$pow_sankey <- renderHighchart({ 
-    hchart(data_to_sankey(p.sankey), "sankey") %>%
-      hc_add_theme(thm.p) %>%
-      hc_plotOptions(series = list(dataLabels = list(style = list(fontSize = "10px",color="black", textOutline = "none"))))
-  })
-  
-  
-  ### HOT SPOTS ======================================
-
-  
-  output$p.hotspotMap <- renderLeaflet({
-    begin_year <- input$p.hotspotInput[1]-2000
-    end_year <- input$p.hotspotInput[2]-2000
-    yrRange <- c(begin_year:end_year)
-    
-    hotspot.func("Powhatan", yrRange)
-  })
-  
-  
-  
-  ### PARCELLATION ======================================
-
-  
-  output$p.parcellationPlot <- renderLeaflet({
-    yearRange <- abs(input$p.parcellationRange[1]:input$p.parcellationRange[2])
-    parc.func(pow_parcellation, yearRange, "Powhatan", po_cnty)
-    
-  })
   
 }
 
