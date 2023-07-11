@@ -808,28 +808,78 @@ ui <- navbarPage(title = "DSPG 2023",
                                                                   county and make up only use 4.1% of the land in the county. From an agricultural perspective, the land is most often used for raising livestock instead of growing crops. 
                                                                   There is a heavy concentration of row crops on the north boundary of Powhatan. The James River also acts as a boundary between Powhatan County and Goochland County.")
                                                                 )), 
-                                                         column(8, 
-                                                                h4(strong("Crop Layer Map")),
-                                                                
-                                                                radioButtons(inputId = "pow_crop", label = "Select year: ",
-                                                                             choices = c("2012", "2021"),
-                                                                             selected = "2021", inline = TRUE),
-                                                                imageOutput("pow_crop_img", width = "300px", height = "600px"),
-                                                                
-                                                                
-                                                                #slickROutput("p.CropPNG", width = "100%", height = "50%"),
-                                                                
-                                                                h4(strong("Crop Layer Graphs")),
-                                                                
-                                                                
-                                                                selectInput("pcrop", "Select Variable:", width = "100%", choices = c(
-                                                                  "Total Acreage by Land Type 2021" = "pcrop21",
-                                                                  "Total Acreage by Land Type 2012" = "pcrop12")
-                                                                ),
-                                                                
-                                                                plotlyOutput("pcrop_graph", height = "500px"),
-                                                                p(tags$small("Data Source: United States Department of Agriculture")),
+                                                         column(6,
+                                                                h2(strong("What we have so far")),
+                                                                p("Used Arc GIS Pro with USDA Cropland-CROS data 
+                                                       to map types of cropland cover over Hanover County."),
+                                                                p(),
+                                                                p("Joined the data from the cropland survey 
+                                                       and parcel data in Stata to create a clean data 
+                                                       file we will use for maps and graphs in R.")
                                                          ),
+                                                         column(6,
+                                                                h2(strong("Agricultural History")),
+                                                                p("Agriculture is a dominant economic, cultural, 
+                                                       and social force in Hanover County. Dating back to 
+                                                       the colonial era, tobacco was the dominant cash crop and
+                                                       was cultivated starting in the early 17th century and 
+                                                       continuing well into the 19th century. However, after the 
+                                                       soil become depleted due to overuse and market conditions
+                                                       changed. During the turn of the 19th century, the focus shifted 
+                                                       to other crops including corn, oats, and wheat, and to livestock 
+                                                       farming, including cattle, pigs, sheep, poultry, 
+                                                       etc. It is also seen that the landscape diversified 
+                                                       agriculturally and many farmers started using different
+                                                       crop rotation and soil conservation techniques. Once the 
+                                                       railroad was introduced, transportation made it easier for 
+                                                       farmers to bring their products to the market and at the same
+                                                       time helped facilitate the growth of fruits, vegetables, 
+                                                       and dairy farming. As time went on leading to the early 20th
+                                                       century there were many advancements in technology regarding 
+                                                       agriculture. Manual labor was replaced by machinery and tractors 
+                                                       which led to increased productivity and efficiency. Then farmers 
+                                                       adopted more modern techniques such as crop cultivation, pest control,
+                                                       and irrigation. After multiple wars throughout centuries and
+                                                       especially following World War II, much of the agricultural
+                                                       landscape was converted to residential and commercial areas
+                                                       which prompted suburban development. It is still the case 
+                                                       though that currently nearly half of the county is covered by 
+                                                       forests and/or a mixture of agriculture-forest land. Despite
+                                                       many changes many farms have adapted into niche markets such as 
+                                                       organic farming, agri-tourism, and farmers markets including the
+                                                       support for initiatives to promote sustainable agriculture and to
+                                                       preserve farmland. Currently today, Hanover County’s agricultural
+                                                       presence plays a vital role in its economy, heritage, and local culture.  "),
+                                                                p()
+                                                         )
+                                                ),
+                                                
+                                                fluidRow(style = "margin: 8px;",
+                                                         column(6, 
+                                                                h4(strong("Crop Covers")),
+                                                                selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
+                                                                  "Row crops" = "RC",
+                                                                  "Horticulture crops" = "HC",
+                                                                  "Small grains" = "SG",
+                                                                  "Double cropped" = "DC",
+                                                                  "Forages" = "F",
+                                                                  "Tree crops" = "TC",
+                                                                  "Other" = "O",
+                                                                  "Forested" = "FR",
+                                                                  "Wetlands" = "WL",
+                                                                  "Water" = "W",
+                                                                  "Developed" = "DEV")
+                                                                ),
+                                                                imageOutput("crop_typePNG", width = "400px", height = "400px"),
+                                                                p(),
+                                                                plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                                p(),
+                                                                plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                
+                                                                
+                                                         )
+                                                         
+                                                         
                                                 ) ,
                                                 tabPanel("Soil Type",
                                                          p("", style = "padding-top:10px;"),
