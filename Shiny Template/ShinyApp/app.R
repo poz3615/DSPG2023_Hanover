@@ -782,20 +782,7 @@ ui <- navbarPage(title = "DSPG 2023",
                                                                          #mapview:::plainViewOutput("zoneHan")
                                                                   )
                                                          ), 
-                                                                fluidRow(style = "margin: 6px;", align = "justify",
-                                                                         column(4,
-                                                                                br(),
-                                                                                h4(strong("Land Use Transition Matrix")),
-                                                                                p("We constructed a transition matrix with our data to understand how land converts across time. The matrix shows the total number of parcels of agricultural land converted from 2012-2022 to other uses. 
-                                                                                  Note in this analysis, a parcel can convert multiple times across the period under study. If we ignore the undefined category, most of the land in agriculture is being converted into Residential Parcels. 
-                                                                                  The residential category that had the most parcels added was Single Family Suburban. This category gained 533 parcels of land.")),
-                                                                         column(8,
-                                                                                br(),
-                                                                                h4(strong("Land Use Conversion in Powhatan (Counts): 2012-2021")),
-                                                                                highchartOutput("pow_sankey",height = 600) %>% withSpinner(type = 4, color = "#861F41", size = 1.25),
-                                                                                
-                                                                                p(tags$small("Data Source: Powhatan County Administrative Data"))
-                                                                ))),
+                                                                ),
                                                 tabPanel("Crop Cover",
                                                          p("", style = "padding-top:10px;"),
                                                           
