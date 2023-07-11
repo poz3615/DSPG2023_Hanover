@@ -310,82 +310,6 @@ rateacre <- ggplotly(rateacre, tooltip = "text")
 po_cnty<- st_read("data/cnty_bndry/Powhatan_Boundary.shp") %>% st_transform("+proj=longlat +datum=WGS84")
 
 
-## HANOVER Sociodemographics =================================================
-
-popdist<-read.csv("data/popdist.csv", header = TRUE) #for Shiny ap
-industry <- read.csv("data/industry.csv", header=TRUE) #for Shiny app
-inc <- read.csv("data/inc.csv", header=TRUE) 
-
-educ_earn <- read.csv("data/educ_earn.csv", header=TRUE) 
-
-
-age.func <- function(inputYear, inputCounty) {
-  
-  age <- popdist %>%
-    filter(county == inputCounty, year==inputYear) %>%
-    ggplot(aes(x=agecat , y=value, fill=agecat))+
-    geom_bar(stat="identity") + 
-    coord_flip() + 
-    scale_fill_viridis(discrete=TRUE) + 
-    theme_light() + 
-    theme(legend.position="none") + 
-    theme(axis.text.y = element_text(hjust=0)) +
-    labs(title="Age Distribution of Population", y= "Percent", x= "Age Group", caption="Source: ACS5 2016-2020") +
-    ylim(0,35)
-  age
-}
-
-ind.func <- function(inputYear, inputCounty) {
-  
-  ind <- industry %>% 
-    filter(county == inputCounty, year==inputYear) %>%
-    ggplot(aes(x = name, y = value, fill = name)) + 
-    geom_bar(stat = "identity") + theme(legend.position = "none") +
-    coord_flip() + scale_fill_viridis_d()  + 
-    theme_light() + 
-    theme(legend.position="none") + 
-    theme(axis.text.y = element_text(hjust=0)) +
-    labs(title="Employment By Industry", y = "Percent", x = "Industry", caption="Source: ACS5 2016-2020") +
-    ylim(0,25)
-  ind
-}
-
-inc.func <- function(inputYear, inputCounty) {
-  
-  inc <- inc %>% 
-    filter(county == inputCounty, year==inputYear) %>%
-    mutate(inccat = fct_relevel(inccat, "<35K", "35K - 50K", "50K - 75K","75K-100K", ">100K")) %>%
-    ggplot(aes(x = inccat, y = estimate, fill = inccat))+ 
-    geom_bar(stat = "identity") + 
-    theme(legend.position = "none") + 
-    scale_fill_viridis(discrete=TRUE) + 
-    theme_light() + 
-    theme(legend.position="none") + 
-    theme(axis.text.y = element_text(hjust=0)) +
-    labs(title = "Income Distribution", y = "Percent", x = "Income", caption="Source: ACS5 2016-2020") +
-    coord_flip() +
-    ylim(0,50)
-  inc
-}
-
-edu.func <- function(inputYear, inputCounty) {
-  
-  edu <- educ_earn %>% 
-    filter(county == inputCounty, year==inputYear) %>%
-    ggplot(aes(x = name, y = values)) + 
-    geom_bar(stat = "identity", mapping=(aes(fill = name))) + 
-    theme(legend.position = "none") + scale_fill_viridis(discrete=TRUE) +
-    labs(title = "Median Earnings By Educational Attainment (Age > 25 years)", x = "Highest Education", y = "Median Earnings", caption = "Source: ACS5 2016-2020") + 
-    geom_text(aes(label = values), vjust = -0.25) +
-    scale_x_discrete(labels = c("Below\nhighschool", "Highschool\ngraduate", "Some college/\nAssociates'", "Bachelor's", "Graduate")) + 
-    theme_light() + 
-    theme(legend.position="none") + 
-    theme(axis.text.y = element_text(hjust=0)) +
-    ylim(0, 200000)
-  edu
-}
-
-
 ## POLICY =================================================
 
 pcon <- st_read("data/Conservation/Powhatan_Natural_Conservation.shp") %>% st_transform("+proj=longlat +datum=WGS84")
@@ -1322,38 +1246,8 @@ server <- function(input, output){
     zoneHan@map
     
   })
-  ### SOCIODEMOGRAPHICS  =================================================
-  output$employ_plot <- renderPlotly({
-    employ_plot
-  })
-  
-  
-  powhatan_soc <- reactive({
-    input$powhatan_soc
-  })
-  
-  output$psoc <- renderPlot({
-    
-    if(powhatan_soc() == "page"){
-      age.func(input$yearSelect_psoc, "Powhatan ")
-    }
-    else if(powhatan_soc() == "pind"){
-      ind.func(input$yearSelect_psoc, "Powhatan ")
-    }
-    else if(powhatan_soc() == "pinc"){
-      inc.func(input$yearSelect_psoc, "Powhatan ")
-    }
-    else if(powhatan_soc() == "pedu"){
-      edu.func(input$yearSelect_psoc, "Powhatan ")
-    }
-    
-  })
-  
-  
-  output$powhatan_con<- renderLeaflet({
-    powhatan_con
-  })
-  
+
+
   ### CROP LAYERS ================================================
   
   
