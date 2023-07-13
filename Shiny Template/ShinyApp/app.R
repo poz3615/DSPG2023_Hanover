@@ -1,4 +1,4 @@
-# Ari
+
 # This is a Shiny web application. You can run the application by clicking on
 # the 'Run App' button above.
 #
