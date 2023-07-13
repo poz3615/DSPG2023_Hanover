@@ -878,10 +878,23 @@ ui <- navbarPage(title = "DSPG 2023",
                                                                   column(6,
                                                                          h2(strong("Visualizations")),
                                                                          p("Visualizations go here"),
-                                                                         radioButtons(inputId = "bufferType", label = "Select buffer size: ",
-                                                                                      choices = c("Buffer One", "Buffer Two", "Buffer Three"),
-                                                                                      
-                                                                         )
+                                                                         checkboxGroupInput(inputId = "bufferType", label = h3("Select buffer types: "),
+                                                                                            choices = c("Buffer One", "Buffer Two", "Buffer Three")),
+                                                                         p(),
+                                                                         checkboxInput(inputId = "road", label = "Show road variable on map?",
+                                                                                       value = FALSE),
+                                                                         p(),
+                                                                         radioButtons(inputId = "farmlandType", label = h3("Select farmland type: "),
+                                                                                      choices = c("Prime Acre Farmland", "State Acre Farmland", "Good Solar Farm Acre Farmland")),
+                                                                         p(),
+                                                                         checkboxInput(inputId = "zoning", label = "Show zoning types on map?",
+                                                                                       value = FALSE),
+                                                                         p(),
+                                                                         sliderInput("lotacre", label = h3("Lot Acreage (by GPIN)"),
+                                                                                     min = 0,
+                                                                                     max = 100000,
+                                                                                     value = 50000,
+                                                                                     step = 20000)
                                                                   )
                                                                   
                                                          ),
