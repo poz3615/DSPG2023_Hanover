@@ -634,6 +634,33 @@ ui <- navbarPage(title = "DSPG 2023",
                                                        and parcel data in Stata to create a clean data 
                                                        file we will use for maps and graphs in R.")
                                                          ),
+                                                         
+                                                         fluidRow(style = "margin: 8px;",
+                                                                  column(6, 
+                                                                         h4(strong("Crop Covers")),
+                                                                         selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
+                                                                           "Row crops" = "RC",
+                                                                           "Horticulture crops" = "HC",
+                                                                           "Small grains" = "SG",
+                                                                           "Double cropped" = "DC",
+                                                                           "Forages" = "F",
+                                                                           "Tree crops" = "TC",
+                                                                           "Other" = "O",
+                                                                           "Forested" = "FR",
+                                                                           "Wetlands" = "WL",
+                                                                           "Water" = "W",
+                                                                           "Developed" = "DEV")
+                                                                         ),
+                                                                         imageOutput("crop_typePNG", width = "400px", height = "400px"),
+                                                                         p(),
+                                                                         plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                                         p(),
+                                                                         plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                         
+                                                                         
+                                                                  )
+                                                                  
+                                                         ),
                                                          column(6,
                                                                 h2(strong("Agricultural History")),
                                                                 p("Agriculture is a dominant economic, cultural, 
@@ -667,34 +694,7 @@ ui <- navbarPage(title = "DSPG 2023",
                                                        support for initiatives to promote sustainable agriculture and to
                                                        preserve farmland. Currently today, Hanover County’s agricultural
                                                        presence plays a vital role in its economy, heritage, and local culture.  "),
-                                                                p(),
-                                                                
-                                                                fluidRow(style = "margin: 8px;",
-                                                                         column(6, 
-                                                                                h4(strong("Crop Covers")),
-                                                                                selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
-                                                                                  "Row crops" = "RC",
-                                                                                  "Horticulture crops" = "HC",
-                                                                                  "Small grains" = "SG",
-                                                                                  "Double cropped" = "DC",
-                                                                                  "Forages" = "F",
-                                                                                  "Tree crops" = "TC",
-                                                                                  "Other" = "O",
-                                                                                  "Forested" = "FR",
-                                                                                  "Wetlands" = "WL",
-                                                                                  "Water" = "W",
-                                                                                  "Developed" = "DEV")
-                                                                                ),
-                                                                                imageOutput("crop_typePNG", width = "400px", height = "400px"),
-                                                                                p(),
-                                                                                plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                                                p(),
-                                                                                plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
-                                                                                
-                                                                                
-                                                                         )
-                                                                         
-                                                                )
+                                                                p()
                                                          )
                                                 ) ,
                                                 tabPanel("Soil Type",
