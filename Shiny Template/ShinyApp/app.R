@@ -1043,11 +1043,10 @@ ui <- navbarPage(title = "DSPG 2023",
                                           ),
                                           p("", style = "padding-top:10px;"),
 
-                                            # h4(strong("Project Stakeholders")),
-                                            # p(a(href = "https://www.linkedin.com/in/rachel-henley-335a0345/", 'Rachel Henley', target = '_blank'), "(Virginia Cooperative Extension, Powhatan County);",
-                                            #   br(), 
-                                            #   a(href = 'https://goochland.ext.vt.edu/staff/Maxwell-Charlotte.html', 'Nichole Shuman', target = '_blank'), "(Virginia Cooperative Extension, Goochland County)."),
-                                            # p("", style = "padding-top:10px;"),
+                                           h4(strong("Project Stakeholders")),
+                                             p(a(href = "https://hanover.ext.vt.edu/staff/maxey-nay-laura.html", 'Laura Maxey-Nay', target = '_blank'), "(Virginia Cooperative Extension, Hanover County)"),
+                                              
+                                            p("", style = "padding-top:10px;"),
                                             
                                           
                                    )
