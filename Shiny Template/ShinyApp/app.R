@@ -46,42 +46,14 @@ options(scipen=999)
 #options(shiny.maxRequestSize = 80*1024^2)
 
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
-jscode <- "function getUrlVars() {
-                var vars = {};
-                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-                    vars[key] = value;
-                });
-                return vars;
-            }
-           function getUrlParam(parameter, defaultvalue){
-                var urlparameter = defaultvalue;
-                if(window.location.href.indexOf(parameter) > -1){
-                    urlparameter = getUrlVars()[parameter];
-                    }
-                return urlparameter;
-            }
-            var mytype = getUrlParam('type','Empty');
-            function changeLinks(parameter) {
-                links = document.getElementsByTagName(\"a\");
-                for(var i = 0; i < links.length; i++) {
-                   var link = links[i];
-                   var newurl = link.href + '?type=' + parameter;
-                   link.setAttribute('href', newurl);
-                 }
-            }
-           var x = document.getElementsByClassName('navbar-brand');
-           if (mytype != 'economic') {
-             x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://datascienceforthepublicgood.org/events/symposium2020/poster-sessions\">' +
-                              '<img src=\"DSPG_black-01.png\", alt=\"DSPG 2020 Symposium Proceedings\", style=\"height:42px;\">' +
-                              '</a></div>';
-             //changeLinks('dspg');
-           } else {
-             x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://datascienceforthepublicgood.org/economic-mobility/community-insights/case-studies\">' +
-                              '<img src=\"AEMLogoGatesColorsBlack-11.png\", alt=\"Gates Economic Mobility Case Studies\", style=\"height:42px;\">' +
-                              '</a></div>';
-             //changeLinks('economic'); 
-           }
-           "
+ jscode <- 'var x = document.getElementsByClassName("navbar-brand");
+    var dspgLink = "https://dspg.aaec.vt.edu/";
+    var githubLink = "https://github.com/VT-Data-Science-for-the-Public-Good";
+    var dspgLogoHTML = \'<a href="\' + dspgLink + \'"><img src="DSPG_black-01.png" alt="VT DSPG" style="height:42px;"></a>\';
+    var githubLogoHTML = \'<a href="\' + githubLink + \'"><img src="github_logo.png" alt="GitHub" style="max-height: 30px; max-width: 100%;"></a>\';
+    var logosHTML = dspgLogoHTML + githubLogoHTML;
+    x[0].innerHTML = x[0].innerHTML + " " + logosHTML;
+  '
 
 # DATA --------------------------------------------------------------------------------------------------------------------
 
@@ -306,8 +278,7 @@ rateacre <- ggplotly(rateacre, tooltip = "text")
 
 # ui --------------------------------------------------------------------------------------------------------------------
 
-ui <- navbarPage(title = "DSPG 2023",
-                 selected = "overview",
+ui <- navbarPage(selected = "overview",
                  theme = shinytheme("lumen"),
                  tags$head(tags$style('.selectize-dropdown {z-index: 10000}')), 
                  useShinyjs(),
@@ -451,10 +422,11 @@ ui <- navbarPage(title = "DSPG 2023",
                                      ),
                                      tabPanel("Conservation Policy",
                                               p(),
-                                              p('State-level officials work within the confines of both federal and local policy. They aim to simultaneously enhance federal policy while enabling local officials to make comprehensive 
-                                              land-use plans. The state of Virginia is under the Dillon Rule which states that local ordinances must be consistent with state law [1]. Local officials are the ones approving parcel-specific 
-                                              land use plans, but state and federal officials play a key role [1]. The state courts are the "referees" to determine if land use decisions violated some aspect of various state laws, or if 
-                                                the land use rules violated the state constitution in some way [1].'),
+                                              # p('State-level officials work within the confines of both federal and local policy. They aim to simultaneously enhance federal policy while enabling local officials to make comprehensive 
+                                              # land-use plans. The state of Virginia is under the Dillon Rule which states that local ordinances must be consistent with state law [1]. Local officials are the ones approving parcel-specific 
+                                              # land use plans, but state and federal officials play a key role [1]. The state courts are the "referees" to determine if land use decisions violated some aspect of various state laws, or if 
+                                              #   the land use rules violated the state constitution in some way [1].'),
+                                              
                                               column(4,
                                                      h2(strong("Federal")),
                                                      h4(strong("Forest Legacy Program (FLP)")),
@@ -622,7 +594,7 @@ ui <- navbarPage(title = "DSPG 2023",
                                                                   )
                                                          ), 
                                                                 ),
-                                                tabPanel("Crop Cover",
+                                                tabPanel("Land Cover",
                                                          p("", style = "padding-top:10px;"),
                                                           
                                                          column(6,
@@ -637,7 +609,7 @@ ui <- navbarPage(title = "DSPG 2023",
                                                          
                                                          fluidRow(style = "margin: 8px;",
                                                                   column(6, 
-                                                                         h4(strong("Crop Covers")),
+                                                                         h4(strong("Land Covers")),
                                                                          selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
                                                                            "Row crops" = "RC",
                                                                            "Horticulture crops" = "HC",
@@ -1059,7 +1031,7 @@ ui <- navbarPage(title = "DSPG 2023",
 
 server <- function(input, output){
   
-  runjs(jscode)
+  shinyjs::runjs(jscode)
   
   output$interactive_plot <- renderPlotly({
     interactive_plot
