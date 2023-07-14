@@ -46,42 +46,14 @@ options(scipen=999)
 #options(shiny.maxRequestSize = 80*1024^2)
 
 # CODE TO DETECT ORIGIN OF LINK AND CHANGE LOGO ACCORDINGLY
-jscode <- "function getUrlVars() {
-                var vars = {};
-                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-                    vars[key] = value;
-                });
-                return vars;
-            }
-           function getUrlParam(parameter, defaultvalue){
-                var urlparameter = defaultvalue;
-                if(window.location.href.indexOf(parameter) > -1){
-                    urlparameter = getUrlVars()[parameter];
-                    }
-                return urlparameter;
-            }
-            var mytype = getUrlParam('type','Empty');
-            function changeLinks(parameter) {
-                links = document.getElementsByTagName(\"a\");
-                for(var i = 0; i < links.length; i++) {
-                   var link = links[i];
-                   var newurl = link.href + '?type=' + parameter;
-                   link.setAttribute('href', newurl);
-                 }
-            }
-           var x = document.getElementsByClassName('navbar-brand');
-           if (mytype != 'economic') {
-             x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://datascienceforthepublicgood.org/events/symposium2020/poster-sessions\">' +
-                              '<img src=\"DSPG_black-01.png\", alt=\"DSPG 2020 Symposium Proceedings\", style=\"height:42px;\">' +
-                              '</a></div>';
-             //changeLinks('dspg');
-           } else {
-             x[0].innerHTML = '<div style=\"margin-top:-14px\"><a href=\"https://datascienceforthepublicgood.org/economic-mobility/community-insights/case-studies\">' +
-                              '<img src=\"AEMLogoGatesColorsBlack-11.png\", alt=\"Gates Economic Mobility Case Studies\", style=\"height:42px;\">' +
-                              '</a></div>';
-             //changeLinks('economic'); 
-           }
-           "
+ jscode <- 'var x = document.getElementsByClassName("navbar-brand");
+    var dspgLink = "https://dspg.aaec.vt.edu/";
+    var githubLink = "https://github.com/VT-Data-Science-for-the-Public-Good";
+    var dspgLogoHTML = \'<a href="\' + dspgLink + \'"><img src="DSPG_black-01.png" alt="VT DSPG" style="height:42px;"></a>\';
+    var githubLogoHTML = \'<a href="\' + githubLink + \'"><img src="github_logo.png" alt="GitHub" style="max-height: 30px; max-width: 100%;"></a>\';
+    var logosHTML = dspgLogoHTML + githubLogoHTML;
+    x[0].innerHTML = x[0].innerHTML + " " + logosHTML;
+  '
 
 # DATA --------------------------------------------------------------------------------------------------------------------
 
@@ -306,8 +278,7 @@ rateacre <- ggplotly(rateacre, tooltip = "text")
 
 # ui --------------------------------------------------------------------------------------------------------------------
 
-ui <- navbarPage(title = "DSPG 2023",
-                 selected = "overview",
+ui <- navbarPage(selected = "overview",
                  theme = shinytheme("lumen"),
                  tags$head(tags$style('.selectize-dropdown {z-index: 10000}')), 
                  useShinyjs(),
@@ -1049,7 +1020,7 @@ ui <- navbarPage(title = "DSPG 2023",
 
 server <- function(input, output){
   
-  runjs(jscode)
+  shinyjs::runjs(jscode)
   
   output$interactive_plot <- renderPlotly({
     interactive_plot
