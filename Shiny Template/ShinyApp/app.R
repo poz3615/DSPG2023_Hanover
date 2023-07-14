@@ -422,10 +422,11 @@ ui <- navbarPage(selected = "overview",
                                      ),
                                      tabPanel("Conservation Policy",
                                               p(),
-                                              p('State-level officials work within the confines of both federal and local policy. They aim to simultaneously enhance federal policy while enabling local officials to make comprehensive 
-                                              land-use plans. The state of Virginia is under the Dillon Rule which states that local ordinances must be consistent with state law [1]. Local officials are the ones approving parcel-specific 
-                                              land use plans, but state and federal officials play a key role [1]. The state courts are the "referees" to determine if land use decisions violated some aspect of various state laws, or if 
-                                                the land use rules violated the state constitution in some way [1].'),
+                                              # p('State-level officials work within the confines of both federal and local policy. They aim to simultaneously enhance federal policy while enabling local officials to make comprehensive 
+                                              # land-use plans. The state of Virginia is under the Dillon Rule which states that local ordinances must be consistent with state law [1]. Local officials are the ones approving parcel-specific 
+                                              # land use plans, but state and federal officials play a key role [1]. The state courts are the "referees" to determine if land use decisions violated some aspect of various state laws, or if 
+                                              #   the land use rules violated the state constitution in some way [1].'),
+                                              
                                               column(4,
                                                      h2(strong("Federal")),
                                                      h4(strong("Forest Legacy Program (FLP)")),
@@ -593,7 +594,7 @@ ui <- navbarPage(selected = "overview",
                                                                   )
                                                          ), 
                                                                 ),
-                                                tabPanel("Crop Cover",
+                                                tabPanel("Land Cover",
                                                          p("", style = "padding-top:10px;"),
                                                           
                                                          column(6,
@@ -608,7 +609,7 @@ ui <- navbarPage(selected = "overview",
                                                          
                                                          fluidRow(style = "margin: 8px;",
                                                                   column(6, 
-                                                                         h4(strong("Crop Covers")),
+                                                                         h4(strong("Land Covers")),
                                                                          selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
                                                                            "Row crops" = "RC",
                                                                            "Horticulture crops" = "HC",
