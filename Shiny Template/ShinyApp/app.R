@@ -909,52 +909,52 @@ ui <- navbarPage(title = "DSPG 2023",
                  #),
                  
                  ## Tab Findings --------------------------------------------
-                 # tabPanel("Findings & Predictions", value = "conclusion", 
+                 # tabPanel("Findings & Predictions", value = "conclusion",
                  #          fluidRow(style = "margin: 6px;",
                  #                   h1(strong("Project Findings and Predictions"), align = "center"),
                  #                   p("", style = "padding-top:10px;"),
-                 #                   p("Given the rich agricultural histories of the two counties, we are interested in how agricultural land has changed over the last several years. 
+                 #                   p("Given the rich agricultural histories of the two counties, we are interested in how agricultural land has changed over the last several years.
                  #                     This research uses quantitative tools to understand how some key natural and social factors affect the parcellation and conversion with administrative data and county-level geospatial data."),
                  #                   fluidRow(style = "margin: 6px;", align = "justify",
                  #                            h4(strong("Goochland")),
-                 #                            p("In Goochland, agricultural land was converted to residential, mainly single-family residential urban, and suburban. 
+                 #                            p("In Goochland, agricultural land was converted to residential, mainly single-family residential urban, and suburban.
                  #                              There were also 5 parcels (about 671 acres) of large agricultural lands that have been parcellated into smaller agricultural plots."),
-                 #                            p("Parcellation is occurring predominantly in the southeast of Goochland County near Richmond, around the U.S. Routes I64, 250, and 288. This pattern might reflect the urban influence on the county. 
-                 #                              This pattern might also imply some correlation between parcellation and transportation. On the crop and land type map, those Routes are labeled as “Developed.” 
+                 #                            p("Parcellation is occurring predominantly in the southeast of Goochland County near Richmond, around the U.S. Routes I64, 250, and 288. This pattern might reflect the urban influence on the county.
+                 #                              This pattern might also imply some correlation between parcellation and transportation. On the crop and land type map, those Routes are labeled as “Developed.”
                  #                              High traffic volumes can also be seen along those Routes."),
                  #                            br(),
                  #                            h4(strong("Powhatan")),
-                 #                            p("Large amounts of agricultural land were converted to 
-                 #                              residential-suburban uses during the decade in Powhatan (including recurrences). Parcellation among agricultural land 
+                 #                            p("Large amounts of agricultural land were converted to
+                 #                              residential-suburban uses during the decade in Powhatan (including recurrences). Parcellation among agricultural land
                  #                              is also noticeable, as 28 parcels (about 5,750 acres) of large agricultural lands have been parcellated
                  #                              into smaller agricultural plots."),
-                 #                            p("Parcellation is occurring predominantly in the heart of Powhatan County, around the U.S. Routes 60 and 522. 
-                 #                              On the east end near Richmond, high parcellation rates are seen along the U.S. Routes 60 and 288 within 
-                 #                              the county and this might reflect the urban influence on the county. The high parcellation around 
-                 #                              those Routes might imply some correlation between parcellation and transportation. On the map of crop and land type, 
-                 #                              those Routes are labeled as “Developed”. High traffic volumes can also be seen along U.S. Routes 60 and 288. Hence the 
+                 #                            p("Parcellation is occurring predominantly in the heart of Powhatan County, around the U.S. Routes 60 and 522.
+                 #                              On the east end near Richmond, high parcellation rates are seen along the U.S. Routes 60 and 288 within
+                 #                              the county and this might reflect the urban influence on the county. The high parcellation around
+                 #                              those Routes might imply some correlation between parcellation and transportation. On the map of crop and land type,
+                 #                              those Routes are labeled as “Developed”. High traffic volumes can also be seen along U.S. Routes 60 and 288. Hence the
                  #                              correlation between parcellation and those Routes is also a correlation between parcellation and developed areas (traffic volumes)."),
                  #                            p("There is no obvious sign that poor soil quality can be a driver of land conversion out of agriculture from the maps."),
-                 #                            p("In addition to the univariate spatial analysis, we also conducted a statistical analysis that examined the association between land conversion out of 
-                 #                              agriculture and the characteristics of the land parcel, which include parcel acreage, whether the owner lives in the county, distance to the city of Richmond, the traffic volume and the soil class. 
-                 #                              The analysis was conducted for Powhatan County only due to data availability. The findings from a logistic regression model show that the probability of converting out of agriculture: 
-                 #                              decreases as the size of the parcel increases, decreases if the land owner lives in Powhatan, decreases with distance from Richmond. The association with traffic volume shows a U shaped impact 
+                 #                            p("In addition to the univariate spatial analysis, we also conducted a statistical analysis that examined the association between land conversion out of
+                 #                              agriculture and the characteristics of the land parcel, which include parcel acreage, whether the owner lives in the county, distance to the city of Richmond, the traffic volume and the soil class.
+                 #                              The analysis was conducted for Powhatan County only due to data availability. The findings from a logistic regression model show that the probability of converting out of agriculture:
+                 #                              decreases as the size of the parcel increases, decreases if the land owner lives in Powhatan, decreases with distance from Richmond. The association with traffic volume shows a U shaped impact
                  #                              on the probability of conversion. Soil quality is not significantly associated with land conversion. Note these are not causal effects. They are associations."),
-                 #                   ), 
-                 #                   
-                 #                   
-                 #                   
+                 #                   ),
+                 #
+                 #
+                 #
                  #          )),
-                 
+
                  ## Tab Data Sources --------------------------------------------
-                 # tabPanel("Data Sources", 
+                 # tabPanel("Data Sources",
                  #          fluidRow(style = "margin: 6px;",
                  #                   h1(strong("Data Sources"), align = "center"),
                  #                   p("", style = "padding-top:10px;"),
                  #                          fluidRow(style = "margin: 6px;", align = "justify",
                  #                                   column(4,
                  #                                   img(src = "data-acs.png", style = "display: inline; float: left;", width = "180px"),
-                 #                                   p(strong("American Community Survey"), "The American Community Survey (ACS) is an demographics survey conducted by the U.S Census Bureau. The ACS samples households to compile 1-year and 5-year datasets 
+                 #                                   p(strong("American Community Survey"), "The American Community Survey (ACS) is an demographics survey conducted by the U.S Census Bureau. The ACS samples households to compile 1-year and 5-year datasets
                  #                      providing information on social and economic characteristics including employment, education, and income. This project utilizes ACS 2016/2020 5-year
                  #                      estimates to obtain county- and census tract-level data to explore Goochland and Powhatan Counties' resident characteristics.")),
                  #                                   column(4,
@@ -966,7 +966,7 @@ ui <- navbarPage(title = "DSPG 2023",
                  #                                   p(strong("Powhatan County Administrative Data"), "Powhatan County provided us with parcel/property data which allowed us to gain a better understanding of the different land uses and parcellation
                  #                            that has occured over a 8 year period (2014 - 2021). The team used this data to create visualizations, specifically focusing on the distribution and change in land use in the county.")),
                  #                          ),
-                 #                          
+                 #
                  #                          fluidRow(style = "margin: 6px;", align = "justify",
                  #                                   column(4,
                  #                                   img(src = "nass.jpg", style = "display: inline; float: left;", width = "130px"),
@@ -974,18 +974,18 @@ ui <- navbarPage(title = "DSPG 2023",
                  #                                    of agricultural topics. This project specifically relies on crop layer data to create maps and to conduct a statistical analysis on the probablity of land use conversion.")),
                  #                                   column(4,
                  #                                   img(src = "ncss.jpg", style = "display: inline; float: left;", width = "150px"),
-                 #                          p(strong("USDA National Cooperative Soil Survey"), "The National Cooperative Soil Survey (NCSS) under the USDA provides soil data which was used to generate soil quality maps for both counties. 
+                 #                          p(strong("USDA National Cooperative Soil Survey"), "The National Cooperative Soil Survey (NCSS) under the USDA provides soil data which was used to generate soil quality maps for both counties.
                  #                            The data was also used for our statistical analysis to predict the occurrence of land use conversion.")),
                  #                          column(4,
                  #                          img(src = "vdot_crop.png", style = "display: inline; float: left;", width = "180px"),
-                 #                          p(strong("VDOT Traffic Data"), "The Virginia Department of Transportation (VDOT) is responsible for building, maintaining and operating the state's roads, bridges and tunnels. VDOT also conducts 
+                 #                          p(strong("VDOT Traffic Data"), "The Virginia Department of Transportation (VDOT) is responsible for building, maintaining and operating the state's roads, bridges and tunnels. VDOT also conducts
                  #                          a program where traffic data are gathered from sensors in or along streets and highways and other sources.  This data includes estimates of the average number of vehicles that traveled each segment
                  #                          of road and daily vehicle miles traveled for specific groups of facilities and vehicle types are calculated. This project utilizes VDOT data to create traffic volume and commute maps for both counties."))
                  #                   )),
-                 #                   
+                 #
                  #          ),
-                 # 
-                 # 
+                 #
+                 #
                  ## Tab Team --------------------------------------------
                  tabPanel("Meet the Team", 
                           fluidRow(style = "margin-left: 100px; margin-right: 100px;",
