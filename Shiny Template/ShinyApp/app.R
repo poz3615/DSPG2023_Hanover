@@ -316,7 +316,7 @@ ui <- navbarPage(title = "DSPG 2023",
                  tabPanel("Overview", value = "overview",
                           fluidRow(style = "margin: 2px;",
                                    align = "center",
-                                   h1(strong("Land Use and Solar Farming Assessment in Hanover County"),
+                                   h1(strong("Land Use and Solar Farming Assessment in Hanover County, Virginia"),
                                       br(""),
                                       h4("Data Science for the Public Good Program"),
                                       h4("Virginia Tech"),
@@ -703,19 +703,30 @@ ui <- navbarPage(title = "DSPG 2023",
                                               align = "center",
                                               column(6,
                                                      h2(strong("Soil Quality Analysis")),
-                                                     p("We plan to use data from the National 
-                                                       Cooperative Survey to show soil types of Hanover County. 
-                                                       Soil type and quality is an influential factor in the resulting 
-                                                       agricultural productivity of land. Understanding where the quality 
-                                                       soil is will help us to identify the best farmland within the county."),
+                                                     p("The USDA Natural Resources Conservation Service (NCRS) Web Soil Survey provides a detailed classification of farmland in the United States. 
+                                                       The Soil Survey Geographic Database (SSURGO) collects soil data by walking over the land to observe the soil and obtaining soil 
+                                                       samples to be analyzed in laboratories. 
+                                                       The SSURGO Database uses the data acquired to map various farmland classifications onto specified areas of interest. 
+                                                       The USDA NCRS considers these factors when classifying soil: 
+                                                       water moisture regimes, soil temperature range, acid-alkali balance, water table, soil sodium content, flooding, erodibility, 
+                                                       permeability rate, rock fragment content, and soil rooting depth."),
                                                      p(),
-                                                     p("Using a graph that shows the acreage of different soil 
-                                                       classes within the county will help to give insight to which
-                                                       types of soil are more common than others."),
+                                                     p("The Web Soil Survey ranks Hanover County’s soil quality by identifying the soil as either prime farmland, farmland of statewide importance, 
+                                                       prime farmland if drained, or not prime farmland. The USDA defines prime farmland as “land that has the best combination of physical and chemical 
+                                                       characteristics for producing food, feed, forage, fiber, and oilseed crops and is available for these uses.” [1] Prime farmland is the highest ranking 
+                                                       and must possess a suitable soil quality to sustainably produce high yields of crops with adequate moisture, water supply, and temperature permissible 
+                                                       for crop growing seasons. Therefore, this land cannot be susceptible to erosion or flooding, and must have minimal slope. Farmland of statewide 
+                                                       importance, which is the second-best ranking, describes soil that almost meets the nutrient requirements to be classified as prime farmland, 
+                                                       but is still able to produce high crop yields once treated with acceptable farming methods, or during favorable conditions. 
+                                                       Prime farmland if drained describes good soils located in wetlands or waterways currently covered in water. Not prime farmland is soil considered 
+                                                       not productive."),
                                                      p(),
-                                                     p("We can use this space to analyze the results of our
-                                                       graph and give background information on what the different
-                                                       soil classes mean."),
+                                                     p("The Web Soil Survey Farmland Classifications were mapped onto Hanover County illustrating the spatial relationships between each classification. 
+                                                       Most land falls under the classification “All areas are prime farmland” and are centered towards the eastern end, spanning across 103,063.2 acres. 
+                                                       This category possesses the largest number of acres with 34% of the county’s total acreage designated as prime farmland. The classification 
+                                                       “Not Prime Farmland” also makes up 34% of the area and has the second largest number of acres with 103,051.1 spanning vastly across the county. 
+                                                       Soil classified as “Farmland of Statewide importance” is concentrated towards the northwestern region making up 31.19% of the county, with 94,545.2 acres 
+                                                       of land. “Prime Farmland if drained” contains the least number of acres and is in the center of the county encompassing 0.816% of the area, with 2,473 acres."),
                                                      p(),
                                                      h4(strong("What We Have So Far")),
                                                      p(),
@@ -909,52 +920,52 @@ ui <- navbarPage(title = "DSPG 2023",
                  #),
                  
                  ## Tab Findings --------------------------------------------
-                 # tabPanel("Findings & Predictions", value = "conclusion", 
+                 # tabPanel("Findings & Predictions", value = "conclusion",
                  #          fluidRow(style = "margin: 6px;",
                  #                   h1(strong("Project Findings and Predictions"), align = "center"),
                  #                   p("", style = "padding-top:10px;"),
-                 #                   p("Given the rich agricultural histories of the two counties, we are interested in how agricultural land has changed over the last several years. 
+                 #                   p("Given the rich agricultural histories of the two counties, we are interested in how agricultural land has changed over the last several years.
                  #                     This research uses quantitative tools to understand how some key natural and social factors affect the parcellation and conversion with administrative data and county-level geospatial data."),
                  #                   fluidRow(style = "margin: 6px;", align = "justify",
                  #                            h4(strong("Goochland")),
-                 #                            p("In Goochland, agricultural land was converted to residential, mainly single-family residential urban, and suburban. 
+                 #                            p("In Goochland, agricultural land was converted to residential, mainly single-family residential urban, and suburban.
                  #                              There were also 5 parcels (about 671 acres) of large agricultural lands that have been parcellated into smaller agricultural plots."),
-                 #                            p("Parcellation is occurring predominantly in the southeast of Goochland County near Richmond, around the U.S. Routes I64, 250, and 288. This pattern might reflect the urban influence on the county. 
-                 #                              This pattern might also imply some correlation between parcellation and transportation. On the crop and land type map, those Routes are labeled as “Developed.” 
+                 #                            p("Parcellation is occurring predominantly in the southeast of Goochland County near Richmond, around the U.S. Routes I64, 250, and 288. This pattern might reflect the urban influence on the county.
+                 #                              This pattern might also imply some correlation between parcellation and transportation. On the crop and land type map, those Routes are labeled as “Developed.”
                  #                              High traffic volumes can also be seen along those Routes."),
                  #                            br(),
                  #                            h4(strong("Powhatan")),
-                 #                            p("Large amounts of agricultural land were converted to 
-                 #                              residential-suburban uses during the decade in Powhatan (including recurrences). Parcellation among agricultural land 
+                 #                            p("Large amounts of agricultural land were converted to
+                 #                              residential-suburban uses during the decade in Powhatan (including recurrences). Parcellation among agricultural land
                  #                              is also noticeable, as 28 parcels (about 5,750 acres) of large agricultural lands have been parcellated
                  #                              into smaller agricultural plots."),
-                 #                            p("Parcellation is occurring predominantly in the heart of Powhatan County, around the U.S. Routes 60 and 522. 
-                 #                              On the east end near Richmond, high parcellation rates are seen along the U.S. Routes 60 and 288 within 
-                 #                              the county and this might reflect the urban influence on the county. The high parcellation around 
-                 #                              those Routes might imply some correlation between parcellation and transportation. On the map of crop and land type, 
-                 #                              those Routes are labeled as “Developed”. High traffic volumes can also be seen along U.S. Routes 60 and 288. Hence the 
+                 #                            p("Parcellation is occurring predominantly in the heart of Powhatan County, around the U.S. Routes 60 and 522.
+                 #                              On the east end near Richmond, high parcellation rates are seen along the U.S. Routes 60 and 288 within
+                 #                              the county and this might reflect the urban influence on the county. The high parcellation around
+                 #                              those Routes might imply some correlation between parcellation and transportation. On the map of crop and land type,
+                 #                              those Routes are labeled as “Developed”. High traffic volumes can also be seen along U.S. Routes 60 and 288. Hence the
                  #                              correlation between parcellation and those Routes is also a correlation between parcellation and developed areas (traffic volumes)."),
                  #                            p("There is no obvious sign that poor soil quality can be a driver of land conversion out of agriculture from the maps."),
-                 #                            p("In addition to the univariate spatial analysis, we also conducted a statistical analysis that examined the association between land conversion out of 
-                 #                              agriculture and the characteristics of the land parcel, which include parcel acreage, whether the owner lives in the county, distance to the city of Richmond, the traffic volume and the soil class. 
-                 #                              The analysis was conducted for Powhatan County only due to data availability. The findings from a logistic regression model show that the probability of converting out of agriculture: 
-                 #                              decreases as the size of the parcel increases, decreases if the land owner lives in Powhatan, decreases with distance from Richmond. The association with traffic volume shows a U shaped impact 
+                 #                            p("In addition to the univariate spatial analysis, we also conducted a statistical analysis that examined the association between land conversion out of
+                 #                              agriculture and the characteristics of the land parcel, which include parcel acreage, whether the owner lives in the county, distance to the city of Richmond, the traffic volume and the soil class.
+                 #                              The analysis was conducted for Powhatan County only due to data availability. The findings from a logistic regression model show that the probability of converting out of agriculture:
+                 #                              decreases as the size of the parcel increases, decreases if the land owner lives in Powhatan, decreases with distance from Richmond. The association with traffic volume shows a U shaped impact
                  #                              on the probability of conversion. Soil quality is not significantly associated with land conversion. Note these are not causal effects. They are associations."),
-                 #                   ), 
-                 #                   
-                 #                   
-                 #                   
+                 #                   ),
+                 #
+                 #
+                 #
                  #          )),
-                 
+
                  ## Tab Data Sources --------------------------------------------
-                 # tabPanel("Data Sources", 
+                 # tabPanel("Data Sources",
                  #          fluidRow(style = "margin: 6px;",
                  #                   h1(strong("Data Sources"), align = "center"),
                  #                   p("", style = "padding-top:10px;"),
                  #                          fluidRow(style = "margin: 6px;", align = "justify",
                  #                                   column(4,
                  #                                   img(src = "data-acs.png", style = "display: inline; float: left;", width = "180px"),
-                 #                                   p(strong("American Community Survey"), "The American Community Survey (ACS) is an demographics survey conducted by the U.S Census Bureau. The ACS samples households to compile 1-year and 5-year datasets 
+                 #                                   p(strong("American Community Survey"), "The American Community Survey (ACS) is an demographics survey conducted by the U.S Census Bureau. The ACS samples households to compile 1-year and 5-year datasets
                  #                      providing information on social and economic characteristics including employment, education, and income. This project utilizes ACS 2016/2020 5-year
                  #                      estimates to obtain county- and census tract-level data to explore Goochland and Powhatan Counties' resident characteristics.")),
                  #                                   column(4,
@@ -966,7 +977,7 @@ ui <- navbarPage(title = "DSPG 2023",
                  #                                   p(strong("Powhatan County Administrative Data"), "Powhatan County provided us with parcel/property data which allowed us to gain a better understanding of the different land uses and parcellation
                  #                            that has occured over a 8 year period (2014 - 2021). The team used this data to create visualizations, specifically focusing on the distribution and change in land use in the county.")),
                  #                          ),
-                 #                          
+                 #
                  #                          fluidRow(style = "margin: 6px;", align = "justify",
                  #                                   column(4,
                  #                                   img(src = "nass.jpg", style = "display: inline; float: left;", width = "130px"),
@@ -974,18 +985,18 @@ ui <- navbarPage(title = "DSPG 2023",
                  #                                    of agricultural topics. This project specifically relies on crop layer data to create maps and to conduct a statistical analysis on the probablity of land use conversion.")),
                  #                                   column(4,
                  #                                   img(src = "ncss.jpg", style = "display: inline; float: left;", width = "150px"),
-                 #                          p(strong("USDA National Cooperative Soil Survey"), "The National Cooperative Soil Survey (NCSS) under the USDA provides soil data which was used to generate soil quality maps for both counties. 
+                 #                          p(strong("USDA National Cooperative Soil Survey"), "The National Cooperative Soil Survey (NCSS) under the USDA provides soil data which was used to generate soil quality maps for both counties.
                  #                            The data was also used for our statistical analysis to predict the occurrence of land use conversion.")),
                  #                          column(4,
                  #                          img(src = "vdot_crop.png", style = "display: inline; float: left;", width = "180px"),
-                 #                          p(strong("VDOT Traffic Data"), "The Virginia Department of Transportation (VDOT) is responsible for building, maintaining and operating the state's roads, bridges and tunnels. VDOT also conducts 
+                 #                          p(strong("VDOT Traffic Data"), "The Virginia Department of Transportation (VDOT) is responsible for building, maintaining and operating the state's roads, bridges and tunnels. VDOT also conducts
                  #                          a program where traffic data are gathered from sensors in or along streets and highways and other sources.  This data includes estimates of the average number of vehicles that traveled each segment
                  #                          of road and daily vehicle miles traveled for specific groups of facilities and vehicle types are calculated. This project utilizes VDOT data to create traffic volume and commute maps for both counties."))
                  #                   )),
-                 #                   
+                 #
                  #          ),
-                 # 
-                 # 
+                 #
+                 #
                  ## Tab Team --------------------------------------------
                  tabPanel("Meet the Team", 
                           fluidRow(style = "margin-left: 100px; margin-right: 100px;",
@@ -1009,7 +1020,7 @@ ui <- navbarPage(title = "DSPG 2023",
                                           img(src = "Deep_Datta.JPG", style = "display: inline; border: 1px solid #C0C0C0;", width = "150px"),
                                           br(), 
                                           img(src = "Gabe_Wiggins.JPG", style = "display: inline; border: 1px solid #C0C0C0;", width = "150px"),
-                                          p(a(href='https://www.linkedin.com/in/ariadne-tynes-236701269/','Ari Tynes', target = '_blank'), "(Berea College, Undergraduate in Economics with a Concentration in Methods and Modeling);",
+                                          p(a(href='https://www.linkedin.com/in/ariadne-tynes-236701269/','Ari Tynes', target = '_blank'), "(Berea College, Undergraduate in Economics with a Concentration in Methods and Models);",
                                             br(), 
                                             a(href = 'https://www.linkedin.com/in/deep-datta/', 'Deep Datta', target = '_blank'), "(Virginia Tech, Undergraduate in Computational Modeling and Data Analytics and Computer Science);",
                                             br(), 
@@ -1032,11 +1043,10 @@ ui <- navbarPage(title = "DSPG 2023",
                                           ),
                                           p("", style = "padding-top:10px;"),
 
-                                            # h4(strong("Project Stakeholders")),
-                                            # p(a(href = "https://www.linkedin.com/in/rachel-henley-335a0345/", 'Rachel Henley', target = '_blank'), "(Virginia Cooperative Extension, Powhatan County);",
-                                            #   br(), 
-                                            #   a(href = 'https://goochland.ext.vt.edu/staff/Maxwell-Charlotte.html', 'Nichole Shuman', target = '_blank'), "(Virginia Cooperative Extension, Goochland County)."),
-                                            # p("", style = "padding-top:10px;"),
+                                           h4(strong("Project Stakeholders")),
+                                             p(a(href = "https://hanover.ext.vt.edu/staff/maxey-nay-laura.html", 'Laura Maxey-Nay', target = '_blank'), "(Virginia Cooperative Extension, Hanover County)"),
+                                              
+                                            p("", style = "padding-top:10px;"),
                                             
                                           
                                    )
