@@ -418,10 +418,10 @@ ui <- navbarPage(selected = "overview",
                                    )
                           ),
                           fluidRow(style = "margin: 8px;",
-                                   align = "center",
+                                   align = "left",
                                    column(4,
                                           h2(strong("Project Background")),
-                                          h4(strong("Setting")),
+                                          h4(strong("Setting:")),
                                           p("Hanover county, Virginia is a predominantly rural area 
                                             located twelve miles north of the state capital, Richmond. 
                                             The county ranges over 474 square miles and is known for 
@@ -433,7 +433,7 @@ ui <- navbarPage(selected = "overview",
                                             majorly influenced the landscape, community and rural charm of 
                                             the county."),
                                           p(),
-                                          h4(strong("Problem")),
+                                          h4(strong("Problem:")),
                                           p("Hanover county takes pride in their rural lifestyle and heritage 
                                             therefore, as they look to attain economic growth challenges arise. 
                                             The main problems facing this county as it looks to achieve
@@ -445,14 +445,14 @@ ui <- navbarPage(selected = "overview",
                                             land. Solar farm land development also cuts into the land that
                                             can be used for agricultural purposes."),
                                           p(),
-                                          h4(strong("Project")),
+                                          h4(strong("Project:")),
                                           p(" Virginia Tech Department of Agricultural and Applied Economics
                                             Data Science for the Public Good (DSPG) program assesses land 
                                             conversion and solar farm land usage in Hanover County through 
                                             the use of data analytics, agricultural economics and geospatial tools.")
                                    ),
                                    column(4,
-                                          h2(strong("Aims")),
+                                          h2(strong("Project Goals")),
                                           tags$li("Use GIS analysis to asses current land use patterns"),
                                           tags$li("Evaluate protected land and prime farmland"),
                                           tags$li("Analyze competing demands for prime farmland from solar energy"),
@@ -497,47 +497,39 @@ ui <- navbarPage(selected = "overview",
                           fluidRow(style = "margin: 6px;",
                                    h1(strong("Land Use & Environmental Policies"), align = "center"),
                                    p("", style = "padding-top:10px;"),
+                                   
+                          
       
                                    tabsetPanel(
+                                     
                                      tabPanel("Background",
-                                              p(),
-                                              
-                                              column(6,
-                                                     h2(strong("Hanover County Overview")),
-                                                     p(style = "text-align: justify;", "Hanover is known to have a rich history and background.
-                                            Formed by the Virginia General Assembly on November 26th,
-                                            1720 named in honor of King George the First of England, it is
-                                            iconic for the historic landmarks in the county and other historical places.
-                                            Hanover currently has 39 sites registered in the National Register of 
-                                            Historical Places/ Virginia Landmarks Register and 56 sites in Virginia Historical Markers.
-                                            In general, it has over 1700 historical sites within the locality! The National
-                                            Historic Landmarks (NHL) are historic properties that illustrate the heritage of
-                                            the United States and are officially recognized by the US government. The historic
-                                            properties found in Hanover County include Hanover Courthouse, Scotchtown, and
-                                            Malbourne/Edmund Ruffin Plantation. In particular, Hanover Courthouse is the symbol
-                                            and pride of Hanover County which is dated back to around 1740 where it is one of
-                                            the oldest courthouses in Virginia. Some exceptional historic resources found here
-                                            include Hanover Tavern, Hanover Meeting House, Garthwright-Kelley House, Gaines Mill
-                                            Battlefield, Cold Harbor Battlefield, Rural Plains and so much more. For more points
-                                            of interest, there is a whole slew of Century Farms recognized by the Virginia 
-                                            Department of Agriculture and Consumer Affairs where these farms, as the name
-                                            suggests to some extent, have each been owned by farmer families for 100 years or more. 
-                                            When visiting you can’t forget the fascinating battlefield sites that revolved around the 
-                                            Civil War and the Revolutionary War. During the Civil War, in particular, Hanover County 
-                                            was a frequented battlefield by Union and Confederate troops where Union troops, commanded
-                                            by generals, fought their way through to Richmond against the Confederate Army led by Robert
-                                            E. Lee. Hanover County has a vast array of historical and cultural land sites, markers, and resources
-                                            that provide it the opportunity for benefits on all accounts from economic to cultural for the owners
-                                            of the county as a whole."),
-                                                     p(),
-                                                     h2(strong("Statistics Summary")),
-                                                     p("Will be done once graphs are set and ready to be analyzed")
-                                              ) , 
-                                              column(6,
-                                                     h2(strong("Visualizations")),
-                                                     p("Visualizations go here"),
-                                                     plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                              titlePanel(h2(strong("Sociodemographic Background"))),
+                                              sidebarLayout(
+                                                
+                                                sidebarPanel(
+                                                  p("Write up")
+                                                ),
+                                                
+                                                mainPanel(
+                                                  tabsetPanel(
+                                                    tabPanel("Demographic Factors",
+                                                             p(),
+                                                             selectInput(
+                                                               "acs.graphs",
+                                                               "ACS Graphs",
+                                                               c("Population Density" = "pop",
+                                                                 "Median Population Income" = "inc"))
+                                                    ), 
+                                                    tabPanel("Employment", 
+                                                             p(),
+                                                             column(12,
+                                                                    plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                             )) 
+                                                  )
+                                                )
                                               ),
+                                              p(),
+                  
                                               column(12,
                                                      h4(strong("References")),
                                                      p("References go here")
