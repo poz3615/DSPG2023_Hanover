@@ -538,7 +538,7 @@ ui <- navbarPage(selected = "overview",
                                      tabPanel("Conservation Policy",
                                               fluidRow(style = "margin-left: 100px; margin-right: 100px;",
                                                        align = "center",
-                                                       h1(strong("Maps Here")),
+                                                       h2(strong("Conservation Land Map")),
                                                        leafletOutput("consleaf") %>% withSpinner(type = 6, color = "#861f41", size = 1.25)
                                               ),
                                               p(),
@@ -546,6 +546,7 @@ ui <- navbarPage(selected = "overview",
                                                      align = "center",
                                                      h2(strong("Conservation Policy")),
                                                      column(6,
+                                                            align="left",
                                                             h4(strong("Conservation Land")),
                                                             p("This map highlights the conservation land within Hanover County, incorporating data provided by the Virginia Department of Conservation and 
                                                               Recreation. These lands encompass a variety of state, federal, local, and privately managed areas dedicated to conservation efforts. 
@@ -563,6 +564,7 @@ ui <- navbarPage(selected = "overview",
                                                             p()
                                                      ),
                                                      column(6,
+                                                            align="left",
                                                             h4(strong("Conservation Easements")),
                                                             p(),
                                                             p("This map displays the conservation easements present in Hanover County, utilizing data provided by the Virginia Department of Conservation and Recreation.
@@ -587,7 +589,7 @@ ui <- navbarPage(selected = "overview",
                                                      h2(strong("Additional Conservation Policies")),
                                                      p(),
                                                      column(6,
-                                                            align = "center",
+                                                            align = "left",
                                                             p(),
                                                             h4(strong("Virginia Open-Space Land Act (Title 15.2, Chapter 18)")),
                                                             p(),
@@ -607,7 +609,7 @@ ui <- navbarPage(selected = "overview",
                                                             p()
                                                      ),
                                                      column(6,
-                                                            align = "center",
+                                                            align = "left",
                                                             p(),
                                                             h4(strong("Forest Legacy Program (FLP)")),
                                                             p(),
@@ -649,7 +651,7 @@ ui <- navbarPage(selected = "overview",
                                                      h2(strong("Solar Policies")),
                                                      p(),
                                                      column(6,
-                                                            align = "center",
+                                                            align = "left",
                                                             p(),
                                                             h4(strong("Virginia Clean Economy Act (VCEA)")),
                                                             p(),
@@ -671,7 +673,7 @@ ui <- navbarPage(selected = "overview",
                                                             p()
                                                      ),
                                                      column(6,
-                                                            align = "center",
+                                                            align = "left",
                                                             p(),
                                                             h4(strong("Virginia Solar Panel Covenants and Restrictions (§ 67-701)")),
                                                             p(),
@@ -713,29 +715,29 @@ ui <- navbarPage(selected = "overview",
                                                          p("", style = "padding-top:10px;"),
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
-                                                                  column(6,
-                                                                         h2(strong("Land Use by Parcel")),
-                                                                         p("This map shows the parcel-level zoning 
-                                                       classification for Hanover County. 
-                                                       We used Virginia's land use codes, along 
-                                                       with assessor data from Hanover County to display 
-                                                       areas in the county according to their zoning ordinances.  
-                                                       Here we see that the majority of the county is zoned for 
-                                                       agricultural and residential use."),
-                                                                         p(),
-                                                                         p("In the map above we saw that the majority of 
-                                                       area in Hanover county is zoned for agriculture. 
-                                                       However, from using the same data we derived this bar
-                                                       graph that shows the number of residential parcels is more 
-                                                       than the number of agriculture parcels.")
-                                                                  ),
-                                                                  column(6,
-                                                                         h2(strong("Visualizations")),
-                                                                         p("Visualizations go here"),
-                                                                         plotlyOutput("interactive_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                                         #leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25),
-                                                                         leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25),
-                                                                         #mapview:::plainViewOutput("zoneHan")
+                                                                  column(12,
+                                                                         h2(strong("Land Use Analysis")),
+                                                                         sidebarLayout(
+                                                                           
+                                                                           sidebarPanel(
+                                                                             p("Write up")
+                                                                           ),
+                                                                           
+                                                                           mainPanel(
+                                                                             tabsetPanel(
+                                                                               tabPanel("Land Use Map",
+                                                                                        p(),
+                                                                                        leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                                        
+                                                                                        
+                                                                               ), 
+                                                                               tabPanel("Land Use in Acreage", 
+                                                                                        p(),
+                                                                                        plotlyOutput("interactive_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                               ) 
+                                                                             )
+                                                                           )
+                                                                         )
                                                                   )
                                                          ), 
                                                                 ),
