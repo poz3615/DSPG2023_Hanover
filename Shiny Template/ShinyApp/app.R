@@ -706,7 +706,7 @@ ui <- navbarPage(selected = "overview",
                                               h1(strong("Variables to Consider"), align = "center"),
                                               p("", style = "padding-top:10px;"),
                                               tabsetPanel(
-                                                tabPanel("Land Use and Zoning",
+                                                tabPanel("Zoning",
                                                          p("", style = "padding-top:10px;"),
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
@@ -910,7 +910,27 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Energy Infrastructure Proximity")),
-                                                                         p()),
+                                                                         h3(strong("Background")),
+                                                                         p("Solar farms need to be within close proximity of infrastructure that can distribute the power generated from a farm throughout the grid.
+                                                                           Connecting a farm directly to a substation is ideal as substations already have the majority of necessary technology that can increase or 
+                                                                           decrease the voltage coming from a farm. Connecting solar farms to transmission lines is a possibility, but requires the implementation of
+                                                                           new voltage regulating technology. As the development location moves further away from energy infrastructure, the project becomes more expensive 
+                                                                           and eventually is not financially feasible. A distance rule of thumb is that solar farms should be developed within 2 miles of a substation or 1000 
+                                                                           feet of a transmission line in order to keep development costs low."), 
+
+                                                                          p("This map was created using transmission line location data from the Homeland Infrastructure Foundation Level Database (HIFLD) and a separate dataset
+                                                                          distributed by The Office for Coastal Management which used HIFLD metadata to map all substations within 20 miles of the ocean. The substation metadata 
+                                                                          set from HIFLD is only accessible for federal employees, and the substation data we used from The Office for Coastal Management only had half of all 
+                                                                          substations within Hanover County. To map all of the substations within the county we used Open Street Map and Google Earth to locate the other substation 
+                                                                          locations and add them to our dataset. "),
+                                                                         h3("Analysis"),
+                                                                         p("The map displayed shows parcels in Hanover County categorized into three buffer zones. Parcels that have land within either 2 miles of a substation or 
+                                                                           1000 feet of a transmission line, are part of Buffer zone 1. We created a second and third buffer zone to account for parcels that have very good 
+                                                                           characteristics for solar farms, but lack adequate access to infrastructure. Buffer zone 2 contains parcels within 4 miles of a substation or 2,000 
+                                                                           ft of a transmission line, and Buffer zone 3 contains parcels within 6 miles of a substation or 3,000 ft of a transmission line. If there is a parcel
+                                                                           with great charictaristics for solar farms, development companies will be more likely to spend money on building infrastructure, because the costs can 
+                                                                           be regained through revenues from energy production. Only parcels close to energy infrastructure are shown on the map in Buffer zone 1 while in Buffer 
+                                                                           zone 3 nearly the entire county is captured. The only area of Hanover County that is not accounted for in a buffer zone is a small region in the northwest.")),
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Infastructure Map")),
