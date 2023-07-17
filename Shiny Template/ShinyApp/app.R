@@ -531,51 +531,52 @@ ui <- navbarPage(selected = "overview",
                                               
                                               column(12,
                                                      align = "center",
-                                                     h2(strong("Additional Conservation Policies")),
+                                                     h2(strong("Solar Policies")),
                                                      p(),
                                                      column(6,
                                                             align = "center",
                                                             p(),
-                                                            h4(strong("Virginia Open-Space Land Act (Title 15.2, Chapter 18)")),
+                                                            h4(strong("Virginia Clean Economy Act (VCEA)")),
                                                             p(),
-                                                            p("The Commonwealth of Virginia is authorized to form partnerships with landowners aimed at decreasing urban sprawl and protecting open space. 
-                                                              It influences the localities to designate parcels of land in Hanover County for use as open-space land to conserve the land values. Open-space 
-                                                              land is defined as “any land which is provided or preserved for (i) park or recreational purposes, (ii) conservation of land or other natural 
-                                                              resources, (iii) historic or scenic purposes, (iv) assisting in the shaping of the character, direction, and timing of community development, 
-                                                              (v) wetlands as defined in §28.2-1300, or (vi) agricultural and forestall production.” [6] "),
+                                                            p("This act is intended to promote the reduction of carbon emissions by increasing wind and solar power usage while creating clean energy jobs. 
+                                                              The Renewable Portfolio Standard (RPS) program is established under this act in aims for Virginia to achieve 100% clean energy by 2050. 
+                                                              This program specifies a percentage of utility sales or megawatt hour capacity that must be provided by a renewable resource by a specific 
+                                                              date from Dominion Energy and Appalachian Power. [1] Additionally, this act enacts a new net energy metering cap. Net Energy Metering is another 
+                                                              solar policy that creates “an electric billing tool that uses the electric grid to “store” excess energy produced by your solar panel system.” 
+                                                              Net Energy Metering allows unused energy produced from your solar panels to be credited back to you. [2] Virginia General Assembly increased the 
+                                                              maximum capacity of renewable energy generation from residential generators from 20 kilowatts to 25 kilowatts and non-residential generators from 
+                                                              one to three megawatts. [3] Additionally, the aggregated capacity of solar energy from agricultural generators is 500 kilowatts. [4]"),
                                                             p(),
-                                                            h4(strong("Conservation Reserve Program (CRP)")),
+                                                            h4(strong("VA Creation of Solar Easements (VA. Code 55.1-137)")),
                                                             p(),
-                                                            p("The CRP is a land conservation program managed by the Farm Service Agency aimed to trade yearly rental payments to farmers enrolled in agreement to 
-                                                              remove land sensitive to agriculture production and plant species to implement conservation practices. This is meant to ensure the enhancement of the 
-                                                              environmental health and quality of land. The land registered in this program is contracted for 10 to 15 years. Desirable land for this program includes 
-                                                              agricultural land easily susceptible to erosion, located near bodies of water or providing habitats to wildlife. Hence, the motivating factor behind this 
-                                                              program is to reduce soil erosion, enhance wildlife habitats, improve water quality, and stimulate conservation and restoration of land."),
+                                                            p("Virginia law allows property owners to create solar easements enacted in writing which grant them rights to prohibit neighboring property owners from
+                                                              implementing anything on their land projecting shade onto easement owner’s property. These easements must include “The vertical and horizontal angles, 
+                                                              expressed in degrees, at which the solar easement extends over the real property subject to the solar easement; Any terms or conditions under which the
+                                                              solar easement is granted or will be terminated; and Any provisions for compensation of the owner of the property subject to the solar easement.” [5] "),
                                                             p()
                                                      ),
                                                      column(6,
                                                             align = "center",
                                                             p(),
-                                                            h4(strong("Forest Legacy Program (FLP)")),
+                                                            h4(strong("Virginia Solar Panel Covenants and Restrictions (§ 67-701)")),
                                                             p(),
-                                                            p("The FLP is a federal conservation program orchestrated by the U.S Forest Service collaborating with State agencies to preserve and protect private forests 
-                                                              through land purchases or conservation easements. The FLP strives to determine forest areas susceptible to being transformed into areas used for non-forest 
-                                                              purposes. Participants in the FLP can decide to sell their property or maintain ownership while only selling a segment of the property’s development rights. 
-                                                              Additionally, conservation easements are implemented to arrange a legal agreement permitting private ownership of the land while guaranteeing that the land
-                                                              values are maintained. The legal agreement is between the landowner and government agency or non-profit land trust. The FLP works to preserve working forests
-                                                              in order to protect water quality, recreation opportunities, and forest products. To qualify for the FLP in Virginia, land must be established within a Forest Legacy 
-                                                              Area."),
+                                                            p("This regulation highlights that community associations can not forbid property owners from installing solar energy devices on their property unless 
+                                                              highlighted in the recorded declaration of the community declaration. Nonetheless, community associations are allowed to implement reasonable restrictions 
+                                                              on size, place, and placement of solar energy devices on personal property. Restrictions can be deemed unreasonable if the solar panel design “increases 
+                                                              the cost of installation of the solar energy collection device by five percent over the projected cost of the initially proposed installation or (ii) 
+                                                              reduces the energy production by the solar energy collection device by 10 percent below the projected energy production of the initially proposed 
+                                                              installation.” [7] Additionally, community associations have authority to restrain solar farm developments in common areas."),
                                                             p(),
-                                                            h4(strong("Emergency Conservation Program (ECP)")),
+                                                            h4(strong("Community Solar Pilot Program")),
                                                             p(),
-                                                            p("The program aims to support agricultural producers, such as farmers and ranchers, in repairing and restoring any damaged farmland, conservation land and 
-                                                              agricultural infrastructure due to natural disasters. This is done by supplying emergency funding, through cost-share assistance, and technical assistance 
-                                                              to producers. The ECP enacts farmland restoration practices which consist of debris removal, land leveling, restoring fences, restoring conservation structures, 
-                                                              and providing emergency water during severe drought to aid farmers in restoring their land. The ECP county committee assesses eligibility for assistance via 
-                                                              on-site inspections and provides assistance to lands where damage is preventing productivity, repairs are too expensive without federal assistance and if the 
-                                                              damage remains unrepaired the land will be further damaged. Funding is granted based on the severity of the damage but “up to 75% of the cost to implement 
-                                                              emergency conservation practices can be provided.” Overall, the ECP aids in supporting agricultural producers in need of emergency funding and assistance 
-                                                              after disasters.")
+                                                            p("Dominion Energy created the Community Solar Pilot program which allows customers to purchase energy and Renewable Energy Certificates (RECs) from solar 
+                                                              facilities without having to install solar panels directly onto their property. This goal is to help reduce the carbon footprint by providing solar energy 
+                                                              to those who may not have personal access to solar panels. There are two options that customers can enroll in – block option or match option. The block 
+                                                              option allows customers to match portions of their electricity usage with solar energy or RECs by purchasing “blocks” which represent 100 kilowatt-hours 
+                                                              for $2.013. This block charge will be added onto the overall monthly bill and remained fixed. If interested in the block option, residential customers can 
+                                                              purchase a maximum of 5 blocks (500 kWh) and commercial customers can purchase a maximum of 10 blocks (1,000 kWh). The match option provides customers with 
+                                                              the possibility of a 100% match of their electricity usage with solar energy and RECs for the additional cost of $0.02013 per kilowatt-hour. This is 
+                                                              available to residential and small commercial customers under 500kW. [8]  ")
                                                      )
                                               )
                                      )
