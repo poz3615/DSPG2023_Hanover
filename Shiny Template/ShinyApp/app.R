@@ -874,18 +874,32 @@ ui <- navbarPage(selected = "overview",
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
                                                                   column(6,
-                                                                         h2(strong("Land Suitability Write Up Goes Here")),
+                                                                         align="left",
+                                                                         h2(strong("Land Suitability Analysis")),
                                                                          p("stuff"),
                                                                          p()
                                                                          
                                                                   ),
                                                                   column(6,
-                                                                         h2(strong("Visualizations")),
-                                                                         p("Visualizations go here"),
-                                                                         plotlyOutput("rateacre", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                                         leafletOutput("limitS") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+                                                                         tabsetPanel(
+                                                                           tabPanel("Map or something",
+                                                                                    p(),
+                                                                                    leafletOutput("limitS") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+                                                                                    
+                                                                                    
+                                                                           ), 
+                                                                           tabPanel("Land Suitability in Acreage", 
+                                                                                    p(),
+                                                                                    plotlyOutput("rateacre", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                                    
+                                                                           ) 
+                                                                           
+                                                                         # h2(strong("Visualizations")),
+                                                                         # p("Visualizations go here"),
+                                                                         # plotlyOutput("rateacre", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                                         # leafletOutput("limitS") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
                                                                          
-                                                                  )
+                                                                  ))
                                                          )
                                                          
                                                 ), 
@@ -894,49 +908,12 @@ ui <- navbarPage(selected = "overview",
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
                                                                   column(6,
-                                                                         h2(strong("Infrastructure Proximity Write Up Goes Here")),
-                                                                         p("This map was created using transmission line location data 
-                                                       from the Homeland Infrastructure Foundation Level Database 
-                                                       (HIFLD) and a separate dataset distributed by The Office for
-                                                       Coastal Management which used HIFLD metadata to map all substations
-                                                       within 20 miles of the ocean. The substation metadata set from
-                                                       HIFLD is only accessible for federal employees, and the substation
-                                                       data we used from The Office for Coastal Management only had half
-                                                       of all substations within Hanover County. To map all of the substations
-                                                       within the county we used Open Street Map and Google Earth to locate
-                                                       the other substation locations and add them to our dataset."),
-                                                                         p(),
-                                                                         p("Solar farms need to be within close proximity of infrastructure 
-                                                       that can distribute the power generated from a farm throughout the
-                                                       grid. Connecting a farm directly to a substation is ideal as
-                                                       substations already have the majority of necessary technology
-                                                       that can increase or decrease the voltage coming from a farm.
-                                                       Connecting to transmission lines is also a possibility, but 
-                                                       requires the implementation of new voltage regulating machines.
-                                                       As the development location moves further away from energy infrastructure, 
-                                                       the project becomes more expensive and eventually is not financially
-                                                       feasible. A distance rule of thumb is that solar farms should be 
-                                                       developed within 2 miles of a substation or 1000 feet of a transmission
-                                                       line in order to keep development costs low."),
-                                                                         p(),
-                                                                         p("The map displayed shows parcels that have land within either 2 
-                                                       miles of a substation or 1000 feet of a transmission line. The 
-                                                       highlighted parcels are also subsetted to show only lots that are
-                                                       zoned for agriculture and are at least 10 acres in size."),
-                                                                         p(),
-                                                                         p("The second layer displays a map that shows parcels which are
-                                                       centered within the most suitable land for solar farm development.
-                                                       Using NRCS Web Soil Survey data we were able to map the soil types
-                                                       across the county based on the level of limitation that they pose 
-                                                       for solar farm development. The index takes into account slope,
-                                                       slope aspect, rock fragment content, corrosivity, saturation and shrink-swell properties of the soil.
-                                                       The parcels displayed are also subsetted to only show lots that are a minimum of 10 acres. The most 
-                                                       suitable land for solar farm development within Hanover County is concentrated on the eastern end of 
-                                                       the county where the majority of prime farmland is located."),
-                                                                         p()
-                                                                  ),
+                                                                         align="left",
+                                                                         h2(strong("Energy Infrastructure Proximity")),
+                                                                         p()),
                                                                   column(6,
-                                                                         h2(strong("Visualizations")),
+                                                                         align="left",
+                                                                         h2(strong("Infastructure Map")),
                                                                          p("Visualizations go here")
                                                                          
                                                                   )
@@ -948,41 +925,16 @@ ui <- navbarPage(selected = "overview",
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
                                                                   column(6,
-                                                                         h2(strong("Hanover Solar Assessment")),
-                                                                         p("Hanover County is currently home to Mechanicsville Solar PV Park. 
-                                                       This 28-megawatt solar farm has been in operation since 2018. 
-                                                       Developed by SunEnergy1, the park spans 222 acres and consists of 93,000 modules. 
-                                                       The electricity generated by the solar farm is being sold to Dominion Energy 
-                                                       and has the capacity to power approximately 5,000 households."),
-                                                                         p(),
-                                                                         p("In addition to the Mechanicsville Solar PV Park, Hanover County has
-                                                       approved a new solar farm. Developed by Ameriesco Solar, this 22-acre 
-                                                       facility is capable of generating 5 megawatts of power, which is estimated
-                                                       to meet the energy needs of 1,500 homes. The farm is located on Peppertown
-                                                       road and is expected to have a lifespan of 40 years. As part of their environmental 
-                                                       commitment, the developer plans to plant pollinator-friendly vegetation between 
-                                                       the solar panels."),
-                                                                         p(),
-                                                                         h2(strong("Optimal Solar Farm Locations")),
-                                                                         p("Solar farms require large areas of space, clear from any obstructions,
-                                                       such as trees or buildings that could potentially cast shadows onto the panels.
-                                                       This helps to ensure that they have maximum exposure to sunlight
-                                                       throughout the day. Having flat land is also preferred for solar farms
-                                                       as it simplifies installation, and allows for better panel
-                                                       positioning and alignment. The energy produced from the solar 
-                                                       farm has to be sent to a substation where it is stored before being
-                                                       released onto the grid. Therefore, a solar farm in close proximity to a
-                                                       substation is beneficial as it reduces the need to run lines long distances.
-                                                       Solar farms will also need to be inspected and maintained throughout their 
-                                                       operation, so service road access is very important when determining suitable properties."),
+                                                                         align="left",
+                                                                         h2(strong("Road Access Analysis")),
                                                                          p()
-                                                                         
+                                  
                                                                   ),
                                                                   column(6,
-                                                                         h2(strong("Visualizations")),
-                                                                         p("Visualizations go here"),
-                                                                         checkboxGroupInput(inputId = "bufferType", label = h3("Select buffer types: "),
-                                                                                            choices = c("Buffer One", "Buffer Two", "Buffer Three"))
+                                                                         align="left",
+                                                                         h2(strong("Road Access Map")),
+                                                                         p("Visualizations go here")
+                                                                         
                                                                   )
                                                                   
                                                          ),
@@ -992,39 +944,16 @@ ui <- navbarPage(selected = "overview",
                                                          p("", style = "padding-top:10px;"),
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
+                                                                  column(12,
+                                                                         align="left",
+                                                                         h2(strong("Background")),
+                                                                         p("write up")),
                                                                   column(6,
-                                                                         h2(strong("Hanover Solar Assessment")),
-                                                                         p("Hanover County is currently home to Mechanicsville Solar PV Park. 
-                                                       This 28-megawatt solar farm has been in operation since 2018. 
-                                                       Developed by SunEnergy1, the park spans 222 acres and consists of 93,000 modules. 
-                                                       The electricity generated by the solar farm is being sold to Dominion Energy 
-                                                       and has the capacity to power approximately 5,000 households."),
-                                                                         p(),
-                                                                         p("In addition to the Mechanicsville Solar PV Park, Hanover County has
-                                                       approved a new solar farm. Developed by Ameriesco Solar, this 22-acre 
-                                                       facility is capable of generating 5 megawatts of power, which is estimated
-                                                       to meet the energy needs of 1,500 homes. The farm is located on Peppertown
-                                                       road and is expected to have a lifespan of 40 years. As part of their environmental 
-                                                       commitment, the developer plans to plant pollinator-friendly vegetation between 
-                                                       the solar panels."),
-                                                                         p(),
-                                                                         h2(strong("Optimal Solar Farm Locations")),
-                                                                         p("Solar farms require large areas of space, clear from any obstructions,
-                                                       such as trees or buildings that could potentially cast shadows onto the panels.
-                                                       This helps to ensure that they have maximum exposure to sunlight
-                                                       throughout the day. Having flat land is also preferred for solar farms
-                                                       as it simplifies installation, and allows for better panel
-                                                       positioning and alignment. The energy produced from the solar 
-                                                       farm has to be sent to a substation where it is stored before being
-                                                       released onto the grid. Therefore, a solar farm in close proximity to a
-                                                       substation is beneficial as it reduces the need to run lines long distances.
-                                                       Solar farms will also need to be inspected and maintained throughout their 
-                                                       operation, so service road access is very important when determining suitable properties."),
-                                                                         p()
-                                                                         
-                                                                  ),
+                                                                         align="left",
+                                                                         h2(strong("Description of Map")),
+                                                                         p("map description")),
                                                                   column(6,
-                                                                         h2(strong("Visualizations")),
+                                                                         h2(strong("Index Map")),
                                                                          p("Visualizations go here"),
                                                                          checkboxGroupInput(inputId = "bufferType", label = h3("Select buffer types: "),
                                                                                             choices = c("Buffer One", "Buffer Two", "Buffer Three"))
@@ -1033,43 +962,20 @@ ui <- navbarPage(selected = "overview",
                                                          ),
                                                          
                                                 ),
-                                                tabPanel("Agrivoltaics Index",
+                                                tabPanel("Agrivoltaic Index",
                                                          p("", style = "padding-top:10px;"),
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
+                                                                  column(12,
+                                                                         align="left",
+                                                                         h2(strong("Background")),
+                                                                         p("write up")),
                                                                   column(6,
-                                                                         h2(strong("Hanover Solar Assessment")),
-                                                                         p("Hanover County is currently home to Mechanicsville Solar PV Park. 
-                                                       This 28-megawatt solar farm has been in operation since 2018. 
-                                                       Developed by SunEnergy1, the park spans 222 acres and consists of 93,000 modules. 
-                                                       The electricity generated by the solar farm is being sold to Dominion Energy 
-                                                       and has the capacity to power approximately 5,000 households."),
-                                                                         p(),
-                                                                         p("In addition to the Mechanicsville Solar PV Park, Hanover County has
-                                                       approved a new solar farm. Developed by Ameriesco Solar, this 22-acre 
-                                                       facility is capable of generating 5 megawatts of power, which is estimated
-                                                       to meet the energy needs of 1,500 homes. The farm is located on Peppertown
-                                                       road and is expected to have a lifespan of 40 years. As part of their environmental 
-                                                       commitment, the developer plans to plant pollinator-friendly vegetation between 
-                                                       the solar panels."),
-                                                                         p(),
-                                                                         h2(strong("Optimal Solar Farm Locations")),
-                                                                         p("Solar farms require large areas of space, clear from any obstructions,
-                                                       such as trees or buildings that could potentially cast shadows onto the panels.
-                                                       This helps to ensure that they have maximum exposure to sunlight
-                                                       throughout the day. Having flat land is also preferred for solar farms
-                                                       as it simplifies installation, and allows for better panel
-                                                       positioning and alignment. The energy produced from the solar 
-                                                       farm has to be sent to a substation where it is stored before being
-                                                       released onto the grid. Therefore, a solar farm in close proximity to a
-                                                       substation is beneficial as it reduces the need to run lines long distances.
-                                                       Solar farms will also need to be inspected and maintained throughout their 
-                                                       operation, so service road access is very important when determining suitable properties."),
-                                                                         p()
-                                                                         
-                                                                  ),
+                                                                         align="left",
+                                                                         h2(strong("Description of Map")),
+                                                                         p("map description")),
                                                                   column(6,
-                                                                         h2(strong("Visualizations")),
+                                                                         h2(strong("Index Map")),
                                                                          p("Visualizations go here"),
                                                                          checkboxGroupInput(inputId = "bufferType", label = h3("Select buffer types: "),
                                                                                             choices = c("Buffer One", "Buffer Two", "Buffer Three"))
