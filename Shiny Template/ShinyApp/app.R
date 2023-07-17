@@ -421,110 +421,72 @@ ui <- navbarPage(selected = "overview",
                                               )
                                      ),
                                      tabPanel("Conservation Policy",
+                                              fluidRow(style = "margin-left: 100px; margin-right: 100px;",
+                                                       align = "center",
+                                                       h1(strong("Maps Here")),
+                                                       
+                                              ),
                                               p(),
-                                              # p('State-level officials work within the confines of both federal and local policy. They aim to simultaneously enhance federal policy while enabling local officials to make comprehensive 
-                                              # land-use plans. The state of Virginia is under the Dillon Rule which states that local ordinances must be consistent with state law [1]. Local officials are the ones approving parcel-specific 
-                                              # land use plans, but state and federal officials play a key role [1]. The state courts are the "referees" to determine if land use decisions violated some aspect of various state laws, or if 
-                                              #   the land use rules violated the state constitution in some way [1].'),
-                                              
-                                              column(4,
-                                                     h2(strong("Policies")),
-                                                     h4(strong("Forest Legacy Program (FLP)")),
-                                                     p("The FLP is a federal conservation program orchestrated
-                                                    by the U.S Forest Service collaborating with State agencies
-                                                    to preserve and protect private forests through land
-                                                    purchases or conservation easements. This program promotes
-                                                    feasible forest management by granting economic benefits
-                                                    to landowners persuading them to sustain their forest land.
-                                                    The FLP has been successful in conserving more than 2.8
-                                                    million acres of forest land spanning across the United States.
-                                                    To qualify for this program, the land must be located within an 
-                                                    identified Forest Legacy Area and a non-federal match of 25% to obtain the grant."),
-                                                     p(),
-                                                     h4(strong("Conservation Reserve Program (CRP)")),
-                                                     p("The CRP is a land conservation program managed by the Farm
-                                                    Service Agency aimed to trade yearly rental payments to farmers
-                                                    enrolled for the agreement of removing land sensitive to agriculture 
-                                                    production and plant species to implement conservation practices.
-                                                    This is meant to ensure the enhancement of the environmental health 
-                                                    and quality of land. The land registered in this program is contracted
-                                                    for 10 to 15 years. Land desired to participate in this program
-                                                    is agricultural land easily susceptible to erosion, located near
-                                                    bodies of water or providing habitats to wildlife. Hence, the
-                                                    motivating factor behind this program is to reduce soil erosion,
-                                                    enhance wildlife habitats, improve water quality, and stimulate
-                                                    conservation and restoration of land.  Conservation Reserve
-                                                    Enhancement Program (CREP) is a sub-program that troubleshoots
-                                                    priority conservation issues identified by localities."),
-                                                     p(),
-                                                     h4(strong("Emergency Conservation Program (ECP)")),
-                                                     p("The ECP aims to support agricultural producers in repairing
-                                                    and restoring any damaged farmland and agricultural infrastructure
-                                                    due to natural disasters. Assistance from this program includes
-                                                    financial support in order to remove debris, restore fencing,
-                                                    repair water sources, and seed damaged areas. Funding is granted 
-                                                    based on the severity of the damage to handle a portion of the expenses.")
-                                              ),
-                                              column(4,
-                                                     h2(strong("Additional Policies")),
-                                                     h4(strong("The Code of Virginia")),
-                                                     p("The code of Virginia enacts various policies that allow localities
-                                                    to enter into voluntary agreements with landowners across the state within
-                                                    districts designated to protect farm lands and forest lands. 
-                                                    There are several land conservation policies outlined in the Code of Virginia:"),
-                                                     tags$li("Virginia Conservation Easement Act (Title 10.1, Chapter 10) – 
-                                                          This act develops a voluntary legal agreement to permanently 
-                                                          limit the uses of the landowner’s land in order to protect its 
-                                                          natural values. The act ensures that landowners maintain their 
-                                                          rights to own and use their land or sell or pass it onto heirs."),
-                                                     tags$li("Virginia Open-Space Land Act (Title 15.2, Chapter 18): 
-                                                          The Commonwealth of Virginia is authorized to form partnerships
-                                                          with landowners to decrease urban sprawl and protect open space
-                                                          through this act. It influences the localities to designate parcels
-                                                          of land in Hanover County for use as open-space land. Open-space 
-                                                          land is defined as any “any land which is provided or preserved for
-                                                          (i) park or recreational purposes, (ii) conservation of land or other 
-                                                          natural resources, (iii) historic or scenic purposes, (iv) assisting
-                                                          in the shaping of the character, direction, and timing of community development,
-                                                          (v) wetlands as defined in § 28.2-1300, or (vi) agricultural and forestal production.” 
-                                                          (Code of Virginia Code - Chapter 17. Open-Space Land Act)"),
-                                                     tags$li("Agricultural and Forest Districts Act (Title 15.2, Chapter 43): 
-                                                          This act develops legal agreements aimed to stimulate the preservation 
-                                                          of land occupied by forest and land used for agriculture. For a duration 
-                                                          of 4-10 years, the land is sustained with its pre-existing use once landowners 
-                                                          agree to partake in this act."),
-                                                     tags$li(" Land Preservation Tax Credit (Title 58.1, Chapter 32): Through this policy,
-                                                          landowners who register property under the conservation land easements 
-                                                          are granted income tax credit for 40% of the value of the land donated."),
-                                                     p(),
-                                                     h4(strong("Purchase of Development Rights Program (PDR)")),
-                                                     p("The PDR program is conducted by the Virginia Department of 
-                                                    Agriculture and Customer Services in order to assist in funding 
-                                                    PDR programs with local agencies to compensate landowners who 
-                                                    voluntarily partake in agricultural conservation easements.")
-                                                     
-                                              ),
-                                              column(4,
-                                                     h2(strong("County")),
-                                                     h4(strong("Zoning Regulations")),
-                                                     p("Zoning districts promote the preservation of open space, 
-                                                    particularly in areas containing environmentally sensitive land.
-                                                    This strategy encourages rural conservation districts to protect 
-                                                    open spaces while providing the flexibility to develop residential areas."),
-                                                     p(),
-                                                     h4(strong("Rural Conservation Subdivisions")),
-                                                     p("Since January 2013, Hanover county has established
-                                                    34 Rural Conservation subdivisions. Rural Conservation zoning 
-                                                    districts require a minimum of 70% of the acreage of a district 
-                                                    to be placed in a conservation area. Thus, this zoning tool has ensured 
-                                                    that a total of 5466 acres are included in conservation areas.")
-                                              ),
                                               column(12,
                                                      align = "center",
+                                                     h2(strong("Conservation Policy")),
+                                                     column(6,
+                                                            h4(strong("Conservation Land")),
+                                                            p("text here"),
+                                                            p(),
+                                                            h4(strong("AFDs")),
+                                                            p("text here"),
+                                                            p()
+                                                     ),
+                                                     column(6,
+                                                            h4(strong("Conservation Easements")),
+                                                            p(),
+                                                            p("text here"),
+                                                            p(),
+                                                            h4(strong("NCAs")),
+                                                            p("text here"),
+                                                            p()
+                                                     )
+                                                     
+                                                     
+                                              ),
+                                              p(),
+                                              column(12,
+                                                     align = "center",
+                                                     h2(strong("Additional Conservation Policies")),
+                                                     p(),
+                                                     column(6,
+                                                            align = "center",
+                                                            p(),
+                                                            h4(strong("Open Space")),
+                                                            p(),
+                                                            p("text here"),
+                                                            p(),
+                                                            h4(strong("CRP")),
+                                                            p(),
+                                                            p("text here"),
+                                                            p()
+                                                     ),
+                                                     column(6,
+                                                            align = "center",
+                                                            p(),
+                                                            h4(strong("FLP")),
+                                                            p(),
+                                                            p("text here"),
+                                                            p(),
+                                                            h4(strong("ECP")),
+                                                            p(),
+                                                            p("text here")
+                                                     )
+                                              ),
+                                              
+                                              column(12,
+                                                     align = "center",
+                                                     p(),
                                                      h4(strong("References")),
                                                      p("References go here")
                                               )
-                                           
+                                              
                                      ),
                                      tabPanel("Solar Policy",
                                               p(),
@@ -822,8 +784,7 @@ ui <- navbarPage(selected = "overview",
                                                          ),
                                                          
                                                 ), 
-                                                
-                                                tabPanel("Index",
+                                                tabPanel("Road Access",
                                                          p("", style = "padding-top:10px;"),
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
@@ -862,22 +823,132 @@ ui <- navbarPage(selected = "overview",
                                                                          h2(strong("Visualizations")),
                                                                          p("Visualizations go here"),
                                                                          checkboxGroupInput(inputId = "bufferType", label = h3("Select buffer types: "),
-                                                                                            choices = c("Buffer One", "Buffer Two", "Buffer Three")),
+                                                                                            choices = c("Buffer One", "Buffer Two", "Buffer Three"))
+                                                                  )
+                                                                  
+                                                         ),
+                                                         
+                                                ),
+                                                tabPanel("Solar Index",
+                                                         p("", style = "padding-top:10px;"),
+                                                         fluidRow(style = "margin: 8px;",
+                                                                  align = "center",
+                                                                  column(6,
+                                                                         h2(strong("Hanover Solar Assessment")),
+                                                                         p("Hanover County is currently home to Mechanicsville Solar PV Park. 
+                                                       This 28-megawatt solar farm has been in operation since 2018. 
+                                                       Developed by SunEnergy1, the park spans 222 acres and consists of 93,000 modules. 
+                                                       The electricity generated by the solar farm is being sold to Dominion Energy 
+                                                       and has the capacity to power approximately 5,000 households."),
                                                                          p(),
-                                                                         checkboxInput(inputId = "road", label = "Show road variable on map?",
-                                                                                       value = FALSE),
+                                                                         p("In addition to the Mechanicsville Solar PV Park, Hanover County has
+                                                       approved a new solar farm. Developed by Ameriesco Solar, this 22-acre 
+                                                       facility is capable of generating 5 megawatts of power, which is estimated
+                                                       to meet the energy needs of 1,500 homes. The farm is located on Peppertown
+                                                       road and is expected to have a lifespan of 40 years. As part of their environmental 
+                                                       commitment, the developer plans to plant pollinator-friendly vegetation between 
+                                                       the solar panels."),
                                                                          p(),
-                                                                         radioButtons(inputId = "farmlandType", label = h3("Select farmland type: "),
-                                                                                      choices = c("Prime Acre Farmland", "State Acre Farmland", "Good Solar Farm Acre Farmland")),
+                                                                         h2(strong("Optimal Solar Farm Locations")),
+                                                                         p("Solar farms require large areas of space, clear from any obstructions,
+                                                       such as trees or buildings that could potentially cast shadows onto the panels.
+                                                       This helps to ensure that they have maximum exposure to sunlight
+                                                       throughout the day. Having flat land is also preferred for solar farms
+                                                       as it simplifies installation, and allows for better panel
+                                                       positioning and alignment. The energy produced from the solar 
+                                                       farm has to be sent to a substation where it is stored before being
+                                                       released onto the grid. Therefore, a solar farm in close proximity to a
+                                                       substation is beneficial as it reduces the need to run lines long distances.
+                                                       Solar farms will also need to be inspected and maintained throughout their 
+                                                       operation, so service road access is very important when determining suitable properties."),
+                                                                         p()
+                                                                         
+                                                                  ),
+                                                                  column(6,
+                                                                         h2(strong("Visualizations")),
+                                                                         p("Visualizations go here"),
+                                                                         checkboxGroupInput(inputId = "bufferType", label = h3("Select buffer types: "),
+                                                                                            choices = c("Buffer One", "Buffer Two", "Buffer Three"))
+                                                                  )
+                                                                  
+                                                         ),
+                                                         
+                                                ),
+                                                tabPanel("Agrivoltaics Index",
+                                                         p("", style = "padding-top:10px;"),
+                                                         fluidRow(style = "margin: 8px;",
+                                                                  align = "center",
+                                                                  column(6,
+                                                                         h2(strong("Hanover Solar Assessment")),
+                                                                         p("Hanover County is currently home to Mechanicsville Solar PV Park. 
+                                                       This 28-megawatt solar farm has been in operation since 2018. 
+                                                       Developed by SunEnergy1, the park spans 222 acres and consists of 93,000 modules. 
+                                                       The electricity generated by the solar farm is being sold to Dominion Energy 
+                                                       and has the capacity to power approximately 5,000 households."),
                                                                          p(),
-                                                                         checkboxInput(inputId = "zoning", label = "Show zoning types on map?",
-                                                                                       value = FALSE),
+                                                                         p("In addition to the Mechanicsville Solar PV Park, Hanover County has
+                                                       approved a new solar farm. Developed by Ameriesco Solar, this 22-acre 
+                                                       facility is capable of generating 5 megawatts of power, which is estimated
+                                                       to meet the energy needs of 1,500 homes. The farm is located on Peppertown
+                                                       road and is expected to have a lifespan of 40 years. As part of their environmental 
+                                                       commitment, the developer plans to plant pollinator-friendly vegetation between 
+                                                       the solar panels."),
                                                                          p(),
-                                                                         sliderInput("lotacre", label = h3("Lot Acreage (by GPIN)"),
-                                                                                     min = 0,
-                                                                                     max = 100000,
-                                                                                     value = 50000,
-                                                                                     step = 20000)
+                                                                         h2(strong("Optimal Solar Farm Locations")),
+                                                                         p("Solar farms require large areas of space, clear from any obstructions,
+                                                       such as trees or buildings that could potentially cast shadows onto the panels.
+                                                       This helps to ensure that they have maximum exposure to sunlight
+                                                       throughout the day. Having flat land is also preferred for solar farms
+                                                       as it simplifies installation, and allows for better panel
+                                                       positioning and alignment. The energy produced from the solar 
+                                                       farm has to be sent to a substation where it is stored before being
+                                                       released onto the grid. Therefore, a solar farm in close proximity to a
+                                                       substation is beneficial as it reduces the need to run lines long distances.
+                                                       Solar farms will also need to be inspected and maintained throughout their 
+                                                       operation, so service road access is very important when determining suitable properties."),
+                                                                         p()
+                                                                         
+                                                                  ),
+                                                                  column(6,
+                                                                         h2(strong("Visualizations")),
+                                                                         p("Visualizations go here"),
+                                                                         checkboxGroupInput(inputId = "bufferType", label = h3("Select buffer types: "),
+                                                                                            choices = c("Buffer One", "Buffer Two", "Buffer Three"))
+                                                                  )
+                                                                  
+                                                         ),
+                                                         
+                                                ),
+                                                tabPanel("Methodology",
+                                                         p("", style = "padding-top:10px;"),
+                                                         fluidRow(style = "margin: 8px;",
+                                                                  align = "center",
+                                                                  column(6,
+                                                                         h2(strong("Solar Suitability Score")),
+                                                                         p("Hanover"),
+                                                                         p(),
+                                                                         p("In"),
+                                                                         p(),
+                                                                         h2(strong("Agrivoltaic Viability Rating")),
+                                                                         p("Solar"),
+                                                                         p()
+                                                                         
+                                                                  ),
+                                                                  column(6,
+
+                                                                         selectInput(
+                                                                           "solar.score",
+                                                                           "Solar Suitabilty Score",
+                                                                           c("Buffer 1" = "buffer_1",
+                                                                             "Buffer 2" = "buffer_2",
+                                                                             "Buffer 3" = "buffer_3")),
+                                                                           selectInput(
+                                                                             "solar.score",
+                                                                             "Agrivoltaic Viability Rating",
+                                                                             c("Buffer 1" = "buffer_1",
+                                                                               "Buffer 2" = "buffer_2",
+                                                                               "Buffer 3" = "buffer_3")
+                                                                         )
                                                                   )
                                                                   
                                                          ),
