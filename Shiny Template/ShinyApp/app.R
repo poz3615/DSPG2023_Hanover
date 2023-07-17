@@ -428,7 +428,7 @@ ui <- navbarPage(selected = "overview",
                                               #   the land use rules violated the state constitution in some way [1].'),
                                               
                                               column(4,
-                                                     h2(strong("Federal")),
+                                                     h2(strong("Policies")),
                                                      h4(strong("Forest Legacy Program (FLP)")),
                                                      p("The FLP is a federal conservation program orchestrated
                                                     by the U.S Forest Service collaborating with State agencies
@@ -466,7 +466,7 @@ ui <- navbarPage(selected = "overview",
                                                     based on the severity of the damage to handle a portion of the expenses.")
                                               ),
                                               column(4,
-                                                     h2(strong("State")),
+                                                     h2(strong("Additional Policies")),
                                                      h4(strong("The Code of Virginia")),
                                                      p("The code of Virginia enacts various policies that allow localities
                                                     to enter into voluntary agreements with landowners across the state within
