@@ -418,10 +418,10 @@ ui <- navbarPage(selected = "overview",
                                    )
                           ),
                           fluidRow(style = "margin: 8px;",
-                                   align = "center",
+                                   align = "left",
                                    column(4,
                                           h2(strong("Project Background")),
-                                          h4(strong("Setting")),
+                                          h4(strong("Setting:")),
                                           p("Hanover county, Virginia is a predominantly rural area 
                                             located twelve miles north of the state capital, Richmond. 
                                             The county ranges over 474 square miles and is known for 
@@ -433,7 +433,7 @@ ui <- navbarPage(selected = "overview",
                                             majorly influenced the landscape, community and rural charm of 
                                             the county."),
                                           p(),
-                                          h4(strong("Problem")),
+                                          h4(strong("Problem:")),
                                           p("Hanover county takes pride in their rural lifestyle and heritage 
                                             therefore, as they look to attain economic growth challenges arise. 
                                             The main problems facing this county as it looks to achieve
@@ -445,14 +445,14 @@ ui <- navbarPage(selected = "overview",
                                             land. Solar farm land development also cuts into the land that
                                             can be used for agricultural purposes."),
                                           p(),
-                                          h4(strong("Project")),
+                                          h4(strong("Project:")),
                                           p(" Virginia Tech Department of Agricultural and Applied Economics
                                             Data Science for the Public Good (DSPG) program assesses land 
                                             conversion and solar farm land usage in Hanover County through 
                                             the use of data analytics, agricultural economics and geospatial tools.")
                                    ),
                                    column(4,
-                                          h2(strong("Aims")),
+                                          h2(strong("Project Goals")),
                                           tags$li("Use GIS analysis to asses current land use patterns"),
                                           tags$li("Evaluate protected land and prime farmland"),
                                           tags$li("Analyze competing demands for prime farmland from solar energy"),
@@ -497,47 +497,34 @@ ui <- navbarPage(selected = "overview",
                           fluidRow(style = "margin: 6px;",
                                    h1(strong("Land Use & Environmental Policies"), align = "center"),
                                    p("", style = "padding-top:10px;"),
+                                   
+                          
       
                                    tabsetPanel(
+                                     
                                      tabPanel("Background",
+                                              titlePanel(h2(strong("Sociodemographic Background"))),
+                                              column(6,
+                                                     p("write up")),
+                                              column(6,
+                                                     tabsetPanel(
+                                                       tabPanel("Demographic Factors",
+                                                                p(),
+                                                                selectInput(
+                                                                  "acs.graphs",
+                                                                  "ACS Graphs",
+                                                                  c("Population Density" = "pop",
+                                                                    "Median Population Income" = "inc"))
+                                                       ), 
+                                                       tabPanel("Employment", 
+                                                                p(),
+                                                                column(12,
+                                                                       plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                )) 
+                                                     )),
+
                                               p(),
-                                              
-                                              column(6,
-                                                     h2(strong("Hanover County Overview")),
-                                                     p(style = "text-align: justify;", "Hanover is known to have a rich history and background.
-                                            Formed by the Virginia General Assembly on November 26th,
-                                            1720 named in honor of King George the First of England, it is
-                                            iconic for the historic landmarks in the county and other historical places.
-                                            Hanover currently has 39 sites registered in the National Register of 
-                                            Historical Places/ Virginia Landmarks Register and 56 sites in Virginia Historical Markers.
-                                            In general, it has over 1700 historical sites within the locality! The National
-                                            Historic Landmarks (NHL) are historic properties that illustrate the heritage of
-                                            the United States and are officially recognized by the US government. The historic
-                                            properties found in Hanover County include Hanover Courthouse, Scotchtown, and
-                                            Malbourne/Edmund Ruffin Plantation. In particular, Hanover Courthouse is the symbol
-                                            and pride of Hanover County which is dated back to around 1740 where it is one of
-                                            the oldest courthouses in Virginia. Some exceptional historic resources found here
-                                            include Hanover Tavern, Hanover Meeting House, Garthwright-Kelley House, Gaines Mill
-                                            Battlefield, Cold Harbor Battlefield, Rural Plains and so much more. For more points
-                                            of interest, there is a whole slew of Century Farms recognized by the Virginia 
-                                            Department of Agriculture and Consumer Affairs where these farms, as the name
-                                            suggests to some extent, have each been owned by farmer families for 100 years or more. 
-                                            When visiting you can’t forget the fascinating battlefield sites that revolved around the 
-                                            Civil War and the Revolutionary War. During the Civil War, in particular, Hanover County 
-                                            was a frequented battlefield by Union and Confederate troops where Union troops, commanded
-                                            by generals, fought their way through to Richmond against the Confederate Army led by Robert
-                                            E. Lee. Hanover County has a vast array of historical and cultural land sites, markers, and resources
-                                            that provide it the opportunity for benefits on all accounts from economic to cultural for the owners
-                                            of the county as a whole."),
-                                                     p(),
-                                                     h2(strong("Statistics Summary")),
-                                                     p("Will be done once graphs are set and ready to be analyzed")
-                                              ) , 
-                                              column(6,
-                                                     h2(strong("Visualizations")),
-                                                     p("Visualizations go here"),
-                                                     plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
-                                              ),
+                  
                                               column(12,
                                                      h4(strong("References")),
                                                      p("References go here")
@@ -546,7 +533,7 @@ ui <- navbarPage(selected = "overview",
                                      tabPanel("Conservation Policy",
                                               fluidRow(style = "margin-left: 100px; margin-right: 100px;",
                                                        align = "center",
-                                                       h1(strong("Maps Here")),
+                                                       h2(strong("Conservation Land Map")),
                                                        leafletOutput("consleaf") %>% withSpinner(type = 6, color = "#861f41", size = 1.25)
                                               ),
                                               p(),
@@ -554,6 +541,7 @@ ui <- navbarPage(selected = "overview",
                                                      align = "center",
                                                      h2(strong("Conservation Policy")),
                                                      column(6,
+                                                            align="left",
                                                             h4(strong("Conservation Land")),
                                                             p("This map highlights the conservation land within Hanover County, incorporating data provided by the Virginia Department of Conservation and 
                                                               Recreation. These lands encompass a variety of state, federal, local, and privately managed areas dedicated to conservation efforts. 
@@ -571,6 +559,7 @@ ui <- navbarPage(selected = "overview",
                                                             p()
                                                      ),
                                                      column(6,
+                                                            align="left",
                                                             h4(strong("Conservation Easements")),
                                                             p(),
                                                             p("This map displays the conservation easements present in Hanover County, utilizing data provided by the Virginia Department of Conservation and Recreation.
@@ -595,7 +584,7 @@ ui <- navbarPage(selected = "overview",
                                                      h2(strong("Additional Conservation Policies")),
                                                      p(),
                                                      column(6,
-                                                            align = "center",
+                                                            align = "left",
                                                             p(),
                                                             h4(strong("Virginia Open-Space Land Act (Title 15.2, Chapter 18)")),
                                                             p(),
@@ -615,7 +604,7 @@ ui <- navbarPage(selected = "overview",
                                                             p()
                                                      ),
                                                      column(6,
-                                                            align = "center",
+                                                            align = "left",
                                                             p(),
                                                             h4(strong("Forest Legacy Program (FLP)")),
                                                             p(),
@@ -657,7 +646,7 @@ ui <- navbarPage(selected = "overview",
                                                      h2(strong("Solar Policies")),
                                                      p(),
                                                      column(6,
-                                                            align = "center",
+                                                            align = "left",
                                                             p(),
                                                             h4(strong("Virginia Clean Economy Act (VCEA)")),
                                                             p(),
@@ -679,7 +668,7 @@ ui <- navbarPage(selected = "overview",
                                                             p()
                                                      ),
                                                      column(6,
-                                                            align = "center",
+                                                            align = "left",
                                                             p(),
                                                             h4(strong("Virginia Solar Panel Covenants and Restrictions (§ 67-701)")),
                                                             p(),
@@ -722,29 +711,23 @@ ui <- navbarPage(selected = "overview",
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
                                                                   column(6,
-                                                                         h2(strong("Land Use by Parcel")),
-                                                                         p("This map shows the parcel-level zoning 
-                                                       classification for Hanover County. 
-                                                       We used Virginia's land use codes, along 
-                                                       with assessor data from Hanover County to display 
-                                                       areas in the county according to their zoning ordinances.  
-                                                       Here we see that the majority of the county is zoned for 
-                                                       agricultural and residential use."),
-                                                                         p(),
-                                                                         p("In the map above we saw that the majority of 
-                                                       area in Hanover county is zoned for agriculture. 
-                                                       However, from using the same data we derived this bar
-                                                       graph that shows the number of residential parcels is more 
-                                                       than the number of agriculture parcels.")
-                                                                  ),
+                                                                         align="left",
+                                                                         h2(strong("Land Use and Zoning Analysis")),
+                                                                         p("write upp")),
                                                                   column(6,
-                                                                         h2(strong("Visualizations")),
-                                                                         p("Visualizations go here"),
-                                                                         plotlyOutput("interactive_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                                         #leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25),
-                                                                         leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25),
-                                                                         #mapview:::plainViewOutput("zoneHan")
-                                                                  )
+                                                                         tabsetPanel(
+                                                                           tabPanel("Land Use Map",
+                                                                                    p(),
+                                                                                    leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                                    
+                                                                                    
+                                                                           ), 
+                                                                           tabPanel("Land Use in Acreage", 
+                                                                                    p(),
+                                                                                    plotlyOutput("interactive_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                           ) 
+                                                                         ))
+
                                                          ), 
                                                                 ),
                                                 tabPanel("Land Cover",
@@ -827,63 +810,26 @@ ui <- navbarPage(selected = "overview",
                                                          fluidRow(style = "margin: 8px;",
                                               align = "center",
                                               column(6,
+                                                     align="left",
                                                      h2(strong("Soil Quality Analysis")),
-                                                     p("The USDA Natural Resources Conservation Service (NCRS) Web Soil Survey provides a detailed classification of farmland in the United States. 
-                                                       The Soil Survey Geographic Database (SSURGO) collects soil data by walking over the land to observe the soil and obtaining soil 
-                                                       samples to be analyzed in laboratories. 
-                                                       The SSURGO Database uses the data acquired to map various farmland classifications onto specified areas of interest. 
-                                                       The USDA NCRS considers these factors when classifying soil: 
-                                                       water moisture regimes, soil temperature range, acid-alkali balance, water table, soil sodium content, flooding, erodibility, 
-                                                       permeability rate, rock fragment content, and soil rooting depth."),
-                                                     p(),
-                                                     p("The Web Soil Survey ranks Hanover County’s soil quality by identifying the soil as either prime farmland, farmland of statewide importance, 
-                                                       prime farmland if drained, or not prime farmland. The USDA defines prime farmland as “land that has the best combination of physical and chemical 
-                                                       characteristics for producing food, feed, forage, fiber, and oilseed crops and is available for these uses.” [1] Prime farmland is the highest ranking 
-                                                       and must possess a suitable soil quality to sustainably produce high yields of crops with adequate moisture, water supply, and temperature permissible 
-                                                       for crop growing seasons. Therefore, this land cannot be susceptible to erosion or flooding, and must have minimal slope. Farmland of statewide 
-                                                       importance, which is the second-best ranking, describes soil that almost meets the nutrient requirements to be classified as prime farmland, 
-                                                       but is still able to produce high crop yields once treated with acceptable farming methods, or during favorable conditions. 
-                                                       Prime farmland if drained describes good soils located in wetlands or waterways currently covered in water. Not prime farmland is soil considered 
-                                                       not productive."),
-                                                     p(),
-                                                     p("The Web Soil Survey Farmland Classifications were mapped onto Hanover County illustrating the spatial relationships between each classification. 
-                                                       Most land falls under the classification “All areas are prime farmland” and are centered towards the eastern end, spanning across 103,063.2 acres. 
-                                                       This category possesses the largest number of acres with 34% of the county’s total acreage designated as prime farmland. The classification 
-                                                       “Not Prime Farmland” also makes up 34% of the area and has the second largest number of acres with 103,051.1 spanning vastly across the county. 
-                                                       Soil classified as “Farmland of Statewide importance” is concentrated towards the northwestern region making up 31.19% of the county, with 94,545.2 acres 
-                                                       of land. “Prime Farmland if drained” contains the least number of acres and is in the center of the county encompassing 0.816% of the area, with 2,473 acres."),
-                                                     p(),
-                                                     h4(strong("What We Have So Far")),
-                                                     p(),
-                                                     p("Used USDA-NRCS Soil Survey Geographic database to map
-                                                       soil types over Hanover County in Arc GIS Pro."),
-                                                     p(),
-                                                     p("Joined the data from soil survey and parcel data in State
-                                                       to create a clean data file we will use for maps and graphs in R.")
-                                              )
-                                              
-                                     ),
-                                     fluidRow(style = "margin: 8px;",
-                                              align = "center",
+                                                     p("write")),
                                               column(6,
-                                                     h2(strong("Soil Types")),
-                                                     p(),
-                                                     plotlyOutput("sR", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                     p(),
-                                                     imageOutput("SoilLimit", width = "400px", height = "400px"),
-                                                     
-                                                     
-                                                    
+                                                     tabsetPanel(
+                                                tabPanel("Soil Type Map",
+                                                         p(),
+                                                         imageOutput("soilRate", width = "400px", height = "400px")
+                                                         
+                                                         
+                                                ), 
+                                                tabPanel("Soil Type in Acreage", 
+                                                         p(),
+                                                         plotlyOutput("sR", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                ) 
+                                              )),
+
                                               
                                      ),
-                                     column(6,
-                                            h2(strong("Soil Quality Leaflet Placeholder Title")),
-                                            p(),
-                                            #leafletOutput("hansoil") %>% withSpinner(type = 6, color = "#861F41", size = 1.5),
-                                            imageOutput("soilRate", width = "400px", height = "400px")
-                                           
-                                     )
-                            )) ,
+) ,
                                            
                                               ) 
                                      )), 
@@ -1151,86 +1097,48 @@ ui <- navbarPage(selected = "overview",
                             
                             
                             
-                 #),
-                 
-                 ## Tab Findings --------------------------------------------
-                 # tabPanel("Findings & Predictions", value = "conclusion",
-                 #          fluidRow(style = "margin: 6px;",
-                 #                   h1(strong("Project Findings and Predictions"), align = "center"),
-                 #                   p("", style = "padding-top:10px;"),
-                 #                   p("Given the rich agricultural histories of the two counties, we are interested in how agricultural land has changed over the last several years.
-                 #                     This research uses quantitative tools to understand how some key natural and social factors affect the parcellation and conversion with administrative data and county-level geospatial data."),
-                 #                   fluidRow(style = "margin: 6px;", align = "justify",
-                 #                            h4(strong("Goochland")),
-                 #                            p("In Goochland, agricultural land was converted to residential, mainly single-family residential urban, and suburban.
-                 #                              There were also 5 parcels (about 671 acres) of large agricultural lands that have been parcellated into smaller agricultural plots."),
-                 #                            p("Parcellation is occurring predominantly in the southeast of Goochland County near Richmond, around the U.S. Routes I64, 250, and 288. This pattern might reflect the urban influence on the county.
-                 #                              This pattern might also imply some correlation between parcellation and transportation. On the crop and land type map, those Routes are labeled as “Developed.”
-                 #                              High traffic volumes can also be seen along those Routes."),
-                 #                            br(),
-                 #                            h4(strong("Powhatan")),
-                 #                            p("Large amounts of agricultural land were converted to
-                 #                              residential-suburban uses during the decade in Powhatan (including recurrences). Parcellation among agricultural land
-                 #                              is also noticeable, as 28 parcels (about 5,750 acres) of large agricultural lands have been parcellated
-                 #                              into smaller agricultural plots."),
-                 #                            p("Parcellation is occurring predominantly in the heart of Powhatan County, around the U.S. Routes 60 and 522.
-                 #                              On the east end near Richmond, high parcellation rates are seen along the U.S. Routes 60 and 288 within
-                 #                              the county and this might reflect the urban influence on the county. The high parcellation around
-                 #                              those Routes might imply some correlation between parcellation and transportation. On the map of crop and land type,
-                 #                              those Routes are labeled as “Developed”. High traffic volumes can also be seen along U.S. Routes 60 and 288. Hence the
-                 #                              correlation between parcellation and those Routes is also a correlation between parcellation and developed areas (traffic volumes)."),
-                 #                            p("There is no obvious sign that poor soil quality can be a driver of land conversion out of agriculture from the maps."),
-                 #                            p("In addition to the univariate spatial analysis, we also conducted a statistical analysis that examined the association between land conversion out of
-                 #                              agriculture and the characteristics of the land parcel, which include parcel acreage, whether the owner lives in the county, distance to the city of Richmond, the traffic volume and the soil class.
-                 #                              The analysis was conducted for Powhatan County only due to data availability. The findings from a logistic regression model show that the probability of converting out of agriculture:
-                 #                              decreases as the size of the parcel increases, decreases if the land owner lives in Powhatan, decreases with distance from Richmond. The association with traffic volume shows a U shaped impact
-                 #                              on the probability of conversion. Soil quality is not significantly associated with land conversion. Note these are not causal effects. They are associations."),
-                 #                   ),
-                 #
-                 #
-                 #
-                 #          )),
+
 
                  ## Tab Data Sources --------------------------------------------
-                 # tabPanel("Data Sources",
-                 #          fluidRow(style = "margin: 6px;",
-                 #                   h1(strong("Data Sources"), align = "center"),
-                 #                   p("", style = "padding-top:10px;"),
-                 #                          fluidRow(style = "margin: 6px;", align = "justify",
-                 #                                   column(4,
-                 #                                   img(src = "data-acs.png", style = "display: inline; float: left;", width = "180px"),
-                 #                                   p(strong("American Community Survey"), "The American Community Survey (ACS) is an demographics survey conducted by the U.S Census Bureau. The ACS samples households to compile 1-year and 5-year datasets
-                 #                      providing information on social and economic characteristics including employment, education, and income. This project utilizes ACS 2016/2020 5-year
-                 #                      estimates to obtain county- and census tract-level data to explore Goochland and Powhatan Counties' resident characteristics.")),
-                 #                                   column(4,
-                 #                                   img(src = "goochland.jpg", style = "display: inline; float: left;", width = "150px"),
-                 #                                   p(strong("Goochland County Administrative Data"), "Goochland County provided us with parcel/property data which allowed us to gain a better understanding of the different land uses and parcellation
-                 #                            that has occured over a 5 year period (2018 - 2022). The team used this data to create visualizations, specifically focusing on the distribution and change in land use in the county.")),
-                 #                                   column(4,
-                 #                                   img(src = "powhatan.jpg", style = "display: inline; float: left;", width = "150px"),
-                 #                                   p(strong("Powhatan County Administrative Data"), "Powhatan County provided us with parcel/property data which allowed us to gain a better understanding of the different land uses and parcellation
-                 #                            that has occured over a 8 year period (2014 - 2021). The team used this data to create visualizations, specifically focusing on the distribution and change in land use in the county.")),
-                 #                          ),
-                 #
-                 #                          fluidRow(style = "margin: 6px;", align = "justify",
-                 #                                   column(4,
-                 #                                   img(src = "nass.jpg", style = "display: inline; float: left;", width = "130px"),
-                 #                                   p(strong("USDA National Agricultural Statistics Service"), "The National Agricultural Statistics Service (NASS) under the United States Department of Agriculture (USDA) provides statistics on a wide variety
-                 #                                    of agricultural topics. This project specifically relies on crop layer data to create maps and to conduct a statistical analysis on the probablity of land use conversion.")),
-                 #                                   column(4,
-                 #                                   img(src = "ncss.jpg", style = "display: inline; float: left;", width = "150px"),
-                 #                          p(strong("USDA National Cooperative Soil Survey"), "The National Cooperative Soil Survey (NCSS) under the USDA provides soil data which was used to generate soil quality maps for both counties.
-                 #                            The data was also used for our statistical analysis to predict the occurrence of land use conversion.")),
-                 #                          column(4,
-                 #                          img(src = "vdot_crop.png", style = "display: inline; float: left;", width = "180px"),
-                 #                          p(strong("VDOT Traffic Data"), "The Virginia Department of Transportation (VDOT) is responsible for building, maintaining and operating the state's roads, bridges and tunnels. VDOT also conducts
-                 #                          a program where traffic data are gathered from sensors in or along streets and highways and other sources.  This data includes estimates of the average number of vehicles that traveled each segment
-                 #                          of road and daily vehicle miles traveled for specific groups of facilities and vehicle types are calculated. This project utilizes VDOT data to create traffic volume and commute maps for both counties."))
-                 #                   )),
-                 #
-                 #          ),
-                 #
-                 #
+                 tabPanel("Data Sources",
+                          fluidRow(style = "margin: 6px;",
+                                   h1(strong("Data Sources"), align = "center"),
+                                   p("", style = "padding-top:10px;"),
+                                          fluidRow(style = "margin: 6px;", align = "justify",
+                                                   column(4,
+                                                   img(src = "data-acs.png", style = "display: inline; float: left;", width = "180px"),
+                                                   p(strong("American Community Survey"), "The American Community Survey (ACS) is an demographics survey conducted by the U.S Census Bureau. The ACS samples households to compile 1-year and 5-year datasets
+                                      providing information on social and economic characteristics including employment, education, and income. This project utilizes ACS 2016/2020 5-year
+                                      estimates to obtain county- and census tract-level data to explore Goochland and Powhatan Counties' resident characteristics.")),
+                                                   column(4,
+                                                   img(src = "goochland.jpg", style = "display: inline; float: left;", width = "150px"),
+                                                   p(strong("Goochland County Administrative Data"), "Goochland County provided us with parcel/property data which allowed us to gain a better understanding of the different land uses and parcellation
+                                            that has occured over a 5 year period (2018 - 2022). The team used this data to create visualizations, specifically focusing on the distribution and change in land use in the county.")),
+                                                   column(4,
+                                                   img(src = "powhatan.jpg", style = "display: inline; float: left;", width = "150px"),
+                                                   p(strong("Powhatan County Administrative Data"), "Powhatan County provided us with parcel/property data which allowed us to gain a better understanding of the different land uses and parcellation
+                                            that has occured over a 8 year period (2014 - 2021). The team used this data to create visualizations, specifically focusing on the distribution and change in land use in the county.")),
+                                          ),
+
+                                          fluidRow(style = "margin: 6px;", align = "justify",
+                                                   column(4,
+                                                   img(src = "nass.jpg", style = "display: inline; float: left;", width = "130px"),
+                                                   p(strong("USDA National Agricultural Statistics Service"), "The National Agricultural Statistics Service (NASS) under the United States Department of Agriculture (USDA) provides statistics on a wide variety
+                                                    of agricultural topics. This project specifically relies on crop layer data to create maps and to conduct a statistical analysis on the probablity of land use conversion.")),
+                                                   column(4,
+                                                   img(src = "ncss.jpg", style = "display: inline; float: left;", width = "150px"),
+                                          p(strong("USDA National Cooperative Soil Survey"), "The National Cooperative Soil Survey (NCSS) under the USDA provides soil data which was used to generate soil quality maps for both counties.
+                                            The data was also used for our statistical analysis to predict the occurrence of land use conversion.")),
+                                          column(4,
+                                          img(src = "vdot_crop.png", style = "display: inline; float: left;", width = "180px"),
+                                          p(strong("VDOT Traffic Data"), "The Virginia Department of Transportation (VDOT) is responsible for building, maintaining and operating the state's roads, bridges and tunnels. VDOT also conducts
+                                          a program where traffic data are gathered from sensors in or along streets and highways and other sources.  This data includes estimates of the average number of vehicles that traveled each segment
+                                          of road and daily vehicle miles traveled for specific groups of facilities and vehicle types are calculated. This project utilizes VDOT data to create traffic volume and commute maps for both counties."))
+                                   )),
+
+                          ),
+
+
                  ## Tab Team --------------------------------------------
                  tabPanel("Meet the Team", 
                           fluidRow(style = "margin-left: 100px; margin-right: 100px;",
