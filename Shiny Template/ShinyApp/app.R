@@ -546,8 +546,10 @@ ui <- navbarPage(selected = "overview",
                                                             p("This map highlights the conservation land within Hanover County, incorporating data provided by the Virginia Department of Conservation and 
                                                               Recreation. These lands encompass a variety of state, federal, local, and privately managed areas dedicated to conservation efforts. 
                                                               Their purpose is to protect and preserve natural habitats, wildlife, ecosystems, and scenic landscapes. Landowners are responsible for 
-                                                              implementing conservation practices, such as regulating public access and managing resources."),
-                                                            p(),
+                                                              implementing conservation practices, such as regulating public access and managing resources.")),
+                                                     
+                                                            column(6,
+                                                                   align="left",
                                                             h4(strong("Agricultural Forestal Districts")),
                                                             p("The map presents the parcels in Hanover County designated as Agricultural/Forestal Districts (AFD),
                                                               utilizing data sourced from the Virginia Department of Emergency Management. These districts conserve rural land for agricultural production, 
@@ -558,6 +560,7 @@ ui <- navbarPage(selected = "overview",
                                                               designated areas."),
                                                             p()
                                                      ),
+                                           
                                                      column(6,
                                                             align="left",
                                                             h4(strong("Conservation Easements")),
@@ -565,8 +568,10 @@ ui <- navbarPage(selected = "overview",
                                                             p("This map displays the conservation easements present in Hanover County, utilizing data provided by the Virginia Department of Conservation and Recreation.
                                                               Conservation easements entail binding agreements between landowners and government agencies, serving as limitations on future land development and 
                                                               subdivision. Notably, landowners retain control over their properties and the right to sell them. The specifics of these easement agreements vary but 
-                                                              consistently aim to preserve land for rural uses, such as agriculture, forest management, and recreational activities like hunting and fishing."),
-                                                            p(),
+                                                              consistently aim to preserve land for rural uses, such as agriculture, forest management, and recreational activities like hunting and fishing.")
+                                                            ),
+                                                     column(6,
+                                                            align="left",
                                                             h4(strong("Natural Conservation Easements")),
                                                             p("The map depicts parcels within Hanover County that have a portion of their land located within 100 ft of waterways. The data utilized in this analysis is
                                                               sourced from Hanover County GIS Hub, providing insights into parcels with land areas protected by the Chesapeake Bay Preservation Act. 
@@ -578,6 +583,8 @@ ui <- navbarPage(selected = "overview",
                                                      
                                                      
                                               ),
+                                              p(),
+                                              p(),
                                               p(),
                                               column(12,
                                                      align = "center",
@@ -592,8 +599,9 @@ ui <- navbarPage(selected = "overview",
                                                               It influences the localities to designate parcels of land in Hanover County for use as open-space land to conserve the land values. Open-space 
                                                               land is defined as “any land which is provided or preserved for (i) park or recreational purposes, (ii) conservation of land or other natural 
                                                               resources, (iii) historic or scenic purposes, (iv) assisting in the shaping of the character, direction, and timing of community development, 
-                                                              (v) wetlands as defined in §28.2-1300, or (vi) agricultural and forestall production.” [6] "),
-                                                            p(),
+                                                              (v) wetlands as defined in §28.2-1300, or (vi) agricultural and forestall production.” [6] ")),
+                                                     column(6,
+                                                            align="left",
                                                             h4(strong("Conservation Reserve Program (CRP)")),
                                                             p(),
                                                             p("The CRP is a land conservation program managed by the Farm Service Agency aimed to trade yearly rental payments to farmers enrolled in agreement to 
@@ -614,8 +622,9 @@ ui <- navbarPage(selected = "overview",
                                                               Additionally, conservation easements are implemented to arrange a legal agreement permitting private ownership of the land while guaranteeing that the land
                                                               values are maintained. The legal agreement is between the landowner and government agency or non-profit land trust. The FLP works to preserve working forests
                                                               in order to protect water quality, recreation opportunities, and forest products. To qualify for the FLP in Virginia, land must be established within a Forest Legacy 
-                                                              Area."),
-                                                            p(),
+                                                              Area.")),
+                                                     column(6,
+                                                            align="left",
                                                             h4(strong("Emergency Conservation Program (ECP)")),
                                                             p(),
                                                             p("The program aims to support agricultural producers, such as farmers and ranchers, in repairing and restoring any damaged farmland, conservation land and 
@@ -657,9 +666,10 @@ ui <- navbarPage(selected = "overview",
                                                               solar policy that creates “an electric billing tool that uses the electric grid to “store” excess energy produced by your solar panel system.” 
                                                               Net Energy Metering allows unused energy produced from your solar panels to be credited back to you. [2] Virginia General Assembly increased the 
                                                               maximum capacity of renewable energy generation from residential generators from 20 kilowatts to 25 kilowatts and non-residential generators from 
-                                                              one to three megawatts. [3] Additionally, the aggregated capacity of solar energy from agricultural generators is 500 kilowatts. [4]"),
-                                                            p(),
-                                                            h4(strong("VA Creation of Solar Easements (VA. Code 55.1-137)")),
+                                                              one to three megawatts. [3] Additionally, the aggregated capacity of solar energy from agricultural generators is 500 kilowatts. [4]")),
+                                                     column(6,
+                                                            align="left",
+                                                        h4(strong("VA Creation of Solar Easements (VA. Code 55.1-137)")),
                                                             p(),
                                                             p("Virginia law allows property owners to create solar easements enacted in writing which grant them rights to prohibit neighboring property owners from
                                                               implementing anything on their land projecting shade onto easement owner’s property. These easements must include “The vertical and horizontal angles, 
@@ -667,6 +677,7 @@ ui <- navbarPage(selected = "overview",
                                                               solar easement is granted or will be terminated; and Any provisions for compensation of the owner of the property subject to the solar easement.” [5] "),
                                                             p()
                                                      ),
+                                                     column(12,p()),
                                                      column(6,
                                                             align = "left",
                                                             p(),
@@ -677,9 +688,10 @@ ui <- navbarPage(selected = "overview",
                                                               on size, place, and placement of solar energy devices on personal property. Restrictions can be deemed unreasonable if the solar panel design “increases 
                                                               the cost of installation of the solar energy collection device by five percent over the projected cost of the initially proposed installation or (ii) 
                                                               reduces the energy production by the solar energy collection device by 10 percent below the projected energy production of the initially proposed 
-                                                              installation.” [7] Additionally, community associations have authority to restrain solar farm developments in common areas."),
-                                                            p(),
-                                                            h4(strong("Community Solar Pilot Program")),
+                                                              installation.” [7] Additionally, community associations have authority to restrain solar farm developments in common areas.")),
+                                                     column(6,
+                                                            align="left",
+                                                     h4(strong("Community Solar Pilot Program")),
                                                             p(),
                                                             p("Dominion Energy created the Community Solar Pilot program which allows customers to purchase energy and Renewable Energy Certificates (RECs) from solar 
                                                               facilities without having to install solar panels directly onto their property. This goal is to help reduce the carbon footprint by providing solar energy 
@@ -1013,12 +1025,14 @@ ui <- navbarPage(selected = "overview",
                                                                          p("Hanover"),
                                                                          p(),
                                                                          p("In"),
-                                                                         p(),
+                                                                         p()),
+                                                                  column(6,
                                                                          h2(strong("Agrivoltaic Viability Rating")),
                                                                          p("Solar"),
                                                                          p()
                                                                          
                                                                   ),
+                                                                  column(12,p()),
                                                                   column(6,
 
                                                                          selectInput(
@@ -1026,7 +1040,8 @@ ui <- navbarPage(selected = "overview",
                                                                            "Solar Suitabilty Score",
                                                                            c("Buffer 1" = "buffer_1",
                                                                              "Buffer 2" = "buffer_2",
-                                                                             "Buffer 3" = "buffer_3")),
+                                                                             "Buffer 3" = "buffer_3"))),
+                                                                  column(6,
                                                                            selectInput(
                                                                              "solar.score",
                                                                              "Agrivoltaic Viability Rating",
