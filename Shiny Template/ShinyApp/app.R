@@ -432,19 +432,35 @@ ui <- navbarPage(selected = "overview",
                                                      h2(strong("Conservation Policy")),
                                                      column(6,
                                                             h4(strong("Conservation Land")),
-                                                            p("text here"),
+                                                            p("This map highlights the conservation land within Hanover County, incorporating data provided by the Virginia Department of Conservation and 
+                                                              Recreation. These lands encompass a variety of state, federal, local, and privately managed areas dedicated to conservation efforts. 
+                                                              Their purpose is to protect and preserve natural habitats, wildlife, ecosystems, and scenic landscapes. Landowners are responsible for 
+                                                              implementing conservation practices, such as regulating public access and managing resources."),
                                                             p(),
-                                                            h4(strong("AFDs")),
-                                                            p("text here"),
+                                                            h4(strong("Agricultural Forestal Districts")),
+                                                            p("The map presents the parcels in Hanover County designated as Agricultural/Forestal Districts (AFD),
+                                                              utilizing data sourced from the Virginia Department of Emergency Management. These districts conserve rural land for agricultural production, 
+                                                              forest management, timber production, and open space purposes. They are recognized and conserved for their environmental resources and economic 
+                                                              importance to the region. AFDs are established through agreements between landowners and the local government, safeguarding the designated land from 
+                                                              commercial, industrial, or residential development for a specified period of 4 to 10 years, depending on the agreement details. Importantly, AFDs
+                                                              are immune to changes in zoning designations, which restricts certain powers of local governments and ensures a certain level of protection for the 
+                                                              designated areas."),
                                                             p()
                                                      ),
                                                      column(6,
                                                             h4(strong("Conservation Easements")),
                                                             p(),
-                                                            p("text here"),
+                                                            p("This map displays the conservation easements present in Hanover County, utilizing data provided by the Virginia Department of Conservation and Recreation.
+                                                              Conservation easements entail binding agreements between landowners and government agencies, serving as limitations on future land development and 
+                                                              subdivision. Notably, landowners retain control over their properties and the right to sell them. The specifics of these easement agreements vary but 
+                                                              consistently aim to preserve land for rural uses, such as agriculture, forest management, and recreational activities like hunting and fishing."),
                                                             p(),
-                                                            h4(strong("NCAs")),
-                                                            p("text here"),
+                                                            h4(strong("Natural Conservation Easements")),
+                                                            p("The map depicts parcels within Hanover County that have a portion of their land located within 100 ft of waterways. The data utilized in this analysis is
+                                                              sourced from Hanover County GIS Hub, providing insights into parcels with land areas protected by the Chesapeake Bay Preservation Act. 
+                                                              The Chesapeake Bay Preservation Act acknowledges the relationship between water quality and land use by limiting development within 100 ft of waterways. 
+                                                              As a result of this legislation, affected parcels face restrictions on land development and encounter additional barriers if they intend to pursue such 
+                                                              activities."),
                                                             p()
                                                      )
                                                      
@@ -458,25 +474,46 @@ ui <- navbarPage(selected = "overview",
                                                      column(6,
                                                             align = "center",
                                                             p(),
-                                                            h4(strong("Open Space")),
+                                                            h4(strong("Virginia Open-Space Land Act (Title 15.2, Chapter 18)")),
                                                             p(),
-                                                            p("text here"),
+                                                            p("The Commonwealth of Virginia is authorized to form partnerships with landowners aimed at decreasing urban sprawl and protecting open space. 
+                                                              It influences the localities to designate parcels of land in Hanover County for use as open-space land to conserve the land values. Open-space 
+                                                              land is defined as “any land which is provided or preserved for (i) park or recreational purposes, (ii) conservation of land or other natural 
+                                                              resources, (iii) historic or scenic purposes, (iv) assisting in the shaping of the character, direction, and timing of community development, 
+                                                              (v) wetlands as defined in §28.2-1300, or (vi) agricultural and forestall production.” [6] "),
                                                             p(),
-                                                            h4(strong("CRP")),
+                                                            h4(strong("Conservation Reserve Program (CRP)")),
                                                             p(),
-                                                            p("text here"),
+                                                            p("The CRP is a land conservation program managed by the Farm Service Agency aimed to trade yearly rental payments to farmers enrolled in agreement to 
+                                                              remove land sensitive to agriculture production and plant species to implement conservation practices. This is meant to ensure the enhancement of the 
+                                                              environmental health and quality of land. The land registered in this program is contracted for 10 to 15 years. Desirable land for this program includes 
+                                                              agricultural land easily susceptible to erosion, located near bodies of water or providing habitats to wildlife. Hence, the motivating factor behind this 
+                                                              program is to reduce soil erosion, enhance wildlife habitats, improve water quality, and stimulate conservation and restoration of land."),
                                                             p()
                                                      ),
                                                      column(6,
                                                             align = "center",
                                                             p(),
-                                                            h4(strong("FLP")),
+                                                            h4(strong("Forest Legacy Program (FLP)")),
                                                             p(),
-                                                            p("text here"),
+                                                            p("The FLP is a federal conservation program orchestrated by the U.S Forest Service collaborating with State agencies to preserve and protect private forests 
+                                                              through land purchases or conservation easements. The FLP strives to determine forest areas susceptible to being transformed into areas used for non-forest 
+                                                              purposes. Participants in the FLP can decide to sell their property or maintain ownership while only selling a segment of the property’s development rights. 
+                                                              Additionally, conservation easements are implemented to arrange a legal agreement permitting private ownership of the land while guaranteeing that the land
+                                                              values are maintained. The legal agreement is between the landowner and government agency or non-profit land trust. The FLP works to preserve working forests
+                                                              in order to protect water quality, recreation opportunities, and forest products. To qualify for the FLP in Virginia, land must be established within a Forest Legacy 
+                                                              Area."),
                                                             p(),
-                                                            h4(strong("ECP")),
+                                                            h4(strong("Emergency Conservation Program (ECP)")),
                                                             p(),
-                                                            p("text here")
+                                                            p("The program aims to support agricultural producers, such as farmers and ranchers, in repairing and restoring any damaged farmland, conservation land and 
+                                                              agricultural infrastructure due to natural disasters. This is done by supplying emergency funding, through cost-share assistance, and technical assistance 
+                                                              to producers. The ECP enacts farmland restoration practices which consist of debris removal, land leveling, restoring fences, restoring conservation structures, 
+                                                              and providing emergency water during severe drought to aid farmers in restoring their land. The ECP county committee assesses eligibility for assistance via 
+                                                              on-site inspections and provides assistance to lands where damage is preventing productivity, repairs are too expensive without federal assistance and if the 
+                                                              damage remains unrepaired the land will be further damaged. Funding is granted based on the severity of the damage but “up to 75% of the cost to implement 
+                                                              emergency conservation practices can be provided.” Overall, the ECP aids in supporting agricultural producers in need of emergency funding and assistance 
+                                                              after disasters.")
                                                      )
                                               ),
                                               
