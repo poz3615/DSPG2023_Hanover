@@ -527,26 +527,56 @@ ui <- navbarPage(selected = "overview",
                                      ),
                                      tabPanel("Solar Policy",
                                               p(),
-                                              p('"In urbanizing areas such as the suburbs near Richmond, Hampton Roads, and Northern Virginia, control over how private property 
-                                                is developed may be a contentious process involving landowners and their lawyers, neighbors, or local residents upset over additional 
-                                                development, and local officials. In Fairfax, Loudoun, and Prince William counties over the last 30 years, the Board of County Supervisor 
-                                                election campaigns have been based on growth management issues. Local officials have reacted to citizen complaints, and incumbents have 
-                                                been voted out of office because they were either too supportive of growth or too restrictive” [1].'),
+                                        
                                               
-                                              column(6,
-                                                     h2(strong("Solar Policy Background")),
-                                                     p("Virginia's renewable energy goals have made the construction of
-                                                     solar farms more common. The state has implemented a policy that requires
-                                                     Dominion Energy to achieve 100% renewable energy by 2045, and Virginia Power,
-                                                     a subsidiary of Dominion, to do the same by 2050. This policy encourages energy
-                                                     companies to develop more sources of renewable energy. With the development of more
-                                                     energy sources, a degree of environmental impact is inevitable. Certain developments,
-                                                     like the new solar farm in Hanover County, off of Peppertown Road, have plans to
-                                                     retire the solar field at the end of their useful lives. The developers plan to
-                                                     return the area to its natural state as best as they can. However, it is important
-                                                     to note that Hanover County currently does not have specific requirements for native or
-                                                     pollinator-friendly vegetation at solar facilities, as outlined in their zoning ordinance."),
-                                                     p()
+                                              column(12,
+                                                     align = "center",
+                                                     h2(strong("Additional Conservation Policies")),
+                                                     p(),
+                                                     column(6,
+                                                            align = "center",
+                                                            p(),
+                                                            h4(strong("Virginia Open-Space Land Act (Title 15.2, Chapter 18)")),
+                                                            p(),
+                                                            p("The Commonwealth of Virginia is authorized to form partnerships with landowners aimed at decreasing urban sprawl and protecting open space. 
+                                                              It influences the localities to designate parcels of land in Hanover County for use as open-space land to conserve the land values. Open-space 
+                                                              land is defined as “any land which is provided or preserved for (i) park or recreational purposes, (ii) conservation of land or other natural 
+                                                              resources, (iii) historic or scenic purposes, (iv) assisting in the shaping of the character, direction, and timing of community development, 
+                                                              (v) wetlands as defined in §28.2-1300, or (vi) agricultural and forestall production.” [6] "),
+                                                            p(),
+                                                            h4(strong("Conservation Reserve Program (CRP)")),
+                                                            p(),
+                                                            p("The CRP is a land conservation program managed by the Farm Service Agency aimed to trade yearly rental payments to farmers enrolled in agreement to 
+                                                              remove land sensitive to agriculture production and plant species to implement conservation practices. This is meant to ensure the enhancement of the 
+                                                              environmental health and quality of land. The land registered in this program is contracted for 10 to 15 years. Desirable land for this program includes 
+                                                              agricultural land easily susceptible to erosion, located near bodies of water or providing habitats to wildlife. Hence, the motivating factor behind this 
+                                                              program is to reduce soil erosion, enhance wildlife habitats, improve water quality, and stimulate conservation and restoration of land."),
+                                                            p()
+                                                     ),
+                                                     column(6,
+                                                            align = "center",
+                                                            p(),
+                                                            h4(strong("Forest Legacy Program (FLP)")),
+                                                            p(),
+                                                            p("The FLP is a federal conservation program orchestrated by the U.S Forest Service collaborating with State agencies to preserve and protect private forests 
+                                                              through land purchases or conservation easements. The FLP strives to determine forest areas susceptible to being transformed into areas used for non-forest 
+                                                              purposes. Participants in the FLP can decide to sell their property or maintain ownership while only selling a segment of the property’s development rights. 
+                                                              Additionally, conservation easements are implemented to arrange a legal agreement permitting private ownership of the land while guaranteeing that the land
+                                                              values are maintained. The legal agreement is between the landowner and government agency or non-profit land trust. The FLP works to preserve working forests
+                                                              in order to protect water quality, recreation opportunities, and forest products. To qualify for the FLP in Virginia, land must be established within a Forest Legacy 
+                                                              Area."),
+                                                            p(),
+                                                            h4(strong("Emergency Conservation Program (ECP)")),
+                                                            p(),
+                                                            p("The program aims to support agricultural producers, such as farmers and ranchers, in repairing and restoring any damaged farmland, conservation land and 
+                                                              agricultural infrastructure due to natural disasters. This is done by supplying emergency funding, through cost-share assistance, and technical assistance 
+                                                              to producers. The ECP enacts farmland restoration practices which consist of debris removal, land leveling, restoring fences, restoring conservation structures, 
+                                                              and providing emergency water during severe drought to aid farmers in restoring their land. The ECP county committee assesses eligibility for assistance via 
+                                                              on-site inspections and provides assistance to lands where damage is preventing productivity, repairs are too expensive without federal assistance and if the 
+                                                              damage remains unrepaired the land will be further damaged. Funding is granted based on the severity of the damage but “up to 75% of the cost to implement 
+                                                              emergency conservation practices can be provided.” Overall, the ECP aids in supporting agricultural producers in need of emergency funding and assistance 
+                                                              after disasters.")
+                                                     )
                                               )
                                      )
                                    ) 
