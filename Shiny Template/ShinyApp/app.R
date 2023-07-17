@@ -706,7 +706,7 @@ ui <- navbarPage(selected = "overview",
                                               h1(strong("Variables to Consider"), align = "center"),
                                               p("", style = "padding-top:10px;"),
                                               tabsetPanel(
-                                                tabPanel("Land Use and Zoning",
+                                                tabPanel("Zoning",
                                                          p("", style = "padding-top:10px;"),
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
