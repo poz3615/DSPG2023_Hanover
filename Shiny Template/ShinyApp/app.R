@@ -805,14 +805,36 @@ ui <- navbarPage(selected = "overview",
                                                                 p()
                                                          )
                                                 ) ,
-                                                tabPanel("Soil Type",
+                                                tabPanel("Soil Quality",
                                                          p("", style = "padding-top:10px;"),
                                                          fluidRow(style = "margin: 8px;",
                                               align = "center",
                                               column(6,
                                                      align="left",
+                                                     h2(strong("Background")),
+                                                     p("The USDA Natural Resources Conservation Service (NCRS) Web Soil Survey provides a detailed classification of farmland in the United States. 
+                                                       The Soil Survey Geographic Database (SSURGO) collects soil data by walking over the land to observe the soil and obtaining soil samples to be 
+                                                       analyzed in laboratories. The SSURGO Database uses the data acquired to map various farmland classifications onto specified areas of interest. 
+                                                       The USDA NCRS considers these factors when classifying soil: water moisture regimes, soil temperature range, acid-alkali balance, water table, 
+                                                       soil sodium content, flooding, erodibility, permeability rate, rock fragment content, and soil rooting depth."),
                                                      h2(strong("Soil Quality Analysis")),
-                                                     p("write")),
+                                                     p("The Web Soil Survey ranks Hanover County’s soil quality by identifying the soil as either prime farmland, farmland of statewide importance, 
+                                                       prime farmland if drained, or not prime farmland. The USDA defines prime farmland as “land that has the best combination of physical and chemical 
+                                                       characteristics for producing food, feed, forage, fiber, and oilseed crops and is available for these uses.” [1] Prime farmland is the highest 
+                                                       ranking and must possess a suitable soil quality to sustainably produce high yields of crops with adequate moisture, water supply, and temperature
+                                                       permissible for crop growing seasons. Therefore, this land cannot be susceptible to erosion or flooding, and must have minimal slope. Farmland of 
+                                                       statewide importance, which is the second-best ranking, describes soil that almost meets the nutrient requirements to be classified as prime 
+                                                       farmland, but is still able to produce high crop yields once treated with acceptable farming methods, or during favorable conditions. Prime 
+                                                       farmland if drained describes good soils located in wetlands or waterways currently covered in water. Not prime farmland is soil considered not 
+                                                       productive.") , 
+
+                                                      p("The Web Soil Survey Farmland Classifications were mapped onto Hanover County illustrating the spatial relationships between each classification. 
+                                                      Most land falls under the classification “All areas are prime farmland” and are centered towards the eastern end, spanning across 103,063.2 acres.
+                                                      This category possesses the largest number of acres with 34% of the county’s total acreage designated as prime farmland. The classification “Not 
+                                                      Prime Farmland” also makes up 34% of the area and has the second largest number of acres with 103,051.1 spanning vastly across the county. Soil 
+                                                      classified as “Farmland of Statewide importance” is concentrated towards the northwestern region making up 31.19% of the county, with 94,545.2 
+                                                      acres of land. “Prime Farmland if drained” contains the least number of acres and is in the center of the county encompassing 0.816% of the area, 
+                                                      with 2,473 acres.  ")),
                                               column(6,
                                                      tabsetPanel(
                                                 tabPanel("Soil Type Map",
