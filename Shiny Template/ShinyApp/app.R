@@ -772,6 +772,7 @@ ui <- navbarPage(selected = "overview",
                                                                            "Developed" = "DEV")
                                                                          ),
                                                                          imageOutput("crop_typePNG", width = "400px", height = "400px"),
+                                                                         textOutput("crop_type_write"),
                                                                          p(),
                                                                          plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
                                                                          p(),
@@ -1274,7 +1275,42 @@ server <- function(input, output){
     consleaf
     
   })
-
+  
+  output$crop_type_write <- renderText({
+    if (input$crop_type == "RC") {
+      return("idk")
+    }
+    else if (input$crop_type == "HC") {
+      return("idkd")
+    }
+    else if (input$crop_type == "SG") {
+      return("1029")
+    }
+    else if (input$crop_type == "DC") {
+      return("098342")
+    }
+    else if (input$crop_type == "F") {
+      return("aj")
+    }
+    else if (input$crop_type == "TC") {
+      return("asda")
+    }
+    else if (input$crop_type == "O") {
+      return("asda")
+    }
+    else if (input$crop_type == "FR") {
+      return("12343")
+    }
+    else if (input$crop_type == "WL") { 
+      return("1asfa")
+    }
+    else if (input$crop_type == "W") {
+      return("134rwda")
+    }
+    else if (input$crop_type == "DEV") {
+      return("3453w56w")
+    }
+  })
   
 }
 
