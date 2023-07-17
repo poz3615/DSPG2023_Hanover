@@ -749,7 +749,7 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Land Cover Information")),
-                                                                         p("write upp")),
+                                                                         textOutput("crop_type_write")),
                                                                   column(6,
                                                                          tabsetPanel(
                                                                            tabPanel("Land Cover by Parcel",
