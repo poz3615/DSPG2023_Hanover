@@ -744,79 +744,28 @@ ui <- navbarPage(selected = "overview",
                                                                 ),
                                                 tabPanel("Land Cover",
                                                          p("", style = "padding-top:10px;"),
-                                                          
-                                                         column(6,
-                                                                h2(strong("What we have so far")),
-                                                                p("Used Arc GIS Pro with USDA Cropland-CROS data 
-                                                       to map types of cropland cover over Hanover County."),
-                                                                p(),
-                                                                p("Joined the data from the cropland survey 
-                                                       and parcel data in Stata to create a clean data 
-                                                       file we will use for maps and graphs in R.")
-                                                         ),
-                                                         
                                                          fluidRow(style = "margin: 8px;",
-                                                                  column(6, 
-                                                                         h4(strong("Land Covers")),
-                                                                         selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
-                                                                           "Row crops" = "RC",
-                                                                           "Horticulture crops" = "HC",
-                                                                           "Small grains" = "SG",
-                                                                           "Double cropped" = "DC",
-                                                                           "Forages" = "F",
-                                                                           "Tree crops" = "TC",
-                                                                           "Other" = "O",
-                                                                           "Forested" = "FR",
-                                                                           "Wetlands" = "WL",
-                                                                           "Water" = "W",
-                                                                           "Developed" = "DEV")
-                                                                         ),
-                                                                         imageOutput("crop_typePNG", width = "400px", height = "400px"),
-                                                                         textOutput("crop_type_write"),
-                                                                         p(),
-                                                                         plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                                         p(),
-                                                                         plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
-                                                                         
-                                                                         
-                                                                  )
+                                                                  align = "center",
+                                                                  column(6,
+                                                                         align="left",
+                                                                         h2(strong("Land Cover Information")),
+                                                                         p("write upp")),
+                                                                  column(6,
+                                                                         tabsetPanel(
+                                                                           tabPanel("Land Cover by Parcel",
+                                                                                    p()
+                                                                                    
+                                                                                    
+                                                                           ), 
+                                                                           tabPanel("Land Cover Acreage", 
+                                                                                    p()
+                                                                                    
+                                                                           ),
+                                                                           tabPanel("Crop Cover Acreage",
+                                                                                    p())
+                                                                         ))
                                                                   
-                                                         ),
-                                                         column(6,
-                                                                h2(strong("Agricultural History")),
-                                                                p("Agriculture is a dominant economic, cultural, 
-                                                       and social force in Hanover County. Dating back to 
-                                                       the colonial era, tobacco was the dominant cash crop and
-                                                       was cultivated starting in the early 17th century and 
-                                                       continuing well into the 19th century. However, after the 
-                                                       soil become depleted due to overuse and market conditions
-                                                       changed. During the turn of the 19th century, the focus shifted 
-                                                       to other crops including corn, oats, and wheat, and to livestock 
-                                                       farming, including cattle, pigs, sheep, poultry, 
-                                                       etc. It is also seen that the landscape diversified 
-                                                       agriculturally and many farmers started using different
-                                                       crop rotation and soil conservation techniques. Once the 
-                                                       railroad was introduced, transportation made it easier for 
-                                                       farmers to bring their products to the market and at the same
-                                                       time helped facilitate the growth of fruits, vegetables, 
-                                                       and dairy farming. As time went on leading to the early 20th
-                                                       century there were many advancements in technology regarding 
-                                                       agriculture. Manual labor was replaced by machinery and tractors 
-                                                       which led to increased productivity and efficiency. Then farmers 
-                                                       adopted more modern techniques such as crop cultivation, pest control,
-                                                       and irrigation. After multiple wars throughout centuries and
-                                                       especially following World War II, much of the agricultural
-                                                       landscape was converted to residential and commercial areas
-                                                       which prompted suburban development. It is still the case 
-                                                       though that currently nearly half of the county is covered by 
-                                                       forests and/or a mixture of agriculture-forest land. Despite
-                                                       many changes many farms have adapted into niche markets such as 
-                                                       organic farming, agri-tourism, and farmers markets including the
-                                                       support for initiatives to promote sustainable agriculture and to
-                                                       preserve farmland. Currently today, Hanover County’s agricultural
-                                                       presence plays a vital role in its economy, heritage, and local culture.  "),
-                                                                p()
-                                                         )
+                                                         ), 
                                                 ) ,
                                                 tabPanel("Soil Quality",
                                                          p("", style = "padding-top:10px;"),
@@ -1278,37 +1227,37 @@ server <- function(input, output){
   
   output$crop_type_write <- renderText({
     if (input$crop_type == "RC") {
-      return("idk")
+      return("Write up for row crops")
     }
     else if (input$crop_type == "HC") {
-      return("idkd")
+      return("Write up for horticulture crops")
     }
     else if (input$crop_type == "SG") {
-      return("1029")
+      return("Write up for small grains")
     }
     else if (input$crop_type == "DC") {
-      return("098342")
+      return("Write up for double cropped")
     }
     else if (input$crop_type == "F") {
-      return("aj")
+      return("Write up for forages")
     }
     else if (input$crop_type == "TC") {
-      return("asda")
+      return("Write up for tree crops")
     }
     else if (input$crop_type == "O") {
-      return("asda")
+      return("Write up for other")
     }
     else if (input$crop_type == "FR") {
-      return("12343")
+      return("Write up for forest")
     }
     else if (input$crop_type == "WL") { 
-      return("1asfa")
+      return("Write up for wetlands")
     }
     else if (input$crop_type == "W") {
-      return("134rwda")
+      return("Write up for water")
     }
     else if (input$crop_type == "DEV") {
-      return("3453w56w")
+      return("Write up for developed")
     }
   })
   
