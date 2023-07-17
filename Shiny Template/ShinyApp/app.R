@@ -85,6 +85,129 @@ employ_plot <- ggplotly(employ_plot, tooltip = "text")
 ## POLICY =========================================================================================================
 
 ### CONSERVATION ===============================================================================================================
+shapefile_afd <- st_read("data/conservation/hanover_afd_parcels.shp")
+easeshape <- st_read("data/conservation/hanover_easeland_parcels.shp")
+easeshape <- na.omit(easeshape)
+shapefile_NCA <- st_read("data/conservation/hanover_nca_parcels.shp")
+consland_shape <- st_read("data/conservation/hanover_consland_parcels_labels_real.shp")
+hanover_boundary <- st_read("data/conservation/Hanover_County_Boundary.shp")
+boundaryleaflet <- hanover_boundary %>%
+  st_as_sf() 
+
+
+afd <- function(nca) {
+  if (nca  == "1") {
+    return("Agricultural Forest District")
+  } else if (is.na(nca)) {
+    return("Missing") 
+  } else {
+    return("Non Agricultural Forest District")
+  }
+}
+
+shapefile_afd$afd <- sapply(shapefile_afd$nca, afd)
+
+colored_afd <- shapefile_afd %>%
+  filter(afd == "Agricultural Forest District")
+
+color_map_afd <- colorFactor(palette = "#73D055FF", 
+                             domain = colored_afd$afd)
+
+ease <- function(easement) {
+  if (easement  == "1") {
+    return("Conservation Easement")
+  } else if (is.na(easement)) {
+    return("Missing") 
+  } else {
+    return("Non Conservation Easement")
+  }
+}
+easeshape$ease <- sapply(easeshape$easement, ease)
+
+color_ease <- easeshape %>%
+  filter(ease == "Conservation Easement")
+
+color_map_ease <- colorFactor(palette = "#238A8DFF", 
+                              domain = color_ease$ease)
+
+
+labelled_nca <- function(nca) {
+  if (nca  == "1") {
+    return("Natural Conservation Areas")
+  } else if (is.na(nca)) {
+    return("Missing") 
+  } else {
+    return("Non Natural Conservation Areas")
+  }
+}
+
+shapefile_NCA$labelled_nca <- sapply(shapefile_NCA$nca, labelled_nca)
+
+colored_NCA <- shapefile_NCA %>%
+  filter(labelled_nca == "Natural Conservation Areas")
+
+color_map_NCA <- colorFactor(palette = "#FDE725FF", 
+                             domain = colored_NCA$labelled_nca)
+
+
+labelled_consland <- function(conland) {
+  if (conland == "1") {
+    return("Conservation Land")
+  } else if (is.na(conland)) {
+    return("Missing") 
+  } else {
+    return("Non Conservation Land")
+  }
+}
+
+consland_shape$labelled_consland <- sapply(consland_shape$conland, labelled_consland)
+
+colored_consland <- consland_shape %>%
+  filter(labelled_consland == "Conservation Land")
+
+color_map_consland <- colorFactor(palette = "#453781FF", 
+                                  domain = colored_consland$labelled_consland)
+
+
+consleaf <- leaflet() %>%
+        addTiles() %>%
+        addPolygons(data = colored_NCA, color = "transparent", fillColor =  ~color_map_NCA(colored_NCA$labelled_nca), fillOpacity = 1, stroke = TRUE, weight = 1, group = "National Conservation Areas") %>%
+        addPolygons(
+          data = boundaryleaflet,
+          fillColor = "transparent",
+          color = "black",
+          fillOpacity = 0,
+          weight = 0.1
+        ) %>%
+        addPolygons(data = colored_afd, color = "black", fillColor = ~color_map_afd(colored_afd$afd), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Agricultural Forest District") %>%
+        addPolygons(
+          data = boundaryleaflet,
+          fillColor = "transparent",
+          color = "black",
+          fillOpacity = 0,
+          weight = 1
+        ) %>%
+        addPolygons(data = color_ease, color = "black", fillColor = ~color_map_ease(color_ease$ease), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Conservation Easement") %>%
+        addPolygons(
+          data = boundaryleaflet,
+          fillColor = "transparent",
+          color = "black",
+          fillOpacity = 0,
+          weight = 1
+        ) %>%
+        addPolygons(data = colored_consland, color = "transparent", fillColor =  ~color_map_consland(colored_consland$labelled_consland), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Conservation Land") %>%
+        addPolygons(
+          data = boundaryleaflet,
+          fillColor = "transparent",
+          color = "black",
+          fillOpacity = 0,
+          weight = 0.1
+        ) %>%
+        addLayersControl(
+          overlayGroups = c("Agricultural Forest District", "Conservation Easement", "Conservation Land", "National Conservation Areas"),
+          position = "bottomleft",
+          options = layersControlOptions(collapsed = FALSE)
+        )
 
 ### SOLAR ===========================================================================================================
 
@@ -166,7 +289,7 @@ landAll <- ggplot(summed_cat, aes(x = reorder(Category, SumCount),
         plot.title = element_text(face = "bold")) +
   labs(x = "Use Category", 
        y = "Acres", 
-       title = "Land Use in Hanover County by Category", 
+       title = "Land Cover in Hanover County by Category", 
        caption = "Data Source: USDA Cropland-CROS, 2022") 
 
 landAll <- ggplotly(landAll, tooltip = "text")
@@ -381,7 +504,7 @@ ui <- navbarPage(selected = "overview",
                                               
                                               column(6,
                                                      h2(strong("Hanover County Overview")),
-                                                     p("Hanover is known to have a rich history and background.
+                                                     p(style = "text-align: justify;", "Hanover is known to have a rich history and background.
                                             Formed by the Virginia General Assembly on November 26th,
                                             1720 named in honor of King George the First of England, it is
                                             iconic for the historic landmarks in the county and other historical places.
@@ -424,7 +547,7 @@ ui <- navbarPage(selected = "overview",
                                               fluidRow(style = "margin-left: 100px; margin-right: 100px;",
                                                        align = "center",
                                                        h1(strong("Maps Here")),
-                                                       
+                                                       leafletOutput("consleaf") %>% withSpinner(type = 6, color = "#861f41", size = 1.25)
                                               ),
                                               p(),
                                               column(12,
@@ -1273,6 +1396,11 @@ server <- function(input, output){
   output$zoneHan<- renderLeaflet({
     
     zoneHan@map
+    
+  })
+  output$consleaf <- renderLeaflet({
+    
+    consleaf
     
   })
 
