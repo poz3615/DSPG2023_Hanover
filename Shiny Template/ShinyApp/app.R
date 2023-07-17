@@ -753,16 +753,29 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          tabsetPanel(
                                                                            tabPanel("Land Cover by Parcel",
-                                                                                    p()
+                                                                                    selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
+                                                                                      "Row crops" = "RC",
+                                                                                      "Horticulture crops" = "HC",
+                                                                                      "Small grains" = "SG",
+                                                                                      "Double cropped" = "DC",
+                                                                                      "Forages" = "F",
+                                                                                      "Tree crops" = "TC",
+                                                                                      "Other" = "O",
+                                                                                      "Forested" = "FR",
+                                                                                      "Wetlands" = "WL",
+                                                                                      "Water" = "W",
+                                                                                      "Developed" = "DEV")
+                                                                                    ),
+                                                                                    imageOutput("crop_typePNG", width = "400px", height = "400px")
                                                                                     
                                                                                     
                                                                            ), 
                                                                            tabPanel("Land Cover Acreage", 
-                                                                                    p()
+                                                                                    plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
                                                                                     
                                                                            ),
                                                                            tabPanel("Crop Cover Acreage",
-                                                                                    p())
+                                                                                    plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5))
                                                                          ))
                                                                   
                                                          ), 
