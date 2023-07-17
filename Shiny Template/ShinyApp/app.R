@@ -882,6 +882,41 @@ ui <- navbarPage(selected = "overview",
                                                                   
                                                          ),
                                                          
+                                                ),
+                                                tabPanel("Methodology",
+                                                         p("", style = "padding-top:10px;"),
+                                                         fluidRow(style = "margin: 8px;",
+                                                                  align = "center",
+                                                                  column(6,
+                                                                         h2(strong("Solar Suitability Score")),
+                                                                         p("Hanover"),
+                                                                         p(),
+                                                                         p("In"),
+                                                                         p(),
+                                                                         h2(strong("Agrivoltaic Viability Rating")),
+                                                                         p("Solar"),
+                                                                         p()
+                                                                         
+                                                                  ),
+                                                                  column(6,
+
+                                                                         selectInput(
+                                                                           "solar.score",
+                                                                           "Solar Suitabilty Score",
+                                                                           c("Buffer 1" = "buffer_1",
+                                                                             "Buffer 2" = "buffer_2",
+                                                                             "Buffer 3" = "buffer_3")),
+                                                                           selectInput(
+                                                                             "solar.score",
+                                                                             "Agrivoltaic Viability Rating",
+                                                                             c("Buffer 1" = "buffer_1",
+                                                                               "Buffer 2" = "buffer_2",
+                                                                               "Buffer 3" = "buffer_3")
+                                                                         )
+                                                                  )
+                                                                  
+                                                         ),
+                                                         
                                                 )
                                               ) 
                                      ), 
