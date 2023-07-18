@@ -546,8 +546,10 @@ ui <- navbarPage(selected = "overview",
                                                             p("This map highlights the conservation land within Hanover County, incorporating data provided by the Virginia Department of Conservation and 
                                                               Recreation. These lands encompass a variety of state, federal, local, and privately managed areas dedicated to conservation efforts. 
                                                               Their purpose is to protect and preserve natural habitats, wildlife, ecosystems, and scenic landscapes. Landowners are responsible for 
-                                                              implementing conservation practices, such as regulating public access and managing resources."),
-                                                            p(),
+                                                              implementing conservation practices, such as regulating public access and managing resources.")),
+                                                     
+                                                            column(6,
+                                                                   align="left",
                                                             h4(strong("Agricultural Forestal Districts")),
                                                             p("The map presents the parcels in Hanover County designated as Agricultural/Forestal Districts (AFD),
                                                               utilizing data sourced from the Virginia Department of Emergency Management. These districts conserve rural land for agricultural production, 
@@ -558,6 +560,7 @@ ui <- navbarPage(selected = "overview",
                                                               designated areas."),
                                                             p()
                                                      ),
+                                           
                                                      column(6,
                                                             align="left",
                                                             h4(strong("Conservation Easements")),
@@ -565,8 +568,10 @@ ui <- navbarPage(selected = "overview",
                                                             p("This map displays the conservation easements present in Hanover County, utilizing data provided by the Virginia Department of Conservation and Recreation.
                                                               Conservation easements entail binding agreements between landowners and government agencies, serving as limitations on future land development and 
                                                               subdivision. Notably, landowners retain control over their properties and the right to sell them. The specifics of these easement agreements vary but 
-                                                              consistently aim to preserve land for rural uses, such as agriculture, forest management, and recreational activities like hunting and fishing."),
-                                                            p(),
+                                                              consistently aim to preserve land for rural uses, such as agriculture, forest management, and recreational activities like hunting and fishing.")
+                                                            ),
+                                                     column(6,
+                                                            align="left",
                                                             h4(strong("Natural Conservation Easements")),
                                                             p("The map depicts parcels within Hanover County that have a portion of their land located within 100 ft of waterways. The data utilized in this analysis is
                                                               sourced from Hanover County GIS Hub, providing insights into parcels with land areas protected by the Chesapeake Bay Preservation Act. 
@@ -578,6 +583,8 @@ ui <- navbarPage(selected = "overview",
                                                      
                                                      
                                               ),
+                                              p(),
+                                              p(),
                                               p(),
                                               column(12,
                                                      align = "center",
@@ -592,8 +599,9 @@ ui <- navbarPage(selected = "overview",
                                                               It influences the localities to designate parcels of land in Hanover County for use as open-space land to conserve the land values. Open-space 
                                                               land is defined as “any land which is provided or preserved for (i) park or recreational purposes, (ii) conservation of land or other natural 
                                                               resources, (iii) historic or scenic purposes, (iv) assisting in the shaping of the character, direction, and timing of community development, 
-                                                              (v) wetlands as defined in §28.2-1300, or (vi) agricultural and forestall production.” [6] "),
-                                                            p(),
+                                                              (v) wetlands as defined in §28.2-1300, or (vi) agricultural and forestall production.” [6] ")),
+                                                     column(6,
+                                                            align="left",
                                                             h4(strong("Conservation Reserve Program (CRP)")),
                                                             p(),
                                                             p("The CRP is a land conservation program managed by the Farm Service Agency aimed to trade yearly rental payments to farmers enrolled in agreement to 
@@ -614,8 +622,9 @@ ui <- navbarPage(selected = "overview",
                                                               Additionally, conservation easements are implemented to arrange a legal agreement permitting private ownership of the land while guaranteeing that the land
                                                               values are maintained. The legal agreement is between the landowner and government agency or non-profit land trust. The FLP works to preserve working forests
                                                               in order to protect water quality, recreation opportunities, and forest products. To qualify for the FLP in Virginia, land must be established within a Forest Legacy 
-                                                              Area."),
-                                                            p(),
+                                                              Area.")),
+                                                     column(6,
+                                                            align="left",
                                                             h4(strong("Emergency Conservation Program (ECP)")),
                                                             p(),
                                                             p("The program aims to support agricultural producers, such as farmers and ranchers, in repairing and restoring any damaged farmland, conservation land and 
@@ -657,9 +666,10 @@ ui <- navbarPage(selected = "overview",
                                                               solar policy that creates “an electric billing tool that uses the electric grid to “store” excess energy produced by your solar panel system.” 
                                                               Net Energy Metering allows unused energy produced from your solar panels to be credited back to you. [2] Virginia General Assembly increased the 
                                                               maximum capacity of renewable energy generation from residential generators from 20 kilowatts to 25 kilowatts and non-residential generators from 
-                                                              one to three megawatts. [3] Additionally, the aggregated capacity of solar energy from agricultural generators is 500 kilowatts. [4]"),
-                                                            p(),
-                                                            h4(strong("VA Creation of Solar Easements (VA. Code 55.1-137)")),
+                                                              one to three megawatts. [3] Additionally, the aggregated capacity of solar energy from agricultural generators is 500 kilowatts. [4]")),
+                                                     column(6,
+                                                            align="left",
+                                                        h4(strong("VA Creation of Solar Easements (VA. Code 55.1-137)")),
                                                             p(),
                                                             p("Virginia law allows property owners to create solar easements enacted in writing which grant them rights to prohibit neighboring property owners from
                                                               implementing anything on their land projecting shade onto easement owner’s property. These easements must include “The vertical and horizontal angles, 
@@ -667,6 +677,7 @@ ui <- navbarPage(selected = "overview",
                                                               solar easement is granted or will be terminated; and Any provisions for compensation of the owner of the property subject to the solar easement.” [5] "),
                                                             p()
                                                      ),
+                                                     column(12,p()),
                                                      column(6,
                                                             align = "left",
                                                             p(),
@@ -677,9 +688,10 @@ ui <- navbarPage(selected = "overview",
                                                               on size, place, and placement of solar energy devices on personal property. Restrictions can be deemed unreasonable if the solar panel design “increases 
                                                               the cost of installation of the solar energy collection device by five percent over the projected cost of the initially proposed installation or (ii) 
                                                               reduces the energy production by the solar energy collection device by 10 percent below the projected energy production of the initially proposed 
-                                                              installation.” [7] Additionally, community associations have authority to restrain solar farm developments in common areas."),
-                                                            p(),
-                                                            h4(strong("Community Solar Pilot Program")),
+                                                              installation.” [7] Additionally, community associations have authority to restrain solar farm developments in common areas.")),
+                                                     column(6,
+                                                            align="left",
+                                                     h4(strong("Community Solar Pilot Program")),
                                                             p(),
                                                             p("Dominion Energy created the Community Solar Pilot program which allows customers to purchase energy and Renewable Energy Certificates (RECs) from solar 
                                                               facilities without having to install solar panels directly onto their property. This goal is to help reduce the carbon footprint by providing solar energy 
@@ -732,78 +744,41 @@ ui <- navbarPage(selected = "overview",
                                                                 ),
                                                 tabPanel("Land Cover",
                                                          p("", style = "padding-top:10px;"),
-                                                          
-                                                         column(6,
-                                                                h2(strong("What we have so far")),
-                                                                p("Used Arc GIS Pro with USDA Cropland-CROS data 
-                                                       to map types of cropland cover over Hanover County."),
-                                                                p(),
-                                                                p("Joined the data from the cropland survey 
-                                                       and parcel data in Stata to create a clean data 
-                                                       file we will use for maps and graphs in R.")
-                                                         ),
-                                                         
                                                          fluidRow(style = "margin: 8px;",
-                                                                  column(6, 
-                                                                         h4(strong("Land Covers")),
-                                                                         selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
-                                                                           "Row crops" = "RC",
-                                                                           "Horticulture crops" = "HC",
-                                                                           "Small grains" = "SG",
-                                                                           "Double cropped" = "DC",
-                                                                           "Forages" = "F",
-                                                                           "Tree crops" = "TC",
-                                                                           "Other" = "O",
-                                                                           "Forested" = "FR",
-                                                                           "Wetlands" = "WL",
-                                                                           "Water" = "W",
-                                                                           "Developed" = "DEV")
-                                                                         ),
-                                                                         imageOutput("crop_typePNG", width = "400px", height = "400px"),
-                                                                         p(),
-                                                                         plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                                         p(),
-                                                                         plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
-                                                                         
-                                                                         
-                                                                  )
+                                                                  align = "center",
+                                                                  column(6,
+                                                                         align="left",
+                                                                         h2(strong("Land Cover Information")),
+                                                                         textOutput("crop_type_write")),
+                                                                  column(6,
+                                                                         tabsetPanel(
+                                                                           tabPanel("Land Cover by Parcel",
+                                                                                    selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
+                                                                                      "Row crops" = "RC",
+                                                                                      "Horticulture crops" = "HC",
+                                                                                      "Small grains" = "SG",
+                                                                                      "Double cropped" = "DC",
+                                                                                      "Forages" = "F",
+                                                                                      "Tree crops" = "TC",
+                                                                                      "Other" = "O",
+                                                                                      "Forested" = "FR",
+                                                                                      "Wetlands" = "WL",
+                                                                                      "Water" = "W",
+                                                                                      "Developed" = "DEV")
+                                                                                    ),
+                                                                                    imageOutput("crop_typePNG", width = "400px", height = "400px")
+                                                                                    
+                                                                                    
+                                                                           ), 
+                                                                           tabPanel("Land Cover Acreage", 
+                                                                                    plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                                    
+                                                                           ),
+                                                                           tabPanel("Crop Cover Acreage",
+                                                                                    plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5))
+                                                                         ))
                                                                   
-                                                         ),
-                                                         column(6,
-                                                                h2(strong("Agricultural History")),
-                                                                p("Agriculture is a dominant economic, cultural, 
-                                                       and social force in Hanover County. Dating back to 
-                                                       the colonial era, tobacco was the dominant cash crop and
-                                                       was cultivated starting in the early 17th century and 
-                                                       continuing well into the 19th century. However, after the 
-                                                       soil become depleted due to overuse and market conditions
-                                                       changed. During the turn of the 19th century, the focus shifted 
-                                                       to other crops including corn, oats, and wheat, and to livestock 
-                                                       farming, including cattle, pigs, sheep, poultry, 
-                                                       etc. It is also seen that the landscape diversified 
-                                                       agriculturally and many farmers started using different
-                                                       crop rotation and soil conservation techniques. Once the 
-                                                       railroad was introduced, transportation made it easier for 
-                                                       farmers to bring their products to the market and at the same
-                                                       time helped facilitate the growth of fruits, vegetables, 
-                                                       and dairy farming. As time went on leading to the early 20th
-                                                       century there were many advancements in technology regarding 
-                                                       agriculture. Manual labor was replaced by machinery and tractors 
-                                                       which led to increased productivity and efficiency. Then farmers 
-                                                       adopted more modern techniques such as crop cultivation, pest control,
-                                                       and irrigation. After multiple wars throughout centuries and
-                                                       especially following World War II, much of the agricultural
-                                                       landscape was converted to residential and commercial areas
-                                                       which prompted suburban development. It is still the case 
-                                                       though that currently nearly half of the county is covered by 
-                                                       forests and/or a mixture of agriculture-forest land. Despite
-                                                       many changes many farms have adapted into niche markets such as 
-                                                       organic farming, agri-tourism, and farmers markets including the
-                                                       support for initiatives to promote sustainable agriculture and to
-                                                       preserve farmland. Currently today, Hanover County’s agricultural
-                                                       presence plays a vital role in its economy, heritage, and local culture.  "),
-                                                                p()
-                                                         )
+                                                         ), 
                                                 ) ,
                                                 tabPanel("Soil Quality",
                                                          p("", style = "padding-top:10px;"),
@@ -876,7 +851,15 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Land Suitability Analysis")),
-                                                                         p("stuff"),
+                                                                         p("This map shows areas of land within Hanover County based on the level of limitation they pose to solar farm development. 
+                                                                           Using NRCS Web Soil Survey data we were able to map the soil types across the county into three different categories, “Not Suitable”, 
+                                                                           “Suitable” and “Not Rated”. The index takes into account slope, slope aspect, rock fragment content, corrosivity, saturation and 
+                                                                           shrink-swell properties of the soil. The best land for solar farm development within Hanover County is the category of “suitable”. 
+                                                                           This land type accounts for 58.15% of Hanover and is concentrated on the eastern end of the county where the majority of prime farmland 
+                                                                           is also located. The category of “not suitable” accounts for 40.33% of the area. This type of land is not suitable for solar farms 
+                                                                           and will only be considered if there are no other options. Areas categorized as “not rated” provide insufficient data for the index 
+                                                                           and are only 1.52% of the total area with quarries filling the majority of that space. This variable is important to consider for a 
+                                                                           solar assesment as having flat and workable land is crucial for the installation of solar farms."),
                                                                          p()
                                                                          
                                                                   ),
@@ -894,10 +877,7 @@ ui <- navbarPage(selected = "overview",
                                                                                     
                                                                            ) 
                                                                            
-                                                                         # h2(strong("Visualizations")),
-                                                                         # p("Visualizations go here"),
-                                                                         # plotlyOutput("rateacre", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                                         # leafletOutput("limitS") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+
                                                                          
                                                                   ))
                                                          )
@@ -947,7 +927,11 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Road Access Analysis")),
-                                                                         p()
+                                                                         p("Solar farms require large machinery and materials to build, and once constructed they must be regularly serviced and maintained. 
+                                                                           Therefore, adequate road acess is necessary when determining suitable sites for solar farm development. Hanover County GIS Hub provides a 
+                                                                           dataset displaying the centerline of all public roadways within the county. We were able to use this data to select all parcels within 
+                                                                           100 feet of the roadway centerlines. A 100 foot buffer was necessary to account for all roadside ditches and marginal land. This variable 
+                                                                           helps add to our solar assesment by showing parcels within Hanover County that have adequate access to be developed[2].")
                                   
                                                                   ),
                                                                   column(6,
@@ -967,7 +951,12 @@ ui <- navbarPage(selected = "overview",
                                                                   column(12,
                                                                          align="left",
                                                                          h2(strong("Background")),
-                                                                         p("write up")),
+                                                                         p("To analyze suitable locations for solar farm development within Hanover County we created an index map displaying the Solar Suitablity 
+                                                                           Score of parcels with the most desireable characteristics. The parcels displayed all have at least 10 acres of suitable land for solar, 
+                                                                           are within 100 feet of road access, and are not zoned for residential use. The Solar Suitability Score ranks parcels with all of these 
+                                                                           characteristics on a range of 0 – 100 based on the amount of suitable solar farm land available. We then organized the maps based on 
+                                                                           their respective buffer zones, and colored them according to the score, yellow being the largest amount, and purple being the least. 
+                                                                           These index maps help give a comprehensive understanding of the areas within Hanover County that are most suitable for solar farm development.")),
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Description of Map")),
@@ -975,8 +964,15 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          h2(strong("Index Map")),
                                                                          p("Visualizations go here"),
-                                                                         checkboxGroupInput(inputId = "bufferType", label = h3("Select buffer types: "),
-                                                                                            choices = c("Buffer One", "Buffer Two", "Buffer Three"))
+                                                                         selectInput(
+                                                                           "ssbufferType",
+                                                                           "Solar Index Buffer",
+                                                                           c("Buffer 1" = "buffer_1",
+                                                                             "Buffer 2" = "buffer_2",
+                                                                             "Buffer 3" = "buffer_3"),
+                                                                           
+                                                                         ),
+                                                                         imageOutput("ssIndexPNG", width = "400px", height = "400px")
                                                                   )
                                                                   
                                                          ),
@@ -997,8 +993,15 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          h2(strong("Index Map")),
                                                                          p("Visualizations go here"),
-                                                                         checkboxGroupInput(inputId = "bufferType", label = h3("Select buffer types: "),
-                                                                                            choices = c("Buffer One", "Buffer Two", "Buffer Three"))
+                                                                         selectInput(
+                                                                           "arbufferType",
+                                                                           "Agrivoltaic Index Buffer",
+                                                                           c("Buffer 1" = "buffer_1",
+                                                                             "Buffer 2" = "buffer_2",
+                                                                             "Buffer 3" = "buffer_3"),
+                                                                           
+                                                                         ),
+                                                                         imageOutput("arIndexPNG", width = "400px", height = "400px")
                                                                   )
                                                                   
                                                          ),
@@ -1009,32 +1012,34 @@ ui <- navbarPage(selected = "overview",
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
                                                                   column(6,
-                                                                         h2(strong("Solar Suitability Score")),
-                                                                         p("Hanover"),
-                                                                         p(),
-                                                                         p("In"),
-                                                                         p(),
-                                                                         h2(strong("Agrivoltaic Viability Rating")),
-                                                                         p("Solar"),
-                                                                         p()
-                                                                         
-                                                                  ),
+                                                                         h2(strong("Index Methodology")),
+                                                                         textOutput("method_write")),
                                                                   column(6,
+                                                                         tabsetPanel(
+                                                                          
+                                                                           tabPanel("Solar Suitability Score", 
+                                                                                    selectInput(
+                                                                                      "solar.score",
+                                                                                      "Solar Suitabilty Score",
+                                                                                      c("Buffer 1" = "buffer_1",
+                                                                                        "Buffer 2" = "buffer_2",
+                                                                                        "Buffer 3" = "buffer_3")),
+                                                                                    imageOutput("ssMethodPNG", width = "400px", height = "400px")
+                                                                                    
+                                                                           ),
+                                                                           tabPanel("Agrivoltaic Viability Rating",
+                                                                                    selectInput(
+                                                                                      "av.rating",
+                                                                                      "Agrivoltaic Viability Rating",
+                                                                                      c("Buffer 1" = "buffer_1",
+                                                                                        "Buffer 2" = "buffer_2",
+                                                                                        "Buffer 3" = "buffer_3")
+                                                                                    ),
+                                                                                    imageOutput("arMethodPNG", width = "400px", height = "400px")
+                                                                         )),
 
-                                                                         selectInput(
-                                                                           "solar.score",
-                                                                           "Solar Suitabilty Score",
-                                                                           c("Buffer 1" = "buffer_1",
-                                                                             "Buffer 2" = "buffer_2",
-                                                                             "Buffer 3" = "buffer_3")),
-                                                                           selectInput(
-                                                                             "solar.score",
-                                                                             "Agrivoltaic Viability Rating",
-                                                                             c("Buffer 1" = "buffer_1",
-                                                                               "Buffer 2" = "buffer_2",
-                                                                               "Buffer 3" = "buffer_3")
                                                                          )
-                                                                  )
+                                                                  
                                                                   
                                                          ),
                                                          
@@ -1054,35 +1059,43 @@ ui <- navbarPage(selected = "overview",
                                    p("", style = "padding-top:10px;"),
                                           fluidRow(style = "margin: 6px;", align = "justify",
                                                    column(4,
-                                                   img(src = "data-acs.png", style = "display: inline; float: left;", width = "180px"),
-                                                   p(strong("American Community Survey"), "The American Community Survey (ACS) is an demographics survey conducted by the U.S Census Bureau. The ACS samples households to compile 1-year and 5-year datasets
-                                      providing information on social and economic characteristics including employment, education, and income. This project utilizes ACS 2016/2020 5-year
-                                      estimates to obtain county- and census tract-level data to explore Goochland and Powhatan Counties' resident characteristics.")),
+                                                   img(src = "USDA.png", style = "display: inline; float: left;", width = "150px"),
+                                                   p(strong("USDA National Agricultural Statistics Service"), "The National Agricultural Statistics Service (NASS) is 
+                                                   an agency within the USDA and provides comprehensive agricultural data, 
+                                                     including land use and crop information. We used this data to analyze land and crop cover in Hanover County.")),
                                                    column(4,
-                                                   img(src = "goochland.jpg", style = "display: inline; float: left;", width = "150px"),
-                                                   p(strong("Goochland County Administrative Data"), "Goochland County provided us with parcel/property data which allowed us to gain a better understanding of the different land uses and parcellation
-                                            that has occured over a 5 year period (2018 - 2022). The team used this data to create visualizations, specifically focusing on the distribution and change in land use in the county.")),
+                                                   img(src = "NRCS.png", style = "display: inline; float: left;", width = "180px"),
+                                                   p(strong("Natural Resource Conservation Service"), "The Natural Resource Conservation Service (NRCS) Web Soil Survey offers detailed 
+                                                     soil information, such as soil types, properties, and suitability for various land uses, on areas of land nationwide. This data 
+                                                     was used for classifications and mapping of prime farmland and suitable solar farm land.")),
                                                    column(4,
-                                                   img(src = "powhatan.jpg", style = "display: inline; float: left;", width = "150px"),
-                                                   p(strong("Powhatan County Administrative Data"), "Powhatan County provided us with parcel/property data which allowed us to gain a better understanding of the different land uses and parcellation
-                                            that has occured over a 8 year period (2014 - 2021). The team used this data to create visualizations, specifically focusing on the distribution and change in land use in the county.")),
+                                                   img(src = "VADCR.png", style = "display: inline; float: left;", width = "150px"),
+                                                   p(strong("Virginia Department of Conservation and Recreation"), "The Virginia Department of Conservation and Recreation provides 
+                                                     geospatial data on conservation areas, natural resources, and environmental protection efforts. We used data on Virginia conservation 
+                                                     areas and easements for the conservation section of our project.")),
                                           ),
 
                                           fluidRow(style = "margin: 6px;", align = "justify",
                                                    column(4,
-                                                   img(src = "nass.jpg", style = "display: inline; float: left;", width = "130px"),
-                                                   p(strong("USDA National Agricultural Statistics Service"), "The National Agricultural Statistics Service (NASS) under the United States Department of Agriculture (USDA) provides statistics on a wide variety
-                                                    of agricultural topics. This project specifically relies on crop layer data to create maps and to conduct a statistical analysis on the probablity of land use conversion.")),
+                                                   img(src = "VDEM.png", style = "display: inline; float: left;", width = "150px"),
+                                                   p(strong("Virginia Department of Emergency Management"), "The Virginia Department of Emergency Management offers data on emergency management, 
+                                                     hazard risks, and resilience planning. They also provide a geospatial data layer of all tax parcels in Virginia designated as Agricultural 
+                                                     Forestal Districts which was used in our conservation analysis.")),
                                                    column(4,
-                                                   img(src = "ncss.jpg", style = "display: inline; float: left;", width = "150px"),
-                                          p(strong("USDA National Cooperative Soil Survey"), "The National Cooperative Soil Survey (NCSS) under the USDA provides soil data which was used to generate soil quality maps for both counties.
-                                            The data was also used for our statistical analysis to predict the occurrence of land use conversion.")),
+                                                   img(src = "HC.png", style = "display: inline; float: left;", width = "150px"),
+                                          p(strong("Hanover County GIS Hub"), "The Hanover County GIS Hub is a local resource providing geospatial data specific to Hanover County, including parcel information, 
+                                            roadways across the county, and all natural conservation areas. We leveraged these specific datasets in contribution to a county-wide analysis.")),
                                           column(4,
-                                          img(src = "vdot_crop.png", style = "display: inline; float: left;", width = "180px"),
-                                          p(strong("VDOT Traffic Data"), "The Virginia Department of Transportation (VDOT) is responsible for building, maintaining and operating the state's roads, bridges and tunnels. VDOT also conducts
-                                          a program where traffic data are gathered from sensors in or along streets and highways and other sources.  This data includes estimates of the average number of vehicles that traveled each segment
-                                          of road and daily vehicle miles traveled for specific groups of facilities and vehicle types are calculated. This project utilizes VDOT data to create traffic volume and commute maps for both counties."))
-                                   )),
+                                          img(src = "HIFLD.png", style = "display: inline; float: left;", width = "150px"),
+                                          p(strong("Homeland Infrastructure Foundation Level Database"), "The Homeland Infrastructure Foundation Level Database provides geospatial data on critical infrastructure. 
+                                            We used data on transmission line and substation location to detect parcels within ideal proximity of existing infrastructure.")),
+                                          fluidRow(style = "margin: 6px;", align = "justify",
+                                          column(4,
+                                                 img(src = "ACS.png", style = "display: inline; float: left;", width = "150px"),
+                                                 p(strong("American Community Survey"), "The ACS is an ongoing survey conducted by the U.S. Census Bureau that provides social, economic, housing, 
+                                                   and demographic data for smaller geographic areas such as Hanover County. We used this data to gain insight on the sociodemographic and socioeconomic background of Hanover County.")))
+                                   ),
+                                   ),
 
                           ),
 
@@ -1259,8 +1272,114 @@ server <- function(input, output){
     consleaf
     
   })
-
   
+  output$crop_type_write <- renderText({
+    if (input$crop_type == "RC") {
+      return("Write up for row crops")
+    }
+    else if (input$crop_type == "HC") {
+      return("Write up for horticulture crops")
+    }
+    else if (input$crop_type == "SG") {
+      return("Write up for small grains")
+    }
+    else if (input$crop_type == "DC") {
+      return("Write up for double cropped")
+    }
+    else if (input$crop_type == "F") {
+      return("Write up for forages")
+    }
+    else if (input$crop_type == "TC") {
+      return("Write up for tree crops")
+    }
+    else if (input$crop_type == "O") {
+      return("Write up for other")
+    }
+    else if (input$crop_type == "FR") {
+      return("Write up for forest")
+    }
+    else if (input$crop_type == "WL") { 
+      return("Write up for wetlands")
+    }
+    else if (input$crop_type == "W") {
+      return("Write up for water")
+    }
+    else if (input$crop_type == "DEV") {
+      return("Write up for developed")
+    }
+  })
+  
+  
+  output$ssMethodPNG <- renderImage(deleteFile = FALSE,{
+    if (input$solar.score == "buffer_1") {
+      return(list(src = "www/SSB1.png", width = "125%", height = "100%"))
+    }
+    else if (input$solar.score == "buffer_2") {
+      return(list(src = "www/SSB2.png", width = "125%", height = "100%"))
+    }
+    else if (input$solar.score == "buffer_3") {
+      return(list(src = "www/SSB3.png", width = "125%", height = "100%"))
+    }
+  })
+  
+  output$arMethodPNG <- renderImage(deleteFile = FALSE,{
+    if (input$av.rating == "buffer_1") {
+      return(list(src = "www/ARB1.png", width = "125%", height = "100%"))
+    }
+    else if (input$av.rating == "buffer_2") {
+      return(list(src = "www/ARB2.png", width = "125%", height = "100%"))
+    }
+    else if (input$av.rating == "buffer_3") {
+      return(list(src = "wwwARSB3.png", width = "125%", height = "100%"))
+    }
+  })
+  
+  output$method_write <- renderText({
+    if (input$solar.score == "buffer_1") {
+      return("Writ eup buffer 1")
+    }
+    else if (input$solar.score == "buffer_2") {
+      return("Write up buffer 2")
+    }
+    else if (input$solar.score == "buffer_3") {
+      return("Write up buffer 3")
+    }
+    else if (input$av.rating == "buffer_1") {
+      return("Write up buffer 1")
+    }
+    else if (input$av.rating == "buffer_2") {
+      return("Write up buffer 2")
+    }
+    else if (input$av.rating == "buffer_3") {
+      return("Write up buffer 3")
+    }
+  })
+  
+  output$ssIndexPNG <- renderImage(deleteFile = FALSE,{
+    if (input$ssbufferType == "buffer_1") {
+      return(list(src = "www/SSMapB1.png", width = "125%", height = "100%"))
+    }
+    else if (input$ssbufferType == "buffer_2") {
+      return(list(src = "www/SSMapB2.png", width = "125%", height = "100%"))
+    }
+    else if (input$ssbufferType == "buffer_3") {
+      return(list(src = "www/SSMapB3.png", width = "125%", height = "100%"))
+    }
+  })
+  
+  output$arIndexPNG <- renderImage(deleteFile = FALSE,{
+    if (input$arbufferType == "buffer_1") {
+      return(list(src = "www/ARMapB1.png", width = "125%", height = "100%"))
+    }
+    else if (input$arbufferType == "buffer_2") {
+      return(list(src = "www/ARMapB2.png", width = "125%", height = "100%"))
+    }
+    else if (input$arbufferType == "buffer_3") {
+      return(list(src = "www/ARMapB3.png", width = "125%", height = "100%"))
+    }
+  })
 }
+
+
 
 shinyApp(ui = ui, server = server)
