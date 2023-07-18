@@ -1011,11 +1011,13 @@ ui <- navbarPage(selected = "overview",
                                                                   align = "center",
                                                                   column(6,
                                                                          h2(strong("Index Methodology")),
+                                                                         textOutput("output_text"),
+                                                                         textOutput("selected_buffer_text"),
                                                                          textOutput("ssmethod_write"),
                                                                          textOutput("armethod_write")),
                                                                   column(6,
                                                                          tabsetPanel(
-                                                                          
+                                                                           id = "tabs",
                                                                            tabPanel("Solar Suitability Score", 
                                                                                     selectInput(
                                                                                       "solar.score",
@@ -1416,6 +1418,52 @@ server <- function(input, output){
       return("Write up buffer 3")
     }
   })
+  
+  selected_tab <- reactive({
+    input$tabs
+  })
+  
+  # Reactive expression to observe the selected buffer in Solar tab
+  selected_solar_buffer <- reactive({
+    input$solar.score
+  })
+  
+  # Reactive expression to observe the selected buffer in Agriculture tab
+  selected_agri_buffer <- reactive({
+    input$av.rating
+  })
+  
+  output_text <- reactive({
+    selected <- selected_tab()
+    
+    if (selected == "Solar Suitability Score") {
+      return("You are currently on the Solar tab.")
+    } else if (selected == "Agrivoltaic Viability Rating") {
+      return("You are currently on the Agriculture tab.")
+    } 
+  })
+  selected_buffer_text <- reactive({
+    selected <- selected_tab()
+    
+    if (selected == "Solar Suitability Score") {
+      buffer <- selected_solar_buffer()
+      return(paste("Selected buffer in Solar tab:", buffer))
+    } else if (selected == "Agrivoltaic Viability Rating") {
+      buffer <- selected_agri_buffer()
+      return(paste("Selected buffer in Agriculture tab:", buffer))
+    } 
+  })
+  
+  output$output_text <- renderText({
+    output_text()
+  })
+  
+  output$selected_buffer_text <- renderText({
+    selected_buffer_text()
+  })
+
+  
+  
 }
 
 
