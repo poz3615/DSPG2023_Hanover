@@ -1030,34 +1030,41 @@ ui <- navbarPage(selected = "overview",
                                           fluidRow(style = "margin: 6px;", align = "justify",
                                                    column(4,
                                                    img(src = "data-acs.png", style = "display: inline; float: left;", width = "180px"),
-                                                   p(strong("American Community Survey"), "The American Community Survey (ACS) is an demographics survey conducted by the U.S Census Bureau. The ACS samples households to compile 1-year and 5-year datasets
-                                      providing information on social and economic characteristics including employment, education, and income. This project utilizes ACS 2016/2020 5-year
-                                      estimates to obtain county- and census tract-level data to explore Goochland and Powhatan Counties' resident characteristics.")),
+                                                   p(strong("USDA National Agricultural Statistics Service"), "The National Agricultural Statistics Service (NASS) is 
+                                                   an agency within the USDA and provides comprehensive agricultural data, 
+                                                     including land use and crop information. We used this data to analyze land and crop cover in Hanover County.")),
                                                    column(4,
                                                    img(src = "goochland.jpg", style = "display: inline; float: left;", width = "150px"),
-                                                   p(strong("Goochland County Administrative Data"), "Goochland County provided us with parcel/property data which allowed us to gain a better understanding of the different land uses and parcellation
-                                            that has occured over a 5 year period (2018 - 2022). The team used this data to create visualizations, specifically focusing on the distribution and change in land use in the county.")),
+                                                   p(strong("Natural Resource Conservation Service"), "The Natural Resource Conservation Service (NRCS) Web Soil Survey offers detailed 
+                                                     soil information, such as soil types, properties, and suitability for various land uses, on areas of land nationwide. This data 
+                                                     was used for classifications and mapping of prime farmland and suitable solar farm land.")),
                                                    column(4,
                                                    img(src = "powhatan.jpg", style = "display: inline; float: left;", width = "150px"),
-                                                   p(strong("Powhatan County Administrative Data"), "Powhatan County provided us with parcel/property data which allowed us to gain a better understanding of the different land uses and parcellation
-                                            that has occured over a 8 year period (2014 - 2021). The team used this data to create visualizations, specifically focusing on the distribution and change in land use in the county.")),
+                                                   p(strong("Virginia Department of Conservation and Recreation"), "The Virginia Department of Conservation and Recreation provides 
+                                                     geospatial data on conservation areas, natural resources, and environmental protection efforts. We used data on Virginia conservation 
+                                                     areas and easements for the conservation section of our project.")),
                                           ),
 
                                           fluidRow(style = "margin: 6px;", align = "justify",
                                                    column(4,
                                                    img(src = "nass.jpg", style = "display: inline; float: left;", width = "130px"),
-                                                   p(strong("USDA National Agricultural Statistics Service"), "The National Agricultural Statistics Service (NASS) under the United States Department of Agriculture (USDA) provides statistics on a wide variety
-                                                    of agricultural topics. This project specifically relies on crop layer data to create maps and to conduct a statistical analysis on the probablity of land use conversion.")),
+                                                   p(strong("Virginia Department of Emergency Management"), "The Virginia Department of Emergency Management offers data on emergency management, 
+                                                     hazard risks, and resilience planning. They also provide a geospatial data layer of all tax parcels in Virginia designated as Agricultural 
+                                                     Forestal Districts which was used in our conservation analysis.")),
                                                    column(4,
                                                    img(src = "ncss.jpg", style = "display: inline; float: left;", width = "150px"),
-                                          p(strong("USDA National Cooperative Soil Survey"), "The National Cooperative Soil Survey (NCSS) under the USDA provides soil data which was used to generate soil quality maps for both counties.
-                                            The data was also used for our statistical analysis to predict the occurrence of land use conversion.")),
+                                          p(strong("Hanover County GIS Hub"), "The Hanover County GIS Hub is a local resource providing geospatial data specific to Hanover County, including parcel information, 
+                                            roadways across the county, and all natural conservation areas. We leveraged these specific datasets in contribution to a county-wide analysis.")),
                                           column(4,
                                           img(src = "vdot_crop.png", style = "display: inline; float: left;", width = "180px"),
-                                          p(strong("VDOT Traffic Data"), "The Virginia Department of Transportation (VDOT) is responsible for building, maintaining and operating the state's roads, bridges and tunnels. VDOT also conducts
-                                          a program where traffic data are gathered from sensors in or along streets and highways and other sources.  This data includes estimates of the average number of vehicles that traveled each segment
-                                          of road and daily vehicle miles traveled for specific groups of facilities and vehicle types are calculated. This project utilizes VDOT data to create traffic volume and commute maps for both counties."))
-                                   )),
+                                          p(strong("Homeland Infrastructure Foundation Level Database"), "The Homeland Infrastructure Foundation Level Database provides geospatial data on critical infrastructure. 
+                                            We used data on transmission line and substation location to detect parcels within ideal proximity of existing infrastructure.")),
+                                          column(4,
+                                                 img(src = "nass.jpg", style = "display: inline; float: left;", width = "130px"),
+                                                 p(strong("American Community Survey"), "The ACS is an ongoing survey conducted by the U.S. Census Bureau that provides social, economic, housing, 
+                                                   and demographic data for smaller geographic areas such as Hanover County. We used this data to gain insight on the sociodemographic and socioeconomic background of Hanover County."))
+                                   ),
+                                   ),
 
                           ),
 
