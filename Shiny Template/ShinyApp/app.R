@@ -718,6 +718,7 @@ ui <- navbarPage(selected = "overview",
                                               h1(strong("Variables to Consider"), align = "center"),
                                               p("", style = "padding-top:10px;"),
                                               tabsetPanel(
+                                                
                                                 tabPanel("Zoning",
                                                          p("", style = "padding-top:10px;"),
                                                          fluidRow(style = "margin: 8px;",
@@ -749,9 +750,11 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Land Cover Information")),
-                                                                         textOutput("crop_type_write")),
+                                                                         #textOutput("crop_type_write"),
+                                                                         textOutput("selected_crop_text")),
                                                                   column(6,
                                                                          tabsetPanel(
+                                                                           id = "tabs2",
                                                                            tabPanel("Land Cover by Parcel",
                                                                                     selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
                                                                                       "Row crops" = "RC",
@@ -1011,10 +1014,9 @@ ui <- navbarPage(selected = "overview",
                                                                   align = "center",
                                                                   column(6,
                                                                          h2(strong("Index Methodology")),
-                                                                         textOutput("output_text"),
                                                                          textOutput("selected_buffer_text"),
-                                                                         textOutput("ssmethod_write"),
-                                                                         textOutput("armethod_write")),
+                                                                         
+                                                                         ),
                                                                   column(6,
                                                                          tabsetPanel(
                                                                            id = "tabs",
@@ -1308,9 +1310,10 @@ server <- function(input, output){
     else if (input$crop_type == "DEV") {
       return("Write up for developed")
     }
+
   })
   
-  
+  #Solar methodology pictures
   output$ssMethodPNG <- renderImage(deleteFile = FALSE,{
     if (input$solar.score == "buffer_1") {
       return(list(src = "www/SSB1.png", width = "125%", height = "100%"))
@@ -1322,7 +1325,7 @@ server <- function(input, output){
       return(list(src = "www/SSB3.png", width = "125%", height = "100%"))
     }
   })
-  
+  #AV methodology pictures
   output$arMethodPNG <- renderImage(deleteFile = FALSE,{
     if (input$av.rating == "buffer_1") {
       return(list(src = "www/ARB1.png", width = "125%", height = "100%"))
@@ -1334,30 +1337,7 @@ server <- function(input, output){
       return(list(src = "wwwARSB3.png", width = "125%", height = "100%"))
     }
   })
-  
-  output$ssmethod_write <- renderText({
-    if (input$solar.score == "buffer_1") {
-      return("Writ eup buffer 1")
-    }
-    else if (input$solar.score == "buffer_2") {
-      return("Write up buffer 2")
-    }
-    else if (input$solar.score == "buffer_3") {
-      return("Write up buffer 3")
-    }
-  })
-  output$armethod_write <- renderText({
-    if (input$av.rating == "buffer_1") {
-    return("Write up buffer 1")
-    }
-    else if (input$av.rating == "buffer_2") {
-      return("Write up buffer 2")
-    }
-    else if (input$av.rating == "buffer_3") {
-      return("Write up buffer 3")
-    }
-  })
-  
+#Solar index pictures
   output$ssIndexPNG <- renderImage(deleteFile = FALSE,{
     if (input$ssbufferType == "buffer_1") {
       return(list(src = "www/SSMapB1.png", width = "125%", height = "100%"))
@@ -1369,7 +1349,7 @@ server <- function(input, output){
       return(list(src = "www/SSMapB3.png", width = "125%", height = "100%"))
     }
   })
-  
+  #solar index write up
   output$ssindex_write <- renderText({
     if (input$ssbufferType == "buffer_1") {
       return("This map shows the most ideal parcels for solar farm development within buffer zone 1. buffer zone 1 contains the most desireable 
@@ -1394,7 +1374,7 @@ server <- function(input, output){
              North Anna and Pamunkey Rivers, have the most amount of suitable solar farm land within buffer zone 3.")
     }
   })
-  
+  #AV index pictures
   output$arIndexPNG <- renderImage(deleteFile = FALSE,{
     if (input$arbufferType == "buffer_1") {
       return(list(src = "www/ARMapB1.png", width = "125%", height = "100%"))
@@ -1406,7 +1386,7 @@ server <- function(input, output){
       return(list(src = "www/ARMapB3.png", width = "125%", height = "100%"))
     }
   })
-  
+ #AV write up 
   output$arindex_write <- renderText({
     if (input$arbufferType == "buffer_1") {
       return("Writ eup buffer 1")
@@ -1418,50 +1398,97 @@ server <- function(input, output){
       return("Write up buffer 3")
     }
   })
-  
+ #Methodology write up 
   selected_tab <- reactive({
     input$tabs
   })
   
-  # Reactive expression to observe the selected buffer in Solar tab
-  selected_solar_buffer <- reactive({
-    input$solar.score
-  })
-  
-  # Reactive expression to observe the selected buffer in Agriculture tab
-  selected_agri_buffer <- reactive({
-    input$av.rating
-  })
-  
-  output_text <- reactive({
-    selected <- selected_tab()
-    
-    if (selected == "Solar Suitability Score") {
-      return("You are currently on the Solar tab.")
-    } else if (selected == "Agrivoltaic Viability Rating") {
-      return("You are currently on the Agriculture tab.")
-    } 
-  })
   selected_buffer_text <- reactive({
     selected <- selected_tab()
     
     if (selected == "Solar Suitability Score") {
-      buffer <- selected_solar_buffer()
-      return(paste("Selected buffer in Solar tab:", buffer))
+      if(input$solar.score == "buffer_1"){
+        return("Write up solar buffer 1")
+      }
+      else if (input$solar.score == "buffer_2"){
+        return("Write up solar buffer 2")
+      }
+      else if (input$solar.score == "buffer_3"){
+        return("Write up solar buffer 3")
+      }
     } else if (selected == "Agrivoltaic Viability Rating") {
-      buffer <- selected_agri_buffer()
-      return(paste("Selected buffer in Agriculture tab:", buffer))
+      if(input$av.rating == "buffer_1"){
+        return("Write up av buffer 1")
+      }
+      else if (input$av.rating == "buffer_2"){
+        return("Write up av buffer 2")
+      }
+      else if (input$av.rating == "buffer_3"){
+        return("Write up av buffer 3")
+      }
     } 
-  })
-  
-  output$output_text <- renderText({
-    output_text()
   })
   
   output$selected_buffer_text <- renderText({
     selected_buffer_text()
   })
+  
+  #Crop fixing
+  selected_tab_crop <- reactive({
+    input$tabs2
+  })
+  
+  selected_crop_text <- reactive({
+    selected2 <- selected_tab_crop()
+    
+    if (selected2 == "Land Cover by Parcel") {
+      if (input$crop_type == "RC") {
+        return("Write up for row crops")
+      }
+      else if (input$crop_type == "HC") {
+        return("Write up for horticulture crops")
+      }
+      else if (input$crop_type == "SG") {
+        return("Write up for small grains")
+      }
+      else if (input$crop_type == "DC") {
+        return("Write up for double cropped")
+      }
+      else if (input$crop_type == "F") {
+        return("Write up for forages")
+      }
+      else if (input$crop_type == "TC") {
+        return("Write up for tree crops")
+      }
+      else if (input$crop_type == "O") {
+        return("Write up for other")
+      }
+      else if (input$crop_type == "FR") {
+        return("Write up for forest")
+      }
+      else if (input$crop_type == "WL") { 
+        return("Write up for wetlands")
+      }
+      else if (input$crop_type == "W") {
+        return("Write up for water")
+      }
+      else if (input$crop_type == "DEV") {
+        return("Write up for developed")
+      }
+    } 
+    else {
+      return(" ")
 
+      }
+     
+  })
+  
+  output$selected_buffer_text <- renderText({
+    selected_buffer_text()
+  })
+  output$selected_crop_text <- renderText({
+    selected_crop_text()
+  })
   
   
 }
