@@ -1009,7 +1009,8 @@ ui <- navbarPage(selected = "overview",
                                                                                       "Solar Suitabilty Score",
                                                                                       c("Buffer 1" = "buffer_1",
                                                                                         "Buffer 2" = "buffer_2",
-                                                                                        "Buffer 3" = "buffer_3"))
+                                                                                        "Buffer 3" = "buffer_3")),
+                                                                                    imageOutput("ssMethodPNG", width = "400px", height = "400px")
                                                                                     
                                                                            ),
                                                                            tabPanel("Agrivoltaic Viability Rating",
@@ -1043,17 +1044,17 @@ ui <- navbarPage(selected = "overview",
                                    p("", style = "padding-top:10px;"),
                                           fluidRow(style = "margin: 6px;", align = "justify",
                                                    column(4,
-                                                   img(src = "data-acs.png", style = "display: inline; float: left;", width = "180px"),
+                                                   img(src = "USDA.png", style = "display: inline; float: left;", width = "150px"),
                                                    p(strong("USDA National Agricultural Statistics Service"), "The National Agricultural Statistics Service (NASS) is 
                                                    an agency within the USDA and provides comprehensive agricultural data, 
                                                      including land use and crop information. We used this data to analyze land and crop cover in Hanover County.")),
                                                    column(4,
-                                                   img(src = "goochland.jpg", style = "display: inline; float: left;", width = "150px"),
+                                                   img(src = "NRCS.png", style = "display: inline; float: left;", width = "180px"),
                                                    p(strong("Natural Resource Conservation Service"), "The Natural Resource Conservation Service (NRCS) Web Soil Survey offers detailed 
                                                      soil information, such as soil types, properties, and suitability for various land uses, on areas of land nationwide. This data 
                                                      was used for classifications and mapping of prime farmland and suitable solar farm land.")),
                                                    column(4,
-                                                   img(src = "powhatan.jpg", style = "display: inline; float: left;", width = "150px"),
+                                                   img(src = "VADCR.png", style = "display: inline; float: left;", width = "150px"),
                                                    p(strong("Virginia Department of Conservation and Recreation"), "The Virginia Department of Conservation and Recreation provides 
                                                      geospatial data on conservation areas, natural resources, and environmental protection efforts. We used data on Virginia conservation 
                                                      areas and easements for the conservation section of our project.")),
@@ -1061,20 +1062,20 @@ ui <- navbarPage(selected = "overview",
 
                                           fluidRow(style = "margin: 6px;", align = "justify",
                                                    column(4,
-                                                   img(src = "nass.jpg", style = "display: inline; float: left;", width = "130px"),
+                                                   img(src = "VDEM.png", style = "display: inline; float: left;", width = "150px"),
                                                    p(strong("Virginia Department of Emergency Management"), "The Virginia Department of Emergency Management offers data on emergency management, 
                                                      hazard risks, and resilience planning. They also provide a geospatial data layer of all tax parcels in Virginia designated as Agricultural 
                                                      Forestal Districts which was used in our conservation analysis.")),
                                                    column(4,
-                                                   img(src = "ncss.jpg", style = "display: inline; float: left;", width = "150px"),
+                                                   img(src = "HC.png", style = "display: inline; float: left;", width = "150px"),
                                           p(strong("Hanover County GIS Hub"), "The Hanover County GIS Hub is a local resource providing geospatial data specific to Hanover County, including parcel information, 
                                             roadways across the county, and all natural conservation areas. We leveraged these specific datasets in contribution to a county-wide analysis.")),
                                           column(4,
-                                          img(src = "vdot_crop.png", style = "display: inline; float: left;", width = "180px"),
+                                          img(src = "HIFLD.png", style = "display: inline; float: left;", width = "150px"),
                                           p(strong("Homeland Infrastructure Foundation Level Database"), "The Homeland Infrastructure Foundation Level Database provides geospatial data on critical infrastructure. 
                                             We used data on transmission line and substation location to detect parcels within ideal proximity of existing infrastructure.")),
                                           column(4,
-                                                 img(src = "nass.jpg", style = "display: inline; float: left;", width = "130px"),
+                                                 img(src = "ACS.png", style = "display: inline; float: left;", width = "150px"),
                                                  p(strong("American Community Survey"), "The ACS is an ongoing survey conducted by the U.S. Census Bureau that provides social, economic, housing, 
                                                    and demographic data for smaller geographic areas such as Hanover County. We used this data to gain insight on the sociodemographic and socioeconomic background of Hanover County."))
                                    ),
@@ -1292,6 +1293,18 @@ server <- function(input, output){
     }
   })
   
+  
+  output$ssMethodPNG <- renderImage(deleteFile = FALSE,{
+    if (input$solar.score == "buffer_1") {
+      return(list(src = "www/SSB1.png", width = "125%", height = "100%"))
+    }
+    else if (input$solar.score == "buffer_2") {
+      return(list(src = "www/SSB2.png", width = "125%", height = "100%"))
+    }
+    else if (input$solar.score == "buffer_3") {
+      return(list(src = "www/SSB3.png", width = "125%", height = "100%"))
+    }
+  })
 }
 
 shinyApp(ui = ui, server = server)
