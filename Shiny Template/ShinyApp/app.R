@@ -1013,7 +1013,7 @@ ui <- navbarPage(selected = "overview",
                                                                   align = "center",
                                                                   column(6,
                                                                          h2(strong("Index Methodology")),
-                                                                         ),
+                                                                         textOutput("method_write")),
                                                                   column(6,
                                                                          tabsetPanel(
                                                                           
@@ -1334,6 +1334,27 @@ server <- function(input, output){
     }
   })
   
+  output$method_write <- renderText({
+    if (input$solar.score == "buffer_1") {
+      return("Writ eup buffer 1")
+    }
+    else if (input$solar.score == "buffer_2") {
+      return("Write up buffer 2")
+    }
+    else if (input$solar.score == "buffer_3") {
+      return("Write up buffer 3")
+    }
+    else if (input$av.rating == "buffer_1") {
+      return("Write up buffer 1")
+    }
+    else if (input$av.rating == "buffer_2") {
+      return("Write up buffer 2")
+    }
+    else if (input$av.rating == "buffer_3") {
+      return("Write up buffer 3")
+    }
+  })
+  
   output$ssIndexPNG <- renderImage(deleteFile = FALSE,{
     if (input$ssbufferType == "buffer_1") {
       return(list(src = "www/SSMapB1.png", width = "125%", height = "100%"))
@@ -1358,5 +1379,7 @@ server <- function(input, output){
     }
   })
 }
+
+
 
 shinyApp(ui = ui, server = server)
