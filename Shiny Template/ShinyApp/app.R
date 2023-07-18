@@ -851,7 +851,15 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Land Suitability Analysis")),
-                                                                         p("stuff"),
+                                                                         p("This map shows areas of land within Hanover County based on the level of limitation they pose to solar farm development. 
+                                                                           Using NRCS Web Soil Survey data we were able to map the soil types across the county into three different categories, “Not Suitable”, 
+                                                                           “Suitable” and “Not Rated”. The index takes into account slope, slope aspect, rock fragment content, corrosivity, saturation and 
+                                                                           shrink-swell properties of the soil. The best land for solar farm development within Hanover County is the category of “suitable”. 
+                                                                           This land type accounts for 58.15% of Hanover and is concentrated on the eastern end of the county where the majority of prime farmland 
+                                                                           is also located. The category of “not suitable” accounts for 40.33% of the area. This type of land is not suitable for solar farms 
+                                                                           and will only be considered if there are no other options. Areas categorized as “not rated” provide insufficient data for the index 
+                                                                           and are only 1.52% of the total area with quarries filling the majority of that space. This variable is important to consider for a 
+                                                                           solar assesment as having flat and workable land is crucial for the installation of solar farms."),
                                                                          p()
                                                                          
                                                                   ),
@@ -869,10 +877,7 @@ ui <- navbarPage(selected = "overview",
                                                                                     
                                                                            ) 
                                                                            
-                                                                         # h2(strong("Visualizations")),
-                                                                         # p("Visualizations go here"),
-                                                                         # plotlyOutput("rateacre", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
-                                                                         # leafletOutput("limitS") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+
                                                                          
                                                                   ))
                                                          )
@@ -922,7 +927,11 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Road Access Analysis")),
-                                                                         p()
+                                                                         p("Solar farms require large machinery and materials to build, and once constructed they must be regularly serviced and maintained. 
+                                                                           Therefore, adequate road acess is necessary when determining suitable sites for solar farm development. Hanover County GIS Hub provides a 
+                                                                           dataset displaying the centerline of all public roadways within the county. We were able to use this data to select all parcels within 
+                                                                           100 feet of the roadway centerlines. A 100 foot buffer was necessary to account for all roadside ditches and marginal land. This variable 
+                                                                           helps add to our solar assesment by showing parcels within Hanover County that have adequate access to be developed[2].")
                                   
                                                                   ),
                                                                   column(6,
@@ -942,7 +951,12 @@ ui <- navbarPage(selected = "overview",
                                                                   column(12,
                                                                          align="left",
                                                                          h2(strong("Background")),
-                                                                         p("write up")),
+                                                                         p("To analyze suitable locations for solar farm development within Hanover County we created an index map displaying the Solar Suitablity 
+                                                                           Score of parcels with the most desireable characteristics. The parcels displayed all have at least 10 acres of suitable land for solar, 
+                                                                           are within 100 feet of road access, and are not zoned for residential use. The Solar Suitability Score ranks parcels with all of these 
+                                                                           characteristics on a range of 0 – 100 based on the amount of suitable solar farm land available. We then organized the maps based on 
+                                                                           their respective buffer zones, and colored them according to the score, yellow being the largest amount, and purple being the least. 
+                                                                           These index maps help give a comprehensive understanding of the areas within Hanover County that are most suitable for solar farm development.")),
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Description of Map")),
