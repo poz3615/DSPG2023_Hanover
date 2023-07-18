@@ -960,10 +960,9 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Description of Map")),
-                                                                         p("map description")),
+                                                                         textOutput("ssindex_write")),
                                                                   column(6,
                                                                          h2(strong("Index Map")),
-                                                                         p("Visualizations go here"),
                                                                          selectInput(
                                                                            "ssbufferType",
                                                                            "Solar Index Buffer",
@@ -985,14 +984,13 @@ ui <- navbarPage(selected = "overview",
                                                                   column(12,
                                                                          align="left",
                                                                          h2(strong("Background")),
-                                                                         p("write up")),
+                                                                         p()),
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Description of Map")),
-                                                                         p("map description")),
+                                                                         textOutput("arindex_write")),
                                                                   column(6,
                                                                          h2(strong("Index Map")),
-                                                                         p("Visualizations go here"),
                                                                          selectInput(
                                                                            "arbufferType",
                                                                            "Agrivoltaic Index Buffer",
@@ -1344,15 +1342,15 @@ server <- function(input, output){
     else if (input$solar.score == "buffer_3") {
       return("Write up buffer 3")
     }
-    else if (input$av.rating == "buffer_1") {
-      return("Write up buffer 1")
-    }
-    else if (input$av.rating == "buffer_2") {
-      return("Write up buffer 2")
-    }
-    else if (input$av.rating == "buffer_3") {
-      return("Write up buffer 3")
-    }
+    # else if (input$av.rating == "buffer_1") {
+    #   return("Write up buffer 1")
+    # }
+    # else if (input$av.rating == "buffer_2") {
+    #   return("Write up buffer 2")
+    # }
+    # else if (input$av.rating == "buffer_3") {
+    #   return("Write up buffer 3")
+    # }
   })
   
   output$ssIndexPNG <- renderImage(deleteFile = FALSE,{
@@ -1367,6 +1365,18 @@ server <- function(input, output){
     }
   })
   
+  output$ssindex_write <- renderText({
+    if (input$ssbufferType == "buffer_1") {
+      return("Writ eup buffer 1")
+    }
+    else if (input$ssbufferType == "buffer_2") {
+      return("Write up buffer 2")
+    }
+    else if (input$ssbufferType == "buffer_3") {
+      return("Write up buffer 3")
+    }
+  })
+  
   output$arIndexPNG <- renderImage(deleteFile = FALSE,{
     if (input$arbufferType == "buffer_1") {
       return(list(src = "www/ARMapB1.png", width = "125%", height = "100%"))
@@ -1376,6 +1386,18 @@ server <- function(input, output){
     }
     else if (input$arbufferType == "buffer_3") {
       return(list(src = "www/ARMapB3.png", width = "125%", height = "100%"))
+    }
+  })
+  
+  output$arindex_write <- renderText({
+    if (input$arbufferType == "buffer_1") {
+      return("Writ eup buffer 1")
+    }
+    else if (input$arbufferType == "buffer_2") {
+      return("Write up buffer 2")
+    }
+    else if (input$arbufferType == "buffer_3") {
+      return("Write up buffer 3")
     }
   })
 }
