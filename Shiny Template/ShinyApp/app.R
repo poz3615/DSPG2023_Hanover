@@ -1074,10 +1074,11 @@ ui <- navbarPage(selected = "overview",
                                           img(src = "HIFLD.png", style = "display: inline; float: left;", width = "150px"),
                                           p(strong("Homeland Infrastructure Foundation Level Database"), "The Homeland Infrastructure Foundation Level Database provides geospatial data on critical infrastructure. 
                                             We used data on transmission line and substation location to detect parcels within ideal proximity of existing infrastructure.")),
+                                          fluidRow(style = "margin: 6px;", align = "justify",
                                           column(4,
                                                  img(src = "ACS.png", style = "display: inline; float: left;", width = "150px"),
                                                  p(strong("American Community Survey"), "The ACS is an ongoing survey conducted by the U.S. Census Bureau that provides social, economic, housing, 
-                                                   and demographic data for smaller geographic areas such as Hanover County. We used this data to gain insight on the sociodemographic and socioeconomic background of Hanover County."))
+                                                   and demographic data for smaller geographic areas such as Hanover County. We used this data to gain insight on the sociodemographic and socioeconomic background of Hanover County.")))
                                    ),
                                    ),
 
