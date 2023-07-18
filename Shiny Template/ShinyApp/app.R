@@ -960,10 +960,9 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Description of Map")),
-                                                                         p("map description")),
+                                                                         textOutput("ssindex_write")),
                                                                   column(6,
                                                                          h2(strong("Index Map")),
-                                                                         p("Visualizations go here"),
                                                                          selectInput(
                                                                            "ssbufferType",
                                                                            "Solar Index Buffer",
@@ -985,14 +984,13 @@ ui <- navbarPage(selected = "overview",
                                                                   column(12,
                                                                          align="left",
                                                                          h2(strong("Background")),
-                                                                         p("write up")),
+                                                                         p()),
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Description of Map")),
-                                                                         p("map description")),
+                                                                         textOutput("arindex_write")),
                                                                   column(6,
                                                                          h2(strong("Index Map")),
-                                                                         p("Visualizations go here"),
                                                                          selectInput(
                                                                            "arbufferType",
                                                                            "Agrivoltaic Index Buffer",
@@ -1013,7 +1011,8 @@ ui <- navbarPage(selected = "overview",
                                                                   align = "center",
                                                                   column(6,
                                                                          h2(strong("Index Methodology")),
-                                                                         textOutput("method_write")),
+                                                                         textOutput("ssmethod_write"),
+                                                                         textOutput("armethod_write")),
                                                                   column(6,
                                                                          tabsetPanel(
                                                                           
@@ -1334,7 +1333,7 @@ server <- function(input, output){
     }
   })
   
-  output$method_write <- renderText({
+  output$ssmethod_write <- renderText({
     if (input$solar.score == "buffer_1") {
       return("Writ eup buffer 1")
     }
@@ -1344,8 +1343,10 @@ server <- function(input, output){
     else if (input$solar.score == "buffer_3") {
       return("Write up buffer 3")
     }
-    else if (input$av.rating == "buffer_1") {
-      return("Write up buffer 1")
+  })
+  output$armethod_write <- renderText({
+    if (input$av.rating == "buffer_1") {
+    return("Write up buffer 1")
     }
     else if (input$av.rating == "buffer_2") {
       return("Write up buffer 2")
@@ -1367,6 +1368,31 @@ server <- function(input, output){
     }
   })
   
+  output$ssindex_write <- renderText({
+    if (input$ssbufferType == "buffer_1") {
+      return("This map shows the most ideal parcels for solar farm development within buffer zone 1. buffer zone 1 contains the most desireable 
+             parcels as these are within closest range to existing energy infrastructure, either 2 miles from a substation or 1,000 feet from a 
+             transmission line. Therefore, solar farm development companies are able to spend less when constructing in these areas. The parcels 
+             displayed roughly outline transmission line and substation locations, with the large amounts of suitable parcels running along 
+             Interstate 95 in the northen end of Hanover.")
+    }
+    else if (input$ssbufferType == "buffer_2") {
+      return("The parcels within buffer zone 2 span farther away from energy infrastructure than the parcels within buffer zone 1. This helps to 
+             account for parcels that have desireable solar farm characteristics, but aren’t within close range of energy infrastructure. Buffer zone 
+             2 captures parcels within 4 miles of a substation or 2,000 ft of a transmission line. If a parcel within this zone is very desireable, 
+             solar development companies are likely to develop the needed infrastructure themselves in hopes that an efficient solar farm will generate 
+             enough revenue to cover the costs. There are many parcels with large amounts of suitable land located northwest of Ashland.")
+    }
+    else if (input$ssbufferType == "buffer_3") {
+      return("The parcels within buffer zone 3 span the furthest away from energy infrastructure, and cover nearly the whole county, with the exception 
+             of an area in the northwest region of Hanover. Buffer zone 3 captures parcels within 6 miles of a substation or 3,000 ft of a transmission line. 
+             This helps to account for parcels that have desireable solar farm characteristics, but aren’t within close range of energy infrastructure. 
+             If a parcel within this zone is very desireable, solar development companies are likely to develop the needed infrastructure themselves in 
+             hopes that an efficient solar farm will generate enough revenue to cover the costs. Parcels along the northern edge of the county, next to the 
+             North Anna and Pamunkey Rivers, have the most amount of suitable solar farm land within buffer zone 3.")
+    }
+  })
+  
   output$arIndexPNG <- renderImage(deleteFile = FALSE,{
     if (input$arbufferType == "buffer_1") {
       return(list(src = "www/ARMapB1.png", width = "125%", height = "100%"))
@@ -1376,6 +1402,18 @@ server <- function(input, output){
     }
     else if (input$arbufferType == "buffer_3") {
       return(list(src = "www/ARMapB3.png", width = "125%", height = "100%"))
+    }
+  })
+  
+  output$arindex_write <- renderText({
+    if (input$arbufferType == "buffer_1") {
+      return("Writ eup buffer 1")
+    }
+    else if (input$arbufferType == "buffer_2") {
+      return("Write up buffer 2")
+    }
+    else if (input$arbufferType == "buffer_3") {
+      return("Write up buffer 3")
     }
   })
 }
