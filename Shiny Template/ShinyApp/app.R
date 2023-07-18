@@ -964,8 +964,15 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          h2(strong("Index Map")),
                                                                          p("Visualizations go here"),
-                                                                         checkboxGroupInput(inputId = "bufferType", label = h3("Select buffer types: "),
-                                                                                            choices = c("Buffer One", "Buffer Two", "Buffer Three"))
+                                                                         selectInput(
+                                                                           "ssbufferType",
+                                                                           "Solar Index Buffer",
+                                                                           c("Buffer 1" = "buffer_1",
+                                                                             "Buffer 2" = "buffer_2",
+                                                                             "Buffer 3" = "buffer_3"),
+                                                                           
+                                                                         ),
+                                                                         imageOutput("ssIndexPNG", width = "400px", height = "400px")
                                                                   )
                                                                   
                                                          ),
@@ -986,8 +993,15 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          h2(strong("Index Map")),
                                                                          p("Visualizations go here"),
-                                                                         checkboxGroupInput(inputId = "bufferType", label = h3("Select buffer types: "),
-                                                                                            choices = c("Buffer One", "Buffer Two", "Buffer Three"))
+                                                                         selectInput(
+                                                                           "arbufferType",
+                                                                           "Agrivoltaic Index Buffer",
+                                                                           c("Buffer 1" = "buffer_1",
+                                                                             "Buffer 2" = "buffer_2",
+                                                                             "Buffer 3" = "buffer_3"),
+                                                                           
+                                                                         ),
+                                                                         imageOutput("arIndexPNG", width = "400px", height = "400px")
                                                                   )
                                                                   
                                                          ),
@@ -1015,12 +1029,13 @@ ui <- navbarPage(selected = "overview",
                                                                            ),
                                                                            tabPanel("Agrivoltaic Viability Rating",
                                                                                     selectInput(
-                                                                                      "solar.score",
+                                                                                      "av.rating",
                                                                                       "Agrivoltaic Viability Rating",
                                                                                       c("Buffer 1" = "buffer_1",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")
-                                                                                    )
+                                                                                    ),
+                                                                                    imageOutput("arMethodPNG", width = "400px", height = "400px")
                                                                          )),
 
                                                                          )
@@ -1304,6 +1319,42 @@ server <- function(input, output){
     }
     else if (input$solar.score == "buffer_3") {
       return(list(src = "www/SSB3.png", width = "125%", height = "100%"))
+    }
+  })
+  
+  output$arMethodPNG <- renderImage(deleteFile = FALSE,{
+    if (input$av.rating == "buffer_1") {
+      return(list(src = "www/ARB1.png", width = "125%", height = "100%"))
+    }
+    else if (input$av.rating == "buffer_2") {
+      return(list(src = "www/ARB2.png", width = "125%", height = "100%"))
+    }
+    else if (input$av.rating == "buffer_3") {
+      return(list(src = "wwwARSB3.png", width = "125%", height = "100%"))
+    }
+  })
+  
+  output$ssIndexPNG <- renderImage(deleteFile = FALSE,{
+    if (input$ssbufferType == "buffer_1") {
+      return(list(src = "www/SSMapB1.png", width = "125%", height = "100%"))
+    }
+    else if (input$ssbufferType == "buffer_2") {
+      return(list(src = "www/SSMapB2.png", width = "125%", height = "100%"))
+    }
+    else if (input$ssbufferType == "buffer_3") {
+      return(list(src = "www/SSMapB3.png", width = "125%", height = "100%"))
+    }
+  })
+  
+  output$arIndexPNG <- renderImage(deleteFile = FALSE,{
+    if (input$arbufferType == "buffer_1") {
+      return(list(src = "www/ARMapB1.png", width = "125%", height = "100%"))
+    }
+    else if (input$arbufferType == "buffer_2") {
+      return(list(src = "www/ARMapB2.png", width = "125%", height = "100%"))
+    }
+    else if (input$arbufferType == "buffer_3") {
+      return(list(src = "www/ARMapB3.png", width = "125%", height = "100%"))
     }
   })
 }
