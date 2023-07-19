@@ -74,9 +74,9 @@ employ_plot <- ggplot(employ, aes(x = reorder(EmploymentTypes, Percent), y = Per
   scale_fill_viridis(discrete = TRUE) +
   theme(legend.position = "none") +
   labs(title = "Total Employment For Each Industry", 
-       x = "Industry",
        y = "Percent",
        caption = "Data Source: US Census ACS 5-Year 2019 Data") +
+  theme(axis.title.y = element_blank())+
   coord_flip() 
 
 employ_plot <- ggplotly(employ_plot, tooltip = "text")
@@ -287,10 +287,11 @@ landAll <- ggplot(summed_cat, aes(x = reorder(Category, SumCount),
   scale_fill_viridis_d(option = "viridis") +
   theme(legend.position = "none",
         plot.title = element_text(face = "bold")) +
-  labs(x = "Use Category", 
+  labs( 
        y = "Acres", 
        title = "Land Cover in Hanover County by Category", 
-       caption = "Data Source: USDA Cropland-CROS, 2022") 
+       caption = "Data Source: USDA Cropland-CROS, 2022") +
+  theme(axis.title.y = element_blank())
 
 landAll <- ggplotly(landAll, tooltip = "text")
 
@@ -320,10 +321,11 @@ landCropONLY <- ggplot(summed_catSub, aes(x = reorder(Category, SumCount), y = S
   scale_fill_viridis_d(option = "viridis") +
   theme(legend.position = "none",
         plot.title = element_text(face = "bold")) +
-  labs(x = "Crop Type", 
+  labs(
        y = "Acres", 
        title = " Land Crops in Hanover County by Category", 
-       caption = "Data Source: USDA Cropland-CROS, 2022") 
+       caption = "Data Source: USDA Cropland-CROS, 2022") +
+  theme(axis.title.y = element_blank())
 
 
 landCropONLY <- ggplotly(landCropONLY, tooltip = "text")
@@ -359,7 +361,8 @@ sR <- ggplot(total_acres, aes(x = reorder(soil_rating, acres), y = acres, fill =
   coord_flip() +
   scale_fill_viridis_d(option = "viridis") +
   theme(legend.position = "none") +
-  labs(x = "Soil Rating", y = "Acreage", title = "USDA Soil Rating by Acerage in Hanover County", caption = "Data Source: USDA, NRCC Web Soil Survey, 2019") 
+  labs( y = "Acreage", title = "USDA Soil Rating by Acerage in Hanover County", caption = "Data Source: USDA, NRCC Web Soil Survey, 2019") +
+  theme(axis.title.y = element_blank())
 
 sR <- ggplotly(sR, tooltip = "text") 
 
@@ -390,10 +393,11 @@ rateacre <- ggplot(total_acres, aes(x = reorder(soil_rating, acres), y = acres, 
   coord_flip() +
   scale_fill_viridis_d(option = "viridis") +
   theme(legend.position = "none") +
-  labs(x = "Soil Rating", 
+  labs( 
        y = "Acreage", 
        title = "Suitability for Soil-Anchored Solar Array by Acerage in Hanover County", 
-       caption = "Data Source: USDA, NRCC Web Soil Survey, 2019") 
+       caption = "Data Source: USDA, NRCC Web Soil Survey, 2019") +
+  theme(axis.title.y = element_blank())
 
 rateacre <- ggplotly(rateacre, tooltip = "text") 
 
@@ -422,28 +426,12 @@ ui <- navbarPage(selected = "overview",
                                    column(4,
                                           h2(strong("Project Background")),
                                           h4(strong("Setting:")),
-                                          p("Hanover county, Virginia is a predominantly rural area 
-                                            located twelve miles north of the state capital, Richmond. 
-                                            The county ranges over 474 square miles and is known for 
-                                            its farmlands, rolling hills and forests bordered by the 
-                                            Chickahominy and Pamunkey Rivers. Hanover’s rich agricultural 
-                                            history has thrived from 1720 to present day through its
-                                            tobacco cultivation, crop diversification, dairy farming
-                                            and small family farms. Hence, the agricultural heritage has
-                                            majorly influenced the landscape, community and rural charm of 
-                                            the county."),
-                                          p(),
-                                          h4(strong("Problem:")),
-                                          p("Hanover county takes pride in their rural lifestyle and heritage 
-                                            therefore, as they look to attain economic growth challenges arise. 
-                                            The main problems facing this county as it looks to achieve
-                                            economic growth are urban sprawl, land conversion and solar
-                                            farm land usage. Urban sprawl is the extension of urban areas
-                                            which in turn cuts into the rural land that makes up Hanover County.
-                                            Furthermore, land conversion shifts land use from one purpose to another.
-                                            For instance, agricultural land to commercial, residential and industrial
-                                            land. Solar farm land development also cuts into the land that
-                                            can be used for agricultural purposes."),
+                                          p("Hanover County, Virginia is a predominantly rural area located twelve miles north of the state capital, 
+                                            Richmond. The county ranges over 303,000 acres and is known for its farmlands, rolling hills and forests 
+                                            bordered by the Chickahominy and Pamunkey Rivers. Hanover’s rich agricultural history has thrived from 1720 
+                                            to the present day through its tobacco cultivation, crop diversification, dairy farming and small family 
+                                            farms. Hence, the agricultural heritage has majorly influenced the landscape, community and rural charm of the county."),
+               
                                           p(),
                                           h4(strong("Project:")),
                                           p(" Virginia Tech Department of Agricultural and Applied Economics
@@ -453,33 +441,34 @@ ui <- navbarPage(selected = "overview",
                                    ),
                                    column(4,
                                           h2(strong("Project Goals")),
-                                          tags$li("Use GIS analysis to asses current land use patterns"),
-                                          tags$li("Evaluate protected land and prime farmland"),
-                                          tags$li("Analyze competing demands for prime farmland from solar energy"),
-                                          tags$li("Identify parcels with the highest likelihood of transitioning to solar farms"),
-                                          p()
+                                          p("This project utilizes geospatial data and administrative parcel records to assess land 
+                                            parcels for their suitability for solar farm development, with a focus on agricultural and
+                                            rural areas possessing prime farmland and favorable solar farm characteristics. By analyzing
+                                            factors such as parcel zoning, soil quality, land cover, conservation areas, and relevant 
+                                            policies, we create geospatial visualizations on an interactive dashboard, mapping key land
+                                            characteristics countywide. Additionally, an index is constructed to rate each parcel based 
+                                            on proximity to energy infrastructure, suitability for solar farms, prime farmland presence, 
+                                            and road accessibility. We also consider an alternative mixed land-use approach known as 
+                                            agrivoltaics, and address its potential within Hanover County. Leveraging these data in a statistical
+                                            model, we investigate the relationship between prime agricultural land and land suitable for 
+                                            solar farms. Our research provides valuable insights into areas vulnerable to solar farm development
+                                            in Hanover County, aiding informed decision-making in solar energy planning and development.")
                                           #leafletOutput("baseHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                    ),
                                    column(4,
                                           h2(strong("County Overview")),
-                                          p("The county consists of towns and cities including Ashland, Beaverdam,
-                                            Doswell, Hanover, Mechanicsville, Montpellier, and Rockville.
-                                            According to the US Census as of July 2022, the population
-                                            of the county is estimated to be above 110,000 people with
-                                            around 50% of the population being female and slightly lower
-                                            for males with around 18% under 18, about 5% under 5, and 
-                                            about 18% over 65 years and over where it is white predominant
-                                            at 85.6%. Regarding the population, it is said by the US Census
-                                            that the population per square mile in 2020 is 235.2. With the 
-                                            rich history that the county has, Hanover boasts many historical
-                                            sites and landmarks. Adding to the fact it has a strong agricultural
-                                            heritage, with fertile farmlands that add to its long history of farming.
-                                            Hanover hosts a mix of suburban and rural environments with residential
-                                            areas, agricultural farmland, commercial districts, industrial zones,
-                                            and natural landscapes. With the county promoting outdoor recreation 
-                                            activities, maintaining parks, trails, and recreational facilities 
-                                            and even the amusement park Kings Dominion, there is much to do and see in 
-                                            Hanover County to keep you occupied."),
+                                          p("Hanover County takes pride in their rural lifestyle and heritage, therefore as they 
+                                            look to strategically manage development, challenges arise. The main problems facing
+                                            this county as it looks to achieve economic growth are urban sprawl and land conversion 
+                                            resulting in a loss of agricultural areas. Urban sprawl is the extension of urban 
+                                            areas which in turn decreases the amount of rural land available. Furthermore, land conversion
+                                            shifts land use from one purpose to another. For instance, agricultural land can be 
+                                            re-zoned to commercial, residential or industrial land, opening it up to be developed for 
+                                            new uses. With rapid growth amongst the renewable energy industry, solar farms are frequently 
+                                            being developed in this region. Given its proximity to Richmond and large areas of suitable 
+                                            land, Hanover County is a desirable location for solar farm development companies. The 
+                                            installation of commercial solar farms on agricultural land has residents worried about 
+                                            the loss of Hanover County’s rural heritage."),
                                           p()
                                    )
                                    
@@ -505,7 +494,10 @@ ui <- navbarPage(selected = "overview",
                                      tabPanel("Background",
                                               titlePanel(h2(strong("Sociodemographic Background"))),
                                               column(6,
-                                                     p("write up")),
+                                                     align="left",
+                                                     p("write up"),
+                                                     h4(strong("Map Analysis")),
+                                                     textOutput("socio_write")),
                                               column(6,
                                                      tabsetPanel(
                                                        tabPanel("Demographic Factors",
@@ -1375,6 +1367,16 @@ server <- function(input, output){
     
     consleaf
     
+  })
+  
+  output$socio_write <- renderText({
+    if (input$acs.graphs == "pop") {
+      return("population")
+    }
+    else if (input$acs.graphs == "inc") {
+      return("income")
+    }
+
   })
   
   output$crop_type_write <- renderText({
