@@ -74,7 +74,6 @@ employ_plot <- ggplot(employ, aes(x = reorder(EmploymentTypes, Percent), y = Per
   scale_fill_viridis(discrete = TRUE) +
   theme(legend.position = "none") +
   labs(title = "Total Employment For Each Industry", 
-       x = "Industry",
        y = "Percent",
        caption = "Data Source: US Census ACS 5-Year 2019 Data") +
   coord_flip() 
