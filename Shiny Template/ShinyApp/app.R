@@ -515,6 +515,8 @@ ui <- navbarPage(selected = "overview",
                                                                   "ACS Graphs",
                                                                   c("Population Density" = "pop",
                                                                     "Median Population Income" = "inc"))
+                                                                ,
+                                                                imageOutput("acs", width = "650px", height = "500px")
                                                        ), 
                                                        tabPanel("Employment", 
                                                                 p(),
@@ -718,6 +720,7 @@ ui <- navbarPage(selected = "overview",
                                               h1(strong("Variables to Consider"), align = "center"),
                                               p("", style = "padding-top:10px;"),
                                               tabsetPanel(
+                                                
                                                 tabPanel("Zoning",
                                                          p("", style = "padding-top:10px;"),
                                                          fluidRow(style = "margin: 8px;",
@@ -725,7 +728,40 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Land Use and Zoning Analysis")),
-                                                                         p("write upp")),
+                                                                         h4(strong("Background")),
+                                                                         p("Zoning is important to understand land use because it helps authorities regulate and control land to balance community needs. 
+                                                                           These zoning rules are listed in The Code of Virginia which states that each locality can determine land use according to the following factors [1]:"),
+                                                                         p("1. The use of land, buildings, structures, and other premises for agricultural, business, industrial, residential, floodplain, and other specific uses; "),
+                                                                         p("2. The size, height, area, location, construction, reconstruction, repair, maintenance, or removal of structures;"),
+                                                                         p("3. The areas of land, water, and air space to be occupied by buildings, structures, and uses;"),
+                                                                         p("4. The excavation or mining of soil or other natural resources."),
+                                                                         h4(strong("Analysis")),
+                                                                         p("Using geospatial data from the Hanover County GIS Hub [4], the map shows six main zoning categories used to identify zoning classification for each parcel. 
+                                                                           The bar chart incorportes different zoning classifications to establish the average lot acreage for each classification."),
+                                                                         p("To help with interpretability, 40+ zoning codes were collapsed into these overarching categories:"),
+                                                                         p("1. Residential: These parcels shown have an average lot size of around 0.56 acres. The residential area makes up the middle and bottom parts of the county. 
+                                                                           This consists of living quarters, houses, apartments, condominiums, and other household types."),
+                                                                         p("2. Planned Unit Development: There is only one zoning code in this category that has an estimated mean lot acre size of around 0.75 acres and is found in 
+                                                                           the Suburban Service Area (SSA) in the middle of the county. With the last satellite snapshot, the parcel was still under construction based on ARC GIS.
+                                                                           Planned Unit Development is a community of single-family homes, condos, or townhomes belonging to the homeowners association or HOA."),
+                                                                         p("3. Commercial: Commercial parcels have an estimated averge lot acre size of 2.94 acres. The parcels are seen around residential and industrial areas while 
+                                                                           also being near roads. Most of these parcels are found in the condensed residential area at the bottom of the county and the SSA. If an area consists of office 
+                                                                           buildings, malls, shops, and various other buildings used for commercial purposes, it can be categorized under commercial zoning."),
+                                                                         p("4. Conservation: The parcels are scattered are Hanover County with a mean lot acre size of around 5.87 acres. Most of the parcels are away from residential areas 
+                                                                           except for some near the SSA. It can be consistent with protected open land for cultural, natural, historical, or work purposes."),
+                                                                         p("5. Industrial: Industrial parcels have an average lot acre size of around 9.72 acres. These are shown to surround and make up most of the SSA and run along the 
+                                                                           bottom of the county. Some examples of these include factories, solar energy facilities, chemical plants, etc."),
+                                                                         p("6. Agriculture: Parcels in this category have a mean lot acre size of around 12.08 acres. It is shown on the map that most of the county is made up of Agricultural parcels. 
+                                                                           This is especially the case on the upper half or the left side of the county. These include barns, farmhouses, farms, and other agricultural land."),
+                                                                         p("The bar graph displays mean lot acres for each zoning category from 0.56 acres to 12.08 acres. The largest average value shown at 12.08 mean lot acres belongs
+                                                                           to agriculture which shows this type of zoning has the largest parcels. It shows that the county uses its land for agriculture the most. However, the category
+                                                                           with the most parcels is residential which is much smaller on average at 0.56 acres."),
+                                                                         p("Towards the middle of the county, the Suburban Service Area (SSA) is based on the General Land Use Plan where higher residential densities and more intensive 
+                                                                           non-residential uses, such as commercial zoning, are being designated. At the bottom-right side of the county is where the most residential parcels and a decent 
+                                                                           amount of industrial parcels are. This is because when getting closer to the city of Richmond, the residential areas will be more dense. Richmond tends to have this 
+                                                                           trend due to being the capital of Virginia and one of the largest population-dense cities in the state. Compared to smaller areas in Virginia, when going closer 
+                                                                           to the city of Richmond the trend of the number of industrial parcels increases. Cities and more population-dense areas host heavy industrial zones such as power 
+                                                                           plants, airports, and factories.")),
                                                                   column(6,
                                                                          tabsetPanel(
                                                                            tabPanel("Land Use Map",
@@ -749,11 +785,13 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Land Cover Information")),
-                                                                         textOutput("crop_type_write")),
+                                                                         #textOutput("crop_type_write"),
+                                                                         textOutput("selected_crop_text")),
                                                                   column(6,
                                                                          tabsetPanel(
+                                                                           id = "tabs2",
                                                                            tabPanel("Land Cover by Parcel",
-                                                                                    selectInput(inputId = "crop_type", label = "Select Variable:", width = "100%", choices = c(
+                                                                                    selectInput(inputId = "crop_type", label = "Select Variable:", choices = c(
                                                                                       "Row crops" = "RC",
                                                                                       "Horticulture crops" = "HC",
                                                                                       "Small grains" = "SG",
@@ -766,7 +804,7 @@ ui <- navbarPage(selected = "overview",
                                                                                       "Water" = "W",
                                                                                       "Developed" = "DEV")
                                                                                     ),
-                                                                                    imageOutput("crop_typePNG", width = "400px", height = "400px")
+                                                                                    imageOutput("crop_typePNG", width = "600px", height = "400px")
                                                                                     
                                                                                     
                                                                            ), 
@@ -814,7 +852,7 @@ ui <- navbarPage(selected = "overview",
                                                      tabsetPanel(
                                                 tabPanel("Soil Type Map",
                                                          p(),
-                                                         imageOutput("soilRate", width = "400px", height = "400px")
+                                                         imageOutput("soilRate", width = "700px", height = "500px")
                                                          
                                                          
                                                 ), 
@@ -865,9 +903,9 @@ ui <- navbarPage(selected = "overview",
                                                                   ),
                                                                   column(6,
                                                                          tabsetPanel(
-                                                                           tabPanel("Map or something",
+                                                                           tabPanel("Land Suitability Map",
                                                                                     p(),
-                                                                                    leafletOutput("limitS") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+                                                                                    imageOutput("SoilLimit", width = "700px", height = "500px")
                                                                                     
                                                                                     
                                                                            ), 
@@ -903,7 +941,7 @@ ui <- navbarPage(selected = "overview",
                                                                           set from HIFLD is only accessible for federal employees, and the substation data we used from The Office for Coastal Management only had half of all 
                                                                           substations within Hanover County. To map all of the substations within the county we used Open Street Map and Google Earth to locate the other substation 
                                                                           locations and add them to our dataset. "),
-                                                                         h3("Analysis"),
+                                                                         h3(strong("Analysis")),
                                                                          p("The map displayed shows parcels in Hanover County categorized into three buffer zones. Parcels that have land within either 2 miles of a substation or 
                                                                            1000 feet of a transmission line, are part of Buffer zone 1. We created a second and third buffer zone to account for parcels that have very good 
                                                                            characteristics for solar farms, but lack adequate access to infrastructure. Buffer zone 2 contains parcels within 4 miles of a substation or 2,000 
@@ -914,7 +952,8 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Infastructure Map")),
-                                                                         p("Visualizations go here")
+                                                                         imageOutput("InfastructurePNG", width = "700px", height = "500px"),
+                                                                         p("*Distortion due to high density of residential parcels in Mechanicsville.")
                                                                          
                                                                   )
                                                          ),
@@ -937,7 +976,8 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Road Access Map")),
-                                                                         p("Visualizations go here")
+                                                                         imageOutput("RoadPNG", width = "700px", height = "500px"),
+                                                                         p("Highlighted parcels are within 100 feet of a roadway centerline.")
                                                                          
                                                                   )
                                                                   
@@ -971,7 +1011,7 @@ ui <- navbarPage(selected = "overview",
                                                                              "Buffer 3" = "buffer_3"),
                                                                            
                                                                          ),
-                                                                         imageOutput("ssIndexPNG", width = "400px", height = "400px")
+                                                                         imageOutput("ssIndexPNG", width = "500px", height = "400px")
                                                                   )
                                                                   
                                                          ),
@@ -984,11 +1024,42 @@ ui <- navbarPage(selected = "overview",
                                                                   column(12,
                                                                          align="left",
                                                                          h2(strong("Background")),
-                                                                         p()),
+                                                                         p("Agrivoltaics encompasses utilizing land for the dual purposes of agriculture and photovoltaic energy generation. This system empowers farms to diversify income by 
+                                                                           allowing agriculture and solar production to coexist while reducing the carbon footprint. Agrivoltaics involves cultivating crops beneath solar panels, forming a 
+                                                                           mutually beneficial ‘cooling’ relationship between the two. By offering shade, the plants are shielded by the panels from intense sun rays thus reducing the amount of 
+                                                                           water evaporating from the soil and air temperature. Simultaneously, the plants release water vapor, cooling the panels from beneath [1]. The implementation of cooling 
+                                                                           systems enhances solar panel efficiency as they are influenced by temperature. Solar panels generate energy by energizing electrons to a higher level. However, during 
+                                                                           periods of elevated temperatures, the number of electrons already energized is increased, thus reducing the panel’s voltage and overall generation [2]. Ideal land for 
+                                                                           agrivoltaics entails agricultural lands that satisfy the criteria for solar farming. These requirements consist of flat land covering a minimum of 10 acres with minimal 
+                                                                           incline and free from obstructions that may potentially cast shade onto the panels. Additionally, convenient proximity to substations and service roads are preferred [3].")),
                                                                   column(6,
                                                                          align="left",
+                                                                         h4(strong("Analysis")),
+                                                                         p("To assess the feasibility of implementing agrivoltaics on farms in Hanover, we devised an index map that illustrates the Agrivoltaic Viability Rating. This rating incorporates 
+                                                                           specific favorable attributes as defined in the index. The visualizations feature parcels with a minimum of 10 acres of land eligible for both solar farm development and prime 
+                                                                           agricultural production, located within 100ft of road access, and not designated for residential use. The rating evaluates parcels that satisfy these characteristics and assigns 
+                                                                           them a score ranging from 0 – 100. The rating is based on the size of the parcels and the quantity of available solar farmland and prime farmland within each parcel. Moreover, 
+                                                                           the maps were organized into buffer zones and color-coded according to their respective scores. Parcels with a closer proximity to 10 acres are depicted in purple, while those 
+                                                                           with the largest acreage are shown in yellow."),
                                                                          h2(strong("Description of Map")),
-                                                                         textOutput("arindex_write")),
+                                                                         textOutput("arindex_write"),
+                                                                         h4(strong("Benefits")),
+                                                                         p("Agrivoltaics provides a multitude of benefits including:"),
+                                                                         p("1. Economic expansion- This system allows farmers to generate income from traditional agriculture practices and solar energy production. This creates an option for farmers 
+                                                                           to sell harvested crops and electricity generated by the solar panels. Hence, providing farmers with the opportunity to diversify their income streams by entering the solar industry."),
+                                                                         p("2. Increased land productivity – Implementing this system initiates increased land productivity by addressing the issue of determining the allocation of land for agricultural or solar 
+                                                                           farming purposes. Prior to the introduction of agrivoltaics, farms had to decide whether they wanted to designate land solely for agriculture or solar panels. However, the installation 
+                                                                           of this system permits land to be effectively utilized for both simultaneously. This approach optimizes land usage and aids in boosting land productivity."),
+                                                                         p("3. Water conservation – The shade provided by the panels aids in reducing water evaporation from the soil which allows plants to use less water for irrigation. This is beneficial for 
+                                                                           farms located in regions that experience extreme weather such as droughts to extend their growing season and cultivate more crops."),
+                                                                         p("4. Solar Grazing – Solar grazing is an approach that utilizes grazing livestock to control plant growth by managing the vegetation under the solar arrays. Livestock assist with maintenance 
+                                                                           by trimming beneath the panels and reducing the need for herbicides while benefiting from the shade that the panels provide. Sheep are ideal when considering solar grazing as they eat many 
+                                                                           types of weeds and invasive species and can withstand labor intensive grazing."),
+                                                                         p("5. Increase Solar Panel Energy Capacity- The mutually beneficial cooling relationship promotes the panel’s temperature reduction, permitting them to achieve peak energy output. 
+                                                                           Additionally, farmers can use energy produced by the panels to power their equipment.")
+                                                                        
+                                                                         
+                                                                         ),
                                                                   column(6,
                                                                          h2(strong("Index Map")),
                                                                          selectInput(
@@ -999,7 +1070,7 @@ ui <- navbarPage(selected = "overview",
                                                                              "Buffer 3" = "buffer_3"),
                                                                            
                                                                          ),
-                                                                         imageOutput("arIndexPNG", width = "400px", height = "400px")
+                                                                         imageOutput("arIndexPNG", width = "500px", height = "400px")
                                                                   )
                                                                   
                                                          ),
@@ -1010,12 +1081,32 @@ ui <- navbarPage(selected = "overview",
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
                                                                   column(6,
+                                                                         align="left",
                                                                          h2(strong("Index Methodology")),
-                                                                         textOutput("ssmethod_write"),
-                                                                         textOutput("armethod_write")),
+                                                                         p("The Solar Suitability Score and Agrivoltaic Viability Rating Data Frame assembles the key attributes essential for constructing our index. The data frame 
+                                                                           incorporates data essential for defining buffer zones, assessing road access, distinguishing between current land use patterns, and determining prime farmland 
+                                                                           and land suitability for solar farm development. The first step of calculating the index is multiplying (1) an indicator variable that indicates whether or not 
+                                                                           a parcel is within the designated buffer zone around the electric grid, (2) an indicator variable that indicates whether or not a parcel has immediate road access, 
+                                                                           (3) an indicator variable that tells us if a parcel is residential or not (this allows us to rule out parcels coded as residential as these will not be suitable for solar 
+                                                                           farm development), (4) an indicator variable that tells us if a parcel has at least ten acres of land suitable for solar farm development. Specifically, for the 
+                                                                           Agrivoltaic Viability Rating, to complete step one we multiply (5) an indicator variable that ensures that land eligible for both solar farming and prime farmland coincide 
+                                                                           with a minimum of 10 acres, by the other variables to complete the index. Parcels that take on a value of zero are omitted from the index as they are not candidates 
+                                                                           for solar farm development or agrivoltaics, while parcels that receive a positive value are passed on to step two. The second step of calculating the index is applying 
+                                                                           a double natural logarithm transformation to the values from step one. When taking the natural log of value, we add 1 to the input values to ensure that the function is 
+                                                                           well-defined, i.e., we compute ln(ln(x+1)+1). The third and final step of calculating the index is to take the values from step two and map them to the interval [0,100]. 
+                                                                           This is done by subtracting the minimum value of all parcels from step two from each parcel value, and then dividing this result by the range of values, or the maximum 
+                                                                           value of all parcels minus the minimum value. Ultimately, the final result is scaled by multiplying by 100. When the minimum value is subtracted from itself, the result is 
+                                                                           0. If the maximum value is used, both the numerator and denominator of the function become identical, yielding a value of 100. All other values receive values between 0 and 100."),
+                                                                         h2(strong("Buffer Analysis")),
+                                                                         textOutput("selected_buffer_text"),
+                                                                         p(),
+                                                                         p(),
+                                                                         
+                                                                         
+                                                                         ),
                                                                   column(6,
                                                                          tabsetPanel(
-                                                                          
+                                                                           id = "tabs",
                                                                            tabPanel("Solar Suitability Score", 
                                                                                     selectInput(
                                                                                       "solar.score",
@@ -1023,7 +1114,8 @@ ui <- navbarPage(selected = "overview",
                                                                                       c("Buffer 1" = "buffer_1",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")),
-                                                                                    imageOutput("ssMethodPNG", width = "400px", height = "400px")
+                                                                                    imageOutput("ssMethodPNG", width = "550px", height = "500px"),
+                                                                                    p("Note: With the expansion of buffers, the frequencies rise as additional parcels emerge, introducing more data into the index."),
                                                                                     
                                                                            ),
                                                                            tabPanel("Agrivoltaic Viability Rating",
@@ -1034,7 +1126,8 @@ ui <- navbarPage(selected = "overview",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")
                                                                                     ),
-                                                                                    imageOutput("arMethodPNG", width = "400px", height = "400px")
+                                                                                    imageOutput("arMethodPNG", width = "550px", height = "500px"),
+                                                                                    p("Note: With the expansion of buffers, the frequencies rise as additional parcels emerge, introducing more data into the index."),
                                                                          )),
 
                                                                          )
@@ -1215,6 +1308,18 @@ server <- function(input, output){
     return(list(src = "www/SoilLimit.png", width = "100%", height = "100%"))
     
   })
+
+  output$RoadPNG <- renderImage(deleteFile = FALSE,{
+    
+    return(list(src = "www/Roads.png", width = "100%", height = "100%"))
+    
+  })
+  
+  output$InfastructurePNG <- renderImage(deleteFile = FALSE,{
+    
+    return(list(src = "www/Infastructure.png", width = "100%", height = "100%"))
+    
+  })
   
   # For buffer images later will be leaflets
   
@@ -1306,9 +1411,21 @@ server <- function(input, output){
     else if (input$crop_type == "DEV") {
       return("Write up for developed")
     }
+
   })
   
+  #ACS graphs
+  output$acs <- renderImage(deleteFile = FALSE,{
+    if (input$acs.graphs == "pop") {
+      return(list(src = "www/PopDen.png", width = "125%", height = "100%"))
+    }
+    else if (input$acs.graphs == "inc") {
+      return(list(src = "www/MedPopInc.png", width = "125%", height = "100%"))
+    }
+
+  })
   
+  #Solar methodology pictures
   output$ssMethodPNG <- renderImage(deleteFile = FALSE,{
     if (input$solar.score == "buffer_1") {
       return(list(src = "www/SSB1.png", width = "125%", height = "100%"))
@@ -1320,7 +1437,7 @@ server <- function(input, output){
       return(list(src = "www/SSB3.png", width = "125%", height = "100%"))
     }
   })
-  
+  #AV methodology pictures
   output$arMethodPNG <- renderImage(deleteFile = FALSE,{
     if (input$av.rating == "buffer_1") {
       return(list(src = "www/ARB1.png", width = "125%", height = "100%"))
@@ -1329,33 +1446,10 @@ server <- function(input, output){
       return(list(src = "www/ARB2.png", width = "125%", height = "100%"))
     }
     else if (input$av.rating == "buffer_3") {
-      return(list(src = "wwwARSB3.png", width = "125%", height = "100%"))
+      return(list(src = "wwwARB3.png", width = "125%", height = "100%"))
     }
   })
-  
-  output$ssmethod_write <- renderText({
-    if (input$solar.score == "buffer_1") {
-      return("Writ eup buffer 1")
-    }
-    else if (input$solar.score == "buffer_2") {
-      return("Write up buffer 2")
-    }
-    else if (input$solar.score == "buffer_3") {
-      return("Write up buffer 3")
-    }
-  })
-  output$armethod_write <- renderText({
-    if (input$av.rating == "buffer_1") {
-    return("Write up buffer 1")
-    }
-    else if (input$av.rating == "buffer_2") {
-      return("Write up buffer 2")
-    }
-    else if (input$av.rating == "buffer_3") {
-      return("Write up buffer 3")
-    }
-  })
-  
+#Solar index pictures
   output$ssIndexPNG <- renderImage(deleteFile = FALSE,{
     if (input$ssbufferType == "buffer_1") {
       return(list(src = "www/SSMapB1.png", width = "125%", height = "100%"))
@@ -1367,7 +1461,7 @@ server <- function(input, output){
       return(list(src = "www/SSMapB3.png", width = "125%", height = "100%"))
     }
   })
-  
+  #solar index write up
   output$ssindex_write <- renderText({
     if (input$ssbufferType == "buffer_1") {
       return("This map shows the most ideal parcels for solar farm development within buffer zone 1. buffer zone 1 contains the most desireable 
@@ -1392,7 +1486,7 @@ server <- function(input, output){
              North Anna and Pamunkey Rivers, have the most amount of suitable solar farm land within buffer zone 3.")
     }
   })
-  
+  #AV index pictures
   output$arIndexPNG <- renderImage(deleteFile = FALSE,{
     if (input$arbufferType == "buffer_1") {
       return(list(src = "www/ARMapB1.png", width = "125%", height = "100%"))
@@ -1404,18 +1498,130 @@ server <- function(input, output){
       return(list(src = "www/ARMapB3.png", width = "125%", height = "100%"))
     }
   })
-  
+ #AV write up 
   output$arindex_write <- renderText({
     if (input$arbufferType == "buffer_1") {
-      return("Writ eup buffer 1")
+      return("This map illustrates parcels highly suitable for agrivoltaics due to their optimal positioning in close proximity to infrastructure while retaining prime 
+             farmland attributes. The optimal positioning entails being 2 miles from a substation or 1,000 feet from a transmission line. Parcels falling under the buffer 
+             1 category are distributed across the county, with a significant majority of those scoring higher on the rating being located to the north of Ashland.")
     }
     else if (input$arbufferType == "buffer_2") {
-      return("Write up buffer 2")
+      return("The map showcases parcels falling under buffer 2, which is situated at a greater distance from energy infrastructure but possess the desirable characteristics for 
+             agrivoltaics. The new distance from energy infrastructure captures parcels within 4 miles of a substation or 2,000 ft of a transmission line. The inclusion of 
+             buffer 2 brings forth new parcels surrounding the city of Ashland and extending towards both the western and eastern edges of the county.")
     }
     else if (input$arbufferType == "buffer_3") {
-      return("Write up buffer 3")
+      return("The map displays parcels situated in Buffer 3, representing the farthest distance from energy infrastructure while still exhibiting desirable traits for agrivoltaics. 
+             The revised distance from energy infrastructure encompasses parcels within 6 miles from a substation or 3000ft from a transmission line. buffer 3, being the most distant 
+             from energy infrastructure, introduces the largest number of new parcels covering nearly the entire county. Consequently, if solar developers and farmers are willing 
+             to invest in developing closer infrastructure, if necessary, to offset the distance from existing infrastructure, agrivoltaic farms can be established within these parcels.")
     }
   })
+ #Methodology write up 
+  selected_tab <- reactive({
+    input$tabs
+  })
+  
+  selected_buffer_text <- reactive({
+    selected <- selected_tab()
+    
+    if (selected == "Solar Suitability Score") {
+      if(input$solar.score == "buffer_1"){
+        return("The Solar Suitability Score for Buffer 1 encompasses ideal parcels for solar farming located within 2 miles from a substation or 1000ft from a transmission line, 
+               land within 100ft of roads, 10 acres or more and non-residential zoned land. The index arranges parcels satisfying these criteria based on their size. Parcels that score 
+               closer to 0 fulfill all the categories but closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
+      }
+      else if (input$solar.score == "buffer_2"){
+        return("The Solar Suitability Score for Buffer 2 encompasses parcels for solar farming located within 4 miles from a substation or 2000ft from a transmission line, within 100ft of roads, 
+               have 10 acres or more and non-residential zoned. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 fill all the categories and closer 
+               to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
+      }
+      else if (input$solar.score == "buffer_3"){
+        return("The Solar Suitability Score for Buffer 3 encompasses parcels suitable for solar farming located within 6 miles from a substation or 3000ft from a transmission line, within 100ft of roads, 
+               have 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 fill all the categories and are closer 
+               to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
+      }
+    } else if (selected == "Agrivoltaic Viability Rating") {
+      if(input$av.rating == "buffer_1"){
+        return("The Agrivoltaic Viability Rating for Buffer 1 encompasses parcels desirable for solar farming and areas of prime farmland located within 2 miles of a substation or 1000ft from a transmission 
+               line, within 100ft of roads, 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 fill all the 
+               categories and are closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
+      }
+      else if (input$av.rating == "buffer_2"){
+        return("The Agrivoltaic Viability Rating for Buffer 2 encompasses parcels desirable for solar farming and areas of prime farmland for agriculture located within 4 miles from a substation or 2000ft from 
+               a transmission line, within 100ft of roads, have 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size.  Parcels scoring closer to 
+               0 fill all the categories and are closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
+      }
+      else if (input$av.rating == "buffer_3"){
+        return("The Agrivolaic Viability Rating for Buffer 3 encompasses parcels desirable for solar farming and areas of prime farmland for agriculture located within 6 miles from a substation or 3000ft from a 
+               transmission line, within 100ft of roads, have 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 
+               fill all the categories and are closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
+      }
+    } 
+  })
+  
+  output$selected_buffer_text <- renderText({
+    selected_buffer_text()
+  })
+  
+  #Crop fixing
+  selected_tab_crop <- reactive({
+    input$tabs2
+  })
+  
+  selected_crop_text <- reactive({
+    selected2 <- selected_tab_crop()
+    
+    if (selected2 == "Land Cover by Parcel") {
+      if (input$crop_type == "RC") {
+        return("Write up for row crops")
+      }
+      else if (input$crop_type == "HC") {
+        return("Write up for horticulture crops")
+      }
+      else if (input$crop_type == "SG") {
+        return("Write up for small grains")
+      }
+      else if (input$crop_type == "DC") {
+        return("Write up for double cropped")
+      }
+      else if (input$crop_type == "F") {
+        return("Write up for forages")
+      }
+      else if (input$crop_type == "TC") {
+        return("Write up for tree crops")
+      }
+      else if (input$crop_type == "O") {
+        return("Write up for other")
+      }
+      else if (input$crop_type == "FR") {
+        return("Write up for forest")
+      }
+      else if (input$crop_type == "WL") { 
+        return("Write up for wetlands")
+      }
+      else if (input$crop_type == "W") {
+        return("Write up for water")
+      }
+      else if (input$crop_type == "DEV") {
+        return("Write up for developed")
+      }
+    } 
+    else {
+      return(" ")
+
+      }
+     
+  })
+  
+  output$selected_buffer_text <- renderText({
+    selected_buffer_text()
+  })
+  output$selected_crop_text <- renderText({
+    selected_crop_text()
+  })
+  
+  
 }
 
 
