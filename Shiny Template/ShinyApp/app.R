@@ -495,7 +495,14 @@ ui <- navbarPage(selected = "overview",
                                               titlePanel(h2(strong("Sociodemographic Background"))),
                                               column(6,
                                                      align="left",
-                                                     p("write up"),
+                                                     p("To gain insight into the sociodemographic background of Hanover County for the year 2019, we relied on data 
+                                                       provided by the American Community Survey (ACS) 5-year data, spanning from 2017 to 2021. The U.S. Census Bureau 
+                                                       conducts the ACS, which encompasses demographic variables, such as race, median household income, median gross 
+                                                       rent and population size. The creation of ACS visualizations involves the utilization of designated census tracts,
+                                                       which act as statistical subdivisions of the county. These tracts are established by the Census Bureau and are 
+                                                       adjusted according to the settlement’s density, ensuring accurate and comprehensive data representation. Assessing 
+                                                       the sociodemographic background helps us gain an insight into the unique needs, preferences and priorities of local 
+                                                       communities and assists us in understanding the economic dynamics of the county."),
                                                      h4(strong("Map Analysis")),
                                                      textOutput("selected_emp_text")),
                                               column(6,
@@ -1633,15 +1640,33 @@ server <- function(input, output){
     
     if (selected3 == "Demographic Factors") {
       if (input$acs.graphs == "pop") {
-        return("Write up for pops")
+        return("Hanover’s population density measures the average population per square mile. Examining this aspect 
+               enables us to explore the composition of the county and identify regions that lean towards rural settings, 
+               characterized by lower population densities, and areas that are more urbanized, featuring higher 
+               population densities and well-developed infrastructure. The yellow tract has the highest population density, 
+               recorded at 8,558 residents per square mile, which can be attributed to its close proximity to Mechanicsville, 
+               on the outskirts of Richmond. This connection provides a plausible explanation for the heightened density in 
+               this particular region. Moreover, the area's primary zoning classification as Residential further justifies 
+               the substantial population density it sustains. The dark purple tract, situated northeast of Mechanicsville, 
+               exhibits the lowest population density at 2,473 residents per square mile. This can be attributed to its predominant
+               categorization under the Agricultural zone, which provides an explanation for the sparse population in this area.")
       }
       else if (input$acs.graphs == "inc") {
-        return("Write up for inc")
+        return("Hanover’s median population income is based on the distribution of the total number of households and families including those 
+               with no income. This tracks the income of the population by comparing the variables – population, median household income and 
+               median gross rent. Examining this aspect allows us to grasp the county’s economic prosperity by observing how a higher median income 
+               suggests a greater average earning potential among its residents. This factor is closely connected with the county’s employment opportunities, 
+               as a higher median income reflects the workforce dynamics and the prevalence of industries or sectors offering higher-paying jobs within the 
+               region. The yellow tract possesses the maximum income value of $127,394. This tract is located east of Glen Allen, on the outskirts of the capital, 
+               Richmond. The dark purple tract, located within the Ashland area, possesses the minimum income value of $55,924.")
       }
       
     } 
     else {
-      return(" ")
+      return("The U.S. Census Bureau ACS Data offered information on Hanover County’s total employment in each industry. By examining this aspect, we gain 
+             insights into the dominant industries within the county, which significantly impact its sociodemographic standing. Public Services account for 
+             over 20% of the county's total employment, encompassing education, healthcare, and social services. On the other hand, the agriculture industry 
+             holds the lowest employment share, comprising only 5% of the county's workforce.")
       
     }
     
