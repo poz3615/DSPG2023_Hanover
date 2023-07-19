@@ -516,7 +516,7 @@ ui <- navbarPage(selected = "overview",
                                                                   c("Population Density" = "pop",
                                                                     "Median Population Income" = "inc"))
                                                                 ,
-                                                                imageOutput("acs", width = "400px", height = "400px")
+                                                                imageOutput("acs", width = "650px", height = "500px")
                                                        ), 
                                                        tabPanel("Employment", 
                                                                 p(),
@@ -771,7 +771,7 @@ ui <- navbarPage(selected = "overview",
                                                                                       "Water" = "W",
                                                                                       "Developed" = "DEV")
                                                                                     ),
-                                                                                    imageOutput("crop_typePNG", width = "400px", height = "400px")
+                                                                                    imageOutput("crop_typePNG", width = "600px", height = "400px")
                                                                                     
                                                                                     
                                                                            ), 
@@ -819,7 +819,7 @@ ui <- navbarPage(selected = "overview",
                                                      tabsetPanel(
                                                 tabPanel("Soil Type Map",
                                                          p(),
-                                                         imageOutput("soilRate", width = "400px", height = "400px")
+                                                         imageOutput("soilRate", width = "700px", height = "500px")
                                                          
                                                          
                                                 ), 
@@ -872,7 +872,7 @@ ui <- navbarPage(selected = "overview",
                                                                          tabsetPanel(
                                                                            tabPanel("Land Suitability Map",
                                                                                     p(),
-                                                                                    imageOutput("SoilLimit", width = "400px", height = "400px")
+                                                                                    imageOutput("SoilLimit", width = "700px", height = "500px")
                                                                                     
                                                                                     
                                                                            ), 
@@ -919,7 +919,8 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Infastructure Map")),
-                                                                         imageOutput("InfastructurePNG", width = "400px", height = "400px")
+                                                                         imageOutput("InfastructurePNG", width = "700px", height = "500px"),
+                                                                         p("*Distortion due to high density of residential parcels in Mechanicsville.")
                                                                          
                                                                   )
                                                          ),
@@ -942,7 +943,8 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Road Access Map")),
-                                                                         imageOutput("RoadPNG", width = "400px", height = "400px")
+                                                                         imageOutput("RoadPNG", width = "700px", height = "500px"),
+                                                                         p("Highlighted parcels are within 100 feet of a roadway centerline.")
                                                                          
                                                                   )
                                                                   
@@ -976,7 +978,7 @@ ui <- navbarPage(selected = "overview",
                                                                              "Buffer 3" = "buffer_3"),
                                                                            
                                                                          ),
-                                                                         imageOutput("ssIndexPNG", width = "400px", height = "400px")
+                                                                         imageOutput("ssIndexPNG", width = "500px", height = "400px")
                                                                   )
                                                                   
                                                          ),
@@ -1004,7 +1006,7 @@ ui <- navbarPage(selected = "overview",
                                                                              "Buffer 3" = "buffer_3"),
                                                                            
                                                                          ),
-                                                                         imageOutput("arIndexPNG", width = "400px", height = "400px")
+                                                                         imageOutput("arIndexPNG", width = "500px", height = "400px")
                                                                   )
                                                                   
                                                          ),
@@ -1029,7 +1031,7 @@ ui <- navbarPage(selected = "overview",
                                                                                       c("Buffer 1" = "buffer_1",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")),
-                                                                                    imageOutput("ssMethodPNG", width = "400px", height = "400px")
+                                                                                    imageOutput("ssMethodPNG", width = "550px", height = "500px")
                                                                                     
                                                                            ),
                                                                            tabPanel("Agrivoltaic Viability Rating",
@@ -1040,7 +1042,7 @@ ui <- navbarPage(selected = "overview",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")
                                                                                     ),
-                                                                                    imageOutput("arMethodPNG", width = "400px", height = "400px")
+                                                                                    imageOutput("arMethodPNG", width = "550px", height = "500px")
                                                                          )),
 
                                                                          )
