@@ -728,7 +728,40 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Land Use and Zoning Analysis")),
-                                                                         p("write upp")),
+                                                                         h4(strong("Background")),
+                                                                         p("Zoning is important to understand land use because it helps authorities regulate and control land to balance community needs. 
+                                                                           These zoning rules are listed in The Code of Virginia which states that each locality can determine land use according to the following factors [1]:"),
+                                                                         p("1. The use of land, buildings, structures, and other premises for agricultural, business, industrial, residential, floodplain, and other specific uses; "),
+                                                                         p("2. The size, height, area, location, construction, reconstruction, repair, maintenance, or removal of structures;"),
+                                                                         p("3. The areas of land, water, and air space to be occupied by buildings, structures, and uses;"),
+                                                                         p("4. The excavation or mining of soil or other natural resources."),
+                                                                         h4(strong("Analysis")),
+                                                                         p("Using geospatial data from the Hanover County GIS Hub [4], the map shows six main zoning categories used to identify zoning classification for each parcel. 
+                                                                           The bar chart incorportes different zoning classifications to establish the average lot acreage for each classification."),
+                                                                         p("To help with interpretability, 40+ zoning codes were collapsed into these overarching categories:"),
+                                                                         p("1. Residential: These parcels shown have an average lot size of around 0.56 acres. The residential area makes up the middle and bottom parts of the county. 
+                                                                           This consists of living quarters, houses, apartments, condominiums, and other household types."),
+                                                                         p("2. Planned Unit Development: There is only one zoning code in this category that has an estimated mean lot acre size of around 0.75 acres and is found in 
+                                                                           the Suburban Service Area (SSA) in the middle of the county. With the last satellite snapshot, the parcel was still under construction based on ARC GIS.
+                                                                           Planned Unit Development is a community of single-family homes, condos, or townhomes belonging to the homeowners association or HOA."),
+                                                                         p("3. Commercial: Commercial parcels have an estimated averge lot acre size of 2.94 acres. The parcels are seen around residential and industrial areas while 
+                                                                           also being near roads. Most of these parcels are found in the condensed residential area at the bottom of the county and the SSA. If an area consists of office 
+                                                                           buildings, malls, shops, and various other buildings used for commercial purposes, it can be categorized under commercial zoning."),
+                                                                         p("4. Conservation: The parcels are scattered are Hanover County with a mean lot acre size of around 5.87 acres. Most of the parcels are away from residential areas 
+                                                                           except for some near the SSA. It can be consistent with protected open land for cultural, natural, historical, or work purposes."),
+                                                                         p("5. Industrial: Industrial parcels have an average lot acre size of around 9.72 acres. These are shown to surround and make up most of the SSA and run along the 
+                                                                           bottom of the county. Some examples of these include factories, solar energy facilities, chemical plants, etc."),
+                                                                         p("6. Agriculture: Parcels in this category have a mean lot acre size of around 12.08 acres. It is shown on the map that most of the county is made up of Agricultural parcels. 
+                                                                           This is especially the case on the upper half or the left side of the county. These include barns, farmhouses, farms, and other agricultural land."),
+                                                                         p("The bar graph displays mean lot acres for each zoning category from 0.56 acres to 12.08 acres. The largest average value shown at 12.08 mean lot acres belongs
+                                                                           to agriculture which shows this type of zoning has the largest parcels. It shows that the county uses its land for agriculture the most. However, the category
+                                                                           with the most parcels is residential which is much smaller on average at 0.56 acres."),
+                                                                         p("Towards the middle of the county, the Suburban Service Area (SSA) is based on the General Land Use Plan where higher residential densities and more intensive 
+                                                                           non-residential uses, such as commercial zoning, are being designated. At the bottom-right side of the county is where the most residential parcels and a decent 
+                                                                           amount of industrial parcels are. This is because when getting closer to the city of Richmond, the residential areas will be more dense. Richmond tends to have this 
+                                                                           trend due to being the capital of Virginia and one of the largest population-dense cities in the state. Compared to smaller areas in Virginia, when going closer 
+                                                                           to the city of Richmond the trend of the number of industrial parcels increases. Cities and more population-dense areas host heavy industrial zones such as power 
+                                                                           plants, airports, and factories.")),
                                                                   column(6,
                                                                          tabsetPanel(
                                                                            tabPanel("Land Use Map",
