@@ -497,9 +497,10 @@ ui <- navbarPage(selected = "overview",
                                                      align="left",
                                                      p("write up"),
                                                      h4(strong("Map Analysis")),
-                                                     textOutput("socio_write")),
+                                                     textOutput("selected_emp_text")),
                                               column(6,
                                                      tabsetPanel(
+                                                       id="tabs3",
                                                        tabPanel("Demographic Factors",
                                                                 p(),
                                                                 selectInput(
@@ -1623,6 +1624,32 @@ server <- function(input, output){
     selected_crop_text()
   })
   
+  selected_tab_emp <- reactive({
+    input$tabs3
+  })
+  
+  selected_emp_text <- reactive({
+    selected3 <- selected_tab_emp()
+    
+    if (selected3 == "Demographic Factors") {
+      if (input$acs.graphs == "pop") {
+        return("Write up for pops")
+      }
+      else if (input$acs.graphs == "inc") {
+        return("Write up for inc")
+      }
+      
+    } 
+    else {
+      return(" ")
+      
+    }
+    
+  })
+  
+  output$selected_emp_text <- renderText({
+    selected_emp_text()
+  })
   
 }
 
