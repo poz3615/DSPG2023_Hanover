@@ -76,6 +76,7 @@ employ_plot <- ggplot(employ, aes(x = reorder(EmploymentTypes, Percent), y = Per
   labs(title = "Total Employment For Each Industry", 
        y = "Percent",
        caption = "Data Source: US Census ACS 5-Year 2019 Data") +
+  theme(axis.title.y = element_blank())+
   coord_flip() 
 
 employ_plot <- ggplotly(employ_plot, tooltip = "text")
@@ -286,10 +287,11 @@ landAll <- ggplot(summed_cat, aes(x = reorder(Category, SumCount),
   scale_fill_viridis_d(option = "viridis") +
   theme(legend.position = "none",
         plot.title = element_text(face = "bold")) +
-  labs(x = "Use Category", 
+  labs( 
        y = "Acres", 
        title = "Land Cover in Hanover County by Category", 
-       caption = "Data Source: USDA Cropland-CROS, 2022") 
+       caption = "Data Source: USDA Cropland-CROS, 2022") +
+  theme(axis.title.y = element_blank())
 
 landAll <- ggplotly(landAll, tooltip = "text")
 
@@ -319,10 +321,11 @@ landCropONLY <- ggplot(summed_catSub, aes(x = reorder(Category, SumCount), y = S
   scale_fill_viridis_d(option = "viridis") +
   theme(legend.position = "none",
         plot.title = element_text(face = "bold")) +
-  labs(x = "Crop Type", 
+  labs(
        y = "Acres", 
        title = " Land Crops in Hanover County by Category", 
-       caption = "Data Source: USDA Cropland-CROS, 2022") 
+       caption = "Data Source: USDA Cropland-CROS, 2022") +
+  theme(axis.title.y = element_blank())
 
 
 landCropONLY <- ggplotly(landCropONLY, tooltip = "text")
@@ -358,7 +361,8 @@ sR <- ggplot(total_acres, aes(x = reorder(soil_rating, acres), y = acres, fill =
   coord_flip() +
   scale_fill_viridis_d(option = "viridis") +
   theme(legend.position = "none") +
-  labs(x = "Soil Rating", y = "Acreage", title = "USDA Soil Rating by Acerage in Hanover County", caption = "Data Source: USDA, NRCC Web Soil Survey, 2019") 
+  labs( y = "Acreage", title = "USDA Soil Rating by Acerage in Hanover County", caption = "Data Source: USDA, NRCC Web Soil Survey, 2019") +
+  theme(axis.title.y = element_blank())
 
 sR <- ggplotly(sR, tooltip = "text") 
 
