@@ -1617,10 +1617,12 @@ server <- function(input, output){
         return("Write up for developed")
       }
     } 
-    else {
-      return(" ")
-
-      }
+    else if (selected2=="Land Cover Acreage"){
+      return("Land")
+    }
+    else if (selected2=="Crop Cover Acreage"){
+      return("crop")
+    }
      
   })
   
