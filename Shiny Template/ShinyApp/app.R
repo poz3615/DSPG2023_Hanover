@@ -505,7 +505,10 @@ ui <- navbarPage(selected = "overview",
                                      tabPanel("Background",
                                               titlePanel(h2(strong("Sociodemographic Background"))),
                                               column(6,
-                                                     p("write up")),
+                                                     align="left",
+                                                     p("write up"),
+                                                     h4(strong("Map Analysis")),
+                                                     textOutput("socio_write")),
                                               column(6,
                                                      tabsetPanel(
                                                        tabPanel("Demographic Factors",
@@ -1375,6 +1378,16 @@ server <- function(input, output){
     
     consleaf
     
+  })
+  
+  output$socio_write <- renderText({
+    if (input$acs.graphs == "pop") {
+      return("population")
+    }
+    else if (input$acs.graphs == "inc") {
+      return("income")
+    }
+
   })
   
   output$crop_type_write <- renderText({
