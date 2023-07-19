@@ -1034,6 +1034,15 @@ ui <- navbarPage(selected = "overview",
                                                                            incline and free from obstructions that may potentially cast shade onto the panels. Additionally, convenient proximity to substations and service roads are preferred [3].")),
                                                                   column(6,
                                                                          align="left",
+                                                                         h4(strong("Analysis")),
+                                                                         p("To assess the feasibility of implementing agrivoltaics on farms in Hanover, we devised an index map that illustrates the Agrivoltaic Viability Rating. This rating incorporates 
+                                                                           specific favorable attributes as defined in the index. The visualizations feature parcels with a minimum of 10 acres of land eligible for both solar farm development and prime 
+                                                                           agricultural production, located within 100ft of road access, and not designated for residential use. The rating evaluates parcels that satisfy these characteristics and assigns 
+                                                                           them a score ranging from 0 – 100. The rating is based on the size of the parcels and the quantity of available solar farmland and prime farmland within each parcel. Moreover, 
+                                                                           the maps were organized into buffer zones and color-coded according to their respective scores. Parcels with a closer proximity to 10 acres are depicted in purple, while those 
+                                                                           with the largest acreage are shown in yellow."),
+                                                                         h2(strong("Description of Map")),
+                                                                         textOutput("arindex_write"),
                                                                          h4(strong("Benefits")),
                                                                          p("Agrivoltaics provides a multitude of benefits including:"),
                                                                          p("1. Economic expansion- This system allows farmers to generate income from traditional agriculture practices and solar energy production. This creates an option for farmers 
@@ -1047,16 +1056,10 @@ ui <- navbarPage(selected = "overview",
                                                                            by trimming beneath the panels and reducing the need for herbicides while benefiting from the shade that the panels provide. Sheep are ideal when considering solar grazing as they eat many 
                                                                            types of weeds and invasive species and can withstand labor intensive grazing."),
                                                                          p("5. Increase Solar Panel Energy Capacity- The mutually beneficial cooling relationship promotes the panel’s temperature reduction, permitting them to achieve peak energy output. 
-                                                                           Additionally, farmers can use energy produced by the panels to power their equipment."),
-                                                                         h4(strong("Analysis")),
-                                                                         p("To assess the feasibility of implementing agrivoltaics on farms in Hanover, we devised an index map that illustrates the Agrivoltaic Viability Rating. This rating incorporates 
-                                                                           specific favorable attributes as defined in the index. The visualizations feature parcels with a minimum of 10 acres of land eligible for both solar farm development and prime 
-                                                                           agricultural production, located within 100ft of road access, and not designated for residential use. The rating evaluates parcels that satisfy these characteristics and assigns 
-                                                                           them a score ranging from 0 – 100. The rating is based on the size of the parcels and the quantity of available solar farmland and prime farmland within each parcel. Moreover, 
-                                                                           the maps were organized into buffer zones and color-coded according to their respective scores. Parcels with a closer proximity to 10 acres are depicted in purple, while those 
-                                                                           with the largest acreage are shown in yellow."),
-                                                                         h2(strong("Description of Map")),
-                                                                         textOutput("arindex_write")),
+                                                                           Additionally, farmers can use energy produced by the panels to power their equipment.")
+                                                                        
+                                                                         
+                                                                         ),
                                                                   column(6,
                                                                          h2(strong("Index Map")),
                                                                          selectInput(
@@ -1078,7 +1081,22 @@ ui <- navbarPage(selected = "overview",
                                                          fluidRow(style = "margin: 8px;",
                                                                   align = "center",
                                                                   column(6,
+                                                                         align="left",
                                                                          h2(strong("Index Methodology")),
+                                                                         p("The Solar Suitability Score and Agrivoltaic Viability Rating Data Frame assembles the key attributes essential for constructing our index. The data frame 
+                                                                           incorporates data essential for defining buffer zones, assessing road access, distinguishing between current land use patterns, and determining prime farmland 
+                                                                           and land suitability for solar farm development. The first step of calculating the index is multiplying (1) an indicator variable that indicates whether or not 
+                                                                           a parcel is within the designated buffer zone around the electric grid, (2) an indicator variable that indicates whether or not a parcel has immediate road access, 
+                                                                           (3) an indicator variable that tells us if a parcel is residential or not (this allows us to rule out parcels coded as residential as these will not be suitable for solar 
+                                                                           farm development), (4) an indicator variable that tells us if a parcel has at least ten acres of land suitable for solar farm development. Specifically, for the 
+                                                                           Agrivoltaic Viability Rating, to complete step one we multiply (5) an indicator variable that ensures that land eligible for both solar farming and prime farmland coincide 
+                                                                           with a minimum of 10 acres, by the other variables to complete the index. Parcels that take on a value of zero are omitted from the index as they are not candidates 
+                                                                           for solar farm development or agrivoltaics, while parcels that receive a positive value are passed on to step two. The second step of calculating the index is applying 
+                                                                           a double natural logarithm transformation to the values from step one. When taking the natural log of value, we add 1 to the input values to ensure that the function is 
+                                                                           well-defined, i.e., we compute ln(ln(x+1)+1). The third and final step of calculating the index is to take the values from step two and map them to the interval [0,100]. 
+                                                                           This is done by subtracting the minimum value of all parcels from step two from each parcel value, and then dividing this result by the range of values, or the maximum 
+                                                                           value of all parcels minus the minimum value. Ultimately, the final result is scaled by multiplying by 100. When the minimum value is subtracted from itself, the result is 
+                                                                           0. If the maximum value is used, both the numerator and denominator of the function become identical, yielding a value of 100. All other values receive values between 0 and 100."),
                                                                          textOutput("selected_buffer_text"),
                                                                          
                                                                          ),
