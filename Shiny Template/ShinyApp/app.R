@@ -1097,7 +1097,11 @@ ui <- navbarPage(selected = "overview",
                                                                            This is done by subtracting the minimum value of all parcels from step two from each parcel value, and then dividing this result by the range of values, or the maximum 
                                                                            value of all parcels minus the minimum value. Ultimately, the final result is scaled by multiplying by 100. When the minimum value is subtracted from itself, the result is 
                                                                            0. If the maximum value is used, both the numerator and denominator of the function become identical, yielding a value of 100. All other values receive values between 0 and 100."),
+                                                                         h2(strong("Buffer Analysis")),
                                                                          textOutput("selected_buffer_text"),
+                                                                         p(),
+                                                                         p(),
+                                                                         
                                                                          
                                                                          ),
                                                                   column(6,
@@ -1110,7 +1114,8 @@ ui <- navbarPage(selected = "overview",
                                                                                       c("Buffer 1" = "buffer_1",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")),
-                                                                                    imageOutput("ssMethodPNG", width = "550px", height = "500px")
+                                                                                    imageOutput("ssMethodPNG", width = "550px", height = "500px"),
+                                                                                    p("Note: With the expansion of buffers, the frequencies rise as additional parcels emerge, introducing more data into the index."),
                                                                                     
                                                                            ),
                                                                            tabPanel("Agrivoltaic Viability Rating",
@@ -1121,7 +1126,8 @@ ui <- navbarPage(selected = "overview",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")
                                                                                     ),
-                                                                                    imageOutput("arMethodPNG", width = "550px", height = "500px")
+                                                                                    imageOutput("arMethodPNG", width = "550px", height = "500px"),
+                                                                                    p("Note: With the expansion of buffers, the frequencies rise as additional parcels emerge, introducing more data into the index."),
                                                                          )),
 
                                                                          )
@@ -1521,23 +1527,35 @@ server <- function(input, output){
     
     if (selected == "Solar Suitability Score") {
       if(input$solar.score == "buffer_1"){
-        return("Write up solar buffer 1")
+        return("The Solar Suitability Score for Buffer 1 encompasses ideal parcels for solar farming located within 2 miles from a substation or 1000ft from a transmission line, 
+               land within 100ft of roads, 10 acres or more and non-residential zoned land. The index arranges parcels satisfying these criteria based on their size. Parcels that score 
+               closer to 0 fulfill all the categories but closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
       else if (input$solar.score == "buffer_2"){
-        return("Write up solar buffer 2")
+        return("The Solar Suitability Score for Buffer 2 encompasses parcels for solar farming located within 4 miles from a substation or 2000ft from a transmission line, within 100ft of roads, 
+               have 10 acres or more and non-residential zoned. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 fill all the categories and closer 
+               to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
       else if (input$solar.score == "buffer_3"){
-        return("Write up solar buffer 3")
+        return("The Solar Suitability Score for Buffer 3 encompasses parcels suitable for solar farming located within 6 miles from a substation or 3000ft from a transmission line, within 100ft of roads, 
+               have 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 fill all the categories and are closer 
+               to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
     } else if (selected == "Agrivoltaic Viability Rating") {
       if(input$av.rating == "buffer_1"){
-        return("Write up av buffer 1")
+        return("The Agrivoltaic Viability Rating for Buffer 1 encompasses parcels desirable for solar farming and areas of prime farmland located within 2 miles of a substation or 1000ft from a transmission 
+               line, within 100ft of roads, 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 fill all the 
+               categories and are closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
       else if (input$av.rating == "buffer_2"){
-        return("Write up av buffer 2")
+        return("The Agrivoltaic Viability Rating for Buffer 2 encompasses parcels desirable for solar farming and areas of prime farmland for agriculture located within 4 miles from a substation or 2000ft from 
+               a transmission line, within 100ft of roads, have 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size.  Parcels scoring closer to 
+               0 fill all the categories and are closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
       else if (input$av.rating == "buffer_3"){
-        return("Write up av buffer 3")
+        return("The Agrivolaic Viability Rating for Buffer 3 encompasses parcels desirable for solar farming and areas of prime farmland for agriculture located within 6 miles from a substation or 3000ft from a 
+               transmission line, within 100ft of roads, have 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 
+               fill all the categories and are closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
     } 
   })
