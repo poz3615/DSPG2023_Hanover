@@ -919,7 +919,7 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Infastructure Map")),
-                                                                         p("Visualizations go here")
+                                                                         imageOutput("InfastructurePNG", width = "400px", height = "400px")
                                                                          
                                                                   )
                                                          ),
@@ -942,7 +942,7 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Road Access Map")),
-                                                                         p("Visualizations go here")
+                                                                         imageOutput("RoadPNG", width = "400px", height = "400px")
                                                                          
                                                                   )
                                                                   
@@ -1175,37 +1175,37 @@ server <- function(input, output){
   
   output$crop_typePNG <- renderImage(deleteFile = FALSE,{
     if (input$crop_type == "RC") {
-      return(list(src = "www/RowCrops.png", width = "100%", height = "100%"))
+      return(list(src = "www/RowCrops.png", width = "135%", height = "100%"))
     }
     else if (input$crop_type == "HC") {
-      return(list(src = "www/HorCrops.png", width = "100%", height = "100%"))
+      return(list(src = "www/HorCrops.png", width = "135%", height = "100%"))
     }
     else if (input$crop_type == "SG") {
-      return(list(src = "www/SmallGR.png", width = "100%", height = "100%"))
+      return(list(src = "www/SmallGR.png", width = "135%", height = "100%"))
     }
     else if (input$crop_type == "DC") {
-      return(list(src = "www/DobCrop.png", width = "100%", height = "100%"))
+      return(list(src = "www/DobCrop.png", width = "135%", height = "100%"))
     }
     else if (input$crop_type == "F") {
-      return(list(src = "www/Forages.png", width = "100%", height = "100%"))
+      return(list(src = "www/Forages.png", width = "135%", height = "100%"))
     }
     else if (input$crop_type == "TC") {
-      return(list(src = "www/TreeCrops.png", width = "100%", height = "100%"))
+      return(list(src = "www/TreeCrops.png", width = "135%", height = "100%"))
     }
     else if (input$crop_type == "O") {
-      return(list(src = "www/Other.png", width = "100%", height = "100%"))
+      return(list(src = "www/Other.png", width = "135%", height = "100%"))
     }
     else if (input$crop_type == "FR") {
-      return(list(src = "www/Forests.png", width = "100%", height = "100%"))
+      return(list(src = "www/Forests.png", width = "135%", height = "100%"))
     }
     else if (input$crop_type == "WL") { 
-      return(list(src = "www/Wetlands.png", width = "100%", height = "100%"))
+      return(list(src = "www/Wetlands.png", width = "135%", height = "100%"))
     }
     else if (input$crop_type == "W") {
-      return(list(src = "www/Water.png", width = "100%", height = "100%"))
+      return(list(src = "www/Water.png", width = "135%", height = "100%"))
     }
     else if (input$crop_type == "DEV") {
-      return(list(src = "www/Developed.png", width = "100%", height = "100%"))
+      return(list(src = "www/Developed.png", width = "135%", height = "100%"))
     }
   })
   
@@ -1222,6 +1222,17 @@ server <- function(input, output){
     
   })
 
+  output$RoadPNG <- renderImage(deleteFile = FALSE,{
+    
+    return(list(src = "www/Roads.png", width = "100%", height = "100%"))
+    
+  })
+  
+  output$InfastructurePNG <- renderImage(deleteFile = FALSE,{
+    
+    return(list(src = "www/Infastructure.png", width = "100%", height = "100%"))
+    
+  })
   
   # For buffer images later will be leaflets
   
