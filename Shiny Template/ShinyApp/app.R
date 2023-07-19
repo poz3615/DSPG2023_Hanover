@@ -495,11 +495,19 @@ ui <- navbarPage(selected = "overview",
                                               titlePanel(h2(strong("Sociodemographic Background"))),
                                               column(6,
                                                      align="left",
-                                                     p("write up"),
+                                                     p("To gain insight into the sociodemographic background of Hanover County for the year 2019, we relied on data 
+                                                       provided by the American Community Survey (ACS) 5-year data, spanning from 2017 to 2021. The U.S. Census Bureau 
+                                                       conducts the ACS, which encompasses demographic variables, such as race, median household income, median gross 
+                                                       rent and population size. The creation of ACS visualizations involves the utilization of designated census tracts,
+                                                       which act as statistical subdivisions of the county. These tracts are established by the Census Bureau and are 
+                                                       adjusted according to the settlement’s density, ensuring accurate and comprehensive data representation. Assessing 
+                                                       the sociodemographic background helps us gain an insight into the unique needs, preferences and priorities of local 
+                                                       communities and assists us in understanding the economic dynamics of the county."),
                                                      h4(strong("Map Analysis")),
-                                                     textOutput("socio_write")),
+                                                     textOutput("selected_emp_text")),
                                               column(6,
                                                      tabsetPanel(
+                                                       id="tabs3",
                                                        tabPanel("Demographic Factors",
                                                                 p(),
                                                                 selectInput(
@@ -777,7 +785,22 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Land Cover Information")),
-                                                                         #textOutput("crop_type_write"),
+                                                                         p("Land cover is defined as the physical material on the Earth’s surface, including vegetation, water, ice,
+                                                                           bare rock, sand, man-made construction, and other surface types. Analyzing the land cover provides an overarching 
+                                                                           view of the county's composition, revealing possibilities and limitations concerning potential changes, utilization, 
+                                                                           and management. This becomes particularly significant when considering diverse regulations governing each land cover 
+                                                                           and its suitability for various land use projects."),
+                                                                         p(),
+                                                                         p("The USDA’s National Agricultural Statistics Service and Agricultural Research Service (NASS) web application called CroplandCROS/CropScape 
+                                                                           is a satellite database that imparts geospatial data called the Cropland Data Layer (CDL). The CropScape web application allows 
+                                                                           users to efficiently conduct area and statistical analysis of planted U.S. commodities. It allows users to geolocate 
+                                                                           farms and map areas of interest. “The Cropland Data Layer (CDL) provides raster, geo-referenced, crop-specific land cover map 
+                                                                           for the United States. Layers are shown in the CDL which includes a crop mask layer, planting frequency layers, boundary 
+                                                                           layers, water layers, and road layers. All of the data is recreated annually using moderate-resolution satellite imagery and extensive agricultural ground truth [1].”"),
+                                                                         p(),
+                                                                         h2(strong("Map Analysis")),
+                                                                         textOutput("selected_crop_text2"),
+                                                                         p(),
                                                                          textOutput("selected_crop_text")),
                                                                   column(6,
                                                                          tabsetPanel(
@@ -1576,45 +1599,114 @@ server <- function(input, output){
     
     if (selected2 == "Land Cover by Parcel") {
       if (input$crop_type == "RC") {
-        return("Write up for row crops")
+        return("Row crops refer to annual crops harvested on a large scale and consist of corn, 
+               soybeans and similar crops grown in lines. They take up around 9.52% of total land 
+               cover and around 41.89% out of all crop covers in the county. Parcels holding row 
+               crops are concentrated throughout the county except towards residential areas found 
+               at the lower end of the county around Mechanicsville which is closer to Richmond.")
       }
       else if (input$crop_type == "HC") {
-        return("Write up for horticulture crops")
+        return("Horticulture crops are fruits, vegetables, edible nuts, some ornamental crops, and 
+               nursery crops that are grown for their contribution to the flavor and interest of food 
+               and the supply of minor but essential nutrients. These crops make up around 0.015% of 
+               land cover and around 0.064% of crop covers that are part of Hanover County. “These plants are 
+               grown mainly for the purposes of food, medicinal purposes, and aesthetic gratification” [2].
+               Horticulture Crops are sparsely located where the biggest parcels are at the top middle of the 
+               county. It is to note that some horticulture crops are actually grown in greenhouses, 
+               so they are not counted in the satellite data and instead are being shown as the developed 
+               land category on the map.")
       }
       else if (input$crop_type == "SG") {
-        return("Write up for small grains")
+        return("Small grains are a category of crop typically referred to as cereal such as wheat (winter and spring versions),
+               oats, barley (winter or spring), rye, and rice. It makes up around 0.22% of all land cover and around 0.99% of crop cover.
+               If soil conditions and management practices are efficient, then “small grains can produce profitable yields of grain 
+               for the cash market or farm feeding” [3]. On the map, the parcels with small grains are more populated towards the northern
+               part of the county with bigger parcels on the north central half touching the borders.")
       }
       else if (input$crop_type == "DC") {
-        return("Write up for double cropped")
+        return("Double cropped land makes up around 1.37% of land cover and around 6.05% of crop cover which consists of growing 
+               multiple crops one after the other on the same land. This system helps farmers to double their productivity. An example of 
+               this can include winter wheat in the spring and soybeans in the fall. Being the third most common crop cover on the map, 
+               the parcels are all around the county, and are most dense on the northern borders of the county and least dense at the southern 
+               borders of the county.")
       }
       else if (input$crop_type == "F") {
-        return("Write up for forages")
+        return("For forage crops, the land cover proportions are at around 11.59%, and as a crop cover, it comes out with the highest percentage 
+               at around 51% out of all other crop covers. These crops are used for farm grazing and as habitats for animals. Their value comes 
+               from contributing to quality animal products. Examples include hay, silages, green chop, grasses, alfalfa, clovers, and other 
+               crops. These are concentrated everywhere except in the center of Ashland and Mechanicsville due to the Suburban Service Area and 
+               residential areas, respectively.")
       }
       else if (input$crop_type == "TC") {
-        return("Write up for tree crops")
-      }
-      else if (input$crop_type == "O") {
-        return("Write up for other")
+        return("In terms of tree crops, the proportion of land they cover is at around 0.0012% at the lowest value, and comes around to 0.0055% as 
+               the lowest value out of all crop covers. Tree crops consist of groves and orchards grown that assist with the general welfare and 
+               environment of the area. Some harvested tree crop examples include tree fruits and tree nuts such as hazelnuts, chestnuts, and almonds. 
+               These crops have the benefit of producing food and timber while also providing overall environmental benefits such as oxygen 
+               production and soil improvements. They also don’t have to be tilled, unlike other crops, but it will take longer to establish this 
+               system of crops. Being the least populated, there are not many parcels seen and are also concentrated towards the northwestern end of 
+               the county. However, it is important to note that there could be issues with satellite imagery determining the differences between forest area and tree crops.")
       }
       else if (input$crop_type == "FR") {
-        return("Write up for forest")
+        return("Reserved for forest growth, forested land comprises areas dedicated to the growth of forests, either individually or in combination. 
+               The forested area makes up the majority of Hanover County at around 54.85% of land cover. Some examples of trees found natively in 
+               Virginia are oak, cedar, and pine. These forests offer wildlife, plants, and other things home including providing environmental and foraging benefits. 
+               Forested parcels make up almost all of the county except for the SSA and the residential areas of Mechanicsville.")
+      }
+      else if (input$crop_type == "O") {
+        return("Other land covers make up the “Other” category at around 0.21% of the county. These land covers consist of barren land, fallow land, idle 
+               cropland, and non-categorized crops. Throughout the county, these parcels are distributed, with a higher concentration observed 
+               on the northern and western sides.")
       }
       else if (input$crop_type == "WL") { 
-        return("Write up for wetlands")
+        return("Wetlands are areas where water either covers the soil or is near the surface of the soil layer. This status could happen either all year long, 
+               during the growing season, or could permanently stay the same. Out of all of the land covers, it makes up 8.19% of the county. Like forests, 
+               wetlands provide habitats and resources for animals (especially aquatic based) and terrestrial plants. “Far from being useless, disease-ridden places, 
+               wetlands provide values that no other ecosystem can. These include natural water quality improvement, flood protection, shoreline erosion control, 
+               opportunities for recreation and aesthetic appreciation, and natural products for our use at no cost. Protecting wetlands can protect our safety 
+               and welfare” [4]. The depicted parcels are populated throughout, with the southern half of the county showing slightly lower population density.")
       }
       else if (input$crop_type == "W") {
-        return("Write up for water")
+        return("This is where water or bodies of water preside in the county. Although satellite imagery reveals that water is present in most of the county's parcels, 
+               the overall land comprises only about 0.59% of water. Many of the bigger parcels hug the northern order of the county and appear larger and frequent more 
+               on the west ern sides of the county than the eastern sides. The water land cover is important due to the environment and resources it provides to animals and the plant life in the area.")
       }
       else if (input$crop_type == "DEV") {
-        return("Write up for developed")
+        return("Developed land makes up around 13.45% of land cover. What consists of developed land is a mixture of land constructions, homes, impervious 
+               surfaces, and other developed land. Even though the land cover only makes up a small amount, almost every parcel has some form of developed land shown on the map.")
       }
     } 
-    else {
-      return(" ")
-
-      }
+    else if (selected2=="Land Cover Acreage"){
+      return("Forested area makes up most of Hanover County at around 54.85% with 166,000+ acres of land in total. 
+             These dense forested areas serve to absorb carbon dioxide from the atmostphere, and provide haitat to native 
+             species. The second most common land cover type is developed land making up 13.45% with 40,000+ acres, and 
+             forages is the third most common land cover type making up 11.59% occupying 35,000+ acres.")
+    }
+    else if (selected2=="Crop Cover Acreage"){
+      return("To gain insight on agricultural production, land cover types are seperated to just look at crops. 
+             Crop cover makes up around 22.7% of Hanover County. These consist of tree crops, small grain crops,
+             row crops, horticulture crops, forages, and double cropped. Comparing the maps, row crops take up 
+             the most area occupying 41.89% out of all crop covers. Specifically when looking at crop covers, crops 
+             that can make high profit margins are called cash crops. These crops support the agricultural economy 
+             of Hanover and are seen on the map throughout the county, especially on the northern parts of Hanover. 
+             These crops include row crops and horticulture crops.")
+    }
      
   })
+  
+  selected_crop_text2 <- reactive({
+    selected2 <- selected_tab_crop()
+    
+    if (selected2 == "Land Cover by Parcel") {
+      return("Parcels of land shown are based on different land covers mapped at pixel level through the Cropland Data Layer where 
+             each pixel represents 0.22 acres of a land cover type. There are 50 different land cover types throughout Hanover County, 
+             and we categorized them into 11 distinctive groups. If there is a minimum of 0.22 acres of a land cover type within a parcel, 
+             \that parcel is displayed on the map.")
+    }
+    else{
+      return(" ")
+    }
+  })
+  
   
   output$selected_buffer_text <- renderText({
     selected_buffer_text()
@@ -1622,7 +1714,54 @@ server <- function(input, output){
   output$selected_crop_text <- renderText({
     selected_crop_text()
   })
+  output$selected_crop_text2 <- renderText({
+    selected_crop_text2()
+  })
   
+  selected_tab_emp <- reactive({
+    input$tabs3
+  })
+  
+  selected_emp_text <- reactive({
+    selected3 <- selected_tab_emp()
+    
+    if (selected3 == "Demographic Factors") {
+      if (input$acs.graphs == "pop") {
+        return("Hanover’s population density measures the average population per square mile. Examining this aspect 
+               enables us to explore the composition of the county and identify regions that lean towards rural settings, 
+               characterized by lower population densities, and areas that are more urbanized, featuring higher 
+               population densities and well-developed infrastructure. The yellow tract has the highest population density, 
+               recorded at 8,558 residents per square mile, which can be attributed to its close proximity to Mechanicsville, 
+               on the outskirts of Richmond. This connection provides a plausible explanation for the heightened density in 
+               this particular region. Moreover, the area's primary zoning classification as Residential further justifies 
+               the substantial population density it sustains. The dark purple tract, situated northeast of Mechanicsville, 
+               exhibits the lowest population density at 2,473 residents per square mile. This can be attributed to its predominant
+               categorization under the Agricultural zone, which provides an explanation for the sparse population in this area.")
+      }
+      else if (input$acs.graphs == "inc") {
+        return("Hanover’s median population income is based on the distribution of the total number of households and families including those 
+               with no income. This tracks the income of the population by comparing the variables – population, median household income and 
+               median gross rent. Examining this aspect allows us to grasp the county’s economic prosperity by observing how a higher median income 
+               suggests a greater average earning potential among its residents. This factor is closely connected with the county’s employment opportunities, 
+               as a higher median income reflects the workforce dynamics and the prevalence of industries or sectors offering higher-paying jobs within the 
+               region. The yellow tract possesses the maximum income value of $127,394. This tract is located east of Glen Allen, on the outskirts of the capital, 
+               Richmond. The dark purple tract, located within the Ashland area, possesses the minimum income value of $55,924.")
+      }
+      
+    } 
+    else {
+      return("The U.S. Census Bureau ACS Data offered information on Hanover County’s total employment in each industry. By examining this aspect, we gain 
+             insights into the dominant industries within the county, which significantly impact its sociodemographic standing. Public Services account for 
+             over 20% of the county's total employment, encompassing education, healthcare, and social services. On the other hand, the agriculture industry 
+             holds the lowest employment share, comprising only 5% of the county's workforce.")
+      
+    }
+    
+  })
+  
+  output$selected_emp_text <- renderText({
+    selected_emp_text()
+  })
   
 }
 
