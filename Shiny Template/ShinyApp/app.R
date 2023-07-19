@@ -515,6 +515,8 @@ ui <- navbarPage(selected = "overview",
                                                                   "ACS Graphs",
                                                                   c("Population Density" = "pop",
                                                                     "Median Population Income" = "inc"))
+                                                                ,
+                                                                imageOutput("acs", width = "400px", height = "400px")
                                                        ), 
                                                        tabPanel("Employment", 
                                                                 p(),
@@ -868,9 +870,9 @@ ui <- navbarPage(selected = "overview",
                                                                   ),
                                                                   column(6,
                                                                          tabsetPanel(
-                                                                           tabPanel("Map or something",
+                                                                           tabPanel("Land Suitability Map",
                                                                                     p(),
-                                                                                    leafletOutput("limitS") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+                                                                                    imageOutput("SoilLimit", width = "400px", height = "400px")
                                                                                     
                                                                                     
                                                                            ), 
@@ -1219,6 +1221,7 @@ server <- function(input, output){
     return(list(src = "www/SoilLimit.png", width = "100%", height = "100%"))
     
   })
+
   
   # For buffer images later will be leaflets
   
@@ -1309,6 +1312,17 @@ server <- function(input, output){
     }
     else if (input$crop_type == "DEV") {
       return("Write up for developed")
+    }
+
+  })
+  
+  #ACS graphs
+  output$acs <- renderImage(deleteFile = FALSE,{
+    if (input$acs.graphs == "pop") {
+      return(list(src = "www/PopDen.png", width = "125%", height = "100%"))
+    }
+    else if (input$acs.graphs == "inc") {
+      return(list(src = "www/MedPopInc.png", width = "125%", height = "100%"))
     }
 
   })
