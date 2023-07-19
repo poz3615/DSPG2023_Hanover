@@ -908,7 +908,7 @@ ui <- navbarPage(selected = "overview",
                                                                           set from HIFLD is only accessible for federal employees, and the substation data we used from The Office for Coastal Management only had half of all 
                                                                           substations within Hanover County. To map all of the substations within the county we used Open Street Map and Google Earth to locate the other substation 
                                                                           locations and add them to our dataset. "),
-                                                                         h3("Analysis"),
+                                                                         h3(strong("Analysis")),
                                                                          p("The map displayed shows parcels in Hanover County categorized into three buffer zones. Parcels that have land within either 2 miles of a substation or 
                                                                            1000 feet of a transmission line, are part of Buffer zone 1. We created a second and third buffer zone to account for parcels that have very good 
                                                                            characteristics for solar farms, but lack adequate access to infrastructure. Buffer zone 2 contains parcels within 4 miles of a substation or 2,000 
