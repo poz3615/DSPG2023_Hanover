@@ -1009,7 +1009,7 @@ ui <- navbarPage(selected = "overview",
                                                                          align="left",
                                                                          h2(strong("Road Access Map")),
                                                                          imageOutput("RoadPNG", width = "700px", height = "500px"),
-                                                                         p("Highlighted parcels are within 100 feet of a roadway centerline.")
+                                                                         p("*Distortion due to high density of residential parcels in Mechanicsville.")
                                                                          
                                                                   )
                                                                   
