@@ -221,13 +221,29 @@ merged_copy <- readRDS(file = "data/mergedNew.Rds")
 colored_land <- merged_copy %>%
   dplyr::select(geometry, land_use)
 
-color_map <- colorFactor(palette = turbo(length(unique(merged_copy$land_use))), 
+color_map <- colorFactor(palette = viridis(length(unique(merged_copy$land_use))), 
                          domain = merged_copy$land_use)
 
-mapviewOptions(legend.pos = "bottomleft")
 
-zoneHan <- mapview(colored_land, zcol = "land_use", lwd = .25, legend.opacity = .2, layer.name = "Zone Categories", alpha.regions = 1, stroke = TRUE)#+
-#addLegends()
+
+zoneHan <- leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addLegend(values = colored_land$land_use, pal = color_map, position = "topright",
+            title = "Parcel Zoning in Hanover County") %>%
+  addPolygons(data = colored_land, color = ~color_map(colored_land$land_use),
+              stroke = 1,
+              weight = 1,
+              fillOpacity = 1,
+              highlightOptions = highlightOptions(color = "white",
+                                                  weight = 3,
+                                                  bringToFront = TRUE),
+              label = colored_land$land_use,
+              labelOptions = labelOptions(style = list("font-weight" = "normal",
+                                                       padding = "3px 8px"),
+                                          textsize = "15px",
+                                          direction = "auto"))
+  
+              
 
 
 
@@ -297,11 +313,11 @@ landAll <- ggplotly(landAll, tooltip = "text")
 
 #subsetting the crop data to only contain categories that are crops and assigning it to just crop
 justcrop <- subset(crop_data, 
-                   !(Category == "forested" | 
-                       Category == "developed" | 
-                       Category == "wetlands" | 
-                       Category == "other" |
-                       Category == "water"))
+                   !(Category == "Forested" | 
+                       Category == "Developed" | 
+                       Category == "Wetlands" | 
+                       Category == "Other" |
+                       Category == "Water"))
 
 #setting Category to a factor so we can run viridis
 justcrop$Category <- factor(justcrop$Category) 
@@ -343,7 +359,7 @@ soil_excel <- "data/soil/soillabelsranking.xlsx"
 soil_data <- read_excel(soil_excel)
 
 #pulling just Rating, and Acres in AOI columns from soil data and assigning it to rateacre data
-rateacre_data <- soil_data[, c("Rating", "Acres in AOI")]
+rateacre_data <- soil_data[, c("Rating", "Acres_in_AOI")]
 
 #re-naming Rating and Acres in Aoi columns to soil rating and acres
 colnames(rateacre_data) <- c("soil_rating", "acres")
@@ -372,7 +388,7 @@ sR <- ggplotly(sR, tooltip = "text")
 solarsoil_excel <- "data/soil/solarsoils.xlsx"
 
 #reading in soil excel and assigning it to soil data
-solarsoil_data <- read_excel(solarsoil_excel)
+solarsoil_data <- read_excel(solarsoil_excel,sheet="Sheet1")
 
 #pulling just Rating, and Acres in AOI columns from soil data and assigning it to rateacre data
 rateacre_solar <- solarsoil_data[, c("Rating", "Acres_in_AOI")]
@@ -433,6 +449,12 @@ ui <- navbarPage(selected = "overview",
                                             farms. Hence, the agricultural heritage has majorly influenced the landscape, community and rural charm of the county."),
                
                                           p(),
+                                          h4(strong("Problem:")),
+                                          p("The solar projects in Hanover County have mixed reactions from local residents. While some long-time members of the 
+                                            community prefer to maintain the county's rich rural history, others recognize the value of transitioning to solar energy. 
+                                            Many residents also see the solar farms as a better alternative to the potential overcrowding that could result from the 
+                                            land being used for residential subdivisions."),
+                                          p(),
                                           h4(strong("Project:")),
                                           p(" Virginia Tech Department of Agricultural and Applied Economics
                                             Data Science for the Public Good (DSPG) program assesses land 
@@ -452,7 +474,13 @@ ui <- navbarPage(selected = "overview",
                                             agrivoltaics, and address its potential within Hanover County. Leveraging these data in a statistical
                                             model, we investigate the relationship between prime agricultural land and land suitable for 
                                             solar farms. Our research provides valuable insights into areas vulnerable to solar farm development
-                                            in Hanover County, aiding informed decision-making in solar energy planning and development.")
+                                            in Hanover County, aiding informed decision-making in solar energy planning and development."),
+                                          p(),
+                                          h4(strong("Research Question:")),
+                                          p("Which parcels in Hanover County have the most desirable characteristics for Solar Farm Development?"),
+                                          p("1. How do these parcels compare to parcels with prime agricultural land?"),
+                                          p("2. How do different factors (acreage, soil type, zoning, land cover, policy, etc.) play into solar farm development?"),
+                                          p("3. How can we preserve agricultural land while developing solar farms?")
                                           #leafletOutput("baseHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                    ),
                                    column(4,
@@ -469,7 +497,9 @@ ui <- navbarPage(selected = "overview",
                                             land, Hanover County is a desirable location for solar farm development companies. The 
                                             installation of commercial solar farms on agricultural land has residents worried about 
                                             the loss of Hanover County’s rural heritage."),
-                                          p()
+                                          p(),
+                                          HTML('<center><img src="HC.png" width="180"></center>')
+                                          #img(src = "HC.png", width = "200px")
                                    )
                                    
                                    
@@ -516,7 +546,7 @@ ui <- navbarPage(selected = "overview",
                                                                   c("Population Density" = "pop",
                                                                     "Median Population Income" = "inc"))
                                                                 ,
-                                                                imageOutput("acs", width = "650px", height = "500px")
+                                                                imageOutput("acs", width = "650px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                        ), 
                                                        tabPanel("Employment", 
                                                                 p(),
@@ -536,7 +566,7 @@ ui <- navbarPage(selected = "overview",
                                               fluidRow(style = "margin-left: 100px; margin-right: 100px;",
                                                        align = "center",
                                                        h2(strong("Conservation Land Map")),
-                                                       leafletOutput("consleaf") %>% withSpinner(type = 6, color = "#861f41", size = 1.25)
+                                                       #leafletOutput("consleaf") %>% withSpinner(type = 6, color = "#861f41", size = 1.25)
                                               ),
                                               p(),
                                               column(12,
@@ -766,6 +796,7 @@ ui <- navbarPage(selected = "overview",
                                                                          tabsetPanel(
                                                                            tabPanel("Land Use Map",
                                                                                     p(),
+                                                                                    align = "justify",
                                                                                     leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                                     
                                                                                     
@@ -807,19 +838,19 @@ ui <- navbarPage(selected = "overview",
                                                                            id = "tabs2",
                                                                            tabPanel("Land Cover by Parcel",
                                                                                     selectInput(inputId = "crop_type", label = "Select Variable:", choices = c(
-                                                                                      "Row crops" = "RC",
-                                                                                      "Horticulture crops" = "HC",
-                                                                                      "Small grains" = "SG",
-                                                                                      "Double cropped" = "DC",
+                                                                                      "Row Crops" = "RC",
+                                                                                      "Horticulture Crops" = "HC",
+                                                                                      "Small Grains" = "SG",
+                                                                                      "Double Cropped" = "DC",
                                                                                       "Forages" = "F",
-                                                                                      "Tree crops" = "TC",
+                                                                                      "Tree Crops" = "TC",
                                                                                       "Other" = "O",
                                                                                       "Forested" = "FR",
                                                                                       "Wetlands" = "WL",
                                                                                       "Water" = "W",
                                                                                       "Developed" = "DEV")
                                                                                     ),
-                                                                                    imageOutput("crop_typePNG", width = "600px", height = "400px")
+                                                                                    imageOutput("crop_typePNG", width = "600px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                                     
                                                                                     
                                                                            ), 
@@ -867,7 +898,7 @@ ui <- navbarPage(selected = "overview",
                                                      tabsetPanel(
                                                 tabPanel("Soil Type Map",
                                                          p(),
-                                                         imageOutput("soilRate", width = "700px", height = "500px")
+                                                         imageOutput("soilRate", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                          
                                                          
                                                 ), 
@@ -920,7 +951,7 @@ ui <- navbarPage(selected = "overview",
                                                                          tabsetPanel(
                                                                            tabPanel("Land Suitability Map",
                                                                                     p(),
-                                                                                    imageOutput("SoilLimit", width = "700px", height = "500px")
+                                                                                    imageOutput("SoilLimit", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                                     
                                                                                     
                                                                            ), 
@@ -967,7 +998,7 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Infastructure Map")),
-                                                                         imageOutput("InfastructurePNG", width = "700px", height = "500px"),
+                                                                         imageOutput("InfastructurePNG", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
                                                                          p("*Distortion due to high density of residential parcels in Mechanicsville.")
                                                                          
                                                                   )
@@ -991,8 +1022,8 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Road Access Map")),
-                                                                         imageOutput("RoadPNG", width = "700px", height = "500px"),
-                                                                         p("Highlighted parcels are within 100 feet of a roadway centerline.")
+                                                                         imageOutput("RoadPNG", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
+                                                                         p("*Distortion due to high density of residential parcels in Mechanicsville.")
                                                                          
                                                                   )
                                                                   
@@ -1006,6 +1037,16 @@ ui <- navbarPage(selected = "overview",
                                                                   column(12,
                                                                          align="left",
                                                                          h2(strong("Background")),
+                                                                         p("Hanover County is currently home to a large solar farm, Mechanicsville Solar PV Park. This 28-megawatt solar farm has been in operation since 2018. 
+                                                                           Developed by SunEnergy1, the park spans 222 acres and consists of 93,000 modules. The electricity generated by the solar farm is being sold to Dominion 
+                                                                           Energy and has the capacity to power approximately 5,000 households [1]. In addition to the Mechanicsville Solar PV Park, Hanover County has recently 
+                                                                           approved a new solar farm. Developed by Ameriesco Solar, this 22-acre facility is estimated to generate 5 megawatts of power, which is estimated to 
+                                                                           meet the energy needs of 1,500 homes. The farm is located on Peppertown road and is expected to have a lifespan of 40 years. As part of their environmental
+                                                                           commitment, the developer plans to plant pollinator-friendly vegetation between the solar panels [2]. Virginia's renewable energy goals have made the 
+                                                                           construction of solar farms more common. The state has implemented a policy, the Virginia Clean Economy Act that requires Dominion Energy to achieve 
+                                                                           100% renewable energy by 2045, and Virginia Power, a subsidiary of Dominion, to do the same by 2050 [3]. This policy encourages energy companies to develop 
+                                                                           more sources of renewable energy, and with the development of more energy sources, a degree of environmental impact and loss of agricultural land is inevitable."),
+                                                                         p(),
                                                                          p("To analyze suitable locations for solar farm development within Hanover County we created an index map displaying the Solar Suitablity 
                                                                            Score of parcels with the most desireable characteristics. The parcels displayed all have at least 10 acres of suitable land for solar, 
                                                                            are within 100 feet of road access, and are not zoned for residential use. The Solar Suitability Score ranks parcels with all of these 
@@ -1026,7 +1067,7 @@ ui <- navbarPage(selected = "overview",
                                                                              "Buffer 3" = "buffer_3"),
                                                                            
                                                                          ),
-                                                                         imageOutput("ssIndexPNG", width = "500px", height = "400px")
+                                                                         imageOutput("ssIndexPNG", width = "500px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                   )
                                                                   
                                                          ),
@@ -1085,7 +1126,7 @@ ui <- navbarPage(selected = "overview",
                                                                              "Buffer 3" = "buffer_3"),
                                                                            
                                                                          ),
-                                                                         imageOutput("arIndexPNG", width = "500px", height = "400px")
+                                                                         imageOutput("arIndexPNG", width = "500px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                   )
                                                                   
                                                          ),
@@ -1129,7 +1170,7 @@ ui <- navbarPage(selected = "overview",
                                                                                       c("Buffer 1" = "buffer_1",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")),
-                                                                                    imageOutput("ssMethodPNG", width = "550px", height = "500px"),
+                                                                                    imageOutput("ssMethodPNG", width = "550px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
                                                                                     p("Note: With the expansion of buffers, the frequencies rise as additional parcels emerge, introducing more data into the index."),
                                                                                     
                                                                            ),
@@ -1141,7 +1182,7 @@ ui <- navbarPage(selected = "overview",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")
                                                                                     ),
-                                                                                    imageOutput("arMethodPNG", width = "550px", height = "500px"),
+                                                                                    imageOutput("arMethodPNG", width = "550px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
                                                                                     p("Note: With the expansion of buffers, the frequencies rise as additional parcels emerge, introducing more data into the index."),
                                                                          )),
 
@@ -1383,7 +1424,7 @@ server <- function(input, output){
   
   output$zoneHan<- renderLeaflet({
     
-    zoneHan@map
+    zoneHan
     
   })
   output$consleaf <- renderLeaflet({
