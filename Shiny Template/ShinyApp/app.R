@@ -85,33 +85,29 @@ employ_plot <- ggplotly(employ_plot, tooltip = "text")
 ## POLICY =========================================================================================================
 
 ### CONSERVATION ===============================================================================================================
-shapefile_afd <- st_read("data/conservation/hanover_afd_parcels.shp")
-easeshape <- st_read("data/conservation/hanover_easeland_parcels.shp")
-easeshape <- na.omit(easeshape)
-shapefile_NCA <- st_read("data/conservation/hanover_nca_parcels.shp")
-consland_shape <- st_read("data/conservation/hanover_consland_parcels_labels_real.shp")
+shapefile <- st_read("data/conservation/conservation_pol.shp")
 hanover_boundary <- st_read("data/conservation/Hanover_County_Boundary.shp")
 boundaryleaflet <- hanover_boundary %>%
   st_as_sf() 
 
 
-afd <- function(nca) {
-  if (nca  == "1") {
+afd1 <- function(afd) {
+  if (afd  == "1") {
     return("Agricultural Forest District")
-  } else if (is.na(nca)) {
+  } else if (is.na(afd)) {
     return("Missing") 
   } else {
     return("Non Agricultural Forest District")
   }
 }
 
-shapefile_afd$afd <- sapply(shapefile_afd$nca, afd)
+shapefile$afd1 <- sapply(shapefile$afd, afd1)
 
-colored_afd <- shapefile_afd %>%
-  filter(afd == "Agricultural Forest District")
+colored_afd <- shapefile %>%
+  filter(afd1 == "Agricultural Forest District")
 
 color_map_afd <- colorFactor(palette = "#73D055FF", 
-                             domain = colored_afd$afd)
+                             domain = colored_afd$afd1)
 
 ease <- function(easement) {
   if (easement  == "1") {
@@ -122,9 +118,9 @@ ease <- function(easement) {
     return("Non Conservation Easement")
   }
 }
-easeshape$ease <- sapply(easeshape$easement, ease)
+shapefile$ease <- sapply(shapefile$easement, ease)
 
-color_ease <- easeshape %>%
+color_ease <- shapefile %>%
   filter(ease == "Conservation Easement")
 
 color_map_ease <- colorFactor(palette = "#238A8DFF", 
@@ -141,9 +137,9 @@ labelled_nca <- function(nca) {
   }
 }
 
-shapefile_NCA$labelled_nca <- sapply(shapefile_NCA$nca, labelled_nca)
+shapefile$labelled_nca <- sapply(shapefile$nca, labelled_nca)
 
-colored_NCA <- shapefile_NCA %>%
+colored_NCA <- shapefile %>%
   filter(labelled_nca == "Natural Conservation Areas")
 
 color_map_NCA <- colorFactor(palette = "#FDE725FF", 
@@ -160,9 +156,9 @@ labelled_consland <- function(conland) {
   }
 }
 
-consland_shape$labelled_consland <- sapply(consland_shape$conland, labelled_consland)
+shapefile$labelled_consland <- sapply(shapefile$conland, labelled_consland)
 
-colored_consland <- consland_shape %>%
+colored_consland <- shapefile %>%
   filter(labelled_consland == "Conservation Land")
 
 color_map_consland <- colorFactor(palette = "#453781FF", 
@@ -170,44 +166,44 @@ color_map_consland <- colorFactor(palette = "#453781FF",
 
 
 consleaf <- leaflet() %>%
-        addTiles() %>%
-        addPolygons(data = colored_NCA, color = "transparent", fillColor =  ~color_map_NCA(colored_NCA$labelled_nca), fillOpacity = 1, stroke = TRUE, weight = 1, group = "National Conservation Areas") %>%
-        addPolygons(
-          data = boundaryleaflet,
-          fillColor = "transparent",
-          color = "black",
-          fillOpacity = 0,
-          weight = 0.1
-        ) %>%
-        addPolygons(data = colored_afd, color = "black", fillColor = ~color_map_afd(colored_afd$afd), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Agricultural Forest District") %>%
-        addPolygons(
-          data = boundaryleaflet,
-          fillColor = "transparent",
-          color = "black",
-          fillOpacity = 0,
-          weight = 1
-        ) %>%
-        addPolygons(data = color_ease, color = "black", fillColor = ~color_map_ease(color_ease$ease), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Conservation Easement") %>%
-        addPolygons(
-          data = boundaryleaflet,
-          fillColor = "transparent",
-          color = "black",
-          fillOpacity = 0,
-          weight = 1
-        ) %>%
-        addPolygons(data = colored_consland, color = "transparent", fillColor =  ~color_map_consland(colored_consland$labelled_consland), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Conservation Land") %>%
-        addPolygons(
-          data = boundaryleaflet,
-          fillColor = "transparent",
-          color = "black",
-          fillOpacity = 0,
-          weight = 0.1
-        ) %>%
-        addLayersControl(
-          overlayGroups = c("Agricultural Forest District", "Conservation Easement", "Conservation Land", "National Conservation Areas"),
-          position = "bottomleft",
-          options = layersControlOptions(collapsed = FALSE)
-        )
+  addTiles() %>%
+  addPolygons(data = colored_NCA, color = "transparent", fillColor =  ~color_map_NCA(colored_NCA$labelled_nca), fillOpacity = 1, stroke = TRUE, weight = 1, group = "National Conservation Areas") %>%
+  addPolygons(
+    data = boundaryleaflet,
+    fillColor = "transparent",
+    color = "black",
+    fillOpacity = 0,
+    weight = 0.1
+  ) %>%
+  addPolygons(data = colored_afd, color = "black", fillColor = ~color_map_afd(colored_afd$afd1), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Agricultural Forest District") %>%
+  addPolygons(
+    data = boundaryleaflet,
+    fillColor = "transparent",
+    color = "black",
+    fillOpacity = 0,
+    weight = 1
+  ) %>%
+  addPolygons(data = color_ease, color = "black", fillColor = ~color_map_ease(color_ease$ease), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Conservation Easement") %>%
+  addPolygons(
+    data = boundaryleaflet,
+    fillColor = "transparent",
+    color = "black",
+    fillOpacity = 0,
+    weight = 1
+  ) %>%
+  addPolygons(data = colored_consland, color = "transparent", fillColor =  ~color_map_consland(colored_consland$labelled_consland), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Conservation Land") %>%
+  addPolygons(
+    data = boundaryleaflet,
+    fillColor = "transparent",
+    color = "black",
+    fillOpacity = 0,
+    weight = 0.1
+  ) %>%
+  addLayersControl(
+    overlayGroups = c("Agricultural Forest District", "Conservation Easement", "Conservation Land", "National Conservation Areas"),
+    position = "bottomleft",
+    options = layersControlOptions(collapsed = FALSE)
+  )
 
 ### SOLAR ===========================================================================================================
 
@@ -566,24 +562,24 @@ ui <- navbarPage(selected = "overview",
                                               fluidRow(style = "margin-left: 100px; margin-right: 100px;",
                                                        align = "center",
                                                        h2(strong("Conservation Land Map")),
-                                                       #leafletOutput("consleaf") %>% withSpinner(type = 6, color = "#861f41", size = 1.25)
+                                                       leafletOutput("consleaf") %>% withSpinner(type = 6, color = "#861f41", size = 1.25)
                                               ),
                                               p(),
                                               column(12,
                                                      align = "center",
-                                                     h2(strong("Conservation Policy")),
+                                                     h2(strong("Conservation Policies")),
                                                      column(6,
                                                             align="left",
                                                             h4(strong("Conservation Land")),
-                                                            p("This map highlights the conservation land within Hanover County, incorporating data provided by the Virginia Department of Conservation and 
-                                                              Recreation. These lands encompass a variety of state, federal, local, and privately managed areas dedicated to conservation efforts. 
+                                                            p("The purple layer of the map highlights the conservation land within Hanover County, 
+                                                              incorporating data provided by the Virginia Department of Conservation and Recreation. These lands encompass a variety of state, federal, local, and privately managed areas dedicated to conservation efforts. 
                                                               Their purpose is to protect and preserve natural habitats, wildlife, ecosystems, and scenic landscapes. Landowners are responsible for 
                                                               implementing conservation practices, such as regulating public access and managing resources.")),
                                                      
                                                             column(6,
                                                                    align="left",
                                                             h4(strong("Agricultural Forestal Districts")),
-                                                            p("The map presents the parcels in Hanover County designated as Agricultural/Forestal Districts (AFD),
+                                                            p("The green layer of the map presents the parcels in Hanover County designated as Agricultural/Forestal Districts (AFD),
                                                               utilizing data sourced from the Virginia Department of Emergency Management. These districts conserve rural land for agricultural production, 
                                                               forest management, timber production, and open space purposes. They are recognized and conserved for their environmental resources and economic 
                                                               importance to the region. AFDs are established through agreements between landowners and the local government, safeguarding the designated land from 
@@ -597,15 +593,15 @@ ui <- navbarPage(selected = "overview",
                                                             align="left",
                                                             h4(strong("Conservation Easements")),
                                                             p(),
-                                                            p("This map displays the conservation easements present in Hanover County, utilizing data provided by the Virginia Department of Conservation and Recreation.
+                                                            p("The teal layer of the map displays the conservation easements present in Hanover County, utilizing data provided by the Virginia Department of Conservation and Recreation.
                                                               Conservation easements entail binding agreements between landowners and government agencies, serving as limitations on future land development and 
                                                               subdivision. Notably, landowners retain control over their properties and the right to sell them. The specifics of these easement agreements vary but 
                                                               consistently aim to preserve land for rural uses, such as agriculture, forest management, and recreational activities like hunting and fishing.")
                                                             ),
                                                      column(6,
                                                             align="left",
-                                                            h4(strong("Natural Conservation Easements")),
-                                                            p("The map depicts parcels within Hanover County that have a portion of their land located within 100 ft of waterways. The data utilized in this analysis is
+                                                            h4(strong("National Conservation Areas")),
+                                                            p("The yellow layer of the map depicts parcels within Hanover County that have a portion of their land located within 100 ft of waterways. The data utilized in this analysis is
                                                               sourced from Hanover County GIS Hub, providing insights into parcels with land areas protected by the Chesapeake Bay Preservation Act. 
                                                               The Chesapeake Bay Preservation Act acknowledges the relationship between water quality and land use by limiting development within 100 ft of waterways. 
                                                               As a result of this legislation, affected parcels face restrictions on land development and encounter additional barriers if they intend to pursue such 
