@@ -313,11 +313,11 @@ landAll <- ggplotly(landAll, tooltip = "text")
 
 #subsetting the crop data to only contain categories that are crops and assigning it to just crop
 justcrop <- subset(crop_data, 
-                   !(Category == "forested" | 
-                       Category == "developed" | 
-                       Category == "wetlands" | 
-                       Category == "other" |
-                       Category == "water"))
+                   !(Category == "Forested" | 
+                       Category == "Developed" | 
+                       Category == "Wetlands" | 
+                       Category == "Other" |
+                       Category == "Water"))
 
 #setting Category to a factor so we can run viridis
 justcrop$Category <- factor(justcrop$Category) 
@@ -449,6 +449,12 @@ ui <- navbarPage(selected = "overview",
                                             farms. Hence, the agricultural heritage has majorly influenced the landscape, community and rural charm of the county."),
                
                                           p(),
+                                          h4(strong("Problem:")),
+                                          p("The solar projects in Hanover County have mixed reactions from local residents. While some long-time members of the 
+                                            community prefer to maintain the county's rich rural history, others recognize the value of transitioning to solar energy. 
+                                            Many residents also see the solar farms as a better alternative to the potential overcrowding that could result from the 
+                                            land being used for residential subdivisions."),
+                                          p(),
                                           h4(strong("Project:")),
                                           p(" Virginia Tech Department of Agricultural and Applied Economics
                                             Data Science for the Public Good (DSPG) program assesses land 
@@ -468,7 +474,13 @@ ui <- navbarPage(selected = "overview",
                                             agrivoltaics, and address its potential within Hanover County. Leveraging these data in a statistical
                                             model, we investigate the relationship between prime agricultural land and land suitable for 
                                             solar farms. Our research provides valuable insights into areas vulnerable to solar farm development
-                                            in Hanover County, aiding informed decision-making in solar energy planning and development.")
+                                            in Hanover County, aiding informed decision-making in solar energy planning and development."),
+                                          p(),
+                                          h4(strong("Research Question:")),
+                                          p("Which parcels in Hanover County have the most desirable characteristics for Solar Farm Development?"),
+                                          p("1. How do these parcels compare to parcels with prime agricultural land?"),
+                                          p("2. How do different factors (acreage, soil type, zoning, land cover, policy, etc.) play into solar farm development?"),
+                                          p("3. How can we preserve agricultural land while developing solar farms?")
                                           #leafletOutput("baseHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                    ),
                                    column(4,
@@ -485,7 +497,9 @@ ui <- navbarPage(selected = "overview",
                                             land, Hanover County is a desirable location for solar farm development companies. The 
                                             installation of commercial solar farms on agricultural land has residents worried about 
                                             the loss of Hanover County’s rural heritage."),
-                                          p()
+                                          p(),
+                                          HTML('<center><img src="HC.png" width="180"></center>')
+                                          #img(src = "HC.png", width = "200px")
                                    )
                                    
                                    
@@ -1023,6 +1037,16 @@ ui <- navbarPage(selected = "overview",
                                                                   column(12,
                                                                          align="left",
                                                                          h2(strong("Background")),
+                                                                         p("Hanover County is currently home to a large solar farm, Mechanicsville Solar PV Park. This 28-megawatt solar farm has been in operation since 2018. 
+                                                                           Developed by SunEnergy1, the park spans 222 acres and consists of 93,000 modules. The electricity generated by the solar farm is being sold to Dominion 
+                                                                           Energy and has the capacity to power approximately 5,000 households [1]. In addition to the Mechanicsville Solar PV Park, Hanover County has recently 
+                                                                           approved a new solar farm. Developed by Ameriesco Solar, this 22-acre facility is estimated to generate 5 megawatts of power, which is estimated to 
+                                                                           meet the energy needs of 1,500 homes. The farm is located on Peppertown road and is expected to have a lifespan of 40 years. As part of their environmental
+                                                                           commitment, the developer plans to plant pollinator-friendly vegetation between the solar panels [2]. Virginia's renewable energy goals have made the 
+                                                                           construction of solar farms more common. The state has implemented a policy, the Virginia Clean Economy Act that requires Dominion Energy to achieve 
+                                                                           100% renewable energy by 2045, and Virginia Power, a subsidiary of Dominion, to do the same by 2050 [3]. This policy encourages energy companies to develop 
+                                                                           more sources of renewable energy, and with the development of more energy sources, a degree of environmental impact and loss of agricultural land is inevitable."),
+                                                                         p(),
                                                                          p("To analyze suitable locations for solar farm development within Hanover County we created an index map displaying the Solar Suitablity 
                                                                            Score of parcels with the most desireable characteristics. The parcels displayed all have at least 10 acres of suitable land for solar, 
                                                                            are within 100 feet of road access, and are not zoned for residential use. The Solar Suitability Score ranks parcels with all of these 
