@@ -546,7 +546,7 @@ ui <- navbarPage(selected = "overview",
                                                                   c("Population Density" = "pop",
                                                                     "Median Population Income" = "inc"))
                                                                 ,
-                                                                imageOutput("acs", width = "650px", height = "500px")
+                                                                imageOutput("acs", width = "650px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                        ), 
                                                        tabPanel("Employment", 
                                                                 p(),
@@ -566,7 +566,7 @@ ui <- navbarPage(selected = "overview",
                                               fluidRow(style = "margin-left: 100px; margin-right: 100px;",
                                                        align = "center",
                                                        h2(strong("Conservation Land Map")),
-                                                       leafletOutput("consleaf") %>% withSpinner(type = 6, color = "#861f41", size = 1.25)
+                                                       #leafletOutput("consleaf") %>% withSpinner(type = 6, color = "#861f41", size = 1.25)
                                               ),
                                               p(),
                                               column(12,
@@ -850,7 +850,7 @@ ui <- navbarPage(selected = "overview",
                                                                                       "Water" = "W",
                                                                                       "Developed" = "DEV")
                                                                                     ),
-                                                                                    imageOutput("crop_typePNG", width = "600px", height = "400px")
+                                                                                    imageOutput("crop_typePNG", width = "600px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                                     
                                                                                     
                                                                            ), 
@@ -898,7 +898,7 @@ ui <- navbarPage(selected = "overview",
                                                      tabsetPanel(
                                                 tabPanel("Soil Type Map",
                                                          p(),
-                                                         imageOutput("soilRate", width = "700px", height = "500px")
+                                                         imageOutput("soilRate", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                          
                                                          
                                                 ), 
@@ -951,7 +951,7 @@ ui <- navbarPage(selected = "overview",
                                                                          tabsetPanel(
                                                                            tabPanel("Land Suitability Map",
                                                                                     p(),
-                                                                                    imageOutput("SoilLimit", width = "700px", height = "500px")
+                                                                                    imageOutput("SoilLimit", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                                     
                                                                                     
                                                                            ), 
@@ -998,7 +998,7 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Infastructure Map")),
-                                                                         imageOutput("InfastructurePNG", width = "700px", height = "500px"),
+                                                                         imageOutput("InfastructurePNG", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
                                                                          p("*Distortion due to high density of residential parcels in Mechanicsville.")
                                                                          
                                                                   )
@@ -1022,7 +1022,7 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Road Access Map")),
-                                                                         imageOutput("RoadPNG", width = "700px", height = "500px"),
+                                                                         imageOutput("RoadPNG", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
                                                                          p("*Distortion due to high density of residential parcels in Mechanicsville.")
                                                                          
                                                                   )
@@ -1067,7 +1067,7 @@ ui <- navbarPage(selected = "overview",
                                                                              "Buffer 3" = "buffer_3"),
                                                                            
                                                                          ),
-                                                                         imageOutput("ssIndexPNG", width = "500px", height = "400px")
+                                                                         imageOutput("ssIndexPNG", width = "500px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                   )
                                                                   
                                                          ),
@@ -1126,7 +1126,7 @@ ui <- navbarPage(selected = "overview",
                                                                              "Buffer 3" = "buffer_3"),
                                                                            
                                                                          ),
-                                                                         imageOutput("arIndexPNG", width = "500px", height = "400px")
+                                                                         imageOutput("arIndexPNG", width = "500px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                   )
                                                                   
                                                          ),
@@ -1170,7 +1170,7 @@ ui <- navbarPage(selected = "overview",
                                                                                       c("Buffer 1" = "buffer_1",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")),
-                                                                                    imageOutput("ssMethodPNG", width = "550px", height = "500px"),
+                                                                                    imageOutput("ssMethodPNG", width = "550px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
                                                                                     p("Note: With the expansion of buffers, the frequencies rise as additional parcels emerge, introducing more data into the index."),
                                                                                     
                                                                            ),
@@ -1182,7 +1182,7 @@ ui <- navbarPage(selected = "overview",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")
                                                                                     ),
-                                                                                    imageOutput("arMethodPNG", width = "550px", height = "500px"),
+                                                                                    imageOutput("arMethodPNG", width = "550px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
                                                                                     p("Note: With the expansion of buffers, the frequencies rise as additional parcels emerge, introducing more data into the index."),
                                                                          )),
 
