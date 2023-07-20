@@ -221,13 +221,29 @@ merged_copy <- readRDS(file = "data/mergedNew.Rds")
 colored_land <- merged_copy %>%
   dplyr::select(geometry, land_use)
 
-color_map <- colorFactor(palette = turbo(length(unique(merged_copy$land_use))), 
+color_map <- colorFactor(palette = viridis(length(unique(merged_copy$land_use))), 
                          domain = merged_copy$land_use)
 
-mapviewOptions(legend.pos = "bottomleft")
 
-zoneHan <- mapview(colored_land, zcol = "land_use", lwd = .25, legend.opacity = .2, layer.name = "Zone Categories", alpha.regions = 1, stroke = TRUE)#+
-#addLegends()
+
+zoneHan <- leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addLegend(values = colored_land$land_use, pal = color_map, position = "topright",
+            title = "Parcel Zoning in Hanover County") %>%
+  addPolygons(data = colored_land, color = ~color_map(colored_land$land_use),
+              stroke = 1,
+              weight = 1,
+              fillOpacity = 1,
+              highlightOptions = highlightOptions(color = "white",
+                                                  weight = 3,
+                                                  bringToFront = TRUE),
+              label = colored_land$land_use,
+              labelOptions = labelOptions(style = list("font-weight" = "normal",
+                                                       padding = "3px 8px"),
+                                          textsize = "15px",
+                                          direction = "auto"))
+  
+              
 
 
 
@@ -343,7 +359,7 @@ soil_excel <- "data/soil/soillabelsranking.xlsx"
 soil_data <- read_excel(soil_excel)
 
 #pulling just Rating, and Acres in AOI columns from soil data and assigning it to rateacre data
-rateacre_data <- soil_data[, c("Rating", "Acres in AOI")]
+rateacre_data <- soil_data[, c("Rating", "Acres_in_AOI")]
 
 #re-naming Rating and Acres in Aoi columns to soil rating and acres
 colnames(rateacre_data) <- c("soil_rating", "acres")
@@ -372,7 +388,7 @@ sR <- ggplotly(sR, tooltip = "text")
 solarsoil_excel <- "data/soil/solarsoils.xlsx"
 
 #reading in soil excel and assigning it to soil data
-solarsoil_data <- read_excel(solarsoil_excel)
+solarsoil_data <- read_excel(solarsoil_excel,sheet="Sheet1")
 
 #pulling just Rating, and Acres in AOI columns from soil data and assigning it to rateacre data
 rateacre_solar <- solarsoil_data[, c("Rating", "Acres_in_AOI")]
@@ -766,6 +782,7 @@ ui <- navbarPage(selected = "overview",
                                                                          tabsetPanel(
                                                                            tabPanel("Land Use Map",
                                                                                     p(),
+                                                                                    align = "justify",
                                                                                     leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                                     
                                                                                     
@@ -807,12 +824,12 @@ ui <- navbarPage(selected = "overview",
                                                                            id = "tabs2",
                                                                            tabPanel("Land Cover by Parcel",
                                                                                     selectInput(inputId = "crop_type", label = "Select Variable:", choices = c(
-                                                                                      "Row crops" = "RC",
-                                                                                      "Horticulture crops" = "HC",
-                                                                                      "Small grains" = "SG",
-                                                                                      "Double cropped" = "DC",
+                                                                                      "Row Crops" = "RC",
+                                                                                      "Horticulture Crops" = "HC",
+                                                                                      "Small Grains" = "SG",
+                                                                                      "Double Cropped" = "DC",
                                                                                       "Forages" = "F",
-                                                                                      "Tree crops" = "TC",
+                                                                                      "Tree Crops" = "TC",
                                                                                       "Other" = "O",
                                                                                       "Forested" = "FR",
                                                                                       "Wetlands" = "WL",
@@ -1383,7 +1400,7 @@ server <- function(input, output){
   
   output$zoneHan<- renderLeaflet({
     
-    zoneHan@map
+    zoneHan
     
   })
   output$consleaf <- renderLeaflet({
