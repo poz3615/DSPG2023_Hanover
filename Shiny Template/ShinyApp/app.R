@@ -472,7 +472,7 @@ ui <- navbarPage(selected = "overview",
                                             solar farms. Our research provides valuable insights into areas vulnerable to solar farm development
                                             in Hanover County, aiding informed decision-making in solar energy planning and development."),
                                           p(),
-                                          h4(strong("Research Question:")),
+                                          h4(strong("Research Questions:")),
                                           p("Which parcels in Hanover County have the most desirable characteristics for Solar Farm Development?"),
                                           p("1. How do these parcels compare to parcels with prime agricultural land?"),
                                           p("2. How do different factors (acreage, soil type, zoning, land cover, policy, etc.) play into solar farm development?"),
@@ -547,7 +547,7 @@ ui <- navbarPage(selected = "overview",
                                                        tabPanel("Employment", 
                                                                 p(),
                                                                 column(12,
-                                                                       plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                       plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
                                                                 )) 
                                                      )),
 
@@ -799,7 +799,7 @@ ui <- navbarPage(selected = "overview",
                                                                            ), 
                                                                            tabPanel("Land Use in Acreage", 
                                                                                     p(),
-                                                                                    plotlyOutput("interactive_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                                    plotlyOutput("interactive_plot", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
                                                                            ) 
                                                                          ))
 
@@ -851,11 +851,11 @@ ui <- navbarPage(selected = "overview",
                                                                                     
                                                                            ), 
                                                                            tabPanel("Land Cover Acreage", 
-                                                                                    plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                                    plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
                                                                                     
                                                                            ),
                                                                            tabPanel("Crop Cover Acreage",
-                                                                                    plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5))
+                                                                                    plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5))
                                                                          ))
                                                                   
                                                          ), 
@@ -900,7 +900,7 @@ ui <- navbarPage(selected = "overview",
                                                 ), 
                                                 tabPanel("Soil Type in Acreage", 
                                                          p(),
-                                                         plotlyOutput("sR", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                         plotlyOutput("sR", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5),
                                                 ) 
                                               )),
 
@@ -1508,7 +1508,7 @@ server <- function(input, output){
       return(list(src = "www/ARB2.png", width = "125%", height = "100%"))
     }
     else if (input$av.rating == "buffer_3") {
-      return(list(src = "wwwARB3.png", width = "125%", height = "100%"))
+      return(list(src = "www/ARB3.png", width = "125%", height = "100%"))
     }
   })
 #Solar index pictures
