@@ -1619,13 +1619,13 @@ server <- function(input, output){
 #Solar index pictures
   output$ssIndexPNG <- renderImage(deleteFile = FALSE,{
     if (input$ssbufferType == "buffer_1") {
-      return(list(src = "www/SSMapB1.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS1-map.png", width = "125%", height = "100%"))
     }
     else if (input$ssbufferType == "buffer_2") {
-      return(list(src = "www/SSMapB2.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS2-map.png", width = "125%", height = "100%"))
     }
     else if (input$ssbufferType == "buffer_3") {
-      return(list(src = "www/SSMapB3.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS3-map.png", width = "125%", height = "100%"))
     }
   })
   #solar index write up
@@ -1656,13 +1656,13 @@ server <- function(input, output){
   #AV index pictures
   output$arIndexPNG <- renderImage(deleteFile = FALSE,{
     if (input$arbufferType == "buffer_1") {
-      return(list(src = "www/ARMapB1.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR1-map.png", width = "125%", height = "100%"))
     }
     else if (input$arbufferType == "buffer_2") {
-      return(list(src = "www/ARMapB2.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR2-map.png", width = "125%", height = "100%"))
     }
     else if (input$arbufferType == "buffer_3") {
-      return(list(src = "www/ARMapB3.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR3-map.png", width = "125%", height = "100%"))
     }
   })
  #AV write up 
