@@ -814,8 +814,8 @@ ui <- navbarPage(selected = "overview",
                                                                          tabsetPanel(
                                                                            tabPanel("Land Use Map",
                                                                                     p(),
-                                                                                    align = "justify",
-                                                                                    leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                                    align = "justify"#,
+                                                                                    #leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                                     
                                                                                     
                                                                                     
