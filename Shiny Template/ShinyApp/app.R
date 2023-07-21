@@ -548,15 +548,14 @@ ui <- navbarPage(selected = "overview",
                                                                 p(),
                                                                 column(12,
                                                                        plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
-                                                                )) 
-                                                     )),
+                                                                ))
+                                                       
+                                                     ), 
+                                                     p("Data Source: U.S. Census Bureau - American Community Survey")),
 
                                               p(),
                   
-                                              column(12,
-                                                     h4(strong("References")),
-                                                     p("References go here")
-                                              )
+                                              
                                      ),
                                      tabPanel("Conservation Policy",
                                               fluidRow(style = "margin-left: 100px; margin-right: 100px;",
@@ -667,10 +666,19 @@ ui <- navbarPage(selected = "overview",
                                               ),
                                               
                                               column(12,
-                                                     align = "center",
+                                                     align = "left",
                                                      p(),
                                                      h4(strong("References")),
-                                                     p("References go here")
+                                                     p("[1] “Conservation Lands Shapefiles & Metadata,” Virginia Department of Conservation and Recreation, www.dcr.virginia.gov. https://www.dcr.virginia.gov/natural-heritage/cldownload (accessed Jul. 20, 2023). "),
+                                                     p("[2] “Conservation Lands Shapefiles & Metadata,” Virginia Department of Conservation and Recreation, www.dcr.virginia.gov. https://www.dcr.virginia.gov/natural-heritage/cldownload (accessed Jul. 20, 2023). "),
+                                                     p("[3] “Conservation easements,” Virginia Department of Forestry, https://dof.virginia.gov/forest-management-health/forestland-conservation/conservation-easements/#:~:text=Under%20a%20conservation%20easement%2C%20landowners,public%20access%20to%20their%20land. (accessed Jul. 20, 2023). "),
+                                                     p("[4] Agricultural/Forestal Districts - vafb.com, https://www.vafb.com/Portals/FBA/PDFs_and_Resources/membership_at_work/Agricultural%20-%20Forestal%20Districts%20FAQ%20Sheet%2011-1-17.pdf (accessed Jul. 20, 2023)."), 
+                                                     p("[5] “Chesapeake Bay Preservation Act,” Virginia Department of Environmental Quality, https://www.deq.virginia.gov/our-programs/water/chesapeake-bay/chesapeake-bay-preservation-act#:~:text=The%20Bay%20Act%20recognizes%20that,local%20land%20use%20decision%2Dmaking. (accessed Jul. 20, 2023)."),
+                                                     p("[6] “Virginia Law,” Code of Virginia Code - Chapter 17. Open-Space Land Act, https://law.lis.virginia.gov/vacodefull/title10.1/chapter17/ (accessed Jul. 20, 2023)."),
+                                                     p("[7] “Forest Legacy Program,” US Forest Service, https://www.fs.usda.gov/managing-land/private-land/forest-legacy (accessed Jul. 20, 2023)."),
+                                                     p("[8] “Forest Legacy Program,” Virginia Department of Forestry, https://dof.virginia.gov/forest-management-health/forestland-conservation/forest-legacy-program/#:~:text=To%20be%20eligible%20for%20the,%2C%20state%2C%20or%20local%20sources. (accessed Jul. 20, 2023)."),
+                                                     p("[9] USDA Farm Service Agency, “About the Conservation Reserve Program (CRP),” Conservation Reserve Program, https://www.fsa.usda.gov/programs-and-services/conservation-programs/conservation-reserve-program/index (accessed Jul. 20, 2023)."),
+                                                     p("[10] USDA Farm Service Agency, “What Is The Emergency Conservation Program (ECP)?,” Emergency Conservation Program, https://www.fsa.usda.gov/programs-and-services/conservation-programs/emergency-conservation/index (accessed Jul. 20, 2023).")
                                               )
                                               
                                      ),
@@ -729,6 +737,20 @@ ui <- navbarPage(selected = "overview",
                                                               purchase a maximum of 5 blocks (500 kWh) and commercial customers can purchase a maximum of 10 blocks (1,000 kWh). The match option provides customers with 
                                                               the possibility of a 100% match of their electricity usage with solar energy and RECs for the additional cost of $0.02013 per kilowatt-hour. This is 
                                                               available to residential and small commercial customers under 500kW. [8]  ")
+                                                     ),
+                                                     column(12,
+                                                            align= "left",
+                                                            p(),
+                                                            h4(strong("References")),
+                                                            p("[1] Center for the New Energy Economy, “Virginia - Renewable Portfolio Standard,” The State Policy Opportunity Tracker (SPOT) for Clean Energy, https://spotforcleanenergy.org/state/virginia/renewable-portfolio-standard/ (accessed Jul. 20, 2023). "),
+                                                            p("[2]  EnergySage, Inc., “What is net metering and how does it work?,” EnergySage, https://www.energysage.com/solar/solar-101/net-metering/?_gl=1%2A1id3nhy%2A_gcl_au%2AODk2MTI4MTgzLjE2ODg1ODc5OTQ. (accessed Jul. 20, 2023)."),
+                                                            p("[3] Virginia Energy, “Solar Power,” Virginia Energy - Renewable Energy - Solar Power, https://energy.virginia.gov/renewable-energy/SolarPower.shtml#:~:text=Legislation%20from%20the%202020%20Virginia,from%20one%20to%20three%20megawatts. (accessed Jul. 20, 2023)."),
+                                                            p("[4] Solar United Neighbors, “Net metering in Virginia,” Solar United Neighbors, https://www.solarunitedneighbors.org/virginia/learn-the-issues-in-virginia/net-metering-in-virginia/ (accessed Jul. 20, 2023)."),
+                                                            p("[5] Virginia Code Commission, “Virginia Law,” Code of Virginia Code - 55.1-138. Contents of solar easement agreements, https://law.lis.virginia.gov/vacode/title55.1/chapter1/section55.1-138/ (accessed Jul. 20, 2023)."),
+                                                            p("[6] “State of Virginia Solar Policy Summary,” Town of Blacksburg Virginia, https://www.blacksburg.gov/home/showpublisheddocument?id=8520 (accessed Jul. 20, 2023)."),
+                                                            p("[7] Virginia Code Commission, “Title 67. Virginia Energy Plan,” § 67-701. (Repealed effective October 1, 2021) Covenants regarding solar power, https://law.lis.virginia.gov/vacode/title67/chapter7/section67-701/ (accessed Jul. 20, 2023)."),
+                                                            p("[8] Dominion Energy, “Virginia Community Solar Pilot Program,” Dominion Energy, https://www.dominionenergy.com/virginia/renewable-energy-programs/community-solar (accessed Jul. 20, 2023).")
+                                                       
                                                      )
                                               )
                                      )
@@ -796,12 +818,26 @@ ui <- navbarPage(selected = "overview",
                                                                                     leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                                     
                                                                                     
+                                                                                    
                                                                            ), 
                                                                            tabPanel("Land Use in Acreage", 
                                                                                     p(),
-                                                                                    plotlyOutput("interactive_plot", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+                                                                                    plotlyOutput("interactive_plot", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5),
+                                                                                    
                                                                            ) 
-                                                                         ))
+                                                                         ),
+                                                                         p("Data Source: Hanover County GIS Hub")),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] Virginia Code Commission, “Virginia Law,” Code of Virginia Code - Article 7. Zoning, https://law.lis.virginia.gov/vacodefull/title15.2/chapter22/article7/ (accessed Jul. 20, 2023)."),
+                                                                         p("[2] W. Kenton, “Zoning: What it is, how it works, classification examples,” Investopedia, https://www.investopedia.com/terms/z/zoning.asp (accessed Jul. 20, 2023)."),
+                                                                         p("[3] Board of Supervisors, “Section 2 Land Use”, Envision Hanover, https://www.hanovercounty.gov/DocumentCenter/View/2606/Section-2-Land-Usepdf (accessed Jul. 20, 2023)."),
+                                                                         p("[4] Hanover County GIS, Assessor Data. (July 7, 2023). Distributed by Information Technology Department Mapping Services Office, Hanover County. Accessed: July 20, 2023. [Online]. Available: https://data-hanovercounty.hub.arcgis.com/documents/hanovercounty::assessor-data/about "),
+                                                                         p("[5] A. Fontinelle, “What is a planned unit development (PUD)?,” Forbes, https://www.forbes.com/advisor/mortgages/what-is-a-planned-unit-development/ (accessed Jul. 20, 2023).")
+                                                                         
+                                                                  ),
 
                                                          ), 
                                                                 ),
@@ -846,7 +882,7 @@ ui <- navbarPage(selected = "overview",
                                                                                       "Water" = "W",
                                                                                       "Developed" = "DEV")
                                                                                     ),
-                                                                                    imageOutput("crop_typePNG", width = "600px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                                    imageOutput("crop_typePNG", width = "600px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
                                                                                     
                                                                                     
                                                                            ), 
@@ -856,7 +892,25 @@ ui <- navbarPage(selected = "overview",
                                                                            ),
                                                                            tabPanel("Crop Cover Acreage",
                                                                                     plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5))
-                                                                         ))
+                                                                           
+                                                                         ),
+                                                                         p("Data Source: USDA, National Agricultural Statistics Service, Cropland - CROS")),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] USDA Ag Data Commons, CropScape - Cropland Data Layer. (November 21, 2022). Distributed by the U.S. Department of Agriculture. Accessed: July 20, 2023. [Online]. Available: https://data.nal.usda.gov/dataset/cropscape-cropland-data-layer"),
+                                                                         p("[2] Agricultural Marketing Service, “USDA Definition of Specialty Crop - Agricultural Marketing Service,” What is a Specialty Crop?, https://www.ams.usda.gov/sites/default/files/media/USDASpecialtyCropDefinition.pdf (accessed Jul. 20, 2023)."),
+                                                                         p("[3] Cornell CALS, “Small Grains,” CornellCALS College of Agriculture and Life Sciences, https://cals.cornell.edu/field-crops/small-grains (accessed Jul. 20, 2023)."),
+                                                                         p("[4] United States Environmental Protection Agency, “Why are Wetlands Important?,” EPA, https://www.epa.gov/wetlands/why-are-wetlands-important#:~:text=Far%20from%20being%20useless%2C%20disease,our%20use%20at%20no%20cost. (accessed Jul. 20, 2023)."),
+                                                                         p("[5] A. Kerr, “USDA California Climate Hub,” USDA California Climate Hub - Actionable climate information for California farmers, ranchers, and foresters, https://caclimatehub.ucdavis.edu/2016/07/21/a-cornucopia-of-categories-for-crops/# (accessed Jul. 20, 2023)."),
+                                                                         p("[6] N. Grover, “Double cropping - agriculture notes - PREPP,” Prepp By Collegedunia, https://prepp.in/news/e-492-double-cropping-agriculture-notes (accessed Jul. 20, 2023)."),
+                                                                         p("[7] USDA, “Forage,” forage | NAL Agricultural Thesaurus, https://agclass.nal.usda.gov/vocabularies/nalt/concept?uri=https%3A%2F%2Flod.nal.usda.gov%2Fnalt%2F6298 (accessed Jul. 20, 2023)."),
+                                                                         p("[8] United States Environmental Protection Agency, “What is a Wetland?,” EPA, https://www.epa.gov/wetlands/what-wetland#:~:text=Wetlands%20are%20areas%20where%20water,including%20during%20the%20growing%20season. (accessed Jul. 20, 2023)."),
+                                                                         p("[9] Multi-Resolution Land Characteristics Consortium, “National Land Cover Database Class Legend and description,” National Land Cover Database Class Legend and Description | Multi-Resolution Land Characteristics (MRLC) Consortium, https://www.mrlc.gov/data/legends/national-land-cover-database-class-legend-and-description# (accessed Jul. 20, 2023)."),
+                                                                         p("[10] T. Roberts, “The Importance of Tree Crops in Sustainable Agriculture,” The Permaculture Research Institute, https://www.permaculturenews.org/2017/11/27/importance-tree-crops-sustainable-agriculture/ (accessed Jul. 20, 2023). ")
+                                                                    
+                                                                  ),
                                                                   
                                                          ), 
                                                 ) ,
@@ -897,12 +951,23 @@ ui <- navbarPage(selected = "overview",
                                                          imageOutput("soilRate", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                          
                                                          
+                                                         
                                                 ), 
                                                 tabPanel("Soil Type in Acreage", 
                                                          p(),
-                                                         plotlyOutput("sR", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5),
+                                                         plotlyOutput("sR", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+                                                         
                                                 ) 
-                                              )),
+                                              ),
+                                              p("Data Source: USDA, Natural Resource Conservation Service, Web Soil Survey")),
+                                              column(
+                                                12,
+                                                align= "left",
+                                                p(),
+                                                h4(strong("References")),
+                                                p("[1] “Soil Data Access (SDA) Prime and Other Important Farmlands,” U.S. Department of Agriculture Natural Resources Conservation Service, https://efotg.sc.egov.usda.gov/references/public/LA/Prime_and_other_Important_Farmland.html (accessed Jul. 20, 2023)."),
+                                                p("[2] “Soil Survey Geographic Database (SSURGO).” U.S. Department of Agriculture Natural Resources Conservation Service, www.nrcs.usda.gov/resources/data-and-reports/soil-survey-geographic-database-ssurgo (accessed Jul. 20, 2023).")
+                                              ),
 
                                               
                                      ),
@@ -959,7 +1024,8 @@ ui <- navbarPage(selected = "overview",
                                                                            
 
                                                                          
-                                                                  ))
+                                                                  ),
+                                                                  p("Data Source: USDA, Natural Resource Conservation Service, Web Soil Survey"))
                                                          )
                                                          
                                                 ), 
@@ -976,7 +1042,7 @@ ui <- navbarPage(selected = "overview",
                                                                            decrease the voltage coming from a farm. Connecting solar farms to transmission lines is a possibility, but requires the implementation of
                                                                            new voltage regulating technology. As the development location moves further away from energy infrastructure, the project becomes more expensive 
                                                                            and eventually is not financially feasible. A distance rule of thumb is that solar farms should be developed within 2 miles of a substation or 1000 
-                                                                           feet of a transmission line in order to keep development costs low."), 
+                                                                           feet of a transmission line in order to keep development costs low.[1]"), 
 
                                                                           p("This map was created using transmission line location data from the Homeland Infrastructure Foundation Level Database (HIFLD) and a separate dataset
                                                                           distributed by The Office for Coastal Management which used HIFLD metadata to map all substations within 20 miles of the ocean. The substation metadata 
@@ -995,9 +1061,17 @@ ui <- navbarPage(selected = "overview",
                                                                          align="left",
                                                                          h2(strong("Infastructure Map")),
                                                                          imageOutput("InfastructurePNG", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
-                                                                         p("*Distortion due to high density of residential parcels in Mechanicsville.")
+                                                                         p("Note: Distortion due to high density of residential parcels in Mechanicsville."),
+                                                                         p("Data Source: Homeland Infrastructure Foundation - Level Data Base")
                                                                          
-                                                                  )
+                                                                  ),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] “Solar Farm Land Requirements & Solar Developments,” YSG Solar, https://www.ysgsolar.com/blog/solar-farm-land-requirements-solar-developments-ysg-solar (accessed Jun. 20, 2023).")
+                                                                    
+                                                                  ),
                                                          ),
                                                          
                                                 ), 
@@ -1012,15 +1086,23 @@ ui <- navbarPage(selected = "overview",
                                                                            Therefore, adequate road acess is necessary when determining suitable sites for solar farm development. Hanover County GIS Hub provides a 
                                                                            dataset displaying the centerline of all public roadways within the county. We were able to use this data to select all parcels within 
                                                                            100 feet of the roadway centerlines. A 100 foot buffer was necessary to account for all roadside ditches and marginal land. This variable 
-                                                                           helps add to our solar assesment by showing parcels within Hanover County that have adequate access to be developed[2].")
+                                                                           helps add to our solar assesment by showing parcels within Hanover County that have adequate access to be developed[1].")
                                   
                                                                   ),
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Road Access Map")),
                                                                          imageOutput("RoadPNG", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
-                                                                         p("*Distortion due to high density of residential parcels in Mechanicsville.")
+                                                                         p("Note: Distortion due to high density of residential parcels in Mechanicsville."),
+                                                                         p("Data Source: Hanover County GIS Hub")
                                                                          
+                                                                  ),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] A. Davis, “Solar Farming Considerations,” Department of Agricultural Economics, University of Kentucky, https://agecon.ca.uky.edu/solar-farming-considerations (accessed May 30, 2023). ")
+                                                                    
                                                                   )
                                                                   
                                                          ),
@@ -1064,6 +1146,15 @@ ui <- navbarPage(selected = "overview",
                                                                            
                                                                          ),
                                                                          imageOutput("ssIndexPNG", width = "500px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                  ),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] “Power plant profile: Mechanicsville solar PV Park, US,” Power Technology, https://www.power-technology.com/marketdata/power-plant-profile-mechanicsville-solar-pv-park-us/ (accessed May 20, 2023)."),
+                                                                         p("[2] J. Cordes, “Hanover approves Solar Farm with $420,000 County windfall,” WRIC ABC 8News, https://www.wric.com/news/local-news/hanover-county/hanover-approves-solar-farm-with-420000-county-windfall/ (accessed May 20, 2023)."),
+                                                                         p("[3] R. C. Sullivan, “HB 1526 Electric utility regulation; environmental goals.,” Virginia’s Legislative Information System, https://lis.virginia.gov/cgi-bin/legp604.exe?201%2Bsum%2BHB1526 (accessed May 20, 2023).")
+                                                                    
                                                                   )
                                                                   
                                                          ),
@@ -1123,6 +1214,20 @@ ui <- navbarPage(selected = "overview",
                                                                            
                                                                          ),
                                                                          imageOutput("arIndexPNG", width = "500px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                  ),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] USDA Climate Hubs, “Agrivoltaics: Coming Soon to a Farm Near You?,” Agrivoltaics: Coming Soon to a Farm Near You? | USDA Climate Hubs, https://www.climatehubs.usda.gov/hubs/northeast/topic/agrivoltaics-coming-soon-farm-near-you (accessed Jul. 20, 2023)."),
+                                                                         p("[2] L. Villazon, “Do solar panels work better on Hot Days?,” BBC Science Focus Magazine, https://www.sciencefocus.com/science/do-solar-panels-work-better-on-hot-days/ (accessed Jul. 20, 2023)."),
+                                                                         p("[3] YSG Solar, “Top 5 Solar Farm Land Requirements,” YSG Solar, https://www.ysgsolar.com/blog/top-5-solar-farm-land-requirements-ysg-solar (accessed Jul. 20, 2023)."),
+                                                                         p("[4] Enel Green Power, “All the benefits of Agrivoltaics,” Enel Green Power, https://www.enelgreenpower.com/stories/benefits-agrivoltaics (accessed Jul. 20, 2023)."),
+                                                                         p("[5] M. Boyd, “The Potential of Agrivoltaics for the U.S. Solar Industry, Farmers, and Communities,” Energy.gov, https://www.energy.gov/eere/solar/articles/potential-agrivoltaics-us-solar-industry-farmers-and-communities#:~:text=Research%20in%20the%20drylands%20of,extreme%20weather%2C%20such%20as%20droughts. (accessed Jul. 20, 2023)."),
+                                                                         p("[6] NREL Transforming Energy, “Agrivoltaics,” NREL.gov, https://www.nrel.gov/solar/market-research-analysis/agrivoltaics.html (accessed Jul. 20, 2023)."),
+                                                                         p("[7] American Solar Grazing Association, “What Is Solar Grazing And How Does It Work?,” American Solar Grazing Association, https://solargrazing.org/wp-content/uploads/2019/06/Solar-Grazing-Brochure.pdf (accessed Jul. 20, 2023)."),
+                                                                         p("[8] Oregon State University College of Agricultural Sciences, “Sustainable Farm Agrivoltaic,” Oregon State University College of Agricultural Sciences News and Accolades, https://agsci.oregonstate.edu/newsroom/sustainable-farm-agrivoltaic#:~:text=Agrivoltaics%20is%20a%20symbiotic%20relationship,helps%20further%20reduce%20water%20usage. (accessed Jul. 20, 2023). ")
+                                                                    
                                                                   )
                                                                   
                                                          ),
@@ -1526,7 +1631,7 @@ server <- function(input, output){
   #solar index write up
   output$ssindex_write <- renderText({
     if (input$ssbufferType == "buffer_1") {
-      return("This map shows the most ideal parcels for solar farm development within buffer zone 1. buffer zone 1 contains the most desireable 
+      return("This map shows the most ideal parcels for solar farm development within buffer zone 1. Buffer zone 1 contains the most desireable 
              parcels as these are within closest range to existing energy infrastructure, either 2 miles from a substation or 1,000 feet from a 
              transmission line. Therefore, solar farm development companies are able to spend less when constructing in these areas. The parcels 
              displayed roughly outline transmission line and substation locations, with the large amounts of suitable parcels running along 
