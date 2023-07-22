@@ -1595,25 +1595,25 @@ server <- function(input, output){
   #Solar methodology pictures
   output$ssMethodPNG <- renderImage(deleteFile = FALSE,{
     if (input$solar.score == "buffer_1") {
-      return(list(src = "www/SSB1.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS1-index.png", width = "125%", height = "100%"))
     }
     else if (input$solar.score == "buffer_2") {
-      return(list(src = "www/SSB2.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS2-index.png", width = "125%", height = "100%"))
     }
     else if (input$solar.score == "buffer_3") {
-      return(list(src = "www/SSB3.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS3-index.png", width = "125%", height = "100%"))
     }
   })
   #AV methodology pictures
   output$arMethodPNG <- renderImage(deleteFile = FALSE,{
     if (input$av.rating == "buffer_1") {
-      return(list(src = "www/ARB1.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR1-index.png", width = "125%", height = "100%"))
     }
     else if (input$av.rating == "buffer_2") {
-      return(list(src = "www/ARB2.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR2-index.png", width = "125%", height = "100%"))
     }
     else if (input$av.rating == "buffer_3") {
-      return(list(src = "www/ARB3.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR3-index.png", width = "125%", height = "100%"))
     }
   })
 #Solar index pictures
