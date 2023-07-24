@@ -5,9 +5,9 @@ account: poz3615
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9411401
-bundleId: 7483339
+bundleId: 7490526
 url: https://poz3615.shinyapps.io/ShinyApp/
-when: 1689959527.00813
-lastSyncTime: 1689959527.00815
+when: 1690204162.3567
+lastSyncTime: 1690204162.35671
 asMultiple: FALSE
 asStatic: FALSE
