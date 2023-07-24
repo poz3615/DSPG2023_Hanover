@@ -85,33 +85,29 @@ employ_plot <- ggplotly(employ_plot, tooltip = "text")
 ## POLICY =========================================================================================================
 
 ### CONSERVATION ===============================================================================================================
-shapefile_afd <- st_read("data/conservation/hanover_afd_parcels.shp")
-easeshape <- st_read("data/conservation/hanover_easeland_parcels.shp")
-easeshape <- na.omit(easeshape)
-shapefile_NCA <- st_read("data/conservation/hanover_nca_parcels.shp")
-consland_shape <- st_read("data/conservation/hanover_consland_parcels_labels_real.shp")
+shapefile <- st_read("data/conservation/conservation_pol.shp")
 hanover_boundary <- st_read("data/conservation/Hanover_County_Boundary.shp")
 boundaryleaflet <- hanover_boundary %>%
   st_as_sf() 
 
 
-afd <- function(nca) {
-  if (nca  == "1") {
+afd1 <- function(afd) {
+  if (afd  == "1") {
     return("Agricultural Forest District")
-  } else if (is.na(nca)) {
+  } else if (is.na(afd)) {
     return("Missing") 
   } else {
     return("Non Agricultural Forest District")
   }
 }
 
-shapefile_afd$afd <- sapply(shapefile_afd$nca, afd)
+shapefile$afd1 <- sapply(shapefile$afd, afd1)
 
-colored_afd <- shapefile_afd %>%
-  filter(afd == "Agricultural Forest District")
+colored_afd <- shapefile %>%
+  filter(afd1 == "Agricultural Forest District")
 
 color_map_afd <- colorFactor(palette = "#73D055FF", 
-                             domain = colored_afd$afd)
+                             domain = colored_afd$afd1)
 
 ease <- function(easement) {
   if (easement  == "1") {
@@ -122,9 +118,9 @@ ease <- function(easement) {
     return("Non Conservation Easement")
   }
 }
-easeshape$ease <- sapply(easeshape$easement, ease)
+shapefile$ease <- sapply(shapefile$easement, ease)
 
-color_ease <- easeshape %>%
+color_ease <- shapefile %>%
   filter(ease == "Conservation Easement")
 
 color_map_ease <- colorFactor(palette = "#238A8DFF", 
@@ -141,9 +137,9 @@ labelled_nca <- function(nca) {
   }
 }
 
-shapefile_NCA$labelled_nca <- sapply(shapefile_NCA$nca, labelled_nca)
+shapefile$labelled_nca <- sapply(shapefile$nca, labelled_nca)
 
-colored_NCA <- shapefile_NCA %>%
+colored_NCA <- shapefile %>%
   filter(labelled_nca == "Natural Conservation Areas")
 
 color_map_NCA <- colorFactor(palette = "#FDE725FF", 
@@ -160,9 +156,9 @@ labelled_consland <- function(conland) {
   }
 }
 
-consland_shape$labelled_consland <- sapply(consland_shape$conland, labelled_consland)
+shapefile$labelled_consland <- sapply(shapefile$conland, labelled_consland)
 
-colored_consland <- consland_shape %>%
+colored_consland <- shapefile %>%
   filter(labelled_consland == "Conservation Land")
 
 color_map_consland <- colorFactor(palette = "#453781FF", 
@@ -170,44 +166,44 @@ color_map_consland <- colorFactor(palette = "#453781FF",
 
 
 consleaf <- leaflet() %>%
-        addTiles() %>%
-        addPolygons(data = colored_NCA, color = "transparent", fillColor =  ~color_map_NCA(colored_NCA$labelled_nca), fillOpacity = 1, stroke = TRUE, weight = 1, group = "National Conservation Areas") %>%
-        addPolygons(
-          data = boundaryleaflet,
-          fillColor = "transparent",
-          color = "black",
-          fillOpacity = 0,
-          weight = 0.1
-        ) %>%
-        addPolygons(data = colored_afd, color = "black", fillColor = ~color_map_afd(colored_afd$afd), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Agricultural Forest District") %>%
-        addPolygons(
-          data = boundaryleaflet,
-          fillColor = "transparent",
-          color = "black",
-          fillOpacity = 0,
-          weight = 1
-        ) %>%
-        addPolygons(data = color_ease, color = "black", fillColor = ~color_map_ease(color_ease$ease), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Conservation Easement") %>%
-        addPolygons(
-          data = boundaryleaflet,
-          fillColor = "transparent",
-          color = "black",
-          fillOpacity = 0,
-          weight = 1
-        ) %>%
-        addPolygons(data = colored_consland, color = "transparent", fillColor =  ~color_map_consland(colored_consland$labelled_consland), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Conservation Land") %>%
-        addPolygons(
-          data = boundaryleaflet,
-          fillColor = "transparent",
-          color = "black",
-          fillOpacity = 0,
-          weight = 0.1
-        ) %>%
-        addLayersControl(
-          overlayGroups = c("Agricultural Forest District", "Conservation Easement", "Conservation Land", "National Conservation Areas"),
-          position = "bottomleft",
-          options = layersControlOptions(collapsed = FALSE)
-        )
+  addTiles() %>%
+  addPolygons(data = colored_NCA, color = "transparent", fillColor =  ~color_map_NCA(colored_NCA$labelled_nca), fillOpacity = 1, stroke = TRUE, weight = 1, group = "National Conservation Areas") %>%
+  addPolygons(
+    data = boundaryleaflet,
+    fillColor = "transparent",
+    color = "black",
+    fillOpacity = 0,
+    weight = 0.1
+  ) %>%
+  addPolygons(data = colored_afd, color = "black", fillColor = ~color_map_afd(colored_afd$afd1), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Agricultural Forest District") %>%
+  addPolygons(
+    data = boundaryleaflet,
+    fillColor = "transparent",
+    color = "black",
+    fillOpacity = 0,
+    weight = 1
+  ) %>%
+  addPolygons(data = color_ease, color = "black", fillColor = ~color_map_ease(color_ease$ease), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Conservation Easement") %>%
+  addPolygons(
+    data = boundaryleaflet,
+    fillColor = "transparent",
+    color = "black",
+    fillOpacity = 0,
+    weight = 1
+  ) %>%
+  addPolygons(data = colored_consland, color = "transparent", fillColor =  ~color_map_consland(colored_consland$labelled_consland), fillOpacity = 1, stroke = TRUE, weight = 1, group = "Conservation Land") %>%
+  addPolygons(
+    data = boundaryleaflet,
+    fillColor = "transparent",
+    color = "black",
+    fillOpacity = 0,
+    weight = 0.1
+  ) %>%
+  addLayersControl(
+    overlayGroups = c("Agricultural Forest District", "Conservation Easement", "Conservation Land", "National Conservation Areas"),
+    position = "bottomleft",
+    options = layersControlOptions(collapsed = FALSE)
+  )
 
 ### SOLAR ===========================================================================================================
 
@@ -313,11 +309,11 @@ landAll <- ggplotly(landAll, tooltip = "text")
 
 #subsetting the crop data to only contain categories that are crops and assigning it to just crop
 justcrop <- subset(crop_data, 
-                   !(Category == "forested" | 
-                       Category == "developed" | 
-                       Category == "wetlands" | 
-                       Category == "other" |
-                       Category == "water"))
+                   !(Category == "Forested" | 
+                       Category == "Developed" | 
+                       Category == "Wetlands" | 
+                       Category == "Other" |
+                       Category == "Water"))
 
 #setting Category to a factor so we can run viridis
 justcrop$Category <- factor(justcrop$Category) 
@@ -449,6 +445,12 @@ ui <- navbarPage(selected = "overview",
                                             farms. Hence, the agricultural heritage has majorly influenced the landscape, community and rural charm of the county."),
                
                                           p(),
+                                          h4(strong("Problem:")),
+                                          p("The solar projects in Hanover County have mixed reactions from local residents. While some long-time members of the 
+                                            community prefer to maintain the county's rich rural history, others recognize the value of transitioning to solar energy. 
+                                            Many residents also see the solar farms as a better alternative to the potential overcrowding that could result from the 
+                                            land being used for residential subdivisions."),
+                                          p(),
                                           h4(strong("Project:")),
                                           p(" Virginia Tech Department of Agricultural and Applied Economics
                                             Data Science for the Public Good (DSPG) program assesses land 
@@ -468,7 +470,13 @@ ui <- navbarPage(selected = "overview",
                                             agrivoltaics, and address its potential within Hanover County. Leveraging these data in a statistical
                                             model, we investigate the relationship between prime agricultural land and land suitable for 
                                             solar farms. Our research provides valuable insights into areas vulnerable to solar farm development
-                                            in Hanover County, aiding informed decision-making in solar energy planning and development.")
+                                            in Hanover County, aiding informed decision-making in solar energy planning and development."),
+                                          p(),
+                                          h4(strong("Research Questions:")),
+                                          p("Which parcels in Hanover County have the most desirable characteristics for Solar Farm Development?"),
+                                          p("1. How do these parcels compare to parcels with prime agricultural land?"),
+                                          p("2. How do different factors (acreage, soil type, zoning, land cover, policy, etc.) play into solar farm development?"),
+                                          p("3. How can we preserve agricultural land while developing solar farms?")
                                           #leafletOutput("baseHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                    ),
                                    column(4,
@@ -485,7 +493,9 @@ ui <- navbarPage(selected = "overview",
                                             land, Hanover County is a desirable location for solar farm development companies. The 
                                             installation of commercial solar farms on agricultural land has residents worried about 
                                             the loss of Hanover County’s rural heritage."),
-                                          p()
+                                          p(),
+                                          HTML('<center><img src="HC.png" width="180"></center>')
+                                          #img(src = "HC.png", width = "200px")
                                    )
                                    
                                    
@@ -532,21 +542,20 @@ ui <- navbarPage(selected = "overview",
                                                                   c("Population Density" = "pop",
                                                                     "Median Population Income" = "inc"))
                                                                 ,
-                                                                imageOutput("acs", width = "650px", height = "500px")
+                                                                imageOutput("acs", width = "650px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                        ), 
                                                        tabPanel("Employment", 
                                                                 p(),
                                                                 column(12,
-                                                                       plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
-                                                                )) 
-                                                     )),
+                                                                       plotlyOutput("employ_plot", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+                                                                ))
+                                                       
+                                                     ), 
+                                                     p("Data Source: U.S. Census Bureau - American Community Survey")),
 
                                               p(),
                   
-                                              column(12,
-                                                     h4(strong("References")),
-                                                     p("References go here")
-                                              )
+                                              
                                      ),
                                      tabPanel("Conservation Policy",
                                               fluidRow(style = "margin-left: 100px; margin-right: 100px;",
@@ -557,19 +566,19 @@ ui <- navbarPage(selected = "overview",
                                               p(),
                                               column(12,
                                                      align = "center",
-                                                     h2(strong("Conservation Policy")),
+                                                     h2(strong("Conservation Policies")),
                                                      column(6,
                                                             align="left",
                                                             h4(strong("Conservation Land")),
-                                                            p("This map highlights the conservation land within Hanover County, incorporating data provided by the Virginia Department of Conservation and 
-                                                              Recreation. These lands encompass a variety of state, federal, local, and privately managed areas dedicated to conservation efforts. 
+                                                            p("The purple layer of the map highlights the conservation land within Hanover County, 
+                                                              incorporating data provided by the Virginia Department of Conservation and Recreation. These lands encompass a variety of state, federal, local, and privately managed areas dedicated to conservation efforts. 
                                                               Their purpose is to protect and preserve natural habitats, wildlife, ecosystems, and scenic landscapes. Landowners are responsible for 
                                                               implementing conservation practices, such as regulating public access and managing resources.")),
                                                      
                                                             column(6,
                                                                    align="left",
                                                             h4(strong("Agricultural Forestal Districts")),
-                                                            p("The map presents the parcels in Hanover County designated as Agricultural/Forestal Districts (AFD),
+                                                            p("The green layer of the map presents the parcels in Hanover County designated as Agricultural/Forestal Districts (AFD),
                                                               utilizing data sourced from the Virginia Department of Emergency Management. These districts conserve rural land for agricultural production, 
                                                               forest management, timber production, and open space purposes. They are recognized and conserved for their environmental resources and economic 
                                                               importance to the region. AFDs are established through agreements between landowners and the local government, safeguarding the designated land from 
@@ -583,15 +592,15 @@ ui <- navbarPage(selected = "overview",
                                                             align="left",
                                                             h4(strong("Conservation Easements")),
                                                             p(),
-                                                            p("This map displays the conservation easements present in Hanover County, utilizing data provided by the Virginia Department of Conservation and Recreation.
+                                                            p("The teal layer of the map displays the conservation easements present in Hanover County, utilizing data provided by the Virginia Department of Conservation and Recreation.
                                                               Conservation easements entail binding agreements between landowners and government agencies, serving as limitations on future land development and 
                                                               subdivision. Notably, landowners retain control over their properties and the right to sell them. The specifics of these easement agreements vary but 
                                                               consistently aim to preserve land for rural uses, such as agriculture, forest management, and recreational activities like hunting and fishing.")
                                                             ),
                                                      column(6,
                                                             align="left",
-                                                            h4(strong("Natural Conservation Easements")),
-                                                            p("The map depicts parcels within Hanover County that have a portion of their land located within 100 ft of waterways. The data utilized in this analysis is
+                                                            h4(strong("National Conservation Areas")),
+                                                            p("The yellow layer of the map depicts parcels within Hanover County that have a portion of their land located within 100 ft of waterways. The data utilized in this analysis is
                                                               sourced from Hanover County GIS Hub, providing insights into parcels with land areas protected by the Chesapeake Bay Preservation Act. 
                                                               The Chesapeake Bay Preservation Act acknowledges the relationship between water quality and land use by limiting development within 100 ft of waterways. 
                                                               As a result of this legislation, affected parcels face restrictions on land development and encounter additional barriers if they intend to pursue such 
@@ -657,10 +666,19 @@ ui <- navbarPage(selected = "overview",
                                               ),
                                               
                                               column(12,
-                                                     align = "center",
+                                                     align = "left",
                                                      p(),
                                                      h4(strong("References")),
-                                                     p("References go here")
+                                                     p("[1] “Conservation Lands Shapefiles & Metadata,” Virginia Department of Conservation and Recreation, www.dcr.virginia.gov. https://www.dcr.virginia.gov/natural-heritage/cldownload (accessed Jul. 20, 2023). "),
+                                                     p("[2] “Conservation Lands Shapefiles & Metadata,” Virginia Department of Conservation and Recreation, www.dcr.virginia.gov. https://www.dcr.virginia.gov/natural-heritage/cldownload (accessed Jul. 20, 2023). "),
+                                                     p("[3] “Conservation easements,” Virginia Department of Forestry, https://dof.virginia.gov/forest-management-health/forestland-conservation/conservation-easements/#:~:text=Under%20a%20conservation%20easement%2C%20landowners,public%20access%20to%20their%20land. (accessed Jul. 20, 2023). "),
+                                                     p("[4] Agricultural/Forestal Districts - vafb.com, https://www.vafb.com/Portals/FBA/PDFs_and_Resources/membership_at_work/Agricultural%20-%20Forestal%20Districts%20FAQ%20Sheet%2011-1-17.pdf (accessed Jul. 20, 2023)."), 
+                                                     p("[5] “Chesapeake Bay Preservation Act,” Virginia Department of Environmental Quality, https://www.deq.virginia.gov/our-programs/water/chesapeake-bay/chesapeake-bay-preservation-act#:~:text=The%20Bay%20Act%20recognizes%20that,local%20land%20use%20decision%2Dmaking. (accessed Jul. 20, 2023)."),
+                                                     p("[6] “Virginia Law,” Code of Virginia Code - Chapter 17. Open-Space Land Act, https://law.lis.virginia.gov/vacodefull/title10.1/chapter17/ (accessed Jul. 20, 2023)."),
+                                                     p("[7] “Forest Legacy Program,” US Forest Service, https://www.fs.usda.gov/managing-land/private-land/forest-legacy (accessed Jul. 20, 2023)."),
+                                                     p("[8] “Forest Legacy Program,” Virginia Department of Forestry, https://dof.virginia.gov/forest-management-health/forestland-conservation/forest-legacy-program/#:~:text=To%20be%20eligible%20for%20the,%2C%20state%2C%20or%20local%20sources. (accessed Jul. 20, 2023)."),
+                                                     p("[9] USDA Farm Service Agency, “About the Conservation Reserve Program (CRP),” Conservation Reserve Program, https://www.fsa.usda.gov/programs-and-services/conservation-programs/conservation-reserve-program/index (accessed Jul. 20, 2023)."),
+                                                     p("[10] USDA Farm Service Agency, “What Is The Emergency Conservation Program (ECP)?,” Emergency Conservation Program, https://www.fsa.usda.gov/programs-and-services/conservation-programs/emergency-conservation/index (accessed Jul. 20, 2023).")
                                               )
                                               
                                      ),
@@ -719,6 +737,20 @@ ui <- navbarPage(selected = "overview",
                                                               purchase a maximum of 5 blocks (500 kWh) and commercial customers can purchase a maximum of 10 blocks (1,000 kWh). The match option provides customers with 
                                                               the possibility of a 100% match of their electricity usage with solar energy and RECs for the additional cost of $0.02013 per kilowatt-hour. This is 
                                                               available to residential and small commercial customers under 500kW. [8]  ")
+                                                     ),
+                                                     column(12,
+                                                            align= "left",
+                                                            p(),
+                                                            h4(strong("References")),
+                                                            p("[1] Center for the New Energy Economy, “Virginia - Renewable Portfolio Standard,” The State Policy Opportunity Tracker (SPOT) for Clean Energy, https://spotforcleanenergy.org/state/virginia/renewable-portfolio-standard/ (accessed Jul. 20, 2023). "),
+                                                            p("[2]  EnergySage, Inc., “What is net metering and how does it work?,” EnergySage, https://www.energysage.com/solar/solar-101/net-metering/?_gl=1%2A1id3nhy%2A_gcl_au%2AODk2MTI4MTgzLjE2ODg1ODc5OTQ. (accessed Jul. 20, 2023)."),
+                                                            p("[3] Virginia Energy, “Solar Power,” Virginia Energy - Renewable Energy - Solar Power, https://energy.virginia.gov/renewable-energy/SolarPower.shtml#:~:text=Legislation%20from%20the%202020%20Virginia,from%20one%20to%20three%20megawatts. (accessed Jul. 20, 2023)."),
+                                                            p("[4] Solar United Neighbors, “Net metering in Virginia,” Solar United Neighbors, https://www.solarunitedneighbors.org/virginia/learn-the-issues-in-virginia/net-metering-in-virginia/ (accessed Jul. 20, 2023)."),
+                                                            p("[5] Virginia Code Commission, “Virginia Law,” Code of Virginia Code - 55.1-138. Contents of solar easement agreements, https://law.lis.virginia.gov/vacode/title55.1/chapter1/section55.1-138/ (accessed Jul. 20, 2023)."),
+                                                            p("[6] “State of Virginia Solar Policy Summary,” Town of Blacksburg Virginia, https://www.blacksburg.gov/home/showpublisheddocument?id=8520 (accessed Jul. 20, 2023)."),
+                                                            p("[7] Virginia Code Commission, “Title 67. Virginia Energy Plan,” § 67-701. (Repealed effective October 1, 2021) Covenants regarding solar power, https://law.lis.virginia.gov/vacode/title67/chapter7/section67-701/ (accessed Jul. 20, 2023)."),
+                                                            p("[8] Dominion Energy, “Virginia Community Solar Pilot Program,” Dominion Energy, https://www.dominionenergy.com/virginia/renewable-energy-programs/community-solar (accessed Jul. 20, 2023).")
+                                                       
                                                      )
                                               )
                                      )
@@ -782,16 +814,31 @@ ui <- navbarPage(selected = "overview",
                                                                          tabsetPanel(
                                                                            tabPanel("Land Use Map",
                                                                                     p(),
-                                                                                    align = "justify",
-                                                                                    leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                                    #align = "justify",
+                                                                                    #leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                                    imageOutput("ZonePNG", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                                    
                                                                                     
                                                                                     
                                                                            ), 
                                                                            tabPanel("Land Use in Acreage", 
                                                                                     p(),
-                                                                                    plotlyOutput("interactive_plot", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                                    plotlyOutput("interactive_plot", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5),
+                                                                                    
                                                                            ) 
-                                                                         ))
+                                                                         ),
+                                                                         p("Data Source: Hanover County GIS Hub")),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] Virginia Code Commission, “Virginia Law,” Code of Virginia Code - Article 7. Zoning, https://law.lis.virginia.gov/vacodefull/title15.2/chapter22/article7/ (accessed Jul. 20, 2023)."),
+                                                                         p("[2] W. Kenton, “Zoning: What it is, how it works, classification examples,” Investopedia, https://www.investopedia.com/terms/z/zoning.asp (accessed Jul. 20, 2023)."),
+                                                                         p("[3] Board of Supervisors, “Section 2 Land Use”, Envision Hanover, https://www.hanovercounty.gov/DocumentCenter/View/2606/Section-2-Land-Usepdf (accessed Jul. 20, 2023)."),
+                                                                         p("[4] Hanover County GIS, Assessor Data. (July 7, 2023). Distributed by Information Technology Department Mapping Services Office, Hanover County. Accessed: July 20, 2023. [Online]. Available: https://data-hanovercounty.hub.arcgis.com/documents/hanovercounty::assessor-data/about "),
+                                                                         p("[5] A. Fontinelle, “What is a planned unit development (PUD)?,” Forbes, https://www.forbes.com/advisor/mortgages/what-is-a-planned-unit-development/ (accessed Jul. 20, 2023).")
+                                                                         
+                                                                  ),
 
                                                          ), 
                                                                 ),
@@ -836,17 +883,35 @@ ui <- navbarPage(selected = "overview",
                                                                                       "Water" = "W",
                                                                                       "Developed" = "DEV")
                                                                                     ),
-                                                                                    imageOutput("crop_typePNG", width = "600px", height = "400px")
+                                                                                    imageOutput("crop_typePNG", width = "600px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
                                                                                     
                                                                                     
                                                                            ), 
                                                                            tabPanel("Land Cover Acreage", 
-                                                                                    plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5)
+                                                                                    plotlyOutput("landAll", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
                                                                                     
                                                                            ),
                                                                            tabPanel("Crop Cover Acreage",
-                                                                                    plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5))
-                                                                         ))
+                                                                                    plotlyOutput("landCropONLY", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5))
+                                                                           
+                                                                         ),
+                                                                         p("Data Source: USDA, National Agricultural Statistics Service, Cropland - CROS")),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] USDA Ag Data Commons, CropScape - Cropland Data Layer. (November 21, 2022). Distributed by the U.S. Department of Agriculture. Accessed: July 20, 2023. [Online]. Available: https://data.nal.usda.gov/dataset/cropscape-cropland-data-layer"),
+                                                                         p("[2] Agricultural Marketing Service, “USDA Definition of Specialty Crop - Agricultural Marketing Service,” What is a Specialty Crop?, https://www.ams.usda.gov/sites/default/files/media/USDASpecialtyCropDefinition.pdf (accessed Jul. 20, 2023)."),
+                                                                         p("[3] Cornell CALS, “Small Grains,” CornellCALS College of Agriculture and Life Sciences, https://cals.cornell.edu/field-crops/small-grains (accessed Jul. 20, 2023)."),
+                                                                         p("[4] United States Environmental Protection Agency, “Why are Wetlands Important?,” EPA, https://www.epa.gov/wetlands/why-are-wetlands-important#:~:text=Far%20from%20being%20useless%2C%20disease,our%20use%20at%20no%20cost. (accessed Jul. 20, 2023)."),
+                                                                         p("[5] A. Kerr, “USDA California Climate Hub,” USDA California Climate Hub - Actionable climate information for California farmers, ranchers, and foresters, https://caclimatehub.ucdavis.edu/2016/07/21/a-cornucopia-of-categories-for-crops/# (accessed Jul. 20, 2023)."),
+                                                                         p("[6] N. Grover, “Double cropping - agriculture notes - PREPP,” Prepp By Collegedunia, https://prepp.in/news/e-492-double-cropping-agriculture-notes (accessed Jul. 20, 2023)."),
+                                                                         p("[7] USDA, “Forage,” forage | NAL Agricultural Thesaurus, https://agclass.nal.usda.gov/vocabularies/nalt/concept?uri=https%3A%2F%2Flod.nal.usda.gov%2Fnalt%2F6298 (accessed Jul. 20, 2023)."),
+                                                                         p("[8] United States Environmental Protection Agency, “What is a Wetland?,” EPA, https://www.epa.gov/wetlands/what-wetland#:~:text=Wetlands%20are%20areas%20where%20water,including%20during%20the%20growing%20season. (accessed Jul. 20, 2023)."),
+                                                                         p("[9] Multi-Resolution Land Characteristics Consortium, “National Land Cover Database Class Legend and description,” National Land Cover Database Class Legend and Description | Multi-Resolution Land Characteristics (MRLC) Consortium, https://www.mrlc.gov/data/legends/national-land-cover-database-class-legend-and-description# (accessed Jul. 20, 2023)."),
+                                                                         p("[10] T. Roberts, “The Importance of Tree Crops in Sustainable Agriculture,” The Permaculture Research Institute, https://www.permaculturenews.org/2017/11/27/importance-tree-crops-sustainable-agriculture/ (accessed Jul. 20, 2023). ")
+                                                                    
+                                                                  ),
                                                                   
                                                          ), 
                                                 ) ,
@@ -884,15 +949,26 @@ ui <- navbarPage(selected = "overview",
                                                      tabsetPanel(
                                                 tabPanel("Soil Type Map",
                                                          p(),
-                                                         imageOutput("soilRate", width = "700px", height = "500px")
+                                                         imageOutput("soilRate", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                         
                                                          
                                                          
                                                 ), 
                                                 tabPanel("Soil Type in Acreage", 
                                                          p(),
-                                                         plotlyOutput("sR", height = "500px") %>% withSpinner(type = 6, color = "#CF4420", size = 1.5),
+                                                         plotlyOutput("sR", height = "500px") %>% withSpinner(type = 6, color = "#861F41", size = 1.5)
+                                                         
                                                 ) 
-                                              )),
+                                              ),
+                                              p("Data Source: USDA, Natural Resource Conservation Service, Web Soil Survey")),
+                                              column(
+                                                12,
+                                                align= "left",
+                                                p(),
+                                                h4(strong("References")),
+                                                p("[1] “Soil Data Access (SDA) Prime and Other Important Farmlands,” U.S. Department of Agriculture Natural Resources Conservation Service, https://efotg.sc.egov.usda.gov/references/public/LA/Prime_and_other_Important_Farmland.html (accessed Jul. 20, 2023)."),
+                                                p("[2] “Soil Survey Geographic Database (SSURGO).” U.S. Department of Agriculture Natural Resources Conservation Service, www.nrcs.usda.gov/resources/data-and-reports/soil-survey-geographic-database-ssurgo (accessed Jul. 20, 2023).")
+                                              ),
 
                                               
                                      ),
@@ -937,7 +1013,7 @@ ui <- navbarPage(selected = "overview",
                                                                          tabsetPanel(
                                                                            tabPanel("Land Suitability Map",
                                                                                     p(),
-                                                                                    imageOutput("SoilLimit", width = "700px", height = "500px")
+                                                                                    imageOutput("SoilLimit", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                                     
                                                                                     
                                                                            ), 
@@ -949,7 +1025,8 @@ ui <- navbarPage(selected = "overview",
                                                                            
 
                                                                          
-                                                                  ))
+                                                                  ),
+                                                                  p("Data Source: USDA, Natural Resource Conservation Service, Web Soil Survey"))
                                                          )
                                                          
                                                 ), 
@@ -966,7 +1043,7 @@ ui <- navbarPage(selected = "overview",
                                                                            decrease the voltage coming from a farm. Connecting solar farms to transmission lines is a possibility, but requires the implementation of
                                                                            new voltage regulating technology. As the development location moves further away from energy infrastructure, the project becomes more expensive 
                                                                            and eventually is not financially feasible. A distance rule of thumb is that solar farms should be developed within 2 miles of a substation or 1000 
-                                                                           feet of a transmission line in order to keep development costs low."), 
+                                                                           feet of a transmission line in order to keep development costs low.[1]"), 
 
                                                                           p("This map was created using transmission line location data from the Homeland Infrastructure Foundation Level Database (HIFLD) and a separate dataset
                                                                           distributed by The Office for Coastal Management which used HIFLD metadata to map all substations within 20 miles of the ocean. The substation metadata 
@@ -984,10 +1061,18 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Infastructure Map")),
-                                                                         imageOutput("InfastructurePNG", width = "700px", height = "500px"),
-                                                                         p("*Distortion due to high density of residential parcels in Mechanicsville.")
+                                                                         imageOutput("InfastructurePNG", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
+                                                                         p("Note: Distortion due to high density of residential parcels in Mechanicsville."),
+                                                                         p("Data Source: Homeland Infrastructure Foundation - Level Data Base")
                                                                          
-                                                                  )
+                                                                  ),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] “Solar Farm Land Requirements & Solar Developments,” YSG Solar, https://www.ysgsolar.com/blog/solar-farm-land-requirements-solar-developments-ysg-solar (accessed Jun. 20, 2023).")
+                                                                    
+                                                                  ),
                                                          ),
                                                          
                                                 ), 
@@ -1002,15 +1087,23 @@ ui <- navbarPage(selected = "overview",
                                                                            Therefore, adequate road acess is necessary when determining suitable sites for solar farm development. Hanover County GIS Hub provides a 
                                                                            dataset displaying the centerline of all public roadways within the county. We were able to use this data to select all parcels within 
                                                                            100 feet of the roadway centerlines. A 100 foot buffer was necessary to account for all roadside ditches and marginal land. This variable 
-                                                                           helps add to our solar assesment by showing parcels within Hanover County that have adequate access to be developed[2].")
+                                                                           helps add to our solar assesment by showing parcels within Hanover County that have adequate access to be developed[1].")
                                   
                                                                   ),
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Road Access Map")),
-                                                                         imageOutput("RoadPNG", width = "700px", height = "500px"),
-                                                                         p("*Distortion due to high density of residential parcels in Mechanicsville.")
+                                                                         imageOutput("RoadPNG", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
+                                                                         p("Note: Distortion due to high density of residential parcels in Mechanicsville."),
+                                                                         p("Data Source: Hanover County GIS Hub")
                                                                          
+                                                                  ),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] A. Davis, “Solar Farming Considerations,” Department of Agricultural Economics, University of Kentucky, https://agecon.ca.uky.edu/solar-farming-considerations (accessed May 30, 2023). ")
+                                                                    
                                                                   )
                                                                   
                                                          ),
@@ -1023,6 +1116,16 @@ ui <- navbarPage(selected = "overview",
                                                                   column(12,
                                                                          align="left",
                                                                          h2(strong("Background")),
+                                                                         p("Hanover County is currently home to a large solar farm, Mechanicsville Solar PV Park. This 28-megawatt solar farm has been in operation since 2018. 
+                                                                           Developed by SunEnergy1, the park spans 222 acres and consists of 93,000 modules. The electricity generated by the solar farm is being sold to Dominion 
+                                                                           Energy and has the capacity to power approximately 5,000 households [1]. In addition to the Mechanicsville Solar PV Park, Hanover County has recently 
+                                                                           approved a new solar farm. Developed by Ameriesco Solar, this 22-acre facility is estimated to generate 5 megawatts of power, which is estimated to 
+                                                                           meet the energy needs of 1,500 homes. The farm is located on Peppertown road and is expected to have a lifespan of 40 years. As part of their environmental
+                                                                           commitment, the developer plans to plant pollinator-friendly vegetation between the solar panels [2]. Virginia's renewable energy goals have made the 
+                                                                           construction of solar farms more common. The state has implemented a policy, the Virginia Clean Economy Act that requires Dominion Energy to achieve 
+                                                                           100% renewable energy by 2045, and Virginia Power, a subsidiary of Dominion, to do the same by 2050 [3]. This policy encourages energy companies to develop 
+                                                                           more sources of renewable energy, and with the development of more energy sources, a degree of environmental impact and loss of agricultural land is inevitable."),
+                                                                         p(),
                                                                          p("To analyze suitable locations for solar farm development within Hanover County we created an index map displaying the Solar Suitablity 
                                                                            Score of parcels with the most desireable characteristics. The parcels displayed all have at least 10 acres of suitable land for solar, 
                                                                            are within 100 feet of road access, and are not zoned for residential use. The Solar Suitability Score ranks parcels with all of these 
@@ -1043,7 +1146,16 @@ ui <- navbarPage(selected = "overview",
                                                                              "Buffer 3" = "buffer_3"),
                                                                            
                                                                          ),
-                                                                         imageOutput("ssIndexPNG", width = "500px", height = "400px")
+                                                                         imageOutput("ssIndexPNG", width = "500px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                  ),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] “Power plant profile: Mechanicsville solar PV Park, US,” Power Technology, https://www.power-technology.com/marketdata/power-plant-profile-mechanicsville-solar-pv-park-us/ (accessed May 20, 2023)."),
+                                                                         p("[2] J. Cordes, “Hanover approves Solar Farm with $420,000 County windfall,” WRIC ABC 8News, https://www.wric.com/news/local-news/hanover-county/hanover-approves-solar-farm-with-420000-county-windfall/ (accessed May 20, 2023)."),
+                                                                         p("[3] R. C. Sullivan, “HB 1526 Electric utility regulation; environmental goals.,” Virginia’s Legislative Information System, https://lis.virginia.gov/cgi-bin/legp604.exe?201%2Bsum%2BHB1526 (accessed May 20, 2023).")
+                                                                    
                                                                   )
                                                                   
                                                          ),
@@ -1102,7 +1214,21 @@ ui <- navbarPage(selected = "overview",
                                                                              "Buffer 3" = "buffer_3"),
                                                                            
                                                                          ),
-                                                                         imageOutput("arIndexPNG", width = "500px", height = "400px")
+                                                                         imageOutput("arIndexPNG", width = "500px", height = "400px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                  ),
+                                                                  column(12,
+                                                                         align= "left",
+                                                                         p(),
+                                                                         h4(strong("References")),
+                                                                         p("[1] USDA Climate Hubs, “Agrivoltaics: Coming Soon to a Farm Near You?,” Agrivoltaics: Coming Soon to a Farm Near You? | USDA Climate Hubs, https://www.climatehubs.usda.gov/hubs/northeast/topic/agrivoltaics-coming-soon-farm-near-you (accessed Jul. 20, 2023)."),
+                                                                         p("[2] L. Villazon, “Do solar panels work better on Hot Days?,” BBC Science Focus Magazine, https://www.sciencefocus.com/science/do-solar-panels-work-better-on-hot-days/ (accessed Jul. 20, 2023)."),
+                                                                         p("[3] YSG Solar, “Top 5 Solar Farm Land Requirements,” YSG Solar, https://www.ysgsolar.com/blog/top-5-solar-farm-land-requirements-ysg-solar (accessed Jul. 20, 2023)."),
+                                                                         p("[4] Enel Green Power, “All the benefits of Agrivoltaics,” Enel Green Power, https://www.enelgreenpower.com/stories/benefits-agrivoltaics (accessed Jul. 20, 2023)."),
+                                                                         p("[5] M. Boyd, “The Potential of Agrivoltaics for the U.S. Solar Industry, Farmers, and Communities,” Energy.gov, https://www.energy.gov/eere/solar/articles/potential-agrivoltaics-us-solar-industry-farmers-and-communities#:~:text=Research%20in%20the%20drylands%20of,extreme%20weather%2C%20such%20as%20droughts. (accessed Jul. 20, 2023)."),
+                                                                         p("[6] NREL Transforming Energy, “Agrivoltaics,” NREL.gov, https://www.nrel.gov/solar/market-research-analysis/agrivoltaics.html (accessed Jul. 20, 2023)."),
+                                                                         p("[7] American Solar Grazing Association, “What Is Solar Grazing And How Does It Work?,” American Solar Grazing Association, https://solargrazing.org/wp-content/uploads/2019/06/Solar-Grazing-Brochure.pdf (accessed Jul. 20, 2023)."),
+                                                                         p("[8] Oregon State University College of Agricultural Sciences, “Sustainable Farm Agrivoltaic,” Oregon State University College of Agricultural Sciences News and Accolades, https://agsci.oregonstate.edu/newsroom/sustainable-farm-agrivoltaic#:~:text=Agrivoltaics%20is%20a%20symbiotic%20relationship,helps%20further%20reduce%20water%20usage. (accessed Jul. 20, 2023). ")
+                                                                    
                                                                   )
                                                                   
                                                          ),
@@ -1146,7 +1272,7 @@ ui <- navbarPage(selected = "overview",
                                                                                       c("Buffer 1" = "buffer_1",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")),
-                                                                                    imageOutput("ssMethodPNG", width = "550px", height = "500px"),
+                                                                                    imageOutput("ssMethodPNG", width = "550px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
                                                                                     p("Note: With the expansion of buffers, the frequencies rise as additional parcels emerge, introducing more data into the index."),
                                                                                     
                                                                            ),
@@ -1158,7 +1284,7 @@ ui <- navbarPage(selected = "overview",
                                                                                         "Buffer 2" = "buffer_2",
                                                                                         "Buffer 3" = "buffer_3")
                                                                                     ),
-                                                                                    imageOutput("arMethodPNG", width = "550px", height = "500px"),
+                                                                                    imageOutput("arMethodPNG", width = "550px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25),
                                                                                     p("Note: With the expansion of buffers, the frequencies rise as additional parcels emerge, introducing more data into the index."),
                                                                          )),
 
@@ -1353,6 +1479,12 @@ server <- function(input, output){
     
   })
   
+  output$ZonePNG <- renderImage(deleteFile = FALSE,{
+    
+    return(list(src = "www/ZoningMap.png", width = "100%", height = "100%"))
+    
+  })
+  
   # For buffer images later will be leaflets
   
   # output$bufferType <- renderLeaflet(deleteFile = FALSE, {
@@ -1470,43 +1602,43 @@ server <- function(input, output){
   #Solar methodology pictures
   output$ssMethodPNG <- renderImage(deleteFile = FALSE,{
     if (input$solar.score == "buffer_1") {
-      return(list(src = "www/SSB1.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS1-index.png", width = "125%", height = "100%"))
     }
     else if (input$solar.score == "buffer_2") {
-      return(list(src = "www/SSB2.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS2-index.png", width = "125%", height = "100%"))
     }
     else if (input$solar.score == "buffer_3") {
-      return(list(src = "www/SSB3.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS3-index.png", width = "125%", height = "100%"))
     }
   })
   #AV methodology pictures
   output$arMethodPNG <- renderImage(deleteFile = FALSE,{
     if (input$av.rating == "buffer_1") {
-      return(list(src = "www/ARB1.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR1-index.png", width = "125%", height = "100%"))
     }
     else if (input$av.rating == "buffer_2") {
-      return(list(src = "www/ARB2.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR2-index.png", width = "125%", height = "100%"))
     }
     else if (input$av.rating == "buffer_3") {
-      return(list(src = "wwwARB3.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR3-index.png", width = "125%", height = "100%"))
     }
   })
 #Solar index pictures
   output$ssIndexPNG <- renderImage(deleteFile = FALSE,{
     if (input$ssbufferType == "buffer_1") {
-      return(list(src = "www/SSMapB1.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS1-map.png", width = "125%", height = "100%"))
     }
     else if (input$ssbufferType == "buffer_2") {
-      return(list(src = "www/SSMapB2.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS2-map.png", width = "125%", height = "100%"))
     }
     else if (input$ssbufferType == "buffer_3") {
-      return(list(src = "www/SSMapB3.png", width = "125%", height = "100%"))
+      return(list(src = "www/SSS3-map.png", width = "125%", height = "100%"))
     }
   })
   #solar index write up
   output$ssindex_write <- renderText({
     if (input$ssbufferType == "buffer_1") {
-      return("This map shows the most ideal parcels for solar farm development within buffer zone 1. buffer zone 1 contains the most desireable 
+      return("This map shows the most ideal parcels for solar farm development within buffer zone 1. Buffer zone 1 contains the most desireable 
              parcels as these are within closest range to existing energy infrastructure, either 2 miles from a substation or 1,000 feet from a 
              transmission line. Therefore, solar farm development companies are able to spend less when constructing in these areas. The parcels 
              displayed roughly outline transmission line and substation locations, with the large amounts of suitable parcels running along 
@@ -1531,13 +1663,13 @@ server <- function(input, output){
   #AV index pictures
   output$arIndexPNG <- renderImage(deleteFile = FALSE,{
     if (input$arbufferType == "buffer_1") {
-      return(list(src = "www/ARMapB1.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR1-map.png", width = "125%", height = "100%"))
     }
     else if (input$arbufferType == "buffer_2") {
-      return(list(src = "www/ARMapB2.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR2-map.png", width = "125%", height = "100%"))
     }
     else if (input$arbufferType == "buffer_3") {
-      return(list(src = "www/ARMapB3.png", width = "125%", height = "100%"))
+      return(list(src = "www/AVR3-map.png", width = "125%", height = "100%"))
     }
   })
  #AV write up 
