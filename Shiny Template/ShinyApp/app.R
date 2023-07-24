@@ -814,8 +814,9 @@ ui <- navbarPage(selected = "overview",
                                                                          tabsetPanel(
                                                                            tabPanel("Land Use Map",
                                                                                     p(),
-                                                                                    align = "justify",
-                                                                                    leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                                    #align = "justify",
+                                                                                    #leafletOutput("zoneHan") %>% withSpinner(type = 6, color = "#861F41", size = 1.25)
+                                                                                    imageOutput("ZonePNG", width = "700px", height = "500px")%>% withSpinner(type = 6, color = "#861F41", size = 1.25)
                                                                                     
                                                                                     
                                                                                     
@@ -1475,6 +1476,12 @@ server <- function(input, output){
   output$InfastructurePNG <- renderImage(deleteFile = FALSE,{
     
     return(list(src = "www/Infastructure.png", width = "100%", height = "100%"))
+    
+  })
+  
+  output$ZonePNG <- renderImage(deleteFile = FALSE,{
+    
+    return(list(src = "www/ZoningMap.png", width = "100%", height = "100%"))
     
   })
   
