@@ -440,13 +440,13 @@ ui <- navbarPage(selected = "overview",
                                           h4(strong("Setting:")),
                                           p("Hanover County, Virginia is a predominantly rural area located twelve miles north of the state capital, 
                                             Richmond. The county ranges over 303,000 acres and is known for its farmlands, rolling hills and forests 
-                                            bordered by the Chickahominy and Pamunkey Rivers. Hanover’s rich agricultural history has thrived from 1720 
+                                            bordered by the Chickahominy and Pamunkey Rivers. Hanover’s rich agricultural history has thrived since its formation in 1720 
                                             to the present day through its tobacco cultivation, crop diversification, dairy farming and small family 
                                             farms. Hence, the agricultural heritage has majorly influenced the landscape, community and rural charm of the county."),
                
                                           p(),
                                           h4(strong("Problem:")),
-                                          p("The solar projects in Hanover County have mixed reactions from local residents. While some long-time members of the 
+                                          p("Solar projects in Hanover County have mixed reactions from local residents. While some long-time members of the 
                                             community prefer to maintain the county's rich rural history, others recognize the value of transitioning to solar energy. 
                                             Many residents also see the solar farms as a better alternative to the potential overcrowding that could result from the 
                                             land being used for residential subdivisions."),
@@ -454,26 +454,26 @@ ui <- navbarPage(selected = "overview",
                                           h4(strong("Project:")),
                                           p(" Virginia Tech Department of Agricultural and Applied Economics
                                             Data Science for the Public Good (DSPG) program assesses land 
-                                            conversion and solar farm land usage in Hanover County through 
+                                            suitability for solar farm development in Hanover County through 
                                             the use of data analytics, agricultural economics and geospatial tools.")
                                    ),
                                    column(4,
                                           h2(strong("Project Goals")),
                                           p("This project utilizes geospatial data and administrative parcel records to assess land 
-                                            parcels for their suitability for solar farm development, with a focus on agricultural and
-                                            rural areas possessing prime farmland and favorable solar farm characteristics. By analyzing
+                                            parcels for their suitability for solar farm development. By analyzing
                                             factors such as parcel zoning, soil quality, land cover, conservation areas, and relevant 
                                             policies, we create geospatial visualizations on an interactive dashboard, mapping key land
                                             characteristics countywide. Additionally, an index is constructed to rate each parcel based 
                                             on proximity to energy infrastructure, suitability for solar farms, prime farmland presence, 
-                                            and road accessibility. We also consider an alternative mixed land-use approach known as 
+                                            and road accessibility."),
+                                          p("We also consider an alternative mixed land-use approach known as 
                                             agrivoltaics, and address its potential within Hanover County. Leveraging these data in a statistical
                                             model, we investigate the relationship between prime agricultural land and land suitable for 
                                             solar farms. Our research provides valuable insights into areas vulnerable to solar farm development
                                             in Hanover County, aiding informed decision-making in solar energy planning and development."),
                                           p(),
                                           h4(strong("Research Questions:")),
-                                          p("Which parcels in Hanover County have the most desirable characteristics for Solar Farm Development?"),
+                                          p("Which parcels in Hanover County have the most desirable characteristics for solar farm development?"),
                                           p("1. How do these parcels compare to parcels with prime agricultural land?"),
                                           p("2. How do different factors (acreage, soil type, zoning, land cover, policy, etc.) play into solar farm development?"),
                                           p("3. How can we preserve agricultural land while developing solar farms?")
@@ -481,7 +481,7 @@ ui <- navbarPage(selected = "overview",
                                    ),
                                    column(4,
                                           h2(strong("County Overview")),
-                                          p("Hanover County takes pride in their rural lifestyle and heritage, therefore as they 
+                                          p("Hanover County residents take pride in their rural lifestyle and heritage, and as they 
                                             look to strategically manage development, challenges arise. The main problems facing
                                             this county as it looks to achieve economic growth are urban sprawl and land conversion 
                                             resulting in a loss of agricultural areas. Urban sprawl is the extension of urban 
@@ -521,15 +521,13 @@ ui <- navbarPage(selected = "overview",
                                               titlePanel(h2(strong("Sociodemographic Background"))),
                                               column(6,
                                                      align="left",
-                                                     p("To gain insight into the sociodemographic background of Hanover County for the year 2019, we relied on data 
-                                                       provided by the American Community Survey (ACS) 5-year data, spanning from 2017 to 2021. The U.S. Census Bureau 
-                                                       conducts the ACS, which encompasses demographic variables, such as race, median household income, median gross 
-                                                       rent and population size. The creation of ACS visualizations involves the utilization of designated census tracts,
-                                                       which act as statistical subdivisions of the county. These tracts are established by the Census Bureau and are 
-                                                       adjusted according to the settlement’s density, ensuring accurate and comprehensive data representation. Assessing 
-                                                       the sociodemographic background helps us gain an insight into the unique needs, preferences and priorities of local 
-                                                       communities and assists us in understanding the economic dynamics of the county."),
-                                                     h4(strong("Map Analysis")),
+                                                     p("To gain insight into the sociodemographic background of Hanover County, we relied on data provided by the American Community Survey (ACS)
+                                                       5-year data, spanning from 2017 to 2021. The U.S. Census Bureau conducts the ACS, which encompasses demographic variables, such as race, median 
+                                                       household income, median gross rent and population size. The creation of ACS visualizations involves the utilization of designated census tracts, 
+                                                       which act as statistical subdivisions of the county. These tracts are established by the Census Bureau and are adjusted according to the settlement’s 
+                                                       density, ensuring accurate and comprehensive data representation. Assessing the sociodemographic background helps us gain an insight into the unique 
+                                                       needs, preferences and priorities of local communities and assists us in understanding the economic dynamics of the county."),
+                                                     h4(strong("Analysis")),
                                                      textOutput("selected_emp_text")),
                                               column(6,
                                                      tabsetPanel(
@@ -997,8 +995,8 @@ ui <- navbarPage(selected = "overview",
                                                                   column(6,
                                                                          align="left",
                                                                          h2(strong("Land Suitability Analysis")),
-                                                                         p("This map shows areas of land within Hanover County based on the level of limitation they pose to solar farm development. 
-                                                                           Using NRCS Web Soil Survey data we were able to map the soil types across the county into three different categories, “Not Suitable”, 
+                                                                         p("This map shows areas of land within Hanover County based on their suitability for solar farm development. 
+                                                                           Using NRCS Web Soil Survey data we were able to map the soil types across the county and group them into three different categories, “Not Suitable”, 
                                                                            “Suitable” and “Not Rated”. The index takes into account slope, slope aspect, rock fragment content, corrosivity, saturation and 
                                                                            shrink-swell properties of the soil. The best land for solar farm development within Hanover County is the category of “suitable”. 
                                                                            This land type accounts for 58.15% of Hanover and is concentrated on the eastern end of the county where the majority of prime farmland 
@@ -1041,8 +1039,8 @@ ui <- navbarPage(selected = "overview",
                                                                          p("Solar farms need to be within close proximity of infrastructure that can distribute the power generated from a farm throughout the grid.
                                                                            Connecting a farm directly to a substation is ideal as substations already have the majority of necessary technology that can increase or 
                                                                            decrease the voltage coming from a farm. Connecting solar farms to transmission lines is a possibility, but requires the implementation of
-                                                                           new voltage regulating technology. As the development location moves further away from energy infrastructure, the project becomes more expensive 
-                                                                           and eventually is not financially feasible. A distance rule of thumb is that solar farms should be developed within 2 miles of a substation or 1000 
+                                                                           new voltage regulating technology. As the development location moves further away from energy infrastructure, the project becomes more expensive. 
+                                                                           A distance rule of thumb is that solar farms should be developed within 2 miles of a substation or 1000 
                                                                            feet of a transmission line in order to keep development costs low.[1]"), 
 
                                                                           p("This map was created using transmission line location data from the Homeland Infrastructure Foundation Level Database (HIFLD) and a separate dataset
@@ -1052,11 +1050,11 @@ ui <- navbarPage(selected = "overview",
                                                                           locations and add them to our dataset. "),
                                                                          h3(strong("Analysis")),
                                                                          p("The map displayed shows parcels in Hanover County categorized into three buffer zones. Parcels that have land within either 2 miles of a substation or 
-                                                                           1000 feet of a transmission line, are part of Buffer zone 1. We created a second and third buffer zone to account for parcels that have very good 
+                                                                           1000 feet of a transmission line, are part of buffer zone 1. We created a second and third buffer zone to account for parcels in our index that have good 
                                                                            characteristics for solar farms, but lack adequate access to infrastructure. Buffer zone 2 contains parcels within 4 miles of a substation or 2,000 
-                                                                           ft of a transmission line, and Buffer zone 3 contains parcels within 6 miles of a substation or 3,000 ft of a transmission line. If there is a parcel
-                                                                           with great charictaristics for solar farms, development companies will be more likely to spend money on building infrastructure, because the costs can 
-                                                                           be regained through revenues from energy production. Only parcels close to energy infrastructure are shown on the map in Buffer zone 1 while in Buffer 
+                                                                           ft of a transmission line, and buffer zone 3 contains parcels within 6 miles of a substation or 3,000 ft of a transmission line. If there is a parcel
+                                                                           with great characteristics for solar farms in these zones, development companies will be more likely to spend money on building infrastructure, because the costs can 
+                                                                           be regained through revenues from energy production. Only parcels close to energy infrastructure are shown on the map in buffer zone 1 while in buffer 
                                                                            zone 3 nearly the entire county is captured. The only area of Hanover County that is not accounted for in a buffer zone is a small region in the northwest.")),
                                                                   column(6,
                                                                          align="left",
@@ -1591,10 +1589,10 @@ server <- function(input, output){
   #ACS graphs
   output$acs <- renderImage(deleteFile = FALSE,{
     if (input$acs.graphs == "pop") {
-      return(list(src = "www/PopDen.png", width = "125%", height = "100%"))
+      return(list(src = "www/PD21.png", width = "125%", height = "100%"))
     }
     else if (input$acs.graphs == "inc") {
-      return(list(src = "www/MedPopInc.png", width = "125%", height = "100%"))
+      return(list(src = "www/MPI21.png", width = "125%", height = "100%"))
     }
 
   })
@@ -1685,7 +1683,7 @@ server <- function(input, output){
              buffer 2 brings forth new parcels surrounding the city of Ashland and extending towards both the western and eastern edges of the county.")
     }
     else if (input$arbufferType == "buffer_3") {
-      return("The map displays parcels situated in Buffer 3, representing the farthest distance from energy infrastructure while still exhibiting desirable traits for agrivoltaics. 
+      return("The map displays parcels situated in buffer 3, representing the farthest distance from energy infrastructure while still exhibiting desirable traits for agrivoltaics. 
              The revised distance from energy infrastructure encompasses parcels within 6 miles from a substation or 3000ft from a transmission line. buffer 3, being the most distant 
              from energy infrastructure, introduces the largest number of new parcels covering nearly the entire county. Consequently, if solar developers and farmers are willing 
              to invest in developing closer infrastructure, if necessary, to offset the distance from existing infrastructure, agrivoltaic farms can be established within these parcels.")
@@ -1701,33 +1699,33 @@ server <- function(input, output){
     
     if (selected == "Solar Suitability Score") {
       if(input$solar.score == "buffer_1"){
-        return("The Solar Suitability Score for Buffer 1 encompasses ideal parcels for solar farming located within 2 miles from a substation or 1000ft from a transmission line, 
+        return("The Solar Suitability Score for buffer 1 encompasses ideal parcels for solar farming located within 2 miles from a substation or 1000ft from a transmission line, 
                land within 100ft of roads, 10 acres or more and non-residential zoned land. The index arranges parcels satisfying these criteria based on their size. Parcels that score 
                closer to 0 fulfill all the categories but closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
       else if (input$solar.score == "buffer_2"){
-        return("The Solar Suitability Score for Buffer 2 encompasses parcels for solar farming located within 4 miles from a substation or 2000ft from a transmission line, within 100ft of roads, 
+        return("The Solar Suitability Score for buffer 2 encompasses parcels for solar farming located within 4 miles from a substation or 2000ft from a transmission line, within 100ft of roads, 
                have 10 acres or more and non-residential zoned. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 fill all the categories and closer 
                to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
       else if (input$solar.score == "buffer_3"){
-        return("The Solar Suitability Score for Buffer 3 encompasses parcels suitable for solar farming located within 6 miles from a substation or 3000ft from a transmission line, within 100ft of roads, 
+        return("The Solar Suitability Score for buffer 3 encompasses parcels suitable for solar farming located within 6 miles from a substation or 3000ft from a transmission line, within 100ft of roads, 
                have 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 fill all the categories and are closer 
                to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
     } else if (selected == "Agrivoltaic Viability Rating") {
       if(input$av.rating == "buffer_1"){
-        return("The Agrivoltaic Viability Rating for Buffer 1 encompasses parcels desirable for solar farming and areas of prime farmland located within 2 miles of a substation or 1000ft from a transmission 
+        return("The Agrivoltaic Viability Rating for buffer 1 encompasses parcels desirable for solar farming and areas of prime farmland located within 2 miles of a substation or 1000ft from a transmission 
                line, within 100ft of roads, 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 fill all the 
                categories and are closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
       else if (input$av.rating == "buffer_2"){
-        return("The Agrivoltaic Viability Rating for Buffer 2 encompasses parcels desirable for solar farming and areas of prime farmland for agriculture located within 4 miles from a substation or 2000ft from 
+        return("The Agrivoltaic Viability Rating for buffer 2 encompasses parcels desirable for solar farming and areas of prime farmland for agriculture located within 4 miles from a substation or 2000ft from 
                a transmission line, within 100ft of roads, have 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size.  Parcels scoring closer to 
                0 fill all the categories and are closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
       else if (input$av.rating == "buffer_3"){
-        return("The Agrivolaic Viability Rating for Buffer 3 encompasses parcels desirable for solar farming and areas of prime farmland for agriculture located within 6 miles from a substation or 3000ft from a 
+        return("The Agrivolaic Viability Rating for buffer 3 encompasses parcels desirable for solar farming and areas of prime farmland for agriculture located within 6 miles from a substation or 3000ft from a 
                transmission line, within 100ft of roads, have 10 acres or more and non-residential zoned land. The index arranges land satisfying these criteria based on their size. Parcels scoring closer to 0 
                fill all the categories and are closer to 10 acres in size, while parcels scoring closer to 100 occupy the largest areas above 10 acres.")
       }
@@ -1876,25 +1874,21 @@ server <- function(input, output){
     
     if (selected3 == "Demographic Factors") {
       if (input$acs.graphs == "pop") {
-        return("Hanover’s population density measures the average population per square mile. Examining this aspect 
-               enables us to explore the composition of the county and identify regions that lean towards rural settings, 
-               characterized by lower population densities, and areas that are more urbanized, featuring higher 
-               population densities and well-developed infrastructure. The yellow tract has the highest population density, 
-               recorded at 8,558 residents per square mile, which can be attributed to its close proximity to Mechanicsville, 
-               on the outskirts of Richmond. This connection provides a plausible explanation for the heightened density in 
-               this particular region. Moreover, the area's primary zoning classification as Residential further justifies 
-               the substantial population density it sustains. The dark purple tract, situated northeast of Mechanicsville, 
-               exhibits the lowest population density at 2,473 residents per square mile. This can be attributed to its predominant
-               categorization under the Agricultural zone, which provides an explanation for the sparse population in this area.")
+        return("Hanover’s population density measures the average population per square mile. Examining this aspect enables us to explore the composition of the 
+               county and identify regions that lean towards rural settings, characterized by lower population densities, and areas that are more urbanized, 
+               featuring higher population densities and well-developed infrastructure. The yellow tracts have the highest population densities ranging from 
+               5,999-6,999. Three of the four tracts are located on the outskirts of Richmond in close proximity to Mechanicsville. This connection provides a 
+               plausible explanation for the heightened density in this particular region. Moreover, the area's primary zoning classification as Residential 
+               further justifies the substantial population density it sustains. The dark purple tracts, located on the eastern side of the county, exhibit the 
+               lowest population density ranging from 0-2999. This can be attributed to its predominant categorization under the Agricultural and Industrial zones.")
       }
       else if (input$acs.graphs == "inc") {
-        return("Hanover’s median population income is based on the distribution of the total number of households and families including those 
-               with no income. This tracks the income of the population by comparing the variables – population, median household income and 
-               median gross rent. Examining this aspect allows us to grasp the county’s economic prosperity by observing how a higher median income 
-               suggests a greater average earning potential among its residents. This factor is closely connected with the county’s employment opportunities, 
-               as a higher median income reflects the workforce dynamics and the prevalence of industries or sectors offering higher-paying jobs within the 
-               region. The yellow tract possesses the maximum income value of $127,394. This tract is located east of Glen Allen, on the outskirts of the capital, 
-               Richmond. The dark purple tract, located within the Ashland area, possesses the minimum income value of $55,924.")
+        return("Hanover’s median population income is based on the distribution of the total number of households and families including those with no income. 
+               This tracks the income of the population by comparing the variables – population, median household income and median gross rent. Examining this 
+               aspect allows us to grasp the county’s economic prosperity by observing how a higher median income suggests a greater average earning potential 
+               among its residents. This factor is closely connected with the county’s employment opportunities, as a higher median income reflects the 
+               workforce dynamics and the prevalence of industries or sectors offering higher-paying jobs within the region. The yellow tracts possess the 
+               maximum income value ranging from $130,000-$140,000. The dark purple tracts, located within the Ashland area, possesses the minimum income value below $60,000. ")
       }
       
     } 
