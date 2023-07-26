@@ -75,7 +75,7 @@ employ_plot <- ggplot(employ, aes(x = reorder(EmploymentTypes, Percent), y = Per
   theme(legend.position = "none") +
   labs(title = "Total Employment For Each Industry", 
        y = "Percent",
-       caption = "Data Source: US Census ACS 5-Year 2019 Data") +
+       caption = "Data Source: US Census ACS 5-Year 2021 Data") +
   theme(axis.title.y = element_blank())+
   coord_flip() 
 
@@ -550,6 +550,15 @@ ui <- navbarPage(selected = "overview",
                                                        
                                                      ), 
                                                      p("Data Source: U.S. Census Bureau - American Community Survey")),
+                                              column(12,
+                                                     align= "left",
+                                                     p(),
+                                                     h4(strong("References")),
+                                                     p("[1] U.S Census Bureau (2021). INDUSTRY BY OCCUPATION FOR THE CIVILIAN EMPLOYED POPULATION 16 YEARS AND OVER, 2021: ACS 5-Year Estimates Subject Tables. Retrieved July 20, 2023, from https://data.census.gov/table?t=Employment:Employment+and+Labor+Force+Status&g=050XX00US51085&y=2021&tid=ACSST5Y2021.S2405"),
+                                                     p("[2] U.S Census Bureau (2021). MEDIAN HOUSEHOLD INCOME IN THE PAST 12 MONTHS (IN 2021 INFLATION-ADJUSTED DOLLARS), 2021: ACS 5-Year Estimates Subject Tables. Retrieved July 20, 2023, from https://data.census.gov/table?q=B19013:+MEDIAN+HOUSEHOLD+INCOME+IN+THE+PAST+12+MONTHS+(IN+2021+INFLATION-ADJUSTED+DOLLARS)&g=050XX00US51085&y=2021&tid=ACSDT1Y2021.B19013"),
+                                                     p("[3] U.S Census Bureau (2021). RACE, 2021: ACS 5-Year Estimates Subject Tables. Retrieved July 20, 2023, from https://data.census.gov/table?q=B02001:+RACE&g=050XX00US51085&y=2021&d=ACS+5-Year+Estimates+Detailed+Tables&tid=ACSDT5Y2021.B02001"),
+                                                     p("[4] U.S Census Bureau (2021). MEDIAN GROSS RENT (DOLLARS), 2021: ACS 5-Year Estimates Subject Tables. Retrieved July 20, 2023, from https://data.census.gov/table?q=B25064:+MEDIAN+GROSS+RENT+(DOLLARS)&g=050XX00US51085&y=2021&d=ACS+5-Year+Estimates+Detailed+Tables&tid=ACSDT5Y2021.B25064"),
+                                                     p("[5] U.S Census Bureau (2021). HISPANIC OR LATINO ORIGIN BY RACE, 2021: ACS 5-Year Estimates Subject Tables. Retrieved July 20, 2023, from https://data.census.gov/table?q=B03002:+HISPANIC+OR+LATINO+ORIGIN+BY+RACE&g=050XX00US51085&y=2021&tid=ACSDT5Y2021.B03002")),
 
                                               p(),
                   
@@ -1896,7 +1905,7 @@ server <- function(input, output){
       return("The U.S. Census Bureau ACS Data offered information on Hanover County’s total employment in each industry. By examining this aspect, we gain 
              insights into the dominant industries within the county, which significantly impact its sociodemographic standing. Public Services account for 
              over 20% of the county's total employment, encompassing education, healthcare, and social services. On the other hand, the agriculture industry 
-             holds the lowest employment share, comprising only 5% of the county's workforce.")
+             holds the lowest employment share, comprising only 1.2% of the county's workforce.")
       
     }
     
