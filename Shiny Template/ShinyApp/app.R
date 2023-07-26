@@ -1364,13 +1364,13 @@ ui <- navbarPage(selected = "overview",
                                    h1(strong("Meet the Team")),
                                    br(),
                                    h4(strong("VT Data Science for the Public Good")),
-                                   p("The", a(href = 'https://aaec.vt.edu/academics/undergraduate/beyond-classroom/dspg.html', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"),
+                                   p("The", a(href = ' https://dspg.aaec.vt.edu/', 'Data Science for the Public Good (DSPG) Young Scholars program', target = "_blank"),
                                      "is a summer immersive program held at the", a(href = 'https://aaec.vt.edu/index.html', 'Virginia Tech Department of Agricultural'), "and", a(href = 'https://ext.vt.edu/','Applied Economics and the Virginia Cooperative Extension Service.'),
                                      "In its third year, the program engages students from across the country to work together on projects that address state, federal, and local government challenges around critical
                                 social issues relevant in the world today. DSPG young scholars conduct research at the intersection of statistics, computation, and the social sciences to determine how 
                                 information generated within every community can be leveraged to improve quality of life and inform public policy. For more information on program highlights, how to apply,
                                 and our annual symposium, please visit", 
-                                     a(href = 'https://aaec.vt.edu/content/aaec_vt_edu/en/academics/undergraduate/beyond-classroom/dspg.html#select=1.html', 'the official VT DSPG website.', target = "_blank")),
+                                     a(href = ' https://dspg.aaec.vt.edu/', 'the official VT DSPG website.', target = "_blank")),
                                    p("", style = "padding-top:10px;")
                           ),
                           fluidRow(style = "margin-left: 100px; margin-right: 100px;",
