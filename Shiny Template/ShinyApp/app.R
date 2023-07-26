@@ -1755,11 +1755,12 @@ server <- function(input, output){
     
     if (selected2 == "Land Cover by Parcel") {
       if (input$crop_type == "RC") {
-        return("Row crops refer to annual crops harvested on a large scale and consist of corn, 
-               soybeans and similar crops grown in lines. They take up around 9.52% of total land 
-               cover and around 41.89% out of all crop covers in the county. Parcels holding row 
-               crops are concentrated throughout the county except towards residential areas found 
-               at the lower end of the county around Mechanicsville which is closer to Richmond.")
+        return("In Hanover County, row crops encompass annual crops such as corn, soybeans, and similar plants grown in distinct lines and cover 
+               approximately 11.11% of the total land area and constituting around 48.93% of all crop covers in the region. Additionally, small grains,
+               including wheat (winter and spring varieties), oats, barley (winter or spring), rye, and rice, account for 0.22% of land cover and 0.99% of 
+               cover crop and that the practice of double cropping, which involves cultivating multiple crops consecutively on the same land, occupies 1.37% 
+               of the land area and represents 6.05% of crop cover. Parcels holding row crops are concentrated throughout the county except towards 
+               residential areas found at the lower end of the county around Mechanicsville which is closer to Richmond.")
       }
       else if (input$crop_type == "HC") {
         return("Horticulture crops are fruits, vegetables, edible nuts, some ornamental crops, and 
@@ -1838,13 +1839,11 @@ server <- function(input, output){
              forages is the third most common land cover type making up 11.59% occupying 35,000+ acres.")
     }
     else if (selected2=="Crop Cover Acreage"){
-      return("To gain insight on agricultural production, land cover types are seperated to just look at crops. 
-             Crop cover makes up around 22.7% of Hanover County. These consist of tree crops, small grain crops,
-             row crops, horticulture crops, forages, and double cropped. Comparing the maps, row crops take up 
-             the most area occupying 41.89% out of all crop covers. Specifically when looking at crop covers, crops 
-             that can make high profit margins are called cash crops. These crops support the agricultural economy 
-             of Hanover and are seen on the map throughout the county, especially on the northern parts of Hanover. 
-             These crops include row crops and horticulture crops.")
+      return("To gain insight on agricultural production, land cover types are seperated to just look at crops. Crop cover makes up around 22.7% of Hanover County. 
+             These consist of tree crops, row crops, horticulture crops, and forages. Comparing the maps, row crops take up the most area occupying 48.93% out of 
+             all crop covers. Specifically when looking at crop covers, crops that can make high profit margins are called cash crops. These crops support the 
+             agricultural economy of Hanover and are seen on the map throughout the county, especially on the northern parts of Hanover. These crops include row 
+             crops and horticulture crops.")
     }
      
   })
