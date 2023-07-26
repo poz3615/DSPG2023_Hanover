@@ -419,7 +419,8 @@ rateacre <- ggplotly(rateacre, tooltip = "text")
 
 ui <- navbarPage(selected = "overview",
                  theme = shinytheme("lumen"),
-                 tags$head(tags$style('.selectize-dropdown {z-index: 10000}')), 
+                 tags$head(tags$style('DSPG 2023')), 
+                 # tags$head(tags$style('.selectize-dropdown {z-index: 10000}')), 
                  useShinyjs(),
                  
                  ## Tab Overview--------------------------------------------
