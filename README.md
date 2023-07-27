@@ -1,5 +1,5 @@
 # Shiny App
-This repository stores materials for VT DSPG. **Shiny App Template** folder provides code and data to replicate the interactive dashboard of the project. You can also visit the website of our project **https://aaec-vt.shinyapps.io/dspg23VCEhealth/**
+This repository stores materials for VT DSPG. **Shiny Template** folder provides code and data to replicate the interactive dashboard of the project. You can also visit the website of our project  **https://aaec-vt.shinyapps.io/dspg23Hanover/**
 
 
 # VT Data Science for the Public Good
